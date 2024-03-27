@@ -1,0 +1,104 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|c:\\users\\kahol\\source\\repos\\babunbank\\babunbank\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|solutionrelative:babunbank\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|c:\\users\\kahol\\source\\repos\\babunbank\\babunbank\\models\\user\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|solutionrelative:babunbank\\models\\user\\userviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|c:\\users\\kahol\\source\\repos\\babunbank\\babunbank\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|solutionrelative:babunbank\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|c:\\users\\kahol\\source\\repos\\babunbank\\babunbank\\data\\datainitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|solutionrelative:babunbank\\data\\datainitializer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UserViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Models\\User\\UserViewModel.cs",
+              "RelativeDocumentMoniker": "BabunBank\\Models\\User\\UserViewModel.cs",
+              "ToolTip": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Models\\User\\UserViewModel.cs",
+              "RelativeToolTip": "BabunBank\\Models\\User\\UserViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T12:24:59.056Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Program.cs",
+              "RelativeDocumentMoniker": "BabunBank\\Program.cs",
+              "ToolTip": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Program.cs",
+              "RelativeToolTip": "BabunBank\\Program.cs",
+              "ViewState": "AQIAAAoAAAAAAAAAAAAgwBoAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T12:17:54.686Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DataInitializer.cs",
+              "DocumentMoniker": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Data\\DataInitializer.cs",
+              "RelativeDocumentMoniker": "BabunBank\\Data\\DataInitializer.cs",
+              "ToolTip": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Data\\DataInitializer.cs",
+              "RelativeToolTip": "BabunBank\\Data\\DataInitializer.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAiwDoAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T12:17:34.497Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "BabunBank\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "BabunBank\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAA0wDEAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-27T12:16:30.795Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

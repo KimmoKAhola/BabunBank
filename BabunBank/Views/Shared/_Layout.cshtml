@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>@ViewData["Title"] - BabunBank</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+</head>
+<body>
+<div class="home-bg">
+
+  <div class="container navbar">
+    <div class="navbar-navigation">
+      <img src="~/images/Logo.svg" alt="bank logotype"/>
+      <nav class="navbar-links">
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">User</a>
+        <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
+      </nav>
+    </div>
+    <div class="navbar-site-settings">
+      @* <button class="btn-login"><img src="~/images/lock.svg" alt="lock icon"/>Login</button> *@
+      <a asp-area="Identity" asp-page="/Account/Login" title="Manage">
+        <button class="btn-signup">Login<img src="~/images/login-arrow.svg" alt="login arrow"/></button>
+      </a>
+    </div>
+  </div>
+
+  @RenderBody()
+</div>
+
+<div class="container projects">
+    <div>
+    <div id="left">
+      <h2>3. Digital Transformation Roadmap</h2>
+      <h3>Approach</h3>
+      <p>Consultants specializing in strategy support organizations in achieving competitive excellence
+        through
+        deliberate.</p>
+      <h3>FINAL RESULTS</h3>
+      <div>
+        <p class="left-white">Expanded investment via Innovative Solutions.</p>
+        <p class="left-white">Improving risk management with advanced analytics.</p>
+        <p class="left-white">Grow profit, enhanced clients satisfaction.</p>
+      </div>
+      <p>Full Case Study <button>A</button></p>
+    </div>
+    <div id="right">
+      <button>A</button>
+    </div>
+    </div>
+  </div>
+
+
+<div class="footer-bg">
+    <div class="container">
+      <div class="footer-links">
+        <div class="left-section">
+          <img class="footer-logo" src="~/images/Logo.svg" alt="logo"/>
+          <p class="footer-text">2190 Urban Terrace, Mirpur, link
+            Licensed in 50 states.</p>
+          <span class="footer-icons">
+                    <img src="~/images/instagram.svg" alt="instagram"/>
+                    <img src="~/images/instagram.svg" alt="instagram"/>
+                    <img src="~/images/instagram.svg" alt="instagram"/>
+                </span>
+          <p class="footer-text">Copyright &copy;2023 babun inc.</p>
+        </div>
+        <div class="right-section">
+          <div>
+            <h3></h3>
+            <ul>
+              <li>
+                <a class="link" href="#">Home</a>
+                <a class="link" href="#">Pricing</a>
+                <a class="link" href="#">About Us</a>
+                <a class="link" href="#">Careers</a>
+                <a class="link" href="#">Contact us</a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <a class="link" href="#">Terms & Policy</a>
+                <a class="link" href="#">Generic link name</a>
+                <a class="link" href="#">Internal link</a>
+                <a class="link" href="#">link to our page</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
