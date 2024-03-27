@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Checkmark.png",
+      "PackagePath": "staticwebassets\\images\\Checkmark.png"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Logo.svg",
       "PackagePath": "staticwebassets\\images\\Logo.svg"
     },
@@ -27,6 +31,10 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\login-arrow.svg",
       "PackagePath": "staticwebassets\\images\\login-arrow.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
+      "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",

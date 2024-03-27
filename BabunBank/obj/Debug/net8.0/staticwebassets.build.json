@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "rkacP2i2oMKXeejjPi11K7WLIDhg7ACcFkr88E+Yrbg=",
+  "Hash": "JwclH/pQs4H0XZO1/L0oheyBlnzfOx3j3W0H6s5oVYk=",
   "Source": "BabunBank",
   "BasePath": "_content/BabunBank",
   "Mode": "Default",
@@ -1233,6 +1233,25 @@
       "OriginalItemSpec": "wwwroot\\favicon.ico"
     },
     {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Checkmark.png",
+      "SourceId": "BabunBank",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/Checkmark.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\Checkmark.png"
+    },
+    {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\instagram.svg",
       "SourceId": "BabunBank",
       "SourceType": "Discovered",
@@ -1307,6 +1326,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\Logo.svg"
+    },
+    {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
+      "SourceId": "BabunBank",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/nordic-countries.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\nordic-countries.jpg"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",

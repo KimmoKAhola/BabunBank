@@ -1,4 +1,5 @@
-﻿@{
+﻿@model BabunBank.Models.LandingPage.LandingPageViewModel
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -13,4 +14,26 @@
     </div>
 
     <p id="text"><span id="underline">Join 27.000+ </span> companies who've reached out to us!</p>
+</div>
+
+<div class="container projects">
+    <div>
+        <div id="left">
+            <h2>3. A quick data summary</h2>
+            <h3>Approach</h3>
+            <p>Consultants specializing in strategy support organizations in achieving competitive excellence
+                through
+                deliberate.</p>
+            <h3>FINAL RESULTS</h3>
+            <div>
+                <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Number of accounts: @Model.NumberOfAccounts</p>
+                <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Number of customers: @Model.NumberOfCustomers</p>
+                <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Total account sum: @(Model.TotalAccountBalance.ToString("C2"))</p>
+            </div>
+            <p>Full Case Study <button><img src="~/images/login-arrow.svg" alt="right arrow"></button></p>
+        </div>
+        <div id="right">
+            <img src="~/images/nordic-countries.jpg" alt="nordic countries">
+        </div>
+    </div>
 </div>

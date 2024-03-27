@@ -549,6 +549,11 @@ a:hover {
   width: fit-content;
   border-radius: 45px;
 }
+.left-white{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 .container.projects #right {
   padding: 50px;
   background-color: #d9d9d9;
@@ -558,11 +563,24 @@ a:hover {
   justify-content: center;
   margin: 100px;
 }
-.container.projects #right button {
+.container.projects #right img {
+  border: none;
+  height: 350px;
+  width: 350px;
+  border-radius: 50%;
+  background-color: #0a4020;
+}
+
+.container.projects #left p button{
   border: none;
   height: 70px;
   width: 70px;
   border-radius: 50%;
+  color: white;
+  background-color: #0a4020;
+}
+.container.projects #left p button img{
+  background-color: transparent;
 }
 
 .error-image {
