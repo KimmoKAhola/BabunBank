@@ -13,6 +13,22 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Logo.svg",
+      "PackagePath": "staticwebassets\\images\\Logo.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\instagram.svg",
+      "PackagePath": "staticwebassets\\images\\instagram.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\lock.svg",
+      "PackagePath": "staticwebassets\\images\\lock.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\login-arrow.svg",
+      "PackagePath": "staticwebassets\\images\\login-arrow.svg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },

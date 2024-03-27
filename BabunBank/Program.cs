@@ -38,15 +38,6 @@ namespace BabunBank
                 scope.ServiceProvider.GetService<DataInitializer>().SeedData();
             }
 
-            //          builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-
-            //.AddRoles<IdentityRole>()
-
-            //.AddEntityFrameworkStores<ApplicationDbContext>();
-
-
-
-
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
