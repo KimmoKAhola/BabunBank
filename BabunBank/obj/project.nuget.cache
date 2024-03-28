@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "8X3/mUUAz1bIaURcZE6fEFVWJsbYRjMRp8LHSTclOzgGTKXMxcd3ae5DnwAvwviotUxVt7VCbYcXCYpDm9qMUg==",
+  "dgSpecHash": "+Q2psofXhLufp8FuR5BUpKkxpcoo9w7mVuBniisOh1Yurh4RIA0ygINP7SyIgPAX5z8RWmHrXQ3mv2yOcH11Bw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\BabunBank.csproj",
+  "projectFilePath": "C:\\Users\\kahol\\RiderProjects\\BabunBank\\BabunBank\\BabunBank.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kahol\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",

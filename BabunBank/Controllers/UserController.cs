@@ -25,6 +25,8 @@ public class UserController : Controller
             LastName = userEntity.LastName
         });
 
-        return View(viewModel);
+        var model = await _userService.GetAllUsersViewModelAsync();
+
+        return View(model);
     }
 }
