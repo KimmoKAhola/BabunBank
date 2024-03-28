@@ -13,7 +13,7 @@ public class CustomerController : Controller
         _customerRepository = customerRepository;
     }
 
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string sortColumn, string sortOrder)
     {
         var temp = await _customerRepository.GetAllAsync();
 
@@ -27,6 +27,42 @@ public class CustomerController : Controller
             Zipcode = x.Zipcode,
             Country = x.Country
         });
+
+        if (sortColumn == "Gender")
+        {
+            if (sortOrder == "asc")
+            {
+                customers = customers.OrderBy(x => x.Gender);
+            }
+            else
+            {
+                customers = customers.OrderByDescending(x => x.Gender);
+            }
+        }
+        
+        else if (sortColumn == "GivenName")
+        {
+            if (sortOrder == "asc")
+            {
+                customers = customers.OrderBy(x => x.GivenName);
+            }
+            else
+            {
+                customers = customers.OrderByDescending(x => x.GivenName);
+            }
+        }
+        
+       else if (sortColumn == "Surname")
+        {
+            if (sortOrder == "asc")
+            {
+                customers = customers.OrderBy(x => x.Surname);
+            }
+            else
+            {
+                customers = customers.OrderByDescending(x => x.Surname);
+            }
+        }
 
         return View(customers);
     }

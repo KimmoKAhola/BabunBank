@@ -5,18 +5,60 @@
     Layout = "_Layout";
 }
 
-<h2>title</h2>
-
 <table class="table table-striped">
     <thead>
     <tr>
-        <th>Gender</th>
-        <th>GivenName</th>
-        <th>Surname</th>
-        <th>Street address</th>
-        <th>City</th>
-        <th>ZIP code</th>
-        <th>Country</th>
+        <th>
+            Gender
+            <a asp-page="/Suppliers"
+               asp-route-sortColumn="Gender"
+               asp-route-sortOrder="asc"
+               style="text-decoration:none">
+                <i class="fa-solid fa-angle-up"></i>
+                           
+            </a>
+            <a asp-page="/Suppliers"
+               asp-route-sortColumn="Gender"
+               asp-route-sortOrder="desc"
+               style="text-decoration:none">
+                <i class="fa-solid fa-angle-down"></i>
+            </a>
+        </th>
+        
+        <th>
+            Given Name
+            <a asp-page="/Suppliers"
+               asp-route-sortColumn="GivenName"
+               asp-route-sortOrder="asc"
+               style="text-decoration:none">
+                <i class="fa-solid fa-angle-up"></i>
+                                   
+            </a>
+            <a asp-page="/Suppliers"
+               asp-route-sortColumn="GivenName"
+               asp-route-sortOrder="desc"
+               style="text-decoration:none">
+                <i class="fa-solid fa-angle-down"></i>
+            </a>
+        </th>
+        
+        <th>
+            Surname
+            <a asp-page="/Suppliers"
+               asp-route-sortColumn="Surname"
+               asp-route-sortOrder="asc"
+               style="text-decoration:none">
+                <i class="fa-solid fa-angle-up"></i>
+                                   
+            </a>
+            <a asp-page="/Suppliers"
+               asp-route-sortColumn="Surname"
+               asp-route-sortOrder="desc"
+               style="text-decoration:none">
+                <i class="fa-solid fa-angle-down"></i>
+            </a>
+        </th>
+        
     </tr>
     </thead>
     <tbody>
@@ -27,10 +69,6 @@
             <td>@customer.Gender</td>
             <td>@customer.GivenName</td>
             <td>@customer.Surname</td>
-            <td>@customer.Streetaddress</td>
-            <td>@customer.City</td>
-            <td>@customer.Zipcode</td>
-            <td>@customer.Country</td>
         </tr>
     }
     </tbody>
