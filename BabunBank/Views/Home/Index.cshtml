@@ -2,38 +2,41 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<img id="landing-page-bg" src="~/images/bg-fullscreen.jpg" alt="background">
+<div id="landing-page-bg">
+<img src="~/images/bg-fullscreen.jpg" alt="background">
 <div class="container banner">
-    <h1>Your Goals, Our Expertise - Financial Success</h1>
-    <h3>Finance insights enable smart moves toward wealth & security</h3>
+    <h1>Your Goals, Our Expertise</h1>
+    @* <h3>Finance insights enable smart moves toward wealth & security</h3> *@
 
     <div class="container search-bar">
         <input id="Search" type="text" placeholder="Your email address..." autoComplete="off"/>
         <label for="Search"></label>
         <button>Connect</button>
     </div>
-
-    <p id="text"><span id="underline">Join 27.000+ </span> companies who've reached out to us!</p>
+    
+    @* <p id="text"><span id="underline">Join 27.000+ </span> companies who've reached out to us!</p> *@
+</div>
 </div>
 
-<div class="container projects">
-    <div>
-        <div id="left">
-            <h2>3. A quick data summary</h2>
-            <h3>Approach</h3>
-            <p>Consultants specializing in strategy support organizations in achieving competitive excellence
-                through
-                deliberate.</p>
-            <h3>FINAL RESULTS</h3>
-            <div>
-                <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Number of accounts: @Model.NumberOfAccounts</p>
-                <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Number of customers: @Model.NumberOfCustomers</p>
-                <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Total account sum: @(Model.TotalAccountBalance.ToString("C2"))</p>
-            </div>
-            <p>Full Case Study <button><img src="~/images/login-arrow.svg" alt="right arrow"></button></p>
-        </div>
-        <div id="right">
-            <img src="~/images/nordic-countries.jpg" alt="nordic countries">
-        </div>
-    </div>
-</div>
+
+@* <div class="container projects"> *@
+@*     <div> *@
+@*         <div id="left"> *@
+@*             <h2>3. A quick data summary</h2> *@
+@*             <h3>Approach</h3> *@
+@*             <p>Consultants specializing in strategy support organizations in achieving competitive excellence *@
+@*                 through *@
+@*                 deliberate.</p> *@
+@*             <h3>FINAL RESULTS</h3> *@
+@*             <div> *@
+@*                 <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Number of accounts: @Model.NumberOfAccounts</p> *@
+@*                 <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Number of customers: @Model.NumberOfCustomers</p> *@
+@*                 <p class="left-white"><img src="~/images/Checkmark.png" alt="checkmark">Total account sum: @(Model.TotalAccountBalance.ToString("C2"))</p> *@
+@*             </div> *@
+@*             <p>Full Case Study <button><img src="~/images/login-arrow.svg" alt="right arrow"></button></p> *@
+@*         </div> *@
+@*         <div id="right"> *@
+@*             <img src="~/images/nordic-countries.jpg" alt="nordic countries"> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
