@@ -524,3 +524,6 @@ C:\Users\kahol\RiderProjects\BabunBank\BabunBank\obj\Debug\net8.0\refint\BabunBa
 C:\Users\kahol\RiderProjects\BabunBank\BabunBank\obj\Debug\net8.0\BabunBank.pdb
 C:\Users\kahol\RiderProjects\BabunBank\BabunBank\obj\Debug\net8.0\BabunBank.genruntimeconfig.cache
 C:\Users\kahol\RiderProjects\BabunBank\BabunBank\obj\Debug\net8.0\ref\BabunBank.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\DatabaseLibrary.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\DatabaseLibrary.pdb
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\AutoMapper.dll

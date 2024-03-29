@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using BabunBank.Data;
 using BabunBank.Models.LandingPage;
+using BabunBank.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace BabunBank.Controllers
@@ -10,29 +11,18 @@ namespace BabunBank.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public LandingPageViewModel _landingPageViewModel;
-        private readonly ApplicationDbContext _dbContext;
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext dbContext)
+        private readonly LandingPageService _landingPageService;
+        public HomeController(ILogger<HomeController> logger, LandingPageService landingPageService)
         {
             _logger = logger;
-            // _landingPageViewModel = landingPageViewModel;
-            _dbContext = dbContext;
+            _landingPageService = landingPageService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var query = _dbContext.Accounts
-                .Include(x => x.Dispositions)
-                .ThenInclude(x => x.Customer);
-
-            _landingPageViewModel = new LandingPageViewModel
-            {
-                NumberOfAccounts = query.Count(),
-                NumberOfCustomers = query.SelectMany(x => x.Dispositions.Select(d => d.CustomerId)).Distinct().Count(),
-                TotalAccountBalance = query.Sum(x => x.Balance)
-            };
+            var landingPageViewModel = await _landingPageService.GetLandingPageInfo();
             
-            return View(_landingPageViewModel);
+            return View(landingPageViewModel);
         }
 
         public IActionResult Privacy()

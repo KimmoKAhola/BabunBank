@@ -1,15 +1,16 @@
 ﻿using BabunBank.Data;
 using BabunBank.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Factories;
 
 public class UserFactory
 {
-    public static User Create(SignUpModel model)
+    public static IdentityUser Create(SignUpModel model)
     {
         try
         {
-            var user = new User()
+            var user = new IdentityUser()
             {
                 //TODO add some shit here to make sign up work.
             };

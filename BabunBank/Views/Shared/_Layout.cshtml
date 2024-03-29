@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
@@ -29,9 +31,18 @@
     </div>
     <div class="navbar-site-settings">
       @* <button class="btn-login"><img src="~/images/lock.svg" alt="lock icon"/>Login</button> *@
+      @if(SignInManager.IsSignedIn(User)){
+        <p>Hello @User.Identity?.Name</p>
+          <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+            <button class="btn-signup">Log out<img src="~/images/login-arrow.svg" alt="login arrow"/></button>
+          </form>
+      }
+      else
+      {
       <a asp-area="Identity" asp-page="/Account/Login" title="Manage">
-        <button class="btn-signup">Login<img src="~/images/login-arrow.svg" alt="login arrow"/></button>
+        <button class="btn-signup">Log in<img src="~/images/login-arrow.svg" alt="login arrow"/></button>
       </a>
+      }
     </div>
   </div>
 </div>

@@ -17,14 +17,6 @@ public class UserController : Controller
 
     public async Task<IActionResult> Index()
     {
-        var userEntities = await _userService.GetAllUsersAsync();
-
-        var viewModel = userEntities.Select(userEntity => new UserViewModel
-        {
-            FirstName = userEntity.FirstName,
-            LastName = userEntity.LastName
-        });
-
         var model = await _userService.GetAllUsersViewModelAsync();
 
         return View(model);

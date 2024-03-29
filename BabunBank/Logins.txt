@@ -1,0 +1,4 @@
+﻿kimmo@mail.se, Qwerty123!
+
+richard.chalk@systementor.se, Hejsan123# - ADMIN
+richard.chalk@customer.systementor.se, Hejsan123# - NOT ADMIN

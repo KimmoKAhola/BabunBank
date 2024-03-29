@@ -1,33 +1,24 @@
 ﻿using BabunBank.Models.Customer;
 using BabunBank.Repositories;
+using BabunBank.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
 public class CustomerController : Controller
 {
-    private readonly CustomerRepository _customerRepository;
+    private readonly CustomerService _customerService;
 
-    public CustomerController(CustomerRepository customerRepository)
+    public CustomerController(CustomerService customerService)
     {
-        _customerRepository = customerRepository;
+        _customerService = customerService;
     }
 
     public async Task<IActionResult> Index(string sortColumn, string sortOrder)
     {
-        var temp = await _customerRepository.GetAllAsync();
+        var customers = await _customerService.GetAllCustomersViewModelAsync();
 
-        var customers = temp.Select(x => new CustomerViewModel
-        {
-            Gender = x.Gender,
-            GivenName = x.Givenname,
-            Surname = x.Surname,
-            Streetaddress = x.Streetaddress,
-            City = x.City,
-            Zipcode = x.Zipcode,
-            Country = x.Country
-        }).Take(20);
-
+        customers = customers.Take(20); // TODO
         if (sortColumn == "Gender")
         {
             if (sortOrder == "asc")

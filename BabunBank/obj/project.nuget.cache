@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "V3Rau8WfdDj8zlM72Nh7KhA6f0GEOIvykp9v5upv93l7KGhMiN96citHtGCiedHXk6kzFQH2541mxb5M4Hmnlw==",
+  "dgSpecHash": "N6wDqAaWHFEGVm027QsFtojbdS5IIisTZwhsnfwwQtAOrHqYDecmwjrxlnGp/tAGCWB51bKDe86AXWOHFEmqEw==",
   "success": true,
   "projectFilePath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\BabunBank.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\kahol\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",

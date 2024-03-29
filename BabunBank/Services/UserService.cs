@@ -4,12 +4,13 @@ using BabunBank.Factories;
 using BabunBank.Models;
 using BabunBank.Models.User;
 using BabunBank.Repositories;
+using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Services;
 
 public class UserService(UserRepository userRepository)
 {
-    public async Task<bool> CheckUserExistsAsync(Expression<Func<User, bool>> predicate)
+    public async Task<bool> CheckUserExistsAsync(Expression<Func<IdentityUser, bool>> predicate)
     {
         try
         {
@@ -20,7 +21,7 @@ public class UserService(UserRepository userRepository)
         return false;
     }
 
-    public async Task<IEnumerable<User>> GetAllUsersAsync()
+    public async Task<IEnumerable<IdentityUser>> GetAllUsersAsync()
     {
         try
         {
@@ -40,8 +41,8 @@ public class UserService(UserRepository userRepository)
             
             var viewModel = result.Select(userEntity => new UserViewModel
             {
-                FirstName = userEntity.FirstName,
-                LastName = userEntity.LastName
+                UserName = userEntity.UserName,
+                Email = userEntity.Email
             });
 
             return viewModel;

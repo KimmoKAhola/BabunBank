@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\images\\babun-large-logo.png"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-fullscreen.jpg",
+      "PackagePath": "staticwebassets\\images\\bg-fullscreen.jpg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\instagram.svg",
       "PackagePath": "staticwebassets\\images\\instagram.svg"
     },
@@ -51,6 +55,10 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
       "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-3727464.jpeg",
+      "PackagePath": "staticwebassets\\images\\pexels-photo-3727464.jpeg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",

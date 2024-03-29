@@ -26,8 +26,10 @@ namespace BabunBank
             
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<CustomerRepository>();
+            builder.Services.AddScoped<LandingPageService>();
             builder.Services.AddScoped<UserService>();
             builder.Services.AddScoped<CustomerService>();
+            builder.Services.AddScoped<LandingPageService>();
             builder.Services.AddTransient<DataInitializer>();
 
 
