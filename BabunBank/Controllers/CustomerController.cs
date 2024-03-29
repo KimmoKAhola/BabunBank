@@ -26,7 +26,7 @@ public class CustomerController : Controller
             City = x.City,
             Zipcode = x.Zipcode,
             Country = x.Country
-        });
+        }).Take(20);
 
         if (sortColumn == "Gender")
         {

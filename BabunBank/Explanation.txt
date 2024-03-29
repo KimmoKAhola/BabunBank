@@ -1,0 +1,109 @@
+﻿Controllers = Routing - nav links kräver asp-controller = "vald controller" asp-action="vald action"
+Views = Pages i razor men code behind finns inte kopplad direkt till cshtml-filen
+Använd _viewports för att göra saker "globala", tex kan en modell skrivas som using där och bli tillgänglig i alla andra filer.
+Använd _layout för att styra startsidan beroende på olika villkor
+
+
+From chatGTP:
+
+Controller: The controller handles incoming requests, processes them, and then returns a response. 
+It contains action methods that are responsible for handling specific URLs and HTTP verbs (GET, POST, etc.). 
+The controller can interact with services, repositories, or other components to retrieve data, perform business logic, 
+and prepare data for the view.
+
+View: The view is responsible for rendering the user interface. 
+It contains HTML markup along with embedded Razor code that can dynamically generate content based on 
+the data provided by the controller. Views are typically located in the Views folder and organized into
+subfolders corresponding to the controller they belong to.
+
+ViewModel: ViewModels are classes used to represent the data that a view will display. 
+They contain properties and methods that the view can bind to and use to render the UI. 
+ViewModels are specifically designed to cater to the needs of the view, often aggregating data from 
+multiple sources or shaping data in a way that makes it easy for the view to consume.
+
+Database Models: These models represent the structure and relationships of your application's data in the database. 
+They are typically created based on your database schema and mapped to tables. 
+Database models may include additional properties or annotations specific to database interactions, 
+such as data validation attributes or navigation properties.
+
+
+Patterns: Repository handles database CRUD and is the layer before the database. The Service acts as an abstraction that interacts
+with the repository.
+
+Simple template
+
+public class UserRepository : IUserRepository
+{
+    private readonly DbContext _context;
+
+    public UserRepository(DbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<User> GetByIdAsync(int id)
+    {
+        return await _context.Set<User>().FindAsync(id);
+    }
+
+    public async Task<IEnumerable<User>> GetAllAsync()
+    {
+        return await _context.Set<User>().ToListAsync();
+    }
+
+    public async Task AddAsync(User user)
+    {
+        await _context.Set<User>().AddAsync(user);
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task UpdateAsync(User user)
+    {
+        _context.Entry(user).State = EntityState.Modified;
+        await _context.SaveChangesAsync();
+    }
+
+    public async Task DeleteAsync(User user)
+    {
+        _context.Set<User>().Remove(user);
+        await _context.SaveChangesAsync();
+    }
+}
+
+
+Service:
+
+public class UserService
+{
+    private readonly IUserRepository _userRepository;
+
+    public UserService(IUserRepository userRepository)
+    {
+        _userRepository = userRepository;
+    }
+
+    public async Task<User> GetUserByIdAsync(int id)
+    {
+        return await _userRepository.GetByIdAsync(id);
+    }
+
+    public async Task<IEnumerable<User>> GetAllUsersAsync()
+    {
+        return await _userRepository.GetAllAsync();
+    }
+
+    public async Task AddUserAsync(User user)
+    {
+        await _userRepository.AddAsync(user);
+    }
+
+    public async Task UpdateUserAsync(User user)
+    {
+        await _userRepository.UpdateAsync(user);
+    }
+
+    public async Task DeleteUserAsync(User user)
+    {
+        await _userRepository.DeleteAsync(user);
+    }
+}

@@ -4,9 +4,10 @@
     ViewBag.Title = "Account title";
     Layout = "_Layout";
 }
-
-<table class="table table-striped">
-    <thead>
+<h1>Customer table</h1>
+<div class="customer-container">
+<table class="data-table">
+    <thead class="header">
     <tr>
         <th>
             Gender
@@ -61,7 +62,7 @@
         
     </tr>
     </thead>
-    <tbody>
+    <tbody class="body">
     
     @foreach (var customer in Model)
     {
@@ -74,3 +75,4 @@
     </tbody>
 
 </table>
+</div>

@@ -5,6 +5,8 @@ VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabunBank", "BabunBank\BabunBank.csproj", "{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLibrary", "DatabaseLibrary\DatabaseLibrary.csproj", "{C97BD7CB-8A54-4383-8502-029F9F4DEEA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C97BD7CB-8A54-4383-8502-029F9F4DEEA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C97BD7CB-8A54-4383-8502-029F9F4DEEA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C97BD7CB-8A54-4383-8502-029F9F4DEEA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C97BD7CB-8A54-4383-8502-029F9F4DEEA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
