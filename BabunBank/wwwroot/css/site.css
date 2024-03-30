@@ -59,7 +59,7 @@ table {
 html, body, a {
   line-height: 160%;
   font-weight: 400;
-  color: #000;
+  color: #070707;
   font-family: "Manrope", sans-serif;
   font-size: 16px;
 }
@@ -180,6 +180,8 @@ a:hover {
   background-color: #1A4137;
 }
 
+/*Navbar*/
+
 .container.navbar {
   display: flex;
   justify-content: space-between;
@@ -230,19 +232,13 @@ a:hover {
   height: 50px;
 }
 
-.container.search-bar {
-  margin-top: 350px;
-  display: flex;
-  position: relative;
-  width: 30%;
-}
-.container.search-bar input {
-  border-radius: 50px;
-  height: 70px;
-  flex-shrink: 0;
-  padding-left: 30px;
-}
+/*End of navbar*/
 
+
+
+
+
+/*Footer starts here*/
 .footer-bg {
   background-color: #e0e0e0;
   padding: 100px 0;
@@ -309,6 +305,10 @@ a:hover {
   color: rgba(0, 0, 0, 0.8);
 }
 
+/*Footer ends here*/
+
+
+/*Alternative footer starts here*/
 .navbar-footer {
   border-top: 1px solid #c9c9c9;
   margin-top: 50px;
@@ -324,8 +324,14 @@ a:hover {
   display: flex;
   gap: 25px;
 }
-/*TODO this is the original with the centered picture*/
 
+/*Alternative footer ends here*/
+
+
+
+/*Landing page starts here*/
+
+/*image section*/
 .banner{
   position: relative;
   z-index: 1;
@@ -371,6 +377,29 @@ a:hover {
   text-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
 }
 
+/*image section ends*/
+
+/*filler section here*/
+
+#landing-page-body{
+  margin: 40px auto;
+  max-width: 87.5%;
+  display: grid;
+  border: 1px solid black;
+  gap: 50px;
+}
+
+#header{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  /*font-size: 72px;*/
+}
+
+/*filler section ends here*/
+
+
+/*country information here*/
 .container.projects {
   margin-top: 100px;
   width: 1320px;
@@ -432,5 +461,8 @@ a:hover {
   width: 70px;
   border-radius: 50%;
 }
+
+/*country section ends here*/
+
 
 /*# sourceMappingURL=main.css.map */
