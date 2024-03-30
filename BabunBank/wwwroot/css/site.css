@@ -202,28 +202,25 @@ a:hover {
   display: flex;
   align-items: center;
 }
-.container.navbar .navbar-site-settings .btn-login {
-  background-color: transparent;
-  border: none;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding-right: 30px;
-}
-.container.navbar .navbar-site-settings .btn-login img {
-  height: 18px;
-}
 
 .container.navbar .navbar-site-settings .btn-signup {
   position: relative;
   background-color: #fcfcfc;
-  border: 1.5px solid #295956;
+  border: 1px solid #295956;
   border-radius: 30px;
   padding: 6px 30px;
   height: 50px;
   color: #295956;
   font-size: 20px;
+  transition: 0.1s ease-in;
 }
+
+/*TODO*/
+.container.navbar .navbar-site-settings .btn-signup:hover {  
+  background-color: rgba(0, 0, 0, 0.07);
+  color: #000;
+}
+
 .container.navbar .navbar-site-settings .btn-signup img {
   position: absolute;
   right: -40px;
@@ -349,6 +346,7 @@ a:hover {
 
 .btn-banner{
   border: 1px solid white;
+  font-size: 20px;
   background-color: transparent;
   color: white;
   padding: 10px 30px;
@@ -381,19 +379,76 @@ a:hover {
 
 /*filler section here*/
 
+#country-page-bg{
+  background-color: #eaf3ee;
+}
+
 #landing-page-body{
-  margin: 40px auto;
+  margin: 0 auto;
+  padding: 40px 0;
   max-width: 87.5%;
   display: grid;
-  border: 1px solid black;
+  grid-template-columns: auto 1fr;
   gap: 50px;
 }
 
-#header{
+#landing-page-body h2{
+  font-size: 64px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 72px; /* 112.5% */
+}
+
+#landing-page-body #header{
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  /*font-size: 72px;*/
+  flex-direction: column;
+  gap: 40px;
+  max-width: 450px;
+}
+
+#card-section{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 50px;
+}
+
+
+.country-card{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  gap: 30px;
+  padding: 40px;
+  border-radius: 5px;
+  
+  h3{
+    font-size: 24px;
+  }
+}
+
+.country-flag{
+  display: flex;
+  align-self: flex-start;
+  height: 50px;
+}
+
+.country-card button{
+  width: fit-content;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  border: none;
+  padding: 5px;
+  background-color: transparent;
+}
+
+.country-card div .data{
+  background-color: white;
+  margin: 10px 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 5px;
+  padding-left: 15px;
 }
 
 /*filler section ends here*/
