@@ -17,16 +17,15 @@
 <body>
   <div class="container navbar">
     <div class="navbar-navigation">
-      <img src="~/images/Logo.svg" alt="bank logotype"/>
+      <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo.svg" alt="bank logotype"/></a>
       <nav class="navbar-links">
-        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Index">User</a>
-        <a class="nav-link text-dark" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
+        <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        <a class="navbar-link" asp-area="" asp-controller="User" asp-action="Index">User</a>
+        <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
       </nav>
     </div>
     <div class="navbar-site-settings">
-      @* <button class="btn-login"><img src="~/images/lock.svg" alt="lock icon"/>Login</button> *@
       @if(SignInManager.IsSignedIn(User)){
         <p>Hello @User.Identity?.Name</p>
           <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
@@ -44,45 +43,45 @@
   </div>
   @RenderBody()
 
-<div class="footer-bg">
-  <div class="container">
-    <div class="footer-links">
-      <div class="left-section">
-        <img class="footer-logo" src="~/images/Logo.svg" alt="logo"/>
-        <p class="footer-text">2190 Urban Terrace, Mirpur, link
-          Licensed in 50 states.</p>
-        <span class="footer-icons">
-          <img src="~/images/instagram.svg" alt="instagram"/>
-          <img src="~/images/instagram.svg" alt="instagram"/>
-          <img src="~/images/instagram.svg" alt="instagram"/>
-        </span>
-        <p class="footer-text">Copyright &copy;2023 babun inc.</p>
-      </div>
-      <div class="right-section">
-        <div>
-          <h3></h3>
-          <ul>
-            <li>
-              <a class="link" href="#">Home</a>
-              <a class="link" href="#">Pricing</a>
-              <a class="link" href="#">About Us</a>
-              <a class="link" href="#">Careers</a>
-              <a class="link" href="#">Contact us</a>
-            </li>
-          </ul>
-          <ul>
-            <li>
-              <a class="link" href="#">Terms & Policy</a>
-              <a class="link" href="#">Generic link name</a>
-              <a class="link" href="#">Internal link</a>
-              <a class="link" href="#">link to our page</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+@* <div class="footer-bg"> *@
+@*   <div class="container"> *@
+@*     <div class="footer-links"> *@
+@*       <div class="left-section"> *@
+@*         <img class="footer-logo" src="~/images/Logo.svg" alt="logo"/> *@
+@*         <p class="footer-text">2190 Urban Terrace, Mirpur, link *@
+@*           Licensed in 50 states.</p> *@
+@*         <span class="footer-icons"> *@
+@*           <img src="~/images/instagram.svg" alt="instagram"/> *@
+@*           <img src="~/images/instagram.svg" alt="instagram"/> *@
+@*           <img src="~/images/instagram.svg" alt="instagram"/> *@
+@*         </span> *@
+@*         <p class="footer-text">Copyright &copy;2023 babun inc.</p> *@
+@*       </div> *@
+@*       <div class="right-section"> *@
+@*         <div> *@
+@*           <h3></h3> *@
+@*           <ul> *@
+@*             <li> *@
+@*               <a class="link" href="#">Home</a> *@
+@*               <a class="link" href="#">Pricing</a> *@
+@*               <a class="link" href="#">About Us</a> *@
+@*               <a class="link" href="#">Careers</a> *@
+@*               <a class="link" href="#">Contact us</a> *@
+@*             </li> *@
+@*           </ul> *@
+@*           <ul> *@
+@*             <li> *@
+@*               <a class="link" href="#">Terms & Policy</a> *@
+@*               <a class="link" href="#">Generic link name</a> *@
+@*               <a class="link" href="#">Internal link</a> *@
+@*               <a class="link" href="#">link to our page</a> *@
+@*             </li> *@
+@*           </ul> *@
+@*         </div> *@
+@*       </div> *@
+@*     </div> *@
+@*   </div> *@
+@* </div> *@
 
 <div class="container">
 

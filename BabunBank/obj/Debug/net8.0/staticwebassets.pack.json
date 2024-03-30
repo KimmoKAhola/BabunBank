@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\images\\Checkmark.png"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Icon.png",
+      "PackagePath": "staticwebassets\\images\\Icon.png"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Logo.svg",
       "PackagePath": "staticwebassets\\images\\Logo.svg"
     },
@@ -43,6 +47,26 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-fullscreen.webp",
       "PackagePath": "staticwebassets\\images\\bg-fullscreen.webp"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.svg",
+      "PackagePath": "staticwebassets\\images\\flag-of-denmark.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finlan.svg",
+      "PackagePath": "staticwebassets\\images\\flag-of-finlan.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.svg",
+      "PackagePath": "staticwebassets\\images\\flag-of-finland.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-norway.svg",
+      "PackagePath": "staticwebassets\\images\\flag-of-norway.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-sweden.svg",
+      "PackagePath": "staticwebassets\\images\\flag-of-sweden.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\instagram.svg",
