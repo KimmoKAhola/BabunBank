@@ -1,23 +1,23 @@
-﻿@model BabunBank.Models.LandingPage.LandingPageViewModel
+﻿@using Microsoft.AspNetCore.Identity
+@using BabunBank.Data
+@model BabunBank.Models.LandingPage.LandingPageViewModel
 @{
     ViewData["Title"] = "Home Page";
 }
 <div id="landing-page-bg">
-<img src="~/images/bg-fullscreen.jpg" alt="background">
-<div class="container banner">
-    <h1>Your Goals, Our Expertise</h1>
-    @* <h3>Finance insights enable smart moves toward wealth & security</h3> *@
-
-    <div class="container search-bar">
-        <input id="Search" type="text" placeholder="Your email address..." autoComplete="off"/>
-        <label for="Search"></label>
-        <button>Connect</button>
+    <img src="~/images/pexels-photo-right-aligned.webp" alt="background">
+    <div class="banner">
+        <div>
+            <h1>Your Goals, Our Expertise</h1>
+            <button class="btn-banner">Contact us <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
     </div>
-    
-    @* <p id="text"><span id="underline">Join 27.000+ </span> companies who've reached out to us!</p> *@
-</div>
 </div>
 
+
+<div>
+    <h2>PLACE SOME FILLER CONTENT HERE</h2>
+</div>
 
 @* <div class="container projects"> *@
 @*     <div> *@

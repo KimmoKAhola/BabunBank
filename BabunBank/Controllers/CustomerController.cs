@@ -18,7 +18,7 @@ public class CustomerController : Controller
     {
         var customers = await _customerService.GetAllCustomersViewModelAsync();
 
-        customers = customers.Take(20); // TODO
+        customers = customers.Take(30); // TODO
         if (sortColumn == "Gender")
         {
             if (sortOrder == "asc")

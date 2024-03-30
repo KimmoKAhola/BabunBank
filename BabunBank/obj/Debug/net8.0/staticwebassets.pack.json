@@ -29,6 +29,10 @@
       "PackagePath": "staticwebassets\\images\\Logo.svg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Mediamodifier-Design.svg",
+      "PackagePath": "staticwebassets\\images\\Mediamodifier-Design.svg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\babun-large-logo.png",
       "PackagePath": "staticwebassets\\images\\babun-large-logo.png"
     },
@@ -37,12 +41,20 @@
       "PackagePath": "staticwebassets\\images\\bg-fullscreen.jpg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-fullscreen.webp",
+      "PackagePath": "staticwebassets\\images\\bg-fullscreen.webp"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\instagram.svg",
       "PackagePath": "staticwebassets\\images\\instagram.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\lock.svg",
       "PackagePath": "staticwebassets\\images\\lock.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\login-arrow-hover.svg",
+      "PackagePath": "staticwebassets\\images\\login-arrow-hover.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\login-arrow.svg",
@@ -59,6 +71,14 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-3727464.jpeg",
       "PackagePath": "staticwebassets\\images\\pexels-photo-3727464.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-right-aligned.jpeg",
+      "PackagePath": "staticwebassets\\images\\pexels-photo-right-aligned.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-right-aligned.webp",
+      "PackagePath": "staticwebassets\\images\\pexels-photo-right-aligned.webp"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",

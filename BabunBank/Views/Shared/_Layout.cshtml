@@ -15,10 +15,6 @@
 
 </head>
 <body>
-<div class="home-bg">
-  <div id="navbar-border">
-    
-  
   <div class="container navbar">
     <div class="navbar-navigation">
       <img src="~/images/Logo.svg" alt="bank logotype"/>
@@ -41,13 +37,12 @@
       {
       <a asp-area="Identity" asp-page="/Account/Login" title="Manage">
         <button class="btn-signup">Log in<img src="~/images/login-arrow.svg" alt="login arrow"/></button>
+        @* <button class="btn-signup-hover">Log in<img src="~/images/login-arrow-hover.svg" alt="login arrow"/></button> *@
       </a>
       }
     </div>
   </div>
-</div>
   @RenderBody()
-</div>
 
 <div class="footer-bg">
   <div class="container">
