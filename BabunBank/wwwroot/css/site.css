@@ -314,7 +314,7 @@ a:hover {
 /*Alternative footer starts here*/
 .navbar-footer {
   border-top: 1px solid #c9c9c9;
-  margin-top: 50px;
+  margin: 50px 0;
   padding-top: 44px;
   display: flex;
   justify-content: space-between;
@@ -392,15 +392,25 @@ a:hover {
 
 /*filler section here*/
 
+.brand-section{
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  height: 20vh;
+}
+
+
+/*Landing page view here*/
 #country-page-bg{
-  background-color: #eaf3ee;
+  /*background-color: #eaf3ee;*/
+  background-color: #1a4137;
+  min-height: 100vh;
 }
 
 #landing-page-body{
   margin: 0 auto;
   padding: 40px 0;
   max-width: 87.5%;
-  height: 100vh;
   display: grid;
   gap: 50px;
 }
@@ -410,24 +420,64 @@ a:hover {
   font-style: normal;
   font-weight: 700;
   line-height: 72px; /* 112.5% */
-  color: #0A4020;
+  /*color: #0A4020;*/
+  color: #ffdb1e;
 }
 
 #landing-page-body h3{
-  color: #19352D;
-
+  /*color: #19352D;*/
+  color: #FFDB1E;
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
   line-height: 38px; /* 158.333% */
 }
 
-
+#landing-page-body p{
+  color: #FFFFFFB2;
+}
 
 #landing-page-body #header{
   display: flex;
-  align-items: center;
-  gap: 40px;
+  justify-content: center;
+  h2{
+  /*width: 50%;*/
+    margin: 40px 0;
+  }
+}
+
+
+.landing-page-info{
+  display: flex;
+  justify-content: center;
+  /*gap: 30px;*/
+  padding: 30px;
+  /*grid-template-columns: repeat(3, 1fr);*/
+}
+
+.landing-page-summary{
+  /*border: 1px solid black;*/
+  div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+  }
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.landing-page-icon{
+  height: 80px;
+  width: 80px;
+}
+
+.landing-page-arrow{
+  align-self: start;
+  margin-top: 20px;
+  width: 100%;
 }
 
 #card-section{
@@ -440,7 +490,8 @@ a:hover {
 .country-card{
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  /*background-color: #fff;*/
+  background-color: #dfff5e;
   padding: 20px 40px;
   border-radius: 5px;
   height: fit-content;
@@ -543,8 +594,7 @@ a:hover {
 
 /*country section ends here*/
 
-
-/*# sourceMappingURL=main.css.map */
+/*Button styling here*/
 
 button:hover{
   cursor: pointer;
@@ -622,4 +672,8 @@ button:hover{
   display: flex;
   gap: 20px;
   align-items: center;
+}
+
+table{
+  width: fit-content;
 }

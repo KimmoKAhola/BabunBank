@@ -9,6 +9,7 @@ public class CustomerService(CustomerRepository customerRepository)
     {
         try
         {
+            //TODO perform include etc here. Needs more info from other tables
             var result = await customerRepository.GetAsync(x => x.CustomerId == id);
 
             var customer = new CustomerViewModel

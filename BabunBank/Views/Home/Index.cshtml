@@ -2,6 +2,7 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@* Banking image *@
 <div id="landing-page-bg">
     <img src="~/images/pexels-photo-right-aligned.webp" alt="background">
     <div class="banner">
@@ -13,46 +14,93 @@
     </div>
 </div>
 
+@* Brands here *@
+<div class="brand-section">
+    <img src="~/images/Logo.svg" alt="TODO">
+    <img src="~/images/Logo.svg" alt="TODO">
+    <img src="~/images/Logo.svg" alt="TODO">
+    <img src="~/images/Logo.svg" alt="TODO">
+</div>
+
+@* Landing page info *@
+
 <div id="country-page-bg">
     <div id="landing-page-body">
         <div id="header">
-        <h2>Provide quality services</h2>
-            <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</h3>
-            <a href="#">TODO <i class="material-symbols-outlined">
-                             arrow_right_alt
-                             </i></a>
+            <h2>Providing quality services since 2013</h2>
+            @* <a href="#">TODO <i class="material-symbols-outlined"> *@
+            @*     arrow_right_alt *@
+            @* </i></a> *@
+        </div>
+        <div class="landing-page-info">
+            <div class="landing-page-summary">
+                <div>
+                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
+                    <h3>
+                        @Model.NumberOfAccounts accounts
+                    </h3> 
+                    <p>From the nordic countries</p>
+                </div>
+                <div class="landing-page-arrow">
+                    <img src="~/images/landing-page-arrow.svg" alt="TODO">
+                </div>
+            </div>
+            
+            <div class="landing-page-summary">
+                <div>
+                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
+                    <h3>
+                        @Model.NumberOfCustomers customers
+                    </h3>
+                    <p>We have more than 5000 satisfied customers in the nordic countries</p>
+                </div>
+                <div class="landing-page-arrow">
+                    <img src="~/images/landing-page-arrow.svg" alt="TODO">
+                </div>
+            </div>
+            
+            <div class="landing-page-summary last">
+                <div>
+                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
+                    <h3>
+                        @(Model.TotalAccountBalance.ToString("C2"))
+                    </h3>
+                    <p>From the nordic countries</p>
+                </div>
+            </div>
+        </div>
     </div>
+
     <div id="card-section">
-        
-        <div class="country-card">
-            <img class="country-flag" src="~/images/flag-of-finland.svg" alt="logo">
-            <h3>Country data</h3>
-            <p>Stay updated, check your bank account to manage funds and track transactions securely.</p>
-            <button>See more <i class="fa-solid fa-arrow-right"></i></button>
+            <div class="country-card">
+                <img class="country-flag" src="~/images/flag-of-finland.svg" alt="logo">
+                <h3>Country data</h3>
+                <p>Stay updated, check your bank account to manage funds and track transactions securely.</p>
+                <button>See more <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            
+            <div class="country-card">
+                <img class="country-flag" src="~/images/flag-of-sweden.svg" alt="logo">
+                <h3>Country data</h3>
+                <p>Stay updated, check your bank account to manage funds and track transactions securely.</p>
+                <button>See more <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            
+            <div class="country-card">
+                <img class="country-flag" src="~/images/flag-of-norway.svg" alt="logo">
+                <h3>Country data</h3>
+                <p>Stay updated, check your bank account to manage funds and track transactions securely.</p>
+                <button>See more <i class="fa-solid fa-arrow-right"></i></button>
+            </div>
+            
+            <div class="country-card">
+                <img class="country-flag" src="~/images/flag-of-denmark.svg" alt="logo">
+                <h3>Country data</h3>
+                <p>Stay updated, check your bank account to manage funds and track transactions securely.</p>
+                <button>See more <i class="fa-solid fa-arrow-right"></i></button>
         </div>
-        
-        <div class="country-card">
-            <img class="country-flag" src="~/images/flag-of-sweden.svg" alt="logo">
-            <h3>Country data</h3>
-            <p>Stay updated, check your bank account to manage funds and track transactions securely.</p>
-            <button>See more <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-        
-        <div class="country-card">
-            <img class="country-flag" src="~/images/flag-of-norway.svg" alt="logo">
-            <h3>Country data</h3>
-            <p>Stay updated, check your bank account to manage funds and track transactions securely.</p>
-            <button>See more <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-        
-        <div class="country-card">
-            <img class="country-flag" src="~/images/flag-of-denmark.svg" alt="logo">
-            <h3>Country data</h3>
-            <p>Stay updated, check your bank account to manage funds and track transactions securely.</p>
-            <button>See more <i class="fa-solid fa-arrow-right"></i></button>
-        </div>
-    </div>
-</div>
+            </div>
+    
 </div>
 
 
@@ -77,3 +125,20 @@
 @*         </div> *@
 @*     </div> *@
 @* </div> *@
+
+<div class="container">
+    <div class="navbar-footer">
+        <p>&copy; @DateTime.Now.Year babun inc. <img src="~/images/Logo.svg" alt="TODO"></p>
+        <nav>
+            <a href="#">Privacy & Terms</a>
+            <a href="#">Cookies</a>
+            <a href="#">Contact Us</a>
+        </nav>
+        <div>
+            <img src="~/images/instagram.svg" alt="logo"/>
+            <img src="~/images/instagram.svg" alt="logo"/>
+            <img src="~/images/instagram.svg" alt="logo"/>
+            <img src="~/images/instagram.svg" alt="logo"/>
+        </div>
+    </div>
+</div>

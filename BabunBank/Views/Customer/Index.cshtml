@@ -91,7 +91,13 @@
             <td>@customer.Gender</td>
             <td>@customer.GivenName</td>
             <td>@customer.Surname</td>
-            <td><a asp-controller="Customer" asp-action="Details" asp-route-id="@customer.Id">View</a></td>
+            <td><a asp-controller="Customer" asp-action="Details" asp-route-id="@customer.Id">
+                <button>View more
+                <i class="material-symbols-outlined">
+                    arrow_forward
+                </i>
+                </button>
+            </a></td>
             @* <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a> *@
         </tr>
     }

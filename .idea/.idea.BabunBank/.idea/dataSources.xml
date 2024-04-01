@@ -9,13 +9,5 @@
       <jdbc-url>Server=localhost;Database=BankAppData;Trusted_Connection=True;TrustServerCertificate=True</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="BankAppData@localhost [2]" uuid="40c49e2d-4927-4f07-a13b-f92b76b3482b">
-      <driver-ref>sqlserver.jb</driver-ref>
-      <synchronize>true</synchronize>
-      <configured-by-url>true</configured-by-url>
-      <jdbc-driver>com.jetbrains.jdbc.sqlserver.SqlServerDriver</jdbc-driver>
-      <jdbc-url>Server=localhost;Database=BankAppData;Trusted_Connection=True;TrustServerCertificate=True</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
   </component>
 </project>
