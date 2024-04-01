@@ -2,6 +2,7 @@ using BabunBank.Data;
 using BabunBank.Repositories;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace BabunBank
@@ -22,7 +23,6 @@ namespace BabunBank
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
-
             
             builder.Services.AddScoped<UserRepository>();
             builder.Services.AddScoped<CustomerRepository>();
@@ -37,7 +37,7 @@ namespace BabunBank
 
             using (var scope = app.Services.CreateScope())
             {
-                scope.ServiceProvider.GetService<DataInitializer>().SeedData();
+                //scope.ServiceProvider.GetService<DataInitializer>().SeedData();
             }
 
             // Configure the HTTP request pipeline.

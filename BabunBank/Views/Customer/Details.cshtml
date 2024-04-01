@@ -1,0 +1,20 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Org.BouncyCastle.Crypto.Digests
+@model BabunBank.Models.Customer.CustomerViewModel
+@inject SignInManager<IdentityUser> SignInManager
+
+@{
+    ViewBag.Title = "Customer Details";
+    Layout = "_Layout";
+}
+
+@if (SignInManager.IsSignedIn(User))
+{
+<h2>Customer details, add styling here</h2>
+<h3>Name: @Model.GivenName</h3>
+}
+else
+{
+    <h2>You are not signed in</h2>
+}
+

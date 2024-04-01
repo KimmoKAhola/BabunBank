@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\images\\bg-fullscreen.webp"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\chalk-profile.jpg",
+      "PackagePath": "staticwebassets\\images\\chalk-profile.jpg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.svg",
       "PackagePath": "staticwebassets\\images\\flag-of-denmark.svg"
     },

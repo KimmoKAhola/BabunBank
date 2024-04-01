@@ -188,6 +188,7 @@ a:hover {
   padding-top: 12px;
   padding-bottom: 12px;
 }
+
 .container.navbar .navbar-navigation {
   display: flex;
   align-items: center;
@@ -344,9 +345,14 @@ a:hover {
   height: 100vh;
 }
 
+/*.banner div button{ //TODO margin or not?*/
+  /*margin-left: 50px;*/
+/*}*/
+
 .banner div h1{
   margin-top: 150px;
   margin-bottom: 40px;
+  /*line-height: 110%;*/
 }
 
 .btn-banner{
@@ -361,12 +367,14 @@ a:hover {
   gap: 10px;
   transition: 0.2s ease-in;
   width: fit-content;
-  height: fit-content;
+  height: 50px;
 }
 
 .btn-banner:hover{
   background-color: rgba(255, 255, 255, 0.1);
+  transition: 0.2s ease-in;
 }
+
 
 .banner h1 {
   padding-top: 60px;
@@ -392,8 +400,8 @@ a:hover {
   margin: 0 auto;
   padding: 40px 0;
   max-width: 87.5%;
+  height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 1fr;
   gap: 50px;
 }
 
@@ -418,15 +426,14 @@ a:hover {
 
 #landing-page-body #header{
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 40px;
-  max-width: 600px;
 }
 
 #card-section{
-  display: grid;
-  grid-template-columns: repeat(2, minmax(33%, 450px));
-  gap: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  gap: 20px;
 }
 
 
@@ -434,10 +441,10 @@ a:hover {
   display: flex;
   flex-direction: column;
   background-color: #fff;
-  gap: 30px;
-  padding: 40px;
+  padding: 20px 40px;
   border-radius: 5px;
-  
+  height: fit-content;
+  max-width: 200px;
   h3{
     font-size: 24px;
   }
@@ -538,3 +545,81 @@ a:hover {
 
 
 /*# sourceMappingURL=main.css.map */
+
+button:hover{
+  cursor: pointer;
+}
+
+.btn-login{
+  width: fit-content;
+  padding: 0 45px;
+  border-radius: 50px;
+  background-color: white;
+  border: 1px solid #295956;
+  font-size: 20px;
+  color: #295956;
+  height: 50px;
+}
+
+.btn-arrow{
+  border: none;
+  border-radius: 50%;
+  height: 50px;
+  width: 50px;
+  margin-left: -20px;
+  background-color: #295956;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-arrow i{
+  color: white;
+}
+
+
+.login{
+  display: flex;
+  align-items: center;
+  width: fit-content;
+}
+
+.login:hover .btn-login{
+  transition: 0.2s ease-in;
+  border: 1px solid #1d4440;
+  color: #1d4440;
+}
+
+.login:hover .btn-arrow{
+  transition: 0.2s ease-in;
+}
+
+.login:hover .btn-arrow i{
+  color: #ffdb1e;
+  transition: 0.2s ease-in;
+  transform: translateX(2px);
+/*  TODO see if this is annoying or not*/
+}
+
+.customer-table {
+  span{
+    display: flex;
+    align-items: center;
+  }
+  display: flex;
+  align-items: center;
+  a{
+    display: flex;
+    align-items: center;
+  }
+}
+
+#logged-in{
+  img{
+    height: 50px;
+    border-radius: 50%;
+  }
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}

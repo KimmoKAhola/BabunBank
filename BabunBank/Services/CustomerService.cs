@@ -5,6 +5,27 @@ namespace BabunBank.Services;
 
 public class CustomerService(CustomerRepository customerRepository)
 {
+    public async Task<CustomerViewModel> GetCustomerViewModelAsync(int id)
+    {
+        try
+        {
+            var result = await customerRepository.GetAsync(x => x.CustomerId == id);
+
+            var customer = new CustomerViewModel
+            {
+                Id = result.CustomerId,
+                City = result.City,
+                GivenName = result.Givenname
+            };
+            
+            return customer;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
     public async Task<IEnumerable<CustomerViewModel>> GetAllCustomersViewModelAsync()
     {
         try
@@ -13,6 +34,7 @@ public class CustomerService(CustomerRepository customerRepository)
 
             var viewModel = result.Select(x => new CustomerViewModel
             {
+                Id = x.CustomerId,
                 Gender = x.Gender,
                 GivenName = x.Givenname,
                 Surname = x.Surname,

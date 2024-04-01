@@ -54,7 +54,14 @@ public class CustomerController : Controller
                 customers = customers.OrderByDescending(x => x.Surname);
             }
         }
-
         return View(customers);
+    }
+
+    public async Task<IActionResult> Details(int id)
+    {
+        var result = await _customerService.GetCustomerViewModelAsync(id);
+
+
+        return View(result);
     }
 }
