@@ -683,3 +683,33 @@ button:hover{
 table{
   width: fit-content;
 }
+
+
+
+/*Contact section here*/
+
+.contact-form{
+  border: 1px solid black;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
+  div{
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.contact-form input{
+  border: 1px solid black;
+  width: 20%;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 8px;
+}
+
+.contact-form button{
+  width: 20%;
+}

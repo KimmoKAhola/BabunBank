@@ -1,7 +1,6 @@
 ﻿using BabunBank.Data;
 using BabunBank.Models.LandingPage;
 using Microsoft.EntityFrameworkCore;
-
 namespace BabunBank.Services;
 
 public class LandingPageService
@@ -27,8 +26,4 @@ public class LandingPageService
 
         return landingPageViewModel;
     }
-    
-    
-    
-    
 }

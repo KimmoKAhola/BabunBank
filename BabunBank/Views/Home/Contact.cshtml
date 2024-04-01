@@ -1,0 +1,28 @@
+﻿@model BabunBank.Models.LandingPage.LandingPageViewModel  
+@* TODO *@
+
+@{
+    ViewBag.Title = "Contact Us";
+    Layout = "_Layout";
+}
+<div class="container contact"> 
+    
+<h2>Let us know what you think</h2>
+
+@* Action signifies where the data will be sent TODO*@
+<form class="contact-form" method="post">
+    <div>
+    <label for="firstName">First name</label>
+    <input type="text" id="firstName" placeholder="Your first name">
+    </div>
+    <div>
+    <label for="lastName">Last Name</label>
+    <input type="text" id="lastName" placeholder="Your last name">
+    </div>
+    <div>
+    <label for="email">Email</label>
+    <input type="text" id="email" placeholder="Your email">
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</div>

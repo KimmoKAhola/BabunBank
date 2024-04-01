@@ -56,46 +56,23 @@
     </div>
   </div>
   @RenderBody()
-
-@* <div class="footer-bg"> *@
-@*   <div class="container"> *@
-@*     <div class="footer-links"> *@
-@*       <div class="left-section"> *@
-@*         <img class="footer-logo" src="~/images/Logo.svg" alt="logo"/> *@
-@*         <p class="footer-text">2190 Urban Terrace, Mirpur, link *@
-@*           Licensed in 50 states.</p> *@
-@*         <span class="footer-icons"> *@
-@*           <img src="~/images/instagram.svg" alt="instagram"/> *@
-@*           <img src="~/images/instagram.svg" alt="instagram"/> *@
-@*           <img src="~/images/instagram.svg" alt="instagram"/> *@
-@*         </span> *@
-@*         <p class="footer-text">Copyright &copy;2023 babun inc.</p> *@
-@*       </div> *@
-@*       <div class="right-section"> *@
-@*         <div> *@
-@*           <h3></h3> *@
-@*           <ul> *@
-@*             <li> *@
-@*               <a class="link" href="#">Home</a> *@
-@*               <a class="link" href="#">Pricing</a> *@
-@*               <a class="link" href="#">About Us</a> *@
-@*               <a class="link" href="#">Careers</a> *@
-@*               <a class="link" href="#">Contact us</a> *@
-@*             </li> *@
-@*           </ul> *@
-@*           <ul> *@
-@*             <li> *@
-@*               <a class="link" href="#">Terms & Policy</a> *@
-@*               <a class="link" href="#">Generic link name</a> *@
-@*               <a class="link" href="#">Internal link</a> *@
-@*               <a class="link" href="#">link to our page</a> *@
-@*             </li> *@
-@*           </ul> *@
-@*         </div> *@
-@*       </div> *@
-@*     </div> *@
-@*   </div> *@
-@* </div> *@
+  
+<div class="container">
+    <div class="navbar-footer">
+        <p>&copy; @DateTime.Now.Year babun inc. <img src="~/images/Logo.svg" alt="TODO"></p>
+        <nav>
+            <a href="#">Privacy & Terms</a>
+            <a href="#">Cookies</a>
+            @* <a asp-controller="Home" asp-action="Contact">Contact Us</a> *@
+        </nav>
+        <div>
+            <img src="~/images/instagram.svg" alt="logo"/>
+            <img src="~/images/instagram.svg" alt="logo"/>
+            <img src="~/images/instagram.svg" alt="logo"/>
+            <img src="~/images/instagram.svg" alt="logo"/>
+        </div>
+    </div>
+</div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>

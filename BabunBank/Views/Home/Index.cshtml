@@ -9,7 +9,7 @@
         <div>
             <h1>Your Goals, Our Expertise</h1>
             <button class="btn-banner">
-                <a >Contact Us <i class="material-symbols-outlined">arrow_forward</i></a>
+                <a asp-controller="Home" asp-action="Contact">Contact Us <i class="material-symbols-outlined">arrow_forward</i></a>
             </button>
         </div>
     </div>
@@ -127,19 +127,19 @@
 @*     </div> *@
 @* </div> *@
 
-<div class="container">
-    <div class="navbar-footer">
-        <p>&copy; @DateTime.Now.Year babun inc. <img src="~/images/Logo.svg" alt="TODO"></p>
-        <nav>
-            <a href="#">Privacy & Terms</a>
-            <a href="#">Cookies</a>
-            <a href="#">Contact Us</a>
-        </nav>
-        <div>
-            <img src="~/images/instagram.svg" alt="logo"/>
-            <img src="~/images/instagram.svg" alt="logo"/>
-            <img src="~/images/instagram.svg" alt="logo"/>
-            <img src="~/images/instagram.svg" alt="logo"/>
-        </div>
-    </div>
-</div>
+@* <div class="container"> *@
+@*     <div class="navbar-footer"> *@
+@*         <p>&copy; @DateTime.Now.Year babun inc. <img src="~/images/Logo.svg" alt="TODO"></p> *@
+@*         <nav> *@
+@*             <a href="#">Privacy & Terms</a> *@
+@*             <a href="#">Cookies</a> *@
+@*             $1$ <a asp-controller="Home" asp-action="Contact">Contact Us</a> #1# *@
+@*         </nav> *@
+@*         <div> *@
+@*             <img src="~/images/instagram.svg" alt="logo"/> *@
+@*             <img src="~/images/instagram.svg" alt="logo"/> *@
+@*             <img src="~/images/instagram.svg" alt="logo"/> *@
+@*             <img src="~/images/instagram.svg" alt="logo"/> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@

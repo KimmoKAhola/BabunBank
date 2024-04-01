@@ -1,0 +1,82 @@
+﻿@* @using Microsoft.AspNetCore.Identity *@
+@* @inject SignInManager<IdentityUser> SignInManager *@
+@* <!DOCTYPE html> *@
+@* <html lang="en"> *@
+@* <head> *@
+@*     <meta charset="utf-8"/> *@
+@*     <meta name="viewport" content="width=device-width, initial-scale=1.0"/> *@
+@*     <title>@ViewData["Title"] - BabunBank</title> *@
+@*     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/> *@
+@*     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/> *@
+@*     <link rel="icon" href="~/favicon-16x16.png" type="image/svg+xml" /> *@
+@*     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" /> *@
+@* *@
+@* </head> *@
+@* <body> *@
+@*   <div class="container navbar"> *@
+@*     <div class="navbar-navigation"> *@
+@*       <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo.svg" alt="bank logotype"/></a> *@
+@*       <nav class="navbar-links"> *@
+@*         <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a> *@
+@*         <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a> *@
+@*         <a class="navbar-link" asp-area="" asp-controller="User" asp-action="Index">User</a> *@
+@*         <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a> *@
+@*       </nav> *@
+@*     </div> *@
+@*     <div class="navbar-site-settings"> *@
+@*       @if(SignInManager.IsSignedIn(User)){ *@
+@*         <div id="logged-in"> *@
+@*           $1$ <img src="~/images/chalk-profile.jpg" alt="richard TODO"> #1# *@
+@*           <img src="https://avatar.iran.liara.run/public" alt="richard TODO"> *@
+@*            *@
+@*     <p>Hello @User.Identity?.Name</p> *@
+@*     <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"> *@
+@*       <div class="login"> *@
+@*         <button class="btn-login">Log out</button> *@
+@*         <button class="btn-arrow"> *@
+@*           <i class="material-symbols-outlined"> *@
+@*             arrow_forward *@
+@*           </i></button> *@
+@*       </div> *@
+@*     </form> *@
+@*   </div> *@
+@*       } *@
+@*       else *@
+@*       { *@
+@*         <a asp-area="Identity" asp-page="/Account/Login" title="Manage"> *@
+@*         <div class="login"> *@
+@*           <button class="btn-login">Log in</button> *@
+@*           <button class="btn-arrow"> *@
+@*             <i class="material-symbols-outlined"> *@
+@*               arrow_forward *@
+@*             </i></button> *@
+@*         </div> *@
+@*         </a> *@
+@*       } *@
+@*     </div> *@
+@*   </div> *@
+@*   @RenderBody() *@
+@*    *@
+@*   <div class="container"> *@
+@*     <div class="navbar-footer"> *@
+@*       <p>&copy; @DateTime.Now.Year babun inc. <img src="~/images/Logo.svg" alt="TODO"></p> *@
+@*       <nav> *@
+@*         $1$ <a asp-controller="Home" asp-action="Privacy">Privacy & Terms</a> #1# *@
+@*         $1$ <a href="#">Cookies</a> #1# *@
+@*         $1$ <a asp-controller="Home" asp-action="Contact">Contact Us</a> #1# *@
+@*       </nav> *@
+@*       <div> *@
+@*         <img src="~/images/instagram.svg" alt="logo"/> *@
+@*         <img src="~/images/instagram.svg" alt="logo"/> *@
+@*         <img src="~/images/instagram.svg" alt="logo"/> *@
+@*         <img src="~/images/instagram.svg" alt="logo"/> *@
+@*       </div> *@
+@*     </div> *@
+@*   </div> *@
+@*    *@
+@*   <script src="~/lib/jquery/dist/jquery.min.js"></script> *@
+@* <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script> *@
+@* <script src="~/js/site.js" asp-append-version="true"></script> *@
+@* @await RenderSectionAsync("Scripts", required: false) *@
+@* </body> *@
+@* </html> *@
