@@ -1,12 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using BabunBank.Services;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
-public class AccountController : Controller
+public class AccountController(AccountService accountService) : Controller
 {
-    // GET
-    public IActionResult Index()
+    public async Task<IActionResult> Index(int id)
     {
+        var result = await accountService.GetAccountViewModelAsync(id);
+        
         return View();
     }
 }

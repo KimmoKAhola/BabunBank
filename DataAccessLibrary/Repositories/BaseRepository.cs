@@ -42,11 +42,11 @@ public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
         return null!;
     }
 
-    public virtual async Task<IEnumerable<TEntity>> GetAllAsync()
+    public virtual IQueryable<TEntity> GetAllAsync()
     {
         try
         {
-            var result = await dbContext.Set<TEntity>().ToListAsync();
+            var result = dbContext.Set<TEntity>().AsQueryable();
             return result;
         }
         catch (Exception e)

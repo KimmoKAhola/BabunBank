@@ -1,5 +1,7 @@
 ﻿using BabunBank.Models.Customer;
 using DataAccessLibrary.DataServices;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BabunBank.Services;
 
@@ -24,11 +26,11 @@ public class CustomerService(DataCustomerService customerService)
         return customer;
     }
 
-    public async Task<IEnumerable<CustomerViewModel>> GetAllCustomersViewModelAsync()
+    public async Task<IEnumerable<CustomerViewModel>> GetAllCustomersViewModelAsync(string sortColumn, string sortOrder)
     {
-        var result = await customerService.GetAllAsync();
-
-        var customers = result.Select(x => new CustomerViewModel
+            var customers = customerService.GetAll(sortColumn, sortOrder);
+        
+        var result = await customers.Select(x => new CustomerViewModel
         {
             Id = x.CustomerId,
             Gender = x.Gender,
@@ -38,8 +40,8 @@ public class CustomerService(DataCustomerService customerService)
             City = x.City,
             Zipcode = x.Zipcode,
             Country = x.Country
-        });
+        }).ToListAsync();
 
-        return customers;
+        return result;
     }
 }

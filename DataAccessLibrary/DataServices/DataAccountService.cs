@@ -1,15 +1,25 @@
 ﻿using DataAccessLibrary.Data;
+using DataAccessLibrary.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLibrary.DataServices;
 
-public class DataAccountService(BankAppDataContext dbContext) : IDataService<Account>
+public class DataAccountService(AccountRepository accountRepository) : IDataService<Account>
 {
     public async Task<Account> GetAsync(int id)
     {
+        var result = await accountRepository
+            .GetAsync(x => x.AccountId == id);
+
+        return result;
+    }
+
+    public IQueryable<Account> GetAll(string sortOrder, string sortColum)
+    {
         try
         {
-            var result = await dbContext.Accounts.FirstAsync(x => x.AccountId == id);
+            var result = accountRepository.GetAllAsync();
+            
             return result;
         }
         catch (Exception e)
@@ -19,17 +29,8 @@ public class DataAccountService(BankAppDataContext dbContext) : IDataService<Acc
         }
     }
 
-    public async Task<IEnumerable<Account>> GetAllAsync()
+    public async Task<bool> CreateAsync(Account model)
     {
-        try
-        {
-            var result = await dbContext.Accounts.ToListAsync();
-            return result;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
+        throw new NotImplementedException();
     }
 }

@@ -14,10 +14,7 @@
 
 <div>
     <p>@Model.GivenName</p>
-    <p>@Model.GivenName</p>
-    <p>@Model.GivenName</p>
-    <p>@Model.GivenName</p>
-    <p>@Model.GivenName</p>
+    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder">Go Back</a>
 </div>
 }
 else

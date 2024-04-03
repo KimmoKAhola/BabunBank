@@ -3,5 +3,6 @@
 public interface IDataService<T> where T : class
 {
     Task<T> GetAsync(int id);
-    Task<IEnumerable<T>> GetAllAsync();
+    IQueryable<T> GetAll(string sortOrder, string sortColumn);
+    Task<bool> CreateAsync(T model);
 }

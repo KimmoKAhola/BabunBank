@@ -4,61 +4,28 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
-public class CustomerController : Controller
+public class CustomerController(CustomerService customerService) : Controller
 {
-    private readonly CustomerService _customerService;
-
-    public CustomerController(CustomerService customerService)
+    public string SortColumn { get; set; }
+    public string SortOrder { get; set; }
+    
+    public string Country { get; set; }
+    
+    public async Task<IActionResult> Index(string sortColumn, string sortOrder, string countryId)
     {
-        _customerService = customerService;
-    }
-
-    public async Task<IActionResult> Index(string sortColumn, string sortOrder)
-    {
-        var customers = await _customerService.GetAllCustomersViewModelAsync();
+        var customers = await customerService.GetAllCustomersViewModelAsync(sortColumn, sortOrder);
+        
+        SortColumn = sortColumn;
+        SortOrder = sortOrder;
 
         customers = customers.Take(30); // TODO
-        if (sortColumn == "Gender")
-        {
-            if (sortOrder == "asc")
-            {
-                customers = customers.OrderBy(x => x.Gender);
-            }
-            else
-            {
-                customers = customers.OrderByDescending(x => x.Gender);
-            }
-        }
         
-        else if (sortColumn == "GivenName")
-        {
-            if (sortOrder == "asc")
-            {
-                customers = customers.OrderBy(x => x.GivenName);
-            }
-            else
-            {
-                customers = customers.OrderByDescending(x => x.GivenName);
-            }
-        }
-        
-       else if (sortColumn == "Surname")
-        {
-            if (sortOrder == "asc")
-            {
-                customers = customers.OrderBy(x => x.Surname);
-            }
-            else
-            {
-                customers = customers.OrderByDescending(x => x.Surname);
-            }
-        }
         return View(customers);
     }
 
     public async Task<IActionResult> Details(int id)
     {
-        var result = await _customerService.GetCustomerViewModelAsync(id);
+        var result = await customerService.GetCustomerViewModelAsync(id);
         
         return View(result);
     }
