@@ -15,7 +15,14 @@
             <a asp-controller="Customer" asp-action="Index">Go back</a>
         </div>
         <div class="right">
-            <img src="https://avatar.iran.liara.run/public" alt="TODO">
+            @if (@Model.Gender == "male")
+            {
+            <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
+            }
+            else
+            {
+                <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
+            }
             <h2>Account for @Model.CustomerName</h2>
         </div>
     </div>

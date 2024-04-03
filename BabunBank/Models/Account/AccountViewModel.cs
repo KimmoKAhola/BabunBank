@@ -7,4 +7,5 @@ public class AccountViewModel
     public int AccountId { get; set; }
     public DateOnly Created { get; set; }
     public decimal Balance { get; set; }
+    public string Gender { get; set; }
 }

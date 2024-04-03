@@ -15,6 +15,7 @@ public class AccountService(DataAccountService dataAccountService)
             AccountId = result.AccountId,
             Created = result.Created,
             Balance = result.Balance,
+            Gender = result.Dispositions.FirstOrDefault().Customer.Gender,
             CustomerName = result.Dispositions.FirstOrDefault().Customer.Givenname
         };
         
