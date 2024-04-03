@@ -7,7 +7,7 @@ public class CustomerService(DataCustomerService customerService)
 {
     public async Task<CustomerViewModel> GetCustomerViewModelAsync(int id)
     {
-        var result = await customerService.GetCustomerAsync(id);
+        var result = await customerService.GetAsync(id);
 
         var customer = new CustomerViewModel
         {
@@ -26,7 +26,7 @@ public class CustomerService(DataCustomerService customerService)
 
     public async Task<IEnumerable<CustomerViewModel>> GetAllCustomersViewModelAsync()
     {
-        var result = await customerService.GetAllCustomersAsync();
+        var result = await customerService.GetAllAsync();
 
         var customers = result.Select(x => new CustomerViewModel
         {

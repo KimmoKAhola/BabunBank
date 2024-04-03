@@ -3,9 +3,9 @@ using DataAccessLibrary.Repositories;
 
 namespace DataAccessLibrary.DataServices;
 
-public class DataCustomerService(CustomerRepository customerRepository)
+public class DataCustomerService(CustomerRepository customerRepository) : IDataService<Customer>
 {
-    public async Task<Customer> GetCustomerAsync(int id)
+    public async Task<Customer> GetAsync(int id)
     {
         try
         {
@@ -20,7 +20,8 @@ public class DataCustomerService(CustomerRepository customerRepository)
             throw;
         }
     }
-    public async Task<IEnumerable<Customer>> GetAllCustomersAsync()
+
+    public async Task<IEnumerable<Customer>> GetAllAsync()
     {
         try
         {
