@@ -14,113 +14,29 @@
     <table class="data-table">
         <thead class="header">
         <tr>
-            <th>
-                <span class="customer-table">
-                    Gender
-                    <a asp-action="Index" asp-controller="Customer"
-                       asp-route-sortColumn="Gender"
-                       asp-route-sortOrder="asc"
-                       asp-route-q ="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">
-                            expand_more
-                        </i>
-                    </a>
-
-                    <a asp-action="Index" 
-                       asp-controller="Customer" 
-                       asp-route-sortColumn="Gender" 
-                       asp-route-sortOrder="desc"
-                       asp-route-q ="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">
-                            expand_less
-                        </i>
-                    </a>
-                </span>
-            </th>
-
-            <th>
-                <span class="customer-table">
-                    Given Name
-                    <a asp-action="Index" 
-                       asp-controller="Customer" 
-                       asp-route-sortColumn="GivenName" 
-                       asp-route-sortOrder="asc" 
-                       asp-route-q ="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">
-                            expand_more
-                        </i>
-                    </a>
-
-                    <a asp-action="Index" 
-                       asp-controller="Customer" 
-                       asp-route-sortColumn="GivenName" 
-                       asp-route-sortOrder="desc" 
-                       asp-route-q ="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">
-                            expand_less
-                        </i>
-                    </a>
-                </span>
-            </th>
-
-            <th>
-                <span class="customer-table">
-                    Surname
-                    <a asp-action="Index" 
-                       asp-controller="Customer" 
-                       asp-route-sortColumn="Surname" 
-                       asp-route-sortOrder="asc" 
-                       asp-route-q ="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">
-                            expand_more
-                        </i>
-                    </a>
-
-                    <a asp-action="Index" 
-                       asp-controller="Customer" 
-                       asp-route-sortColumn="Surname" 
-                       asp-route-sortOrder="desc" 
-                       asp-route-q ="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">
-                            expand_less
-                        </i>
-                    </a>
-                </span>
-            </th>
-
-            <th>
-                <span class="customer-table">
-                    Country
-                    <a asp-action="Index" 
-                       asp-controller="Customer" 
-                       asp-route-sortColumn="Country" 
-                       asp-route-sortOrder="asc" 
-                       asp-route-q ="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">
-                            expand_more
-                        </i>
-                    </a>
-
-                    <a asp-action="Index" 
-                       asp-controller="Customer"
-                       asp-route-sortColumn="Country" 
-                       asp-route-sortOrder="desc" 
-                       asp-route-q ="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">
-                            expand_less
-                        </i>
-                    </a>
-                </span>
-            </th>
-
+            @foreach (var column in new[] { "Gender", "GivenName", "Surname", "Country" })
+            {
+                <th>
+                    <span class="customer-table">
+                                @column
+                                <a asp-action="Index" asp-controller="Customer"
+                                   asp-route-sortColumn="@column"
+                                   asp-route-sortOrder="asc"
+                                   asp-route-q="@ViewBag.Q"
+                                   style="text-decoration:none">
+                                    <i class="material-symbols-outlined">expand_more</i>
+                                </a>
+                    
+                                <a asp-action="Index" asp-controller="Customer"
+                                   asp-route-sortColumn="@column"
+                                   asp-route-sortOrder="desc"
+                                   asp-route-q="@ViewBag.Q"
+                                   style="text-decoration:none">
+                                    <i class="material-symbols-outlined">expand_less</i>
+                                </a>
+                            </span>
+                </th>
+            }
             <th>
 
             </th>
