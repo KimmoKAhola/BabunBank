@@ -7,6 +7,7 @@ namespace BabunBank.Services;
 
 public class CustomerService(DataCustomerService customerService)
 {
+    private readonly int _pageSize = 5;
     public async Task<CustomerViewModel> GetCustomerViewModelAsync(int id)
     {
         var result = await customerService.GetAsync(id);
@@ -26,9 +27,14 @@ public class CustomerService(DataCustomerService customerService)
         return customer;
     }
 
-    public async Task<IEnumerable<CustomerViewModel>> GetAllCustomersViewModelAsync(string sortColumn, string sortOrder)
+    public async Task<IEnumerable<CustomerViewModel>> GetAllCustomersViewModelAsync(string sortColumn, string sortOrder, string q, int pageNumber)
     {
-            var customers = customerService.GetAll(sortColumn, sortOrder);
+        var customers = customerService.GetAll(sortColumn, sortOrder);
+
+        if (!string.IsNullOrEmpty(q))
+        {
+            customers = customers.Where(x => x.Givenname.Contains(q) || x.Surname.Contains(q));
+        }
         
         var result = await customers.Select(x => new CustomerViewModel
         {
@@ -40,8 +46,10 @@ public class CustomerService(DataCustomerService customerService)
             City = x.City,
             Zipcode = x.Zipcode,
             Country = x.Country
-        }).ToListAsync();
-
+        }).Skip((pageNumber - 1)*_pageSize)
+            .Take(_pageSize)
+            .ToListAsync();
+        
         return result;
     }
 }

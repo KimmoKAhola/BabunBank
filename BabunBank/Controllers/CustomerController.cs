@@ -6,19 +6,19 @@ namespace BabunBank.Controllers;
 
 public class CustomerController(CustomerService customerService) : Controller
 {
-    public string SortColumn { get; set; }
-    public string SortOrder { get; set; }
-    
-    public string Country { get; set; }
-    
-    public async Task<IActionResult> Index(string sortColumn, string sortOrder, string countryId)
+    public async Task<IActionResult> Index(string sortColumn, string sortOrder, string q, int pageNumber)
     {
-        var customers = await customerService.GetAllCustomersViewModelAsync(sortColumn, sortOrder);
+        if (pageNumber == 0)
+        {
+            pageNumber = 1;
+        }
         
-        SortColumn = sortColumn;
-        SortOrder = sortOrder;
-
-        customers = customers.Take(30); // TODO
+        var customers = await customerService.GetAllCustomersViewModelAsync(sortColumn, sortOrder, q, pageNumber);
+        
+        ViewBag.SortColumn = sortColumn;
+        ViewBag.SortOrder = sortOrder;
+        ViewBag.CurrentPage = pageNumber;
+        ViewBag.Q = q;
         
         return View(customers);
     }

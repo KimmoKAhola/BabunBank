@@ -6,9 +6,11 @@
 }
 <h1>Customer table</h1>
 <div class="customer-container">
-    <form action="">
-        <input type="text" placeholder="Enter search term here...">
+    <form method="get">
+        <input name="q" value="@ViewBag.Q" placeholder="Search here....">
+        <input type="submit" value="Search"/>
     </form>
+    <h2>Page: @ViewBag.CurrentPage</h2>
     <table class="data-table">
         <thead class="header">
         <tr>
@@ -18,13 +20,19 @@
                     <a asp-action="Index" asp-controller="Customer"
                        asp-route-sortColumn="Gender"
                        asp-route-sortOrder="asc"
+                       asp-route-q ="@ViewBag.Q"
                        style="text-decoration:none">
                         <i class="material-symbols-outlined">
                             expand_more
                         </i>
                     </a>
 
-                    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="Gender" asp-route-sortOrder="desc" style="text-decoration:none">
+                    <a asp-action="Index" 
+                       asp-controller="Customer" 
+                       asp-route-sortColumn="Gender" 
+                       asp-route-sortOrder="desc"
+                       asp-route-q ="@ViewBag.Q"
+                       style="text-decoration:none">
                         <i class="material-symbols-outlined">
                             expand_less
                         </i>
@@ -35,13 +43,23 @@
             <th>
                 <span class="customer-table">
                     Given Name
-                    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="GivenName" asp-route-sortOrder="asc" style="text-decoration:none">
+                    <a asp-action="Index" 
+                       asp-controller="Customer" 
+                       asp-route-sortColumn="GivenName" 
+                       asp-route-sortOrder="asc" 
+                       asp-route-q ="@ViewBag.Q"
+                       style="text-decoration:none">
                         <i class="material-symbols-outlined">
                             expand_more
                         </i>
                     </a>
 
-                    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="GivenName" asp-route-sortOrder="desc" style="text-decoration:none">
+                    <a asp-action="Index" 
+                       asp-controller="Customer" 
+                       asp-route-sortColumn="GivenName" 
+                       asp-route-sortOrder="desc" 
+                       asp-route-q ="@ViewBag.Q"
+                       style="text-decoration:none">
                         <i class="material-symbols-outlined">
                             expand_less
                         </i>
@@ -52,13 +70,23 @@
             <th>
                 <span class="customer-table">
                     Surname
-                    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="Surname" asp-route-sortOrder="asc" style="text-decoration:none">
+                    <a asp-action="Index" 
+                       asp-controller="Customer" 
+                       asp-route-sortColumn="Surname" 
+                       asp-route-sortOrder="asc" 
+                       asp-route-q ="@ViewBag.Q"
+                       style="text-decoration:none">
                         <i class="material-symbols-outlined">
                             expand_more
                         </i>
                     </a>
 
-                    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="Surname" asp-route-sortOrder="desc" style="text-decoration:none">
+                    <a asp-action="Index" 
+                       asp-controller="Customer" 
+                       asp-route-sortColumn="Surname" 
+                       asp-route-sortOrder="desc" 
+                       asp-route-q ="@ViewBag.Q"
+                       style="text-decoration:none">
                         <i class="material-symbols-outlined">
                             expand_less
                         </i>
@@ -69,13 +97,23 @@
             <th>
                 <span class="customer-table">
                     Country
-                    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="Country" asp-route-sortOrder="asc" style="text-decoration:none">
+                    <a asp-action="Index" 
+                       asp-controller="Customer" 
+                       asp-route-sortColumn="Country" 
+                       asp-route-sortOrder="asc" 
+                       asp-route-q ="@ViewBag.Q"
+                       style="text-decoration:none">
                         <i class="material-symbols-outlined">
                             expand_more
                         </i>
                     </a>
 
-                    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="Country" asp-route-sortOrder="desc" style="text-decoration:none">
+                    <a asp-action="Index" 
+                       asp-controller="Customer"
+                       asp-route-sortColumn="Country" 
+                       asp-route-sortOrder="desc" 
+                       asp-route-q ="@ViewBag.Q"
+                       style="text-decoration:none">
                         <i class="material-symbols-outlined">
                             expand_less
                         </i>
@@ -102,12 +140,39 @@
                        asp-route-id="@customer.Id"
                        asp-route-country="@customer.Country"
                        asp-route-sortColumn="@ViewBag.SortColumn"
-                       asp-route-sortOrder="@ViewBag.SortOrder">
+                       asp-route-sortOrder="@ViewBag.SortOrder"
+                       asp-route-q ="@ViewBag.Q">
                         <button>View more <i class="material-symbols-outlined">arrow_forward</i></button>
                     </a></td>
                 @* <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a> *@
             </tr>
         }
+        <tr>
+            <td>
+                <button>
+                    <a asp-action="Index"
+                       asp-controller="Customer"
+                       asp-route-sortColumn="@ViewBag.SortColumn"
+                       asp-route-sortOrder="@ViewBag.SortOrder"
+                       asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+                       asp-route-q ="@ViewBag.Q">Next</a>
+                </button>
+            </td>
+            
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <button>
+                    <a asp-action="Index" 
+                       asp-controller="Customer" 
+                       asp-route-sortColumn="@ViewBag.SortColumn"
+                       asp-route-sortOrder="@ViewBag.SortOrder"
+                       asp-route-pageNumber="@(ViewBag.CurrentPage+1)"
+                       asp-route-q="@ViewBag.Q">Next</a>
+                </button>
+            </td>
+        </tr>
         </tbody>
 
     </table>
