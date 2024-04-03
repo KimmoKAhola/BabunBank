@@ -1,30 +1,23 @@
 ﻿
 using BabunBank.Models.LandingPage;
 using DataAccessLibrary.Data;
+using DataAccessLibrary.DataServices;
 using Microsoft.EntityFrameworkCore;
 namespace BabunBank.Services;
 
-public class LandingPageService
+public class LandingPageService(DataLandingPageService landingPageService)
 {
-    private readonly BankAppDataContext _dbContext;
-    public LandingPageService(BankAppDataContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public async Task<LandingPageViewModel> GetLandingPageInfo()
     {
-        var query = await _dbContext.Accounts
-            .Include(x => x.Dispositions)
-            .ThenInclude(x => x.Customer).ToListAsync();
+        var accountData = await landingPageService.GetLandingPageQuery();
 
-        var landingPageViewModel = new LandingPageViewModel
+        var viewModel = new LandingPageViewModel
         {
-            NumberOfAccounts = query.Count,
-            NumberOfCustomers = query.SelectMany(x => x.Dispositions.Select(d => d.CustomerId)).Distinct().Count(),
-            TotalAccountBalance = query.Sum(x => x.Balance)
+            NumberOfAccounts = accountData.Count(),
+            NumberOfCustomers = accountData.SelectMany(a => a.Dispositions).Select(d => d.CustomerId).Distinct().Count(),
+            TotalAccountBalance = accountData.Sum(a => a.Balance)
         };
 
-        return landingPageViewModel;
+        return viewModel;
     }
 }

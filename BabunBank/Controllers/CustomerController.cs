@@ -59,8 +59,7 @@ public class CustomerController : Controller
     public async Task<IActionResult> Details(int id)
     {
         var result = await _customerService.GetCustomerViewModelAsync(id);
-
-
+        
         return View(result);
     }
 }

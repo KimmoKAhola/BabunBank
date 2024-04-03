@@ -1,10 +1,8 @@
 using BabunBank.Services;
-using DataAccessLibrary;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using DataAccessLibrary.Repositories;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace BabunBank
