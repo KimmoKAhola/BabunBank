@@ -4,17 +4,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLibrary.DataServices;
 
-public class DataLandingPageService
+public class DataLandingPageService(BankAppDataContext dbContext)
 {
-    private readonly BankAppDataContext _dbContext;
-    public DataLandingPageService(BankAppDataContext dbContext)
-    {
-        _dbContext = dbContext;
-    }
-
     public async Task<IEnumerable<Account>> GetLandingPageQuery()
     {
-        var data = await _dbContext.Accounts
+        var data = await dbContext.Accounts
             .Include(x => x.Dispositions)
             .ThenInclude(x => x.Customer).ToListAsync();
         
