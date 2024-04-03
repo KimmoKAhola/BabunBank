@@ -1,6 +1,13 @@
-﻿namespace BabunBank.Services;
+﻿using BabunBank.Models.Account;
+using DataAccessLibrary.Data;
+using DataAccessLibrary.DataServices;
 
-public class AccountService
+namespace BabunBank.Services;
+
+public class AccountService(DataAccountService dataAccountService)
 {
-    
+    // public async Task<AccountViewModel> GetAccountViewModelAsync(int id)
+    // {
+    //     var result = dataAccountService.
+    // }
 }

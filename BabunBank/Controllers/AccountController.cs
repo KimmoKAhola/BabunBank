@@ -1,6 +1,12 @@
-﻿namespace BabunBank.Controllers;
+﻿using Microsoft.AspNetCore.Mvc;
 
-public class AccountController
+namespace BabunBank.Controllers;
+
+public class AccountController : Controller
 {
-    
+    // GET
+    public IActionResult Index()
+    {
+        return View();
+    }
 }

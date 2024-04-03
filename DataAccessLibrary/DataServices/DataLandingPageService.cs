@@ -14,10 +14,10 @@ public class DataLandingPageService
 
     public async Task<IEnumerable<Account>> GetLandingPageQuery()
     {
-        var query = await _dbContext.Accounts
+        var data = await _dbContext.Accounts
             .Include(x => x.Dispositions)
             .ThenInclude(x => x.Customer).ToListAsync();
         
-        return query;
+        return data;
     }
 }
