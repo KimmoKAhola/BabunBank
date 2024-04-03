@@ -1,5 +1,4 @@
-﻿using BabunBank.Data;
-using BabunBank.Models;
+﻿using BabunBank.Models;
 using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Factories;

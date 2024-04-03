@@ -1,7 +1,6 @@
 using BabunBank.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using BabunBank.Data;
 using BabunBank.Models.LandingPage;
 using BabunBank.Services;
 using Microsoft.EntityFrameworkCore;

@@ -1,6 +1,8 @@
-using BabunBank.Data;
-using BabunBank.Repositories;
 using BabunBank.Services;
+using DataAccessLibrary;
+using DataAccessLibrary.Data;
+using DataAccessLibrary.DataServices;
+using DataAccessLibrary.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
@@ -15,21 +17,33 @@ namespace BabunBank
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            builder.Services.AddDbContext<ApplicationDbContext>(options =>
+            builder.Services.AddDbContext<BankAppDataContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
             builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddRoles<IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+                .AddEntityFrameworkStores<BankAppDataContext>();
             builder.Services.AddControllersWithViews();
             
-            builder.Services.AddScoped<UserRepository>();
+            //Repositories
             builder.Services.AddScoped<CustomerRepository>();
-            builder.Services.AddScoped<LandingPageService>();
-            builder.Services.AddScoped<UserService>();
+            builder.Services.AddScoped<AccountRepository>();
+            
+            //Library Services
+            builder.Services.AddScoped<DataAccountService>();
+            builder.Services.AddScoped<DataCustomerService>();
+            builder.Services.AddScoped<DataLandingPageService>();
+            
+            
+            
+            //Services
             builder.Services.AddScoped<CustomerService>();
+            builder.Services.AddScoped<AccountService>();
             builder.Services.AddScoped<LandingPageService>();
+            
+            
+            //Seeding
             builder.Services.AddTransient<DataInitializer>();
 
 
@@ -37,7 +51,7 @@ namespace BabunBank
 
             using (var scope = app.Services.CreateScope())
             {
-                //scope.ServiceProvider.GetService<DataInitializer>().SeedData();
+                scope.ServiceProvider.GetService<DataInitializer>().SeedData();
             }
 
             // Configure the HTTP request pipeline.

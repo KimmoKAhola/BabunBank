@@ -1,5 +1,4 @@
-﻿using BabunBank.Data;
-
+﻿
 namespace BabunBank.Models.LandingPage;
 
 public class LandingPageViewModel

@@ -1,12 +1,13 @@
-﻿using BabunBank.Data;
+﻿
 using BabunBank.Models.LandingPage;
+using DataAccessLibrary.Data;
 using Microsoft.EntityFrameworkCore;
 namespace BabunBank.Services;
 
 public class LandingPageService
 {
-    private readonly ApplicationDbContext _dbContext;
-    public LandingPageService(ApplicationDbContext dbContext)
+    private readonly BankAppDataContext _dbContext;
+    public LandingPageService(BankAppDataContext dbContext)
     {
         _dbContext = dbContext;
     }

@@ -3258,14 +3258,20 @@
           "lib/net7.0/ZstdSharp.dll": {}
         }
       },
-      "DatabaseLibrary/1.0.0": {
+      "DataAccessLibrary/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v8.0",
+        "dependencies": {
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.3",
+          "Microsoft.AspNetCore.Identity.UI": "8.0.3",
+          "Microsoft.EntityFrameworkCore": "8.0.3",
+          "Microsoft.EntityFrameworkCore.SqlServer": "8.0.3"
+        },
         "compile": {
-          "bin/placeholder/DatabaseLibrary.dll": {}
+          "bin/placeholder/DataAccessLibrary.dll": {}
         },
         "runtime": {
-          "bin/placeholder/DatabaseLibrary.dll": {}
+          "bin/placeholder/DataAccessLibrary.dll": {}
         }
       }
     }
@@ -9321,16 +9327,16 @@
         "zstdsharp.port.nuspec"
       ]
     },
-    "DatabaseLibrary/1.0.0": {
+    "DataAccessLibrary/1.0.0": {
       "type": "project",
-      "path": "../DatabaseLibrary/DatabaseLibrary.csproj",
-      "msbuildProject": "../DatabaseLibrary/DatabaseLibrary.csproj"
+      "path": "../DataAccessLibrary/DataAccessLibrary.csproj",
+      "msbuildProject": "../DataAccessLibrary/DataAccessLibrary.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net8.0": [
       "AutoMapper >= 13.0.1",
-      "DatabaseLibrary >= 1.0.0",
+      "DataAccessLibrary >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 8.0.3",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 8.0.3",
       "Microsoft.AspNetCore.Identity.UI >= 8.0.3",
@@ -9374,8 +9380,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\kahol\\source\\repos\\BabunBank\\DatabaseLibrary\\DatabaseLibrary.csproj": {
-              "projectPath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\DatabaseLibrary\\DatabaseLibrary.csproj"
+            "C:\\Users\\kahol\\source\\repos\\BabunBank\\DataAccessLibrary\\DataAccessLibrary.csproj": {
+              "projectPath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\DataAccessLibrary\\DataAccessLibrary.csproj"
             }
           }
         }

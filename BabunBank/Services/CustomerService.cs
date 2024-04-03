@@ -1,56 +1,45 @@
 ﻿using BabunBank.Models.Customer;
-using BabunBank.Repositories;
+using DataAccessLibrary.DataServices;
 
 namespace BabunBank.Services;
 
-public class CustomerService(CustomerRepository customerRepository)
+public class CustomerService(DataCustomerService customerService)
 {
     public async Task<CustomerViewModel> GetCustomerViewModelAsync(int id)
     {
-        try
-        {
-            //TODO perform include etc here. Needs more info from other tables
-            var result = await customerRepository.GetAsync(x => x.CustomerId == id);
+        var result = await customerService.GetCustomerAsync(id);
 
-            var customer = new CustomerViewModel
-            {
-                Id = result.CustomerId,
-                City = result.City,
-                GivenName = result.Givenname
-            };
-            
-            return customer;
-        }
-        catch (Exception e)
+        var customer = new CustomerViewModel
         {
-            Console.WriteLine(e);
-            throw;
-        }
+            Id = result.CustomerId,
+            Gender = result.Gender,
+            GivenName = result.Givenname,
+            Surname = result.Surname,
+            Streetaddress = result.Streetaddress,
+            City = result.City,
+            Zipcode = result.Zipcode,
+            Country = result.Country
+        };
+
+        return customer;
     }
+
     public async Task<IEnumerable<CustomerViewModel>> GetAllCustomersViewModelAsync()
     {
-        try
-        {
-            var result = await customerRepository.GetAllAsync();
+        var result = await customerService.GetAllCustomersAsync();
 
-            var viewModel = result.Select(x => new CustomerViewModel
-            {
-                Id = x.CustomerId,
-                Gender = x.Gender,
-                GivenName = x.Givenname,
-                Surname = x.Surname,
-                Streetaddress = x.Streetaddress,
-                City = x.City,
-                Zipcode = x.Zipcode,
-                Country = x.Country
-            });
-
-            return viewModel;
-        }
-        catch (Exception e)
+        var customers = result.Select(x => new CustomerViewModel
         {
-            Console.WriteLine(e);
-            throw;
-        }
+            Id = x.CustomerId,
+            Gender = x.Gender,
+            GivenName = x.Givenname,
+            Surname = x.Surname,
+            Streetaddress = x.Streetaddress,
+            City = x.City,
+            Zipcode = x.Zipcode,
+            Country = x.Country
+        });
+
+        return customers;
     }
 }
