@@ -12,9 +12,10 @@ public class AccountService(DataAccountService dataAccountService)
 
         var account = new AccountViewModel
         {
-            Id = result.AccountId,
+            AccountId = result.AccountId,
             Created = result.Created,
-            Balance = result.Balance
+            Balance = result.Balance,
+            CustomerName = result.Dispositions.FirstOrDefault().Customer.Givenname
         };
         
         return account;

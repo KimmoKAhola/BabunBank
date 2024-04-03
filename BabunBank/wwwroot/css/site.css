@@ -713,3 +713,22 @@ table{
 .contact-form button{
   width: 20%;
 }
+
+.customer-container{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border: 1px solid black;
+  .left{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    padding-left: 50px;
+  }
+  
+  .right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}

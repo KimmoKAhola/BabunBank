@@ -11,10 +11,10 @@ public class AccountRepository(BankAppDataContext dbContext) : BaseRepository<Ac
         try
         {
             var result = await dbContext.Accounts
-                .Include(i => i.AccountId)
                 .Include(x => x.Dispositions)
+                .ThenInclude(x => x.Customer)
                 .Include(x => x.Transactions)
-                .FirstAsync();
+                .FirstAsync(expression);
 
             return result;
         }

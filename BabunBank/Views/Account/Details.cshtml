@@ -1,0 +1,25 @@
+﻿@model BabunBank.Models.Account.AccountViewModel
+
+@{
+    ViewBag.Title = "Account for" + @Model.CustomerName;
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="customer-container">
+        <div class="left">
+            <p>@Model.Balance</p>
+            <p>@Model.Created</p>
+            <p>@Model.AccountId</p>
+            <p>@Model.CustomerId</p>
+            <a asp-controller="Customer" asp-action="Index">Go back</a>
+        </div>
+        <div class="right">
+            <img src="https://avatar.iran.liara.run/public" alt="TODO">
+            <h2>Account for @Model.CustomerName</h2>
+        </div>
+    </div>
+</div>
+
+
+

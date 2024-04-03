@@ -5,10 +5,10 @@ namespace BabunBank.Controllers;
 
 public class AccountController(AccountService accountService) : Controller
 {
-    public async Task<IActionResult> Index(int id)
+    public async Task<IActionResult> Details(int id)
     {
         var result = await accountService.GetAccountViewModelAsync(id);
         
-        return View();
+        return View(result);
     }
 }
