@@ -2,7 +2,7 @@
 
 namespace DataAccessLibrary.Repositories;
 
-public class AccountRepository(BankAppDataContext dbContext) : BaseRepository<Account>(dbContext)
+public class AccountRepository(BankAppDataContext dbContext) : BaseRepository<Account>(dbContext) 
 {
     
 }
