@@ -1,14 +1,8 @@
-using AutoMapper;
 using BabunBank.AutoMapperConfiguration;
 using BabunBank.Configurations.DependencyConfiguration;
-using BabunBank.Models.Customer;
-using BabunBank.Services;
 using DataAccessLibrary.Data;
-using DataAccessLibrary.DataServices;
-using DataAccessLibrary.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Org.BouncyCastle.Math.EC;
 
 namespace BabunBank
 {
@@ -29,7 +23,7 @@ namespace BabunBank
                 .AddEntityFrameworkStores<BankAppDataContext>();
             builder.Services.AddControllersWithViews();
             
-            ServiceConfiguration.Configure(builder.Services);
+            RepositoryConfiguration.Configure(builder.Services);
             ServiceConfiguration.Configure(builder.Services);
             
             //Seeding

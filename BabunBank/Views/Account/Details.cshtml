@@ -6,15 +6,17 @@
 }
 
 <h1>All transactions for the account with id @Model.AccountId</h1>
+<div class="account-details container">
 @foreach (var transaction in @Model.Transactions)
 {
-    <p>Id: @transaction.TransactionId</p>
-    <p>Amount: @transaction.Amount</p>
-    <p>Balance: @transaction.Balance</p>
+    <p>Transaction Id: @transaction.TransactionId</p>
+    <p>Amount: @(transaction.Amount.ToString("C2"))</p>
+    <p>Balance: @(transaction.Balance.ToString("C2"))</p>
     <p>Date: @transaction.Date</p>
+    <br/>
 }
 <button class="btn-primary">
     <p><a asp-controller="Customer" asp-action="Index">Go back</a></p>
 </button>
-
+</div>
 
