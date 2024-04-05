@@ -25,6 +25,7 @@ public class DataInitializer
     {
         AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", new string[] { "Admin" });
         AddUserIfNotExists("richard.chalk@customer.systementor.se", "Hejsan123#", new string[] { "Customer" });
+        AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", new string[] { "Admin" });
     }
 
     // Här finns möjlighet att uppdatera dina användares roller
