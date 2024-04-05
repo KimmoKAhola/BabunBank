@@ -1,4 +1,5 @@
 using AutoMapper;
+using BabunBank.AutoMapperConfiguration;
 using BabunBank.Models.Customer;
 using BabunBank.Services;
 using DataAccessLibrary.Data;
@@ -49,12 +50,7 @@ namespace BabunBank
 
 
             //Automapper
-            var config = new MapperConfiguration(config =>
-            {
-                config.CreateMap<Customer, CustomerViewModel>();
-            });
-
-            builder.Services.AddSingleton<IMapper>(sp => new Mapper(config));
+            builder.Services.AddAutoMapper(typeof(MappingProfile));
             
             var app = builder.Build();
 

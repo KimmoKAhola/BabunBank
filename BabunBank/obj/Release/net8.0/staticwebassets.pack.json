@@ -49,6 +49,10 @@
       "PackagePath": "staticwebassets\\images\\bg-fullscreen.webp"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\chalk-profile.jpg",
+      "PackagePath": "staticwebassets\\images\\chalk-profile.jpg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.svg",
       "PackagePath": "staticwebassets\\images\\flag-of-denmark.svg"
     },
@@ -71,6 +75,14 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\instagram.svg",
       "PackagePath": "staticwebassets\\images\\instagram.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-arrow.svg",
+      "PackagePath": "staticwebassets\\images\\landing-page-arrow.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-icon.svg",
+      "PackagePath": "staticwebassets\\images\\landing-page-icon.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\lock.svg",
@@ -103,6 +115,10 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-right-aligned.webp",
       "PackagePath": "staticwebassets\\images\\pexels-photo-right-aligned.webp"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\teambuilding-bg.jpg",
+      "PackagePath": "staticwebassets\\images\\teambuilding-bg.jpg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",

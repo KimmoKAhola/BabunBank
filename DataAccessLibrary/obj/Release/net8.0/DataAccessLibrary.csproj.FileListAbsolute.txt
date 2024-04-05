@@ -1,0 +1,15 @@
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\bin\Release\net8.0\DataAccessLibrary.deps.json
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\bin\Release\net8.0\DataAccessLibrary.runtimeconfig.json
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\bin\Release\net8.0\DataAccessLibrary.dll
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\bin\Release\net8.0\DataAccessLibrary.pdb
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.csproj.AssemblyReference.cache
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.AssemblyInfoInputs.cache
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.AssemblyInfo.cs
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.csproj.CoreCompileInputs.cache
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.sourcelink.json
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.dll
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\refint\DataAccessLibrary.dll
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.pdb
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\DataAccessLibrary.genruntimeconfig.cache
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Release\net8.0\ref\DataAccessLibrary.dll
