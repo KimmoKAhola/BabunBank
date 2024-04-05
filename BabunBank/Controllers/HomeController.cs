@@ -1,9 +1,8 @@
 using BabunBank.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using BabunBank.Models.LandingPage;
 using BabunBank.Services;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace BabunBank.Controllers
 {

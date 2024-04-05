@@ -760,3 +760,20 @@ table{
   place-items: center;
   text-align: start;
 }
+
+/*Login section here*/
+
+.login-section{
+  place-items: center;
+  min-width: 60%;
+  height: 100vh;
+}
+
+.login-form{
+  width: 40%;
+}
+
+.form-control{
+  height: 30px;
+  margin-bottom: 30px;
+}
