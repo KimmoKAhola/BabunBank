@@ -58,20 +58,21 @@
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-q ="@ViewBag.Q">
-                        <button>View more <i class="material-symbols-outlined">arrow_forward</i></button>
+                        <button class="btn-primary">View more <i class="material-symbols-outlined">arrow_forward</i></button>
                     </a></td>
                 @* <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a> *@
             </tr>
         }
         <tr>
             <td>
-                <button>
+                <button class="btn-primary">
                     <a asp-action="Index"
                        asp-controller="Customer"
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-                       asp-route-q ="@ViewBag.Q">Next</a>
+                       asp-route-q ="@ViewBag.Q"></a>
+                    Previous
                 </button>
             </td>
             
@@ -79,13 +80,14 @@
             <td></td>
             <td></td>
             <td>
-                <button>
+                <button class="btn-primary">
                     <a asp-action="Index" 
                        asp-controller="Customer" 
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-pageNumber="@(ViewBag.CurrentPage+1)"
-                       asp-route-q="@ViewBag.Q">Next</a>
+                       asp-route-q="@ViewBag.Q"></a>
+                    Next
                 </button>
             </td>
         </tr>
