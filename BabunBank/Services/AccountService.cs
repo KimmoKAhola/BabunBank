@@ -1,5 +1,5 @@
 ﻿using BabunBank.Models.Account;
-using DataAccessLibrary.Data;
+using BabunBank.Models.Transaction;
 using DataAccessLibrary.DataServices;
 
 namespace BabunBank.Services;
@@ -15,8 +15,15 @@ public class AccountService(DataAccountService dataAccountService)
             AccountId = result.AccountId,
             Created = result.Created,
             Balance = result.Balance,
-            Gender = result.Dispositions.FirstOrDefault().Customer.Gender,
-            CustomerName = result.Dispositions.FirstOrDefault().Customer.Givenname
+            Transactions = result.Transactions.Select(t => new TransactionViewModel
+            {
+                TransactionId = t.TransactionId,
+                Date = t.Date,
+                Type = t.Type,
+                Operation = t.Operation,
+                Amount = t.Amount,
+                Balance = t.Balance
+            }).OrderByDescending(t => t.Date).ToList()
         };
         
         return account;

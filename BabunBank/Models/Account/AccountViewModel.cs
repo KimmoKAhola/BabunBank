@@ -1,11 +1,12 @@
-﻿namespace BabunBank.Models.Account;
+﻿using BabunBank.Models.Transaction;
+
+namespace BabunBank.Models.Account;
 
 public class AccountViewModel
 {
-    public int CustomerId { get; set; }
-    public string CustomerName { get; set; }
     public int AccountId { get; set; }
     public DateOnly Created { get; set; }
     public decimal Balance { get; set; }
-    public string Gender { get; set; }
+
+    public List<TransactionViewModel> Transactions { get; set; }
 }

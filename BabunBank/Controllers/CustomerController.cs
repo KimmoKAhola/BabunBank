@@ -26,7 +26,7 @@ public class CustomerController(CustomerService customerService) : Controller
     public async Task<IActionResult> Details(int id)
     {
         var result = await customerService.GetCustomerViewModelAsync(id);
-        
+        //result > list of CustomerAccounts. Each account has a list of transactions
         return View(result);
     }
 }

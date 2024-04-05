@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Identity
+@using System.Security.Cryptography
 @model BabunBank.Models.Customer.CustomerViewModel
 @inject SignInManager<IdentityUser> SignInManager
 
@@ -9,13 +10,32 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-<h2>Customer details, add styling here</h2>
-<h3>Name: @Model.GivenName</h3>
-
-<div>
-    <p>@Model.GivenName</p>
+    <div class="container customer">
+        <div class="customer-card-container">
+            <div class="customer-card-left">
+                <p>Customer name: @Model.GivenName @Model.Surname</p>
+            
+                @foreach (var account in @Model.CustomerAccounts)
+                {
+                    <p>Account Id: @account.AccountId</p>
+                    <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId">View account details</a>
+                }
+                <a asp-controller="Customer" asp-action="Index">Go back</a>
+            </div>
+            <div class="customer-card-right">
+                @if (@Model.Gender == "male")
+                {
+                <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
+                }
+                else
+                {
+                    <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
+                }
+                <h2>Account for @Model.GivenName @Model.Surname</h2>
+            </div>
+        </div>
+    </div>
     <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder">Go Back</a>
-</div>
 }
 else
 {

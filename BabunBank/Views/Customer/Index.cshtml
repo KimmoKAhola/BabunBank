@@ -52,8 +52,8 @@
                 <td>@customer.Surname</td>
                 <td>@customer.Country</td>
                 <td>
-                    <a asp-controller="Account" asp-action="Details"
-                       asp-route-id="@customer.Id"
+                    <a asp-controller="Customer" asp-action="Details"
+                       asp-route-id="@customer.CustomerId"
                        asp-route-country="@customer.Country"
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"

@@ -1,32 +1,19 @@
 ﻿@model BabunBank.Models.Account.AccountViewModel
 
 @{
-    ViewBag.Title = "Account for" + @Model.CustomerName;
+    ViewBag.Title = "Account Details";
     Layout = "_Layout";
 }
 
-<div class="container">
-    <div class="customer-container">
-        <div class="left">
-            <p>@Model.Balance</p>
-            <p>@Model.Created</p>
-            <p>@Model.AccountId</p>
-            <p>@Model.CustomerId</p>
-            <a asp-controller="Customer" asp-action="Index">Go back</a>
-        </div>
-        <div class="right">
-            @if (@Model.Gender == "male")
-            {
-            <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
-            }
-            else
-            {
-                <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
-            }
-            <h2>Account for @Model.CustomerName</h2>
-        </div>
-    </div>
-</div>
+<h1>All transactions for the account with id @Model.AccountId</h1>
+@foreach (var transaction in @Model.Transactions)
+{
+    <p>Id: @transaction.TransactionId</p>
+    <p>Amount: @transaction.Amount</p>
+    <p>Balance: @transaction.Balance</p>
+    <p>Date: @transaction.Date</p>
+}
 
+<p><a asp-controller="Customer" asp-action="Index">Go back</a></p>
 
 

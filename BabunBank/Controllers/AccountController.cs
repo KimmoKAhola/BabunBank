@@ -1,4 +1,5 @@
-﻿using BabunBank.Services;
+﻿using BabunBank.Models.Account;
+using BabunBank.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;

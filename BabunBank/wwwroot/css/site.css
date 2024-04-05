@@ -98,13 +98,12 @@ html, body, a {
 }
 
 /*Container for centering customer table TODO*/
-.customer-container {
-  /*background-color: #f9efcf;*/
-  border-radius: 40px;
+.customer-container{
   display: grid;
   grid-template-columns: 1fr;
-  margin: 10px auto;
-  max-width: 87.5%;
+  place-items: center;
+  margin: 0 auto;
+  width: 87.5%;
 }
 
 .table-test {
@@ -714,11 +713,16 @@ table{
   width: 20%;
 }
 
-.customer-container{
+.container.customer{
+  align-items: center;
+  width: fit-content;
+}
+
+.customer-card-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
   border: 1px solid black;
-  .left{
+  .customer-card-left{
     display: flex;
     flex-direction: column;
     align-items: start;
@@ -726,7 +730,7 @@ table{
     padding-left: 50px;
   }
   
-  .right{
+  .customer-card-right{
     display: flex;
     flex-direction: column;
     align-items: center;

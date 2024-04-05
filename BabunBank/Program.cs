@@ -1,9 +1,12 @@
+using AutoMapper;
+using BabunBank.Models.Customer;
 using BabunBank.Services;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using DataAccessLibrary.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Org.BouncyCastle.Math.EC;
 
 namespace BabunBank
 {
@@ -45,6 +48,14 @@ namespace BabunBank
             builder.Services.AddTransient<DataInitializer>();
 
 
+            //Automapper
+            var config = new MapperConfiguration(config =>
+            {
+                config.CreateMap<Customer, CustomerViewModel>();
+            });
+
+            builder.Services.AddSingleton<IMapper>(sp => new Mapper(config));
+            
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())
