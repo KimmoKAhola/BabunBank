@@ -771,9 +771,35 @@ table{
 
 .login-form{
   width: 40%;
+  section{
+    input{
+      background-color: #0000000A;
+      height: 60px;
+      padding: 24px 20px;
+    }
+  }
 }
 
 .form-control{
   height: 30px;
   margin-bottom: 30px;
+}
+
+#login-submit{
+  /*background-color: #31795A;*/
+  background-color: #295956;
+  border: none;
+  height: 60px;
+  transition: 0.2s ease-in;
+  
+}
+
+#login-submit:hover{
+  color: #ffdb1e;
+}
+
+#Input_RememberMe{
+  padding: 0;
+  height: 20px;
+  width: 20px;
 }
