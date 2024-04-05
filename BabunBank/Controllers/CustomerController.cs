@@ -1,9 +1,11 @@
 ﻿using BabunBank.Models.Customer;
 using BabunBank.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
+[Authorize(Roles = "Cashier, Admin")]  //TODO add these to relevant pages
 public class CustomerController(CustomerService customerService) : Controller
 {
     public async Task<IActionResult> Index(string sortColumn, string sortOrder, string q, int pageNumber)
