@@ -14,6 +14,7 @@ public class MappingProfile : Profile
         CreateMap<Customer, CustomerViewModel>();
         CreateMap<Transaction, TransactionViewModel>();
 
+        //TODO practice these
         CreateMap<Customer, CustomerViewModel>()
             .ForMember(x => x.CustomerAccounts,
                 x => x.MapFrom(c => c.Dispositions.Select(d => d.Account)));

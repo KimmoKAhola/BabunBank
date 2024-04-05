@@ -1,5 +1,6 @@
 using AutoMapper;
 using BabunBank.AutoMapperConfiguration;
+using BabunBank.Configurations.DependencyConfiguration;
 using BabunBank.Models.Customer;
 using BabunBank.Services;
 using DataAccessLibrary.Data;
@@ -28,22 +29,8 @@ namespace BabunBank
                 .AddEntityFrameworkStores<BankAppDataContext>();
             builder.Services.AddControllersWithViews();
             
-            //Repositories
-            builder.Services.AddScoped<CustomerRepository>();
-            builder.Services.AddScoped<AccountRepository>();
-            
-            //Library Services
-            builder.Services.AddScoped<DataAccountService>();
-            builder.Services.AddScoped<DataCustomerService>();
-            builder.Services.AddScoped<DataLandingPageService>();
-            
-            
-            
-            //Services
-            builder.Services.AddScoped<CustomerService>();
-            builder.Services.AddScoped<AccountService>();
-            builder.Services.AddScoped<LandingPageService>();
-            
+            ServiceConfiguration.Configure(builder.Services);
+            ServiceConfiguration.Configure(builder.Services);
             
             //Seeding
             builder.Services.AddTransient<DataInitializer>();
