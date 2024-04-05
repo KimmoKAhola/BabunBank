@@ -362,7 +362,7 @@ a:hover {
     align-items: center;
     gap: 10px;
     color: white;
-    font-size: 20px;
+    font-size: 24px;
   }
   color: white;
   padding: 10px 30px;
@@ -399,11 +399,26 @@ a:hover {
 
 .brand-section{
   display: flex;
-  justify-content: center;
-  gap: 40px;
-  height: 20vh;
+  justify-content: space-evenly;
+  gap: 80px;
+  max-height: 20vh;
+  width: 87.5%;
+  margin: 0 auto;
+  padding: 10px;
 }
 
+.brand-section img{
+  width: 25%;
+  display: block;
+  height: 100px;
+  object-fit: contain;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.brand-section img:hover{
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
 
 /*Landing page view here*/
 #country-page-bg{

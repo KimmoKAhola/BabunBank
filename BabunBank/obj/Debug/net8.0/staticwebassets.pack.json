@@ -101,6 +101,30 @@
       "PackagePath": "staticwebassets\\images\\logo-2.png"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-255.svg",
+      "PackagePath": "staticwebassets\\images\\logoipsum-255.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-264.svg",
+      "PackagePath": "staticwebassets\\images\\logoipsum-264.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-299.svg",
+      "PackagePath": "staticwebassets\\images\\logoipsum-299.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-300.svg",
+      "PackagePath": "staticwebassets\\images\\logoipsum-300.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-321.svg",
+      "PackagePath": "staticwebassets\\images\\logoipsum-321.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-331.svg",
+      "PackagePath": "staticwebassets\\images\\logoipsum-331.svg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
       "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
     },
