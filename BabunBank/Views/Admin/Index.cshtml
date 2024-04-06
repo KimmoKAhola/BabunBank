@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@model IEnumerable<BabunBank.Models.Admin.IdentityUserViewModel>
+@inject SignInManager<IdentityUser> SignInManager
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>All users in our system</h2>
+<div class="container">
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Username</th>
+        <th>Password</th>
+        <th></th>
+    </tr>
+    </thead>   
+    <tbody>
+    @foreach (var systemUser in @Model)
+    {
+        <tr>
+            <th>@systemUser.Id</th>
+            <th>@systemUser.Username</th>
+            <th>@systemUser.Email</th>
+            <th>
+                <button class="btn-primary"><a asp-controller="Admin" asp-action="Read" asp-route-id="@systemUser.Id">View</a></button>
+                <button class="btn-primary"><a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.Id">Update</a></button>
+                @* @if (User.Identity.Name != @user.Username) *@
+                @* { *@
+                @*     <button class="btn-primary">Delete</button> *@
+                @* } *@
+                @if (User.Identity.Name != systemUser.Username)
+                {
+                    <button class="btn-danger">
+                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@systemUser.Id">Delete</a>
+                    </button>
+                }
+            </th>
+        </tr>
+    }
+    </tbody>
+</table>
+<a asp-controller="Admin" asp-action="Index">Go back</a>
+</div>

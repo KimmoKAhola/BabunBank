@@ -674,8 +674,7 @@ button:hover{
 
 .login:hover .btn-arrow{
   i{
-    
-  color: #ffdb1e;
+  color: var(--CTA);
   }
   transition: 0.2s ease-in;
   transform: translateX(4px); 

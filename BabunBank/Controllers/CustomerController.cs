@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BabunBank.Configurations;
 using BabunBank.Factories;
 using BabunBank.Models;
 using BabunBank.Models.Customer;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
-[Authorize(Roles = "Cashier, Admin")] //TODO add these to relevant pages
+[Authorize(Roles = $"{RoleNames.Cashier}, {RoleNames.Admin}")] //TODO add these to relevant pages
 public class CustomerController(CustomerService customerService, IMapper mapper) : Controller
 {
     public async Task<IActionResult> Index(

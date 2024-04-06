@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using BabunBank.Models;
 using BabunBank.Models.Account;
+using BabunBank.Models.Admin;
 using BabunBank.Models.Customer;
 using BabunBank.Models.Transaction;
 using DataAccessLibrary.Data;
+using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Configurations.AutoMapperConfiguration;
 
@@ -15,6 +17,7 @@ public class MappingProfile : Profile
         CreateMap<Customer, CustomerViewModel>();
         CreateMap<Transaction, TransactionViewModel>();
         CreateMap<CreateCustomerModel, Customer>();
+        CreateMap<IdentityUser, IdentityUserViewModel>();
 
         //TODO practice these
         CreateMap<Customer, CustomerViewModel>()
