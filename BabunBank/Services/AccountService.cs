@@ -6,7 +6,7 @@ namespace BabunBank.Services;
 
 public class AccountService(DataAccountService dataAccountService, IMapper mapper)
 {
-    public async Task<AccountViewModel> GetAccountViewModelAsync(int id)
+    public async Task<AccountViewModel?> GetAccountViewModelAsync(int id)
     {
         var result = await dataAccountService.GetAsync(id);
 

@@ -15,8 +15,7 @@ namespace BabunBank.Controllers;
 [Authorize(Roles = UserRoleNames.Admin)]
 public class AdminController(
     IdentityUserService identityUserService,
-    UserManager<IdentityUser> userManager,
-    IMapper mapper
+    UserManager<IdentityUser> userManager
 ) : Controller
 {
     // GET

@@ -24,6 +24,6 @@ public class CustomerViewModel
     public string Zipcode { get; set; }
     public string Country { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public bool IsDeleted { get; set; } //TODO is this needed? Only used for soft deletion
     public List<AccountViewModel> CustomerAccounts { get; set; }
 }

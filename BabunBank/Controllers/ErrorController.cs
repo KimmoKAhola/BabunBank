@@ -8,8 +8,6 @@ public class ErrorController : Controller
     // GET
     public IActionResult Index()
     {
-        var pathFeature = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-        Exception exception = pathFeature?.Error; // Here will be the exception details.
         return View();
     }
 

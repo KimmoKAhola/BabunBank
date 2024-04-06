@@ -49,10 +49,8 @@ namespace BabunBank
             //Create this seeding async. Use Task.Run and Wait() So that the main method does not have to be async
             Task.Run(async () =>
                 {
-                    using (var scope = app.Services.CreateScope())
-                    {
-                        await scope.ServiceProvider.GetService<DataInitializer>().SeedData();
-                    }
+                    using var scope = app.Services.CreateScope();
+                    await scope.ServiceProvider.GetService<DataInitializer>().SeedData();
                 })
                 .Wait();
 
