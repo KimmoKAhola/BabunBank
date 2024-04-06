@@ -27,7 +27,7 @@
         }
         @if (User.IsInRole(UserRoleNames.Cashier))
         {
-          <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">View Customers & Accounts</a>
+          <a class="navbar-link" asp-area="" asp-controller="Cashier" asp-action="Index">View Customers & Accounts</a>
         }
         @if (User.IsInRole(UserRoleNames.Admin))
         {

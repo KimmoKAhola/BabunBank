@@ -5,13 +5,14 @@ using BabunBank.Factories;
 using BabunBank.Models;
 using BabunBank.Models.Customer;
 using BabunBank.Services;
+using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
 [Authorize(Roles = $"{UserRoleNames.Cashier}, {UserRoleNames.Admin}")] //TODO add these to relevant pages
-public class CustomerController(CustomerService customerService, IMapper mapper) : Controller
+public class CashierController(CustomerService customerService, IMapper mapper) : Controller
 {
     public async Task<IActionResult> Index(
         string sortColumn,
@@ -64,5 +65,15 @@ public class CustomerController(CustomerService customerService, IMapper mapper)
 
         await customerService.CreateCustomerAsync(customer);
         return View();
+    }
+
+    public async Task<IActionResult> Delete(int id)
+    {
+        if (!await customerService.DeleteCustomerAsync(id))
+        {
+            return RedirectToAction("Delete");
+        }
+
+        return RedirectToAction("Index");
     }
 }

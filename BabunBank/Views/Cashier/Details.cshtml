@@ -20,12 +20,13 @@
                     <p>Account Id: @account.AccountId</p>
                     <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId">View account details</a>
                 }
-                <a asp-controller="Customer" asp-action="Index">Go back</a>
+                <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-danger">Delete</a>
+                <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="btn-primary">Go Back</a>
             </div>
             <div class="customer-card-right">
                 @if (@Model.Gender == "male")
                 {
-                <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
+                    <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
                 }
                 else
                 {
@@ -35,7 +36,7 @@
             </div>
         </div>
     </div>
-    <a asp-action="Index" asp-controller="Customer" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder">Go Back</a>
+    
 }
 else
 {

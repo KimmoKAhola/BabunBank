@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BabunBank-API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4101c1b412095d7bdabd4e36d4a159a9ec08553")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c17bcd7f8f8677be17764537634ef3b82b5d0385")]
 [assembly: System.Reflection.AssemblyProductAttribute("BabunBank-API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BabunBank-API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

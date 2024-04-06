@@ -19,7 +19,7 @@
                 <th>
                     <span class="customer-table">
                         @column
-                        <a asp-action="Index" asp-controller="Customer"
+                        <a asp-action="Index" asp-controller="Cashier"
                            asp-route-sortColumn="@column"
                            asp-route-sortOrder="asc"
                            asp-route-q="@ViewBag.Q"
@@ -27,7 +27,7 @@
                             <i class="material-symbols-outlined">expand_more</i>
                         </a>
                     
-                        <a asp-action="Index" asp-controller="Customer"
+                        <a asp-action="Index" asp-controller="Cashier"
                            asp-route-sortColumn="@column"
                            asp-route-sortOrder="desc"
                            asp-route-q="@ViewBag.Q"
@@ -52,7 +52,7 @@
                 <td>@customer.Surname</td>
                 <td>@customer.Country</td>
                 <td>
-                    <a asp-controller="Customer" asp-action="Details"
+                    <a asp-controller="Cashier" asp-action="Details"
                        asp-route-id="@customer.CustomerId"
                        asp-route-country="@customer.Country"
                        asp-route-sortColumn="@ViewBag.SortColumn"
@@ -67,7 +67,7 @@
             <td>
                 <button class="btn-primary">
                     <a asp-action="Index"
-                       asp-controller="Customer"
+                       asp-controller="Cashier"
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
@@ -81,7 +81,7 @@
             <td>
                 <button class="btn-primary">
                     <a asp-action="Index" 
-                       asp-controller="Customer" 
+                       asp-controller="Cashier" 
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-pageNumber="@(ViewBag.CurrentPage+1)"
@@ -92,5 +92,5 @@
         </tbody>
 
     </table>
-    <a asp-controller="Customer" asp-action="Create">Create new customer</a>
+    <a asp-controller="Cashier" asp-action="Create">Create new customer</a>
 </div>

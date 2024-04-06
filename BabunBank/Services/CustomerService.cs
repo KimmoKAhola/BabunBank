@@ -37,6 +37,7 @@ public class CustomerService(DataCustomerService customerService, IMapper mapper
         }
 
         var result = await customers
+            .Where(x => !x.IsDeleted)
             .Skip((pageNumber - 1) * _pageSize)
             .Take(_pageSize)
             .ToListAsync();
@@ -49,5 +50,11 @@ public class CustomerService(DataCustomerService customerService, IMapper mapper
     public async Task<bool> CreateCustomerAsync(Customer customer)
     {
         return await customerService.CreateAsync(customer);
+    }
+
+    public async Task<bool> DeleteCustomerAsync(int id)
+    {
+        var customer = await customerService.GetAsync(id);
+        return await customerService.DeleteAsync(customer);
     }
 }

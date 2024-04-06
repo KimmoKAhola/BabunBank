@@ -95,9 +95,17 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         }
     }
 
-    public async Task<bool> DeleteAsync(Customer model)
+    public async Task<bool> DeleteAsync(Customer customer)
     {
-        throw new NotImplementedException();
+        try
+        {
+            return await customerRepository.DeleteAsync(x => x.CustomerId == customer.CustomerId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 
     public async Task<Customer> UpdateAsync(Customer model)
