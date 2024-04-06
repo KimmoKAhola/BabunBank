@@ -20,7 +20,7 @@ public class DataInitializer
         _dbContext = dbContext;
         _userManager = userManager;
     }
-    public async void SeedData()
+    public async Task SeedData()
     {
         await _dbContext.Database.MigrateAsync();
         SeedRoles();
@@ -44,7 +44,7 @@ public class DataInitializer
         AddRoleIfNotExisting(UserRoles.Customer.ToString());  // TODO remove this role later
     }
 
-    private async void AddRoleIfNotExisting(string roleName)
+    private async Task AddRoleIfNotExisting(string roleName)
     {
         var role = await _dbContext.Roles.FirstOrDefaultAsync(r => r.Name == roleName);
         if (role != null) return;
