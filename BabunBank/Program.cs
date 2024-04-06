@@ -3,6 +3,8 @@ using Azure.Security.KeyVault.Secrets;
 using BabunBank.Configurations.AutoMapperConfiguration;
 using BabunBank.Configurations.DependencyConfiguration;
 using DataAccessLibrary.Data;
+using DataAccessLibrary.Exceptions;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -61,7 +63,7 @@ namespace BabunBank
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
@@ -77,6 +79,12 @@ namespace BabunBank
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}"
             );
+
+            // app.MapControllerRoute(
+            //     name: "error",
+            //     pattern: "{controller=Error}/{action=NotFound404}/{id?}"
+            // ); TODO needed?
+
             app.MapRazorPages();
 
             app.Run();

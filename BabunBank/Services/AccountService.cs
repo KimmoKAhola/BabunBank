@@ -10,9 +10,13 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
     {
         var result = await dataAccountService.GetAsync(id);
 
-        var accountViewModel = mapper.Map<AccountViewModel>(result);
-        accountViewModel.Transactions = accountViewModel.Transactions.OrderByDescending(t => t.Date).ToList();
+        if (result == null)
+            return null!;
 
+        var accountViewModel = mapper.Map<AccountViewModel>(result);
+        accountViewModel.Transactions = accountViewModel
+            .Transactions.OrderByDescending(t => t.Date)
+            .ToList();
         return accountViewModel;
     }
 }

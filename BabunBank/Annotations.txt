@@ -1,0 +1,36 @@
+    [Required]: Specifies that a property must have a non-null value.
+    [StringLength]: Specifies the minimum and maximum length constraints for a string property.
+    [Range]: Specifies the range constraints for numeric properties.
+    [RegularExpression]: Specifies a regular expression pattern that a string property must match.
+    [Compare]: Specifies that a property must have the same value as another property.
+
+Display Attributes:
+
+    [DisplayName]: Specifies the display name for a property, used for labeling in views.
+    [DisplayFormat]: Specifies the format for displaying a property value.
+    [Display]: Combines several display-related settings, including name, description, and format.
+
+DataType Attributes:
+
+    [DataType]: Specifies the data type of a property, influencing how it's displayed and validated. Common types include EmailAddress, Url, PhoneNumber, Date, Time, and Currency.
+
+Concurrency Control:
+
+    [Timestamp]: Specifies a property to be used for concurrency checking, typically for optimistic concurrency control.
+
+Database Annotations:
+
+    [Key]: Specifies the primary key property for an entity.
+    [ForeignKey]: Specifies a foreign key property in a dependent entity.
+    [Table]: Specifies the table name for an entity in the database.
+    [Column]: Specifies the column name and other database-specific settings for a property.
+
+Custom Validation:
+
+    [CustomValidation]: Specifies a method to be used for custom validation logic. The method must accept the validated object as a parameter and return ValidationResult.
+
+Miscellaneous:
+
+    [NotMapped]: Specifies that a property or entity should not be mapped to the database.
+    [Obsolete]: Marks a property or method as obsolete and provides a message for compiler warnings.
+

@@ -1,5 +1,6 @@
 ﻿using System.Linq.Expressions;
 using DataAccessLibrary.Data;
+using DataAccessLibrary.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLibrary.Repositories;
@@ -8,13 +9,24 @@ public class CustomerRepository(BankAppDataContext dbContext) : BaseRepository<C
 {
     public override async Task<Customer> GetAsync(Expression<Func<Customer, bool>> expression)
     {
-        var customer = await dbContext
-            .Customers.Include(x => x.Dispositions)
-            .ThenInclude(x => x.Account)
-            .ThenInclude(x => x.Transactions)
-            .FirstAsync(expression);
+        try
+        {
+            var customer = await dbContext
+                .Customers.Include(x => x.Dispositions)
+                .ThenInclude(x => x.Account)
+                .ThenInclude(x => x.Transactions)
+                .FirstOrDefaultAsync(expression);
 
-        return customer;
+            if (customer != null)
+                return customer;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            // throw new DataAccessLibraryException("Error");
+        }
+
+        return null!;
     }
 
     /// <summary>
@@ -26,7 +38,9 @@ public class CustomerRepository(BankAppDataContext dbContext) : BaseRepository<C
     {
         try
         {
-            var customer = await dbContext.Customers.FirstAsync(expression);
+            var customer = await dbContext.Customers.FirstOrDefaultAsync(expression);
+            if (customer == null)
+                return false;
             customer.IsDeleted = true;
             dbContext.Set<Customer>().Update(customer);
 

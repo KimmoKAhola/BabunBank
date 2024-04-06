@@ -1,6 +1,4 @@
-﻿using BabunBank.Configurations;
-using BabunBank.Configurations.Enums;
-using BabunBank.Models.Account;
+﻿using BabunBank.Configurations.Enums;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +12,8 @@ public class AccountController(AccountService accountService) : Controller
     {
         var result = await accountService.GetAccountViewModelAsync(id);
 
+        if (result == null)
+            return RedirectToAction("Index", "Error");
         return View(result);
     }
 }

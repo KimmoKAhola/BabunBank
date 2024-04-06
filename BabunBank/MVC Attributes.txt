@@ -1,0 +1,31 @@
+    Authorization:
+        [Authorize]: Restricts access to actions or controllers to only authenticated users.
+        [AllowAnonymous]: Allows access to actions or controllers without requiring authentication.
+        [Authorize(Roles = "Admin")]: Restricts access to users who are in the "Admin" role.
+        [Authorize(Policy = "RequireAdmin")]: Restricts access based on a custom authorization policy named "RequireAdmin".
+
+    Routing:
+        [HttpGet]: Specifies that an action method should respond to HTTP GET requests.
+        [HttpPost]: Specifies that an action method should respond to HTTP POST requests.
+        [Route("api/[controller]")]: Specifies the route template for an entire controller.
+        [Route("[action]")]: Specifies the route template for an action method.
+
+    Model Binding:
+        [BindProperty]: Binds properties of a model class to request data in Razor Pages.
+        [FromBody]: Specifies that parameter data should be retrieved from the request body.
+        [FromQuery]: Specifies that parameter data should be retrieved from the query string.
+
+    Validation:
+        [Required]: Specifies that a property must have a non-null value.
+        [StringLength]: Specifies the minimum and maximum length constraints for a string property.
+        [EmailAddress]: Specifies that a string property should be a valid email address.
+        [RegularExpression]: Specifies a regular expression pattern that a string property must match.
+
+    Action Results:
+        [HttpGet]: Specifies that an action method should respond to HTTP GET requests.
+        [HttpPost]: Specifies that an action method should respond to HTTP POST requests.
+        [ValidateAntiForgeryToken]: Helps prevent cross-site request forgery (CSRF) attacks.
+
+    Caching:
+        [ResponseCache]: Specifies caching options for the response of an action method.
+        [ResponseCache(Duration = 3600)]: Specifies that the response should be cached for 3600 seconds (1 hour).

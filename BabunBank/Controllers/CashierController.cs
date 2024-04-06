@@ -2,6 +2,7 @@
 using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models;
+using BabunBank.Models.Customer;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -42,6 +43,11 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
     {
         var result = await customerService.GetCustomerViewModelAsync(id);
         //result > list of CustomerAccounts. Each account has a list of transactions
+        if (result == null)
+        {
+            return RedirectToAction("Index", "Error");
+        }
+
         return View(result);
     }
 
@@ -75,6 +81,6 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
             return RedirectToAction("Delete");
         }
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Index", "Error");
     }
 }

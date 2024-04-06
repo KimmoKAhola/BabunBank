@@ -107,3 +107,75 @@ public class UserService
         await _userRepository.DeleteAsync(user);
     }
 }
+
+
+ViewBag, ViewData, and TempData are mechanisms in ASP.NET MVC that allow you to pass data from controllers to views and between different action methods. Here's how you can use each of them:
+
+    ViewBag: ViewBag is a dynamic property that allows you to pass data from the controller to the view. It is a lightweight way to pass small amounts of data.
+
+    In the controller:
+
+    csharp
+
+public IActionResult Index()
+{
+    ViewBag.Message = "Hello, world!";
+    return View();
+}
+
+In the view (Index.cshtml):
+
+html
+
+<div>@ViewBag.Message</div>
+
+ViewData: ViewData is a dictionary-like object that provides a way to pass data from the controller to the view using a key-value pair. 
+It is similar to ViewBag but requires casting to access its values.
+
+In the controller:
+
+csharp
+
+public IActionResult Index()
+{
+    ViewData["Message"] = "Hello, world!";
+    return View();
+}
+
+In the view (Index.cshtml):
+
+html
+
+<div>@((string)ViewData["Message"])</div>
+
+TempData: TempData is a dictionary-like object that is used to store data temporarily between requests. 
+It is typically used for scenarios like passing messages between action methods during redirects.
+
+In the controller:
+
+csharp
+
+public IActionResult Index()
+{
+    TempData["Message"] = "Hello, world!";
+    return RedirectToAction("About");
+}
+
+public IActionResult About()
+{
+    string message = TempData["Message"] as string;
+    return View((object)message);
+}
+
+In the view (About.cshtml):
+
+html
+
+    <div>@Model</div>
+
+    In this example, TempData is used to pass the message from the Index action method to the About action method during a redirect.
+
+Each of these mechanisms serves its purpose in different scenarios. 
+ViewBag and ViewData are suitable for passing data from the controller to the view, 
+while TempData is useful for passing data between action methods during redirects. 
+Choose the appropriate mechanism based on your specific requirements.
