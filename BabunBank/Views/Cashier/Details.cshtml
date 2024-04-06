@@ -8,37 +8,31 @@
     Layout = "_Layout";
 }
 
-@if (SignInManager.IsSignedIn(User))
-{
-    <div class="container customer">
-        <div class="customer-card-container">
-            <div class="customer-card-left">
-                <p>Customer name: @Model.GivenName @Model.Surname</p>
-            
-                @foreach (var account in @Model.CustomerAccounts)
-                {
-                    <p>Account Id: @account.AccountId</p>
-                    <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId">View account details</a>
-                }
-                <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-danger">Delete</a>
-                <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="btn-primary">Go Back</a>
-            </div>
-            <div class="customer-card-right">
-                @if (@Model.Gender == "male")
-                {
-                    <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
-                }
-                else
-                {
-                    <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
-                }
-                <h2>Account for @Model.GivenName @Model.Surname</h2>
-            </div>
+<div class="container customer">
+    <h1 class="success">@TempData["CreatedUser"]</h1>
+    <div class="customer-card-container">
+        <div class="customer-card-left">
+            <p>Customer name: @Model.GivenName @Model.Surname</p>
+
+            @foreach (var account in @Model.CustomerAccounts)
+            {
+                <p>Account Id: @account.AccountId</p>
+                <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId">View account details</a>
+            }
+            <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-danger">Delete</a>
+            <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="btn-primary">Go Back</a>
+        </div>
+        <div class="customer-card-right">
+            @if (@Model.Gender == "male")
+            {
+                <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
+            }
+            else
+            {
+                <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
+            }
+            <h2>Account for @Model.GivenName @Model.Surname</h2>
         </div>
     </div>
+</div>
     
-}
-else
-{
-    <h2>You are not signed in</h2>
-}

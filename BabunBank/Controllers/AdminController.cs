@@ -47,8 +47,10 @@ public class AdminController(
     [HttpPost]
     public async Task<IActionResult> Create(SignUpModel model)
     {
+        TempData["SuccessMessage"] = $"The user {model.UserName} has been successfully created";
         if (!ModelState.IsValid)
         {
+            TempData["SuccessMessage"] = $"Incorrect values provided. Please fix";
             return View(model);
         }
 

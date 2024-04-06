@@ -60,10 +60,12 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
 
         var customer = CustomerFactory.Create(model, mapper);
 
-        if (await customerService.CreateCustomerAsync(customer))
-            return View();
+        if (!await customerService.CreateCustomerAsync(customer))
+            return View(); //TODO redirect to error page
 
-        return View(); //TODO redirect to error page
+        @TempData["CreatedUser"] =
+            $"Your user {customer.CustomerId} {customer.Givenname} has been created and can be seen below.";
+        return RedirectToAction(nameof(Details), new { id = customer.CustomerId });
     }
 
     public async Task<IActionResult> Delete(int id)

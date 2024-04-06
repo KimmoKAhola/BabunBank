@@ -7,6 +7,13 @@
 }
 
 <h2>Create a new user</h2>
+<div>
+    @if (@TempData["SuccessMessage"] != null)
+    {
+        <h2>@TempData["SuccessMessage"]</h2>
+    }
+</div>
+
 
 <form method="post" asp-controller="Admin" asp-action="Create" class="container create-customer-form">
     

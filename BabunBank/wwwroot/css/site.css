@@ -856,3 +856,8 @@ table{
 #UserRole{
   height: 50px;
 }
+
+.success{
+  font-size: 72px;
+  color: var(--CTA);
+}
