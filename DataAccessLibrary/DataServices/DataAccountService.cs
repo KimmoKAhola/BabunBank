@@ -6,7 +6,7 @@ namespace DataAccessLibrary.DataServices;
 
 public class DataAccountService(AccountRepository accountRepository) : IDataService<Account>
 {
-    public async Task<Account> GetAsync(int id)
+    public async Task<Account?> GetAsync(int id)
     {
         var result = await accountRepository.GetAsync(x => x.AccountId == id);
 
@@ -28,12 +28,12 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         }
     }
 
-    public async Task<bool> CreateAsync(Account model)
+    public async Task<bool?> CreateAsync(Account model)
     {
         throw new NotImplementedException();
     }
 
-    public async Task<bool> DeleteAsync(Account model)
+    public async Task<bool?> DeleteAsync(Account model)
     {
         throw new NotImplementedException();
     }

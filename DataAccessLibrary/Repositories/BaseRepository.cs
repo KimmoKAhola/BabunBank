@@ -19,27 +19,22 @@ public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return null!;
         }
     }
 
-    public virtual async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> expression)
+    public virtual async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> expression)
     {
         try
         {
             var result = await dbContext.Set<TEntity>().FirstOrDefaultAsync(expression);
-            if (result != null)
-            {
-                return result;
-            }
+            return result ?? null!;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return null!;
         }
-
-        return null!;
     }
 
     public virtual IQueryable<TEntity> GetAllAsync()
@@ -56,7 +51,7 @@ public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
         }
     }
 
-    public virtual async Task<TEntity> UpdateAsync(
+    public virtual async Task<TEntity?> UpdateAsync(
         Expression<Func<TEntity, bool>> expression,
         TEntity entity
     )
@@ -83,13 +78,13 @@ public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
     /// </summary>
     /// <param name="expression"></param>
     /// <returns></returns>
-    public virtual async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> expression)
+    public virtual async Task<bool?> DeleteAsync(Expression<Func<TEntity, bool>> expression)
     {
         try
         {
             var result = await dbContext.Set<TEntity>().FirstOrDefaultAsync(expression);
             if (result == null)
-                return false;
+                return null;
 
             dbContext.Set<TEntity>().Remove(result);
             await dbContext.SaveChangesAsync();

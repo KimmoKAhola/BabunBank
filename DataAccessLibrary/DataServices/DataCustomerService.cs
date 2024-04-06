@@ -5,7 +5,7 @@ namespace DataAccessLibrary.DataServices;
 
 public class DataCustomerService(CustomerRepository customerRepository) : IDataService<Customer>
 {
-    public async Task<Customer> GetAsync(int id)
+    public async Task<Customer?> GetAsync(int id)
     {
         try
         {
@@ -63,7 +63,7 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         }
     }
 
-    public async Task<bool> CreateAsync(Customer model)
+    public async Task<bool?> CreateAsync(Customer model)
     {
         try
         {
@@ -77,7 +77,7 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         }
     }
 
-    public async Task<bool> DeleteAsync(Customer customer)
+    public async Task<bool?> DeleteAsync(Customer customer)
     {
         try
         {

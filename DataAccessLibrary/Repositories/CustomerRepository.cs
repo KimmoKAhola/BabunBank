@@ -1,13 +1,12 @@
 ﻿using System.Linq.Expressions;
 using DataAccessLibrary.Data;
-using DataAccessLibrary.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLibrary.Repositories;
 
 public class CustomerRepository(BankAppDataContext dbContext) : BaseRepository<Customer>(dbContext)
 {
-    public override async Task<Customer> GetAsync(Expression<Func<Customer, bool>> expression)
+    public override async Task<Customer?> GetAsync(Expression<Func<Customer, bool>> expression)
     {
         try
         {
@@ -34,7 +33,7 @@ public class CustomerRepository(BankAppDataContext dbContext) : BaseRepository<C
     /// </summary>
     /// <param name="expression"></param>
     /// <returns></returns>
-    public override async Task<bool> DeleteAsync(Expression<Func<Customer, bool>> expression)
+    public override async Task<bool?> DeleteAsync(Expression<Func<Customer, bool>> expression)
     {
         try
         {

@@ -31,7 +31,7 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
         return await dataIdentityUserService.CreateAsync(model);
     }
 
-    public async Task<bool> DeleteAsync(string id)
+    public async Task<bool?> DeleteAsync(string id)
     {
         return await dataIdentityUserService.DeleteAsync(id);
     }

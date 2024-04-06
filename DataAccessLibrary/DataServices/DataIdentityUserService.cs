@@ -33,7 +33,7 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
         }
     }
 
-    public async Task<bool> DeleteAsync(string id)
+    public async Task<bool?> DeleteAsync(string id)
     {
         return await identityUserRepository.DeleteAsync(x => x.Id == id);
     }

@@ -47,12 +47,12 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         return customerViewModel;
     }
 
-    public async Task<bool> CreateCustomerAsync(Customer customer)
+    public async Task<bool?> CreateCustomerAsync(Customer customer)
     {
         return await dataCustomerService.CreateAsync(customer);
     }
 
-    public async Task<bool> DeleteCustomerAsync(int id)
+    public async Task<bool?> DeleteCustomerAsync(int id)
     {
         var customer = await dataCustomerService.GetAsync(id);
         return await dataCustomerService.DeleteAsync(customer);

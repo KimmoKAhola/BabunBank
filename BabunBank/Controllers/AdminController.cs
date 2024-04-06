@@ -83,12 +83,12 @@ public class AdminController(
         TempData["SuccessMessage"] =
             $"User with username \"{@username}\" has been deleted successfully.";
 
-        if (!await identityUserService.DeleteAsync(id))
-        {
-            TempData["SuccessMessage"] = "Something went wrong.";
-        }
+        var result = await identityUserService.DeleteAsync(id);
+        if (!(result ?? false))
+            return RedirectToAction("Index");
+        TempData["SuccessMessage"] = "Something went wrong.";
+        return RedirectToAction("Index", "Error");
 
-        return RedirectToAction("Index");
         // return View(user);
     }
 }

@@ -45,6 +45,7 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
         //result > list of CustomerAccounts. Each account has a list of transactions
         if (result == null)
         {
+            TempData["ErrorMessage"] = "A CATASTROPHIC ERROR OCCURED!";
             return RedirectToAction("Index", "Error");
         }
 
@@ -66,8 +67,19 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
 
         var customer = CustomerFactory.Create(model, mapper);
 
-        if (!await customerService.CreateCustomerAsync(customer))
-            return View(); //TODO redirect to error page
+        var result = await customerService.CreateCustomerAsync(customer);
+        if (result != null)
+        {
+            if (!(bool)result)
+            {
+                ModelState.AddModelError(string.Empty, "Failed to create customer.");
+            }
+        }
+        else
+        {
+            TempData["ErrorMessage"] = "A CATASTROPHIC ERROR OCCURED!";
+            return RedirectToAction("Index", "Error");
+        }
 
         @TempData["CreatedUser"] =
             $"Your user {customer.CustomerId} {customer.Givenname} has been created and can be seen below.";
@@ -76,11 +88,11 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
 
     public async Task<IActionResult> Delete(int id)
     {
-        if (!await customerService.DeleteCustomerAsync(id))
+        var result = await customerService.DeleteCustomerAsync(id);
+        if (result ?? false)
         {
-            return RedirectToAction("Delete");
+            return RedirectToAction("Index", "Error");
         }
-
-        return RedirectToAction("Index", "Error");
+        return RedirectToAction("Delete");
     }
 }
