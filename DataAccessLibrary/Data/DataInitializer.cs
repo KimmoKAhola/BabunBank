@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLibrary.Data;
 
-public enum UserRoles
+public enum UserRole
 {
     Admin,
     Customer, //TODO remove this later
@@ -25,31 +25,27 @@ public class DataInitializer(BankAppDataContext dbContext, UserManager<IdentityU
         await AddUserIfNotExists(
             "richard.chalk@systementor.se",
             "Hejsan123#",
-            new UserRoles[] { UserRoles.Admin }
+            new UserRole[] { UserRole.Admin }
         );
         await AddUserIfNotExists(
             "richard.chalk@customer.systementor.se",
             "Hejsan123#",
-            new UserRoles[] { UserRoles.Customer }
+            new UserRole[] { UserRole.Customer }
         ); //TODO this should be removed later
         await AddUserIfNotExists(
             "richard.erdos.chalk@gmail.se",
             "Hejsan123#",
-            new UserRoles[] { UserRoles.Cashier }
+            new UserRole[] { UserRole.Cashier }
         );
-        await AddUserIfNotExists(
-            "bjorn@mail.se",
-            "Hejsan123#",
-            new UserRoles[] { UserRoles.Admin }
-        );
+        await AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", new UserRole[] { UserRole.Admin });
     }
 
     // Här finns möjlighet att uppdatera dina användares roller
     private async Task SeedRoles()
     {
-        await AddRoleIfNotExisting(UserRoles.Admin.ToString());
-        await AddRoleIfNotExisting(UserRoles.Cashier.ToString());
-        await AddRoleIfNotExisting(UserRoles.Customer.ToString()); // TODO remove this role later
+        await AddRoleIfNotExisting(UserRole.Admin.ToString());
+        await AddRoleIfNotExisting(UserRole.Cashier.ToString());
+        await AddRoleIfNotExisting(UserRole.Customer.ToString()); // TODO remove this role later
     }
 
     private async Task AddRoleIfNotExisting(string roleName)
@@ -61,7 +57,7 @@ public class DataInitializer(BankAppDataContext dbContext, UserManager<IdentityU
         await dbContext.SaveChangesAsync();
     }
 
-    private async Task AddUserIfNotExists(string userName, string password, UserRoles[] roles)
+    private async Task AddUserIfNotExists(string userName, string password, UserRole[] roles)
     {
         if (userManager.FindByEmailAsync(userName).Result != null)
             return;
