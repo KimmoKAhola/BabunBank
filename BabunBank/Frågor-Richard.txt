@@ -1,0 +1,2 @@
+﻿Ska man ändra tabellerna för att införa soft delete?
+Soft delete på Identity-tabeller?
