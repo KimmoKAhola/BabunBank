@@ -36,9 +36,10 @@ public class AdminController(IdentityUserService identityUserService) : Controll
         return View();
     }
 
-    public IActionResult Read()
+    public async Task<IActionResult> Read(string id)
     {
-        return View();
+        var user = await identityUserService.GetSingleAsync(id);
+        return View(user);
     }
 
     public IActionResult Update()

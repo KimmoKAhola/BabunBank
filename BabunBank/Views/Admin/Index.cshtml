@@ -25,12 +25,9 @@
             <th>@systemUser.Username</th>
             <th>@systemUser.Email</th>
             <th>
+                @* TODO Is read and update needed? This can probably be improved a lot *@
                 <button class="btn-primary"><a asp-controller="Admin" asp-action="Read" asp-route-id="@systemUser.Id">View</a></button>
                 <button class="btn-primary"><a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.Id">Update</a></button>
-                @* @if (User.Identity.Name != @user.Username) *@
-                @* { *@
-                @*     <button class="btn-primary">Delete</button> *@
-                @* } *@
                 @if (User.Identity.Name != systemUser.Username)
                 {
                     <button class="btn-danger">

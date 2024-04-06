@@ -1,8 +1,29 @@
 ﻿@model BabunBank.Models.Admin.IdentityUserViewModel
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Read";
     Layout = "_Layout";
 }
 
-<h2>title</h2>
+<h2>Admin read</h2>
+<div class="container">
+    <table class="data-table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>@Model.Id</td>
+            <td>@Model.Username</td>
+            <td>@Model.Email</td>
+        </tr>
+        </tbody>
+    </table>
+    <button class="btn-primary">
+        <a asp-controller="Admin" asp-action="Index">Go back</a>
+    </button>
+</div>
