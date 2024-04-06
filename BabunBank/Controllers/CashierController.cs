@@ -16,7 +16,8 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
         string sortColumn,
         string sortOrder,
         string q,
-        int pageNumber
+        int pageNumber,
+        int pageSize
     )
     {
         if (pageNumber == 0)
@@ -24,17 +25,25 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
             pageNumber = 1;
         }
 
+        if (pageSize == 0)
+        {
+            pageSize = 10;
+        }
+        // pageSize = 5; //TODO make this into a dropdown in the View
+
         var customers = await customerService.GetAllCustomersViewModelAsync(
             sortColumn,
             sortOrder,
             q,
-            pageNumber
+            pageNumber,
+            pageSize
         );
 
         ViewBag.SortColumn = sortColumn;
         ViewBag.SortOrder = sortOrder;
         ViewBag.CurrentPage = pageNumber;
         ViewBag.Q = q;
+        ViewBag.PageSize = pageSize;
 
         return View(customers);
     }
@@ -43,13 +52,10 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
     {
         var result = await customerService.GetCustomerViewModelAsync(id);
         //result > list of CustomerAccounts. Each account has a list of transactions
-        if (result == null)
-        {
-            TempData["ErrorMessage"] = "A CATASTROPHIC ERROR OCCURED!";
-            return RedirectToAction("Index", "Error");
-        }
-
-        return View(result);
+        if (result != null)
+            return View(result);
+        TempData["ErrorMessage"] = "A CATASTROPHIC ERROR OCCURED!";
+        return RedirectToAction("Index", "Error");
     }
 
     public IActionResult Create()

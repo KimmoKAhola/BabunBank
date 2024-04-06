@@ -861,3 +861,21 @@ table{
   font-size: 72px;
   color: var(--CTA);
 }
+
+.dropdown-list{
+  height: 50px;
+}
+
+.customer-filter-form{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 720px;
+  width: 100%;
+  justify-content: center;
+}
+
+.customer-filter-form input,
+.customer-filter-form select {
+  flex: 1;
+  margin-right: 5px; 
+}

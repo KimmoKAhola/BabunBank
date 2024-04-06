@@ -12,9 +12,7 @@ namespace BabunBank.Services;
 
 public class CustomerService(DataCustomerService dataCustomerService, IMapper mapper)
 {
-    private readonly int _pageSize = 5;
-
-    public async Task<CustomerViewModel> GetCustomerViewModelAsync(int id)
+    public async Task<CustomerViewModel?> GetCustomerViewModelAsync(int id)
     {
         var result = await dataCustomerService.GetAsync(id);
 
@@ -26,7 +24,8 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         string sortColumn,
         string sortOrder,
         string q,
-        int pageNumber
+        int pageNumber,
+        int pageSize
     )
     {
         var customers = dataCustomerService.GetAll(sortColumn, sortOrder);
@@ -38,8 +37,8 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
 
         var result = await customers
             .Where(x => !x.IsDeleted)
-            .Skip((pageNumber - 1) * _pageSize)
-            .Take(_pageSize)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
             .ToListAsync();
 
         var customerViewModel = mapper.Map<IEnumerable<CustomerViewModel>>(result);

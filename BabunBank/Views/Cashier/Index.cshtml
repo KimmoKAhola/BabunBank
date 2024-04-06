@@ -7,11 +7,20 @@
 
 <h1>Customer table</h1>
 <div class="customer-container">
-    <form method="get">
+    <form class="customer-filter-form" method="get" action="@Url.Action("Index", "Cashier")">
         <input name="q" value="@ViewBag.Q" placeholder="Search here....">
-        <input type="submit" value="Search"/>
+        @Html.DropDownList("pageSize", new List<SelectListItem>
+{
+    new SelectListItem {Text="5", Value = "5", Selected = ViewBag.PageSize == 5},
+    new SelectListItem {Text="10", Value = "10", Selected = ViewBag.PageSize == 10},
+    new SelectListItem {Text="15", Value = "15", Selected = ViewBag.PageSize == 15},
+    new SelectListItem {Text="20", Value = "20", Selected = ViewBag.PageSize == 20},
+    new SelectListItem {Text="25", Value = "25", Selected = ViewBag.PageSize == 25},
+}, new {@class = "dropdown-list"})
+        <input class="btn-primary" type="submit" value="Apply filters"/>
     </form>
     <h2>Page: @ViewBag.CurrentPage</h2>
+    
     <table class="data-table">
         <thead class="header">
         <tr>
@@ -72,7 +81,8 @@
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-                       asp-route-q ="@ViewBag.Q">Previous</a>
+                       asp-route-q ="@ViewBag.Q"
+                       asp-route-pageSize="@ViewBag.PageSize">Previous</a>
                 </button>
             </td>
             
@@ -86,7 +96,8 @@
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-pageNumber="@(ViewBag.CurrentPage+1)"
-                       asp-route-q="@ViewBag.Q">Next</a>
+                       asp-route-q="@ViewBag.Q"
+                       asp-route-pageSize="@ViewBag.PageSize">Next</a>
                 </button>
             </td>
         </tr>
