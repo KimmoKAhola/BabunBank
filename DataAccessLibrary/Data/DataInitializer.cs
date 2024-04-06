@@ -3,6 +3,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLibrary.Data;
 
+public enum UserRoles
+{
+    Admin,
+    Customer, //TODO remove this later
+    Cashier
+}
+
 public class DataInitializer
 {
     private readonly BankAppDataContext _dbContext;
@@ -13,9 +20,9 @@ public class DataInitializer
         _dbContext = dbContext;
         _userManager = userManager;
     }
-    public void SeedData()
+    public async void SeedData()
     {
-        _dbContext.Database.Migrate();
+        await _dbContext.Database.MigrateAsync();
         SeedRoles();
         SeedUsers();
     }
@@ -23,29 +30,29 @@ public class DataInitializer
     // Här finns möjlighet att uppdatera dina användares loginuppgifter
     private void SeedUsers()
     {
-        AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", new string[] { "Admin" });
-        AddUserIfNotExists("richard.chalk@customer.systementor.se", "Hejsan123#", new string[] { "Customer" });
-        AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", new string[] { "Admin" });
+        AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", new UserRoles[] { UserRoles.Admin });
+        AddUserIfNotExists("richard.chalk@customer.systementor.se", "Hejsan123#", new UserRoles[] { UserRoles.Customer}); //TODO this should be removed later
+        AddUserIfNotExists("richard.erdos.chalk@gmail.se", "Hejsan123#", new UserRoles[]{UserRoles.Cashier});
+        AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", new UserRoles[] { UserRoles.Admin});
     }
 
     // Här finns möjlighet att uppdatera dina användares roller
     private void SeedRoles()
     {
-        AddRoleIfNotExisting("Admin");
-        AddRoleIfNotExisting("Customer");
+        AddRoleIfNotExisting(UserRoles.Admin.ToString());
+        AddRoleIfNotExisting(UserRoles.Cashier.ToString());
+        AddRoleIfNotExisting(UserRoles.Customer.ToString());  // TODO remove this role later
     }
 
-    private void AddRoleIfNotExisting(string roleName)
+    private async void AddRoleIfNotExisting(string roleName)
     {
-        var role = _dbContext.Roles.FirstOrDefault(r => r.Name == roleName);
-        if (role == null)
-        {
-            _dbContext.Roles.Add(new IdentityRole { Name = roleName, NormalizedName = roleName });
-            _dbContext.SaveChanges();
-        }
+        var role = await _dbContext.Roles.FirstOrDefaultAsync(r => r.Name == roleName);
+        if (role != null) return;
+        _dbContext.Roles.Add(new IdentityRole { Name = roleName, NormalizedName = roleName });
+        await _dbContext.SaveChangesAsync();
     }
 
-    private void AddUserIfNotExists(string userName, string password, string[] roles)
+    private void AddUserIfNotExists(string userName, string password, UserRoles[] roles)
     {
         if (_userManager.FindByEmailAsync(userName).Result != null) return;
 
@@ -56,6 +63,9 @@ public class DataInitializer
             EmailConfirmed = true
         };
         _userManager.CreateAsync(user, password).Wait();
-        _userManager.AddToRolesAsync(user, roles).Wait();
+
+        string[] roleNames = roles.Select(role => Enum.GetName(typeof(UserRoles), role)).ToArray();
+        
+        _userManager.AddToRolesAsync(user, roleNames).Wait();
     }
 }

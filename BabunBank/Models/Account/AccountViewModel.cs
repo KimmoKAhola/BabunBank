@@ -2,6 +2,9 @@
 
 namespace BabunBank.Models.Account;
 
+/// <summary>
+/// 
+/// </summary>
 public class AccountViewModel
 {
     public int AccountId { get; set; }

@@ -1,0 +1,7 @@
+﻿  SELECT c.CustomerId, c.Givenname, c.Surname, d.AccountId, a.AccountId, d.Type FROM Customers c
+  JOIN Dispositions d on d.CustomerId = c.CustomerId
+  JOIN Accounts a on a.AccountId = d.AccountId
+  WHERE a.AccountId = d.AccountId
+  
+  Each account can have many users, one owner and several disponents.
+  

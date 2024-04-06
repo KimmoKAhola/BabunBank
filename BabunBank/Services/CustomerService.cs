@@ -9,7 +9,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BabunBank.Services;
 
-public class CustomerService(DataCustomerService customerService, IMapper mapper)
+public class CustomerService(DataCustomerService customerService, IMapperBase mapper)
 {
     private readonly int _pageSize = 5;
     public async Task<CustomerViewModel> GetCustomerViewModelAsync(int id)

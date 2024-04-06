@@ -1,3 +1,5 @@
+using Azure.Identity;
+using Azure.Security.KeyVault.Secrets;
 using BabunBank.AutoMapperConfiguration;
 using BabunBank.Configurations.DependencyConfiguration;
 using DataAccessLibrary.Data;
@@ -11,7 +13,7 @@ namespace BabunBank
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-
+            
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             builder.Services.AddDbContext<BankAppDataContext>(options =>

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "9fgPgAE/Uoze735Ie8I13cd7qPL5FUE32G0dWtiH549sWsIiRxg/QRhApi21DDObXJ3T7OZv8b398WicpsCT5Q==",
+  "dgSpecHash": "m1Y2Scm2b3LiPVQT7gnWB0JXe37zqpxGoGNqJXaeDTiVVHkg10+Wly9j2eO1rbDm6pteyA3PRT3KyN7R7jv8mg==",
   "success": true,
   "projectFilePath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\BabunBank.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kahol\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
-    "C:\\Users\\kahol\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
+    "C:\\Users\\kahol\\.nuget\\packages\\azure.core\\1.37.0\\azure.core.1.37.0.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\kahol\\.nuget\\packages\\azure.security.keyvault.secrets\\4.6.0\\azure.security.keyvault.secrets.4.6.0.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\bouncycastle.cryptography\\2.2.1\\bouncycastle.cryptography.2.2.1.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\google.protobuf\\3.25.1\\google.protobuf.3.25.1.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\humanizer\\2.14.1\\humanizer.2.14.1.nupkg.sha512",
