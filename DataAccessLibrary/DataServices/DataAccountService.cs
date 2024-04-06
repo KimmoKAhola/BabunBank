@@ -8,8 +8,7 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
 {
     public async Task<Account> GetAsync(int id)
     {
-        var result = await accountRepository
-            .GetAsync(x => x.AccountId == id);
+        var result = await accountRepository.GetAsync(x => x.AccountId == id);
 
         return result;
     }
@@ -19,7 +18,7 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         try
         {
             var result = accountRepository.GetAllAsync();
-            
+
             return result;
         }
         catch (Exception e)
@@ -30,6 +29,16 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
     }
 
     public async Task<bool> CreateAsync(Account model)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<bool> DeleteAsync(Account model)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<Account> UpdateAsync(Account model)
     {
         throw new NotImplementedException();
     }

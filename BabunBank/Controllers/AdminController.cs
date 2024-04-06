@@ -47,8 +47,24 @@ public class AdminController(IdentityUserService identityUserService) : Controll
         return View();
     }
 
-    public IActionResult Delete()
+    [HttpGet]
+    public async Task<IActionResult> Delete(string id)
     {
-        return View();
+        var user = await identityUserService.GetSingleAsync(id);
+        return View(user);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteConfirmed(string id)
+    {
+        if (!await identityUserService.DeleteAsync(id))
+        {
+            TempData["SuccessMessage"] = "Something went wrong.";
+        }
+
+        TempData["SuccessMessage"] = "User has been deleted successfully.";
+
+        return RedirectToAction("Index");
+        // return View(user);
     }
 }

@@ -29,4 +29,9 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
             throw;
         }
     }
+
+    public async Task<bool> DeleteAsync(string id)
+    {
+        return await identityUserRepository.DeleteAsync(x => x.Id == id);
+    }
 }

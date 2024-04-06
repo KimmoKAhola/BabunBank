@@ -6,6 +6,13 @@
     Layout = "_Layout";
 }
 
+@if (TempData["SuccessMessage"] != null)
+{
+    <div>
+        @TempData["SuccessMessage"]
+    </div>
+}
+
 <h2>All users in our system</h2>
 <div class="container">
 <table class="data-table">

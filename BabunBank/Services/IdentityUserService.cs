@@ -25,4 +25,9 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
 
         return users;
     }
+
+    public async Task<bool> DeleteAsync(string id)
+    {
+        return await dataIdentityUserService.DeleteAsync(id);
+    }
 }

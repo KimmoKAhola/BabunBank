@@ -83,6 +83,10 @@ public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
         try
         {
             var result = await dbContext.Set<TEntity>().FirstOrDefaultAsync(expression);
+            if (result == null)
+                return false;
+
+            dbContext.Set<TEntity>().Remove(result);
             await dbContext.SaveChangesAsync();
             return true;
         }

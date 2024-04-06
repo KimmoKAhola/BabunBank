@@ -94,4 +94,14 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
             throw;
         }
     }
+
+    public async Task<bool> DeleteAsync(Customer model)
+    {
+        throw new NotImplementedException();
+    }
+
+    public async Task<Customer> UpdateAsync(Customer model)
+    {
+        throw new NotImplementedException();
+    }
 }
