@@ -37,11 +37,11 @@ public class DataInitializer
     }
 
     // Här finns möjlighet att uppdatera dina användares roller
-    private void SeedRoles()
+    private async Task SeedRoles()
     {
-        AddRoleIfNotExisting(UserRoles.Admin.ToString());
-        AddRoleIfNotExisting(UserRoles.Cashier.ToString());
-        AddRoleIfNotExisting(UserRoles.Customer.ToString());  // TODO remove this role later
+        await AddRoleIfNotExisting(UserRoles.Admin.ToString());
+       await AddRoleIfNotExisting(UserRoles.Cashier.ToString());
+        await AddRoleIfNotExisting(UserRoles.Customer.ToString());  // TODO remove this role later
     }
 
     private async Task AddRoleIfNotExisting(string roleName)
