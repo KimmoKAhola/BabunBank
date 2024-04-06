@@ -47,6 +47,6 @@ public class CreateCustomerModel
     [StringLength(25, MinimumLength = 2)]
     public string? TelephoneNumber { get; set; }
 
-    [StringLength(20), RegularExpression(@"^[a-öA-Ö0-9_.-]{2,}@[a-zA-Z]{2,}\\.[a-zA-Z]{2,}$")]
+    [StringLength(20), RegularExpression(@"^[a-öA-Ö0-9_.-]{2,}@[a-zA-Z]{2,}\.[a-zA-Z]{2,}$")]
     public string? EmailAddress { get; set; }
 }

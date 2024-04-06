@@ -1,4 +1,7 @@
-﻿using BabunBank.Models.Customer;
+﻿using AutoMapper;
+using BabunBank.Factories;
+using BabunBank.Models;
+using BabunBank.Models.Customer;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BabunBank.Controllers;
 
 [Authorize(Roles = "Cashier, Admin")] //TODO add these to relevant pages
-public class CustomerController(CustomerService customerService) : Controller
+public class CustomerController(CustomerService customerService, IMapper mapper) : Controller
 {
     public async Task<IActionResult> Index(
         string sortColumn,
@@ -44,6 +47,20 @@ public class CustomerController(CustomerService customerService) : Controller
 
     public IActionResult Create()
     {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(CreateCustomerModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var customer = CustomerFactory.Create(model, mapper);
+
+        await customerService.CreateCustomerAsync(customer);
         return View();
     }
 }

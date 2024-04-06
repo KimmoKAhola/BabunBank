@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BabunBank.Models;
 using BabunBank.Models.Account;
 using BabunBank.Models.Customer;
 using BabunBank.Models.Transaction;
@@ -43,5 +44,10 @@ public class CustomerService(DataCustomerService customerService, IMapper mapper
         var customerViewModel = mapper.Map<IEnumerable<CustomerViewModel>>(result);
 
         return customerViewModel;
+    }
+
+    public async Task<bool> CreateCustomerAsync(Customer customer)
+    {
+        return await customerService.CreateAsync(customer);
     }
 }

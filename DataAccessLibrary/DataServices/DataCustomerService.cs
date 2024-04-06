@@ -11,7 +11,7 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         try
         {
             var customer = await customerRepository.GetAsync(x => x.CustomerId == id);
-            
+
             return customer;
         }
         catch (Exception e)
@@ -25,9 +25,8 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
     {
         try
         {
-
             var result = customerRepository.GetAllAsync();
-             
+
             if (sortColumn == "Gender")
             {
                 if (sortOrder == "asc")
@@ -39,7 +38,6 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
                     result = result.OrderByDescending(x => x.Gender);
                 }
             }
-        
             else if (sortColumn == "GivenName")
             {
                 if (sortOrder == "asc")
@@ -51,7 +49,6 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
                     result = result.OrderByDescending(x => x.Givenname);
                 }
             }
-        
             else if (sortColumn == "Surname")
             {
                 if (sortOrder == "asc")
@@ -63,7 +60,6 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
                     result = result.OrderByDescending(x => x.Surname);
                 }
             }
-            
             else if (sortColumn == "Country")
             {
                 if (sortOrder == "asc")
@@ -75,7 +71,7 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
                     result = result.OrderByDescending(x => x.Country);
                 }
             }
-            
+
             return result;
         }
         catch (Exception e)
@@ -87,6 +83,15 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
 
     public async Task<bool> CreateAsync(Customer model)
     {
-        throw new NotImplementedException();
+        try
+        {
+            await customerRepository.CreateAsync(model);
+            return true;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

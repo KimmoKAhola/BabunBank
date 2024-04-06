@@ -1,6 +1,6 @@
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
-using BabunBank.AutoMapperConfiguration;
+using BabunBank.Configurations.AutoMapperConfiguration;
 using BabunBank.Configurations.DependencyConfiguration;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Identity;
