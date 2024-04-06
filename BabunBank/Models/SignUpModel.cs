@@ -2,6 +2,9 @@
 
 namespace BabunBank.Models;
 
+/// <summary>
+/// TODO is this needed?
+/// </summary>
 public class SignUpModel
 {
     [Required]

@@ -18,23 +18,23 @@
             {
                 <th>
                     <span class="customer-table">
-                                @column
-                                <a asp-action="Index" asp-controller="Customer"
-                                   asp-route-sortColumn="@column"
-                                   asp-route-sortOrder="asc"
-                                   asp-route-q="@ViewBag.Q"
-                                   style="text-decoration:none">
-                                    <i class="material-symbols-outlined">expand_more</i>
-                                </a>
+                        @column
+                        <a asp-action="Index" asp-controller="Customer"
+                           asp-route-sortColumn="@column"
+                           asp-route-sortOrder="asc"
+                           asp-route-q="@ViewBag.Q"
+                           style="text-decoration:none">
+                            <i class="material-symbols-outlined">expand_more</i>
+                        </a>
                     
-                                <a asp-action="Index" asp-controller="Customer"
-                                   asp-route-sortColumn="@column"
-                                   asp-route-sortOrder="desc"
-                                   asp-route-q="@ViewBag.Q"
-                                   style="text-decoration:none">
-                                    <i class="material-symbols-outlined">expand_less</i>
-                                </a>
-                            </span>
+                        <a asp-action="Index" asp-controller="Customer"
+                           asp-route-sortColumn="@column"
+                           asp-route-sortOrder="desc"
+                           asp-route-q="@ViewBag.Q"
+                           style="text-decoration:none">
+                            <i class="material-symbols-outlined">expand_less</i>
+                        </a>
+                    </span>
                 </th>
             }
             <th>
@@ -92,4 +92,5 @@
         </tbody>
 
     </table>
+    <a asp-controller="Customer" asp-action="Create">Create new customer</a>
 </div>

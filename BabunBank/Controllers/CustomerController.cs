@@ -5,23 +5,33 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
-[Authorize(Roles = "Cashier, Admin")]  //TODO add these to relevant pages
+[Authorize(Roles = "Cashier, Admin")] //TODO add these to relevant pages
 public class CustomerController(CustomerService customerService) : Controller
 {
-    public async Task<IActionResult> Index(string sortColumn, string sortOrder, string q, int pageNumber)
+    public async Task<IActionResult> Index(
+        string sortColumn,
+        string sortOrder,
+        string q,
+        int pageNumber
+    )
     {
         if (pageNumber == 0)
         {
             pageNumber = 1;
         }
-        
-        var customers = await customerService.GetAllCustomersViewModelAsync(sortColumn, sortOrder, q, pageNumber);
-        
+
+        var customers = await customerService.GetAllCustomersViewModelAsync(
+            sortColumn,
+            sortOrder,
+            q,
+            pageNumber
+        );
+
         ViewBag.SortColumn = sortColumn;
         ViewBag.SortOrder = sortOrder;
         ViewBag.CurrentPage = pageNumber;
         ViewBag.Q = q;
-        
+
         return View(customers);
     }
 
@@ -30,5 +40,10 @@ public class CustomerController(CustomerService customerService) : Controller
         var result = await customerService.GetCustomerViewModelAsync(id);
         //result > list of CustomerAccounts. Each account has a list of transactions
         return View(result);
+    }
+
+    public IActionResult Create()
+    {
+        return View();
     }
 }
