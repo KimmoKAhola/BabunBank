@@ -23,5 +23,7 @@ public class CustomerViewModel
     public string City { get; set; }
     public string Zipcode { get; set; }
     public string Country { get; set; }
+
+    public bool IsDeleted { get; set; }
     public List<AccountViewModel> CustomerAccounts { get; set; }
 }

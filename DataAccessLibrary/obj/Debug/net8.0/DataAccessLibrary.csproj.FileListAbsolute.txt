@@ -13,3 +13,4 @@ C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Debug\net8.0\refint\
 C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Debug\net8.0\DataAccessLibrary.pdb
 C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Debug\net8.0\DataAccessLibrary.genruntimeconfig.cache
 C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\obj\Debug\net8.0\ref\DataAccessLibrary.dll
+C:\Users\kahol\source\repos\BabunBank\DataAccessLibrary\bin\Debug\net8.0\appsettings.json

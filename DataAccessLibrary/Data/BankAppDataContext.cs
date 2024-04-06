@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using DataAccessLibrary.Configurations;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace DataAccessLibrary.Data;
 
 public partial class BankAppDataContext : IdentityDbContext
 {
-    public BankAppDataContext()
-    {
-    }
+    private string _connectionString;
+
+    public BankAppDataContext() { }
 
     public BankAppDataContext(DbContextOptions<BankAppDataContext> options)
-        : base(options)
-    {
-    }
+        : base(options) { }
 
     public virtual DbSet<Account> Accounts { get; set; }
 
@@ -29,7 +29,19 @@ public partial class BankAppDataContext : IdentityDbContext
     public virtual DbSet<PermenentOrder> PermenentOrders { get; set; }
 
     public virtual DbSet<Transaction> Transactions { get; set; }
-    
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json", true, true)
+            .Build();
+
+        var databaseConfig = new ConfigureDatabase(configuration);
+
+        _connectionString = databaseConfig.Configure();
+        optionsBuilder.UseSqlServer(_connectionString);
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
@@ -45,18 +57,14 @@ public partial class BankAppDataContext : IdentityDbContext
 
         modelBuilder.Entity<Card>(entity =>
         {
-            entity.Property(e => e.Ccnumber)
-                .HasMaxLength(50)
-                .HasColumnName("CCNumber");
-            entity.Property(e => e.Cctype)
-                .HasMaxLength(50)
-                .HasColumnName("CCType");
-            entity.Property(e => e.Cvv2)
-                .HasMaxLength(10)
-                .HasColumnName("CVV2");
+            entity.Property(e => e.Ccnumber).HasMaxLength(50).HasColumnName("CCNumber");
+            entity.Property(e => e.Cctype).HasMaxLength(50).HasColumnName("CCType");
+            entity.Property(e => e.Cvv2).HasMaxLength(10).HasColumnName("CVV2");
             entity.Property(e => e.Type).HasMaxLength(50);
 
-            entity.HasOne(d => d.Disposition).WithMany(p => p.Cards)
+            entity
+                .HasOne(d => d.Disposition)
+                .WithMany(p => p.Cards)
                 .HasForeignKey(d => d.DispositionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Cards_Dispositions");
@@ -84,12 +92,16 @@ public partial class BankAppDataContext : IdentityDbContext
 
             entity.Property(e => e.Type).HasMaxLength(50);
 
-            entity.HasOne(d => d.Account).WithMany(p => p.Dispositions)
+            entity
+                .HasOne(d => d.Account)
+                .WithMany(p => p.Dispositions)
                 .HasForeignKey(d => d.AccountId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Dispositions_Accounts");
 
-            entity.HasOne(d => d.Customer).WithMany(p => p.Dispositions)
+            entity
+                .HasOne(d => d.Customer)
+                .WithMany(p => p.Dispositions)
                 .HasForeignKey(d => d.CustomerId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Dispositions_Customers");
@@ -103,7 +115,9 @@ public partial class BankAppDataContext : IdentityDbContext
             entity.Property(e => e.Payments).HasColumnType("decimal(13, 2)");
             entity.Property(e => e.Status).HasMaxLength(50);
 
-            entity.HasOne(d => d.Account).WithMany(p => p.Loans)
+            entity
+                .HasOne(d => d.Account)
+                .WithMany(p => p.Loans)
                 .HasForeignKey(d => d.AccountId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Loans_Accounts");
@@ -120,7 +134,9 @@ public partial class BankAppDataContext : IdentityDbContext
             entity.Property(e => e.BankTo).HasMaxLength(50);
             entity.Property(e => e.Symbol).HasMaxLength(50);
 
-            entity.HasOne(d => d.Account).WithMany(p => p.PermenentOrders)
+            entity
+                .HasOne(d => d.Account)
+                .WithMany(p => p.PermenentOrders)
                 .HasForeignKey(d => d.AccountId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_PermenentOrder_Accounts");
@@ -140,7 +156,9 @@ public partial class BankAppDataContext : IdentityDbContext
             entity.Property(e => e.Symbol).HasMaxLength(50);
             entity.Property(e => e.Type).HasMaxLength(50);
 
-            entity.HasOne(d => d.AccountNavigation).WithMany(p => p.Transactions)
+            entity
+                .HasOne(d => d.AccountNavigation)
+                .WithMany(p => p.Transactions)
                 .HasForeignKey(d => d.AccountId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Transactions_Accounts");
@@ -156,9 +174,7 @@ public partial class BankAppDataContext : IdentityDbContext
             entity.Property(e => e.FirstName).HasMaxLength(40);
             entity.Property(e => e.LastName).HasMaxLength(40);
             entity.Property(e => e.LoginName).HasMaxLength(40);
-            entity.Property(e => e.PasswordHash)
-                .HasMaxLength(64)
-                .IsFixedLength();
+            entity.Property(e => e.PasswordHash).HasMaxLength(64).IsFixedLength();
         });
 
         OnModelCreatingPartial(modelBuilder);

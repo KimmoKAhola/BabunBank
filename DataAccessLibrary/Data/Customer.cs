@@ -23,6 +23,8 @@ public partial class Customer
 
     public string CountryCode { get; set; } = null!;
 
+    public bool IsDeleted { get; set; } = false;
+
     public DateOnly? Birthday { get; set; }
 
     public string? NationalId { get; set; }

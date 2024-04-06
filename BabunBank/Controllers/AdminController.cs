@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BabunBank.Configurations;
+using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models;
 using BabunBank.Services;
@@ -11,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BabunBank.Controllers;
 
-[Authorize(Roles = RoleNames.Admin)]
+[Authorize(Roles = UserRoleNames.Admin)]
 public class AdminController(
     IdentityUserService identityUserService,
     UserManager<IdentityUser> userManager,
