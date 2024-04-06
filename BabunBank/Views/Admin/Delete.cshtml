@@ -9,6 +9,7 @@
 <h2>You are about to delete this user, are you sure?</h2>
 <form method="post" asp-controller="Admin" asp-action="DeleteConfirmed">
     <input type="hidden" name="id" value="@Model.Id">
+    <input type="hidden" name="username" value="@Model.Username">
     <button type="submit">Yes</button>
     <a asp-controller="Admin" asp-action="Index">Cancel</a>
 </form>
