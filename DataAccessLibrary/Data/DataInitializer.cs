@@ -10,51 +10,61 @@ public enum UserRoles
     Cashier
 }
 
-public class DataInitializer
+public class DataInitializer(BankAppDataContext dbContext, UserManager<IdentityUser> userManager)
 {
-    private readonly BankAppDataContext _dbContext;
-    private readonly UserManager<IdentityUser> _userManager;
-
-    public DataInitializer(BankAppDataContext dbContext, UserManager<IdentityUser> userManager)
-    {
-        _dbContext = dbContext;
-        _userManager = userManager;
-    }
     public async Task SeedData()
     {
-        await _dbContext.Database.MigrateAsync();
-        SeedRoles();
-        SeedUsers();
+        await dbContext.Database.MigrateAsync();
+        await SeedRoles();
+        await SeedUsers();
     }
 
     // Här finns möjlighet att uppdatera dina användares loginuppgifter
-    private void SeedUsers()
+    private async Task SeedUsers()
     {
-        AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", new UserRoles[] { UserRoles.Admin });
-        AddUserIfNotExists("richard.chalk@customer.systementor.se", "Hejsan123#", new UserRoles[] { UserRoles.Customer}); //TODO this should be removed later
-        AddUserIfNotExists("richard.erdos.chalk@gmail.se", "Hejsan123#", new UserRoles[]{UserRoles.Cashier});
-        AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", new UserRoles[] { UserRoles.Admin});
+        await AddUserIfNotExists(
+            "richard.chalk@systementor.se",
+            "Hejsan123#",
+            new UserRoles[] { UserRoles.Admin }
+        );
+        await AddUserIfNotExists(
+            "richard.chalk@customer.systementor.se",
+            "Hejsan123#",
+            new UserRoles[] { UserRoles.Customer }
+        ); //TODO this should be removed later
+        await AddUserIfNotExists(
+            "richard.erdos.chalk@gmail.se",
+            "Hejsan123#",
+            new UserRoles[] { UserRoles.Cashier }
+        );
+        await AddUserIfNotExists(
+            "bjorn@mail.se",
+            "Hejsan123#",
+            new UserRoles[] { UserRoles.Admin }
+        );
     }
 
     // Här finns möjlighet att uppdatera dina användares roller
     private async Task SeedRoles()
     {
         await AddRoleIfNotExisting(UserRoles.Admin.ToString());
-       await AddRoleIfNotExisting(UserRoles.Cashier.ToString());
-        await AddRoleIfNotExisting(UserRoles.Customer.ToString());  // TODO remove this role later
+        await AddRoleIfNotExisting(UserRoles.Cashier.ToString());
+        await AddRoleIfNotExisting(UserRoles.Customer.ToString()); // TODO remove this role later
     }
 
     private async Task AddRoleIfNotExisting(string roleName)
     {
-        var role = await _dbContext.Roles.FirstOrDefaultAsync(r => r.Name == roleName);
-        if (role != null) return;
-        _dbContext.Roles.Add(new IdentityRole { Name = roleName, NormalizedName = roleName });
-        await _dbContext.SaveChangesAsync();
+        var role = await dbContext.Roles.FirstOrDefaultAsync(r => r.Name == roleName);
+        if (role != null)
+            return;
+        dbContext.Roles.Add(new IdentityRole { Name = roleName, NormalizedName = roleName });
+        await dbContext.SaveChangesAsync();
     }
 
-    private void AddUserIfNotExists(string userName, string password, UserRoles[] roles)
+    private async Task AddUserIfNotExists(string userName, string password, UserRoles[] roles)
     {
-        if (_userManager.FindByEmailAsync(userName).Result != null) return;
+        if (userManager.FindByEmailAsync(userName).Result != null)
+            return;
 
         var user = new IdentityUser
         {
@@ -62,10 +72,10 @@ public class DataInitializer
             Email = userName,
             EmailConfirmed = true
         };
-        _userManager.CreateAsync(user, password).Wait();
+        await userManager.CreateAsync(user, password);
 
-        string[] roleNames = roles.Select(role => Enum.GetName(typeof(UserRoles), role)).ToArray();
-        
-        _userManager.AddToRolesAsync(user, roleNames).Wait();
+        string[] roleNames = roles.Select(role => role.ToString()).ToArray();
+
+        await userManager.AddToRolesAsync(user, roleNames);
     }
 }

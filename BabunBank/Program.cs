@@ -13,34 +13,46 @@ namespace BabunBank
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            
+
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString =
+                builder.Configuration.GetConnectionString("DefaultConnection")
+                ?? throw new InvalidOperationException(
+                    "Connection string 'DefaultConnection' not found."
+                );
             builder.Services.AddDbContext<BankAppDataContext>(options =>
-                options.UseSqlServer(connectionString));
+                options.UseSqlServer(connectionString)
+            );
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder
+                .Services.AddDefaultIdentity<IdentityUser>(options =>
+                    options.SignIn.RequireConfirmedAccount = true
+                )
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BankAppDataContext>();
             builder.Services.AddControllersWithViews();
-            
+
             RepositoryConfiguration.Configure(builder.Services);
             ServiceConfiguration.Configure(builder.Services);
-            
+
             //Seeding
             builder.Services.AddTransient<DataInitializer>();
 
-
             //Automapper
             builder.Services.AddAutoMapper(typeof(MappingProfile));
-            
+
             var app = builder.Build();
 
-            using (var scope = app.Services.CreateScope())
-            {
-                scope.ServiceProvider.GetService<DataInitializer>().SeedData();
-            }
+            //Create this seeding async. Use Task.Run and Wait() So that the main method does not have to be async
+            Task.Run(async () =>
+                {
+                    using (var scope = app.Services.CreateScope())
+                    {
+                        await scope.ServiceProvider.GetService<DataInitializer>().SeedData();
+                    }
+                })
+                .Wait();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -63,7 +75,8 @@ namespace BabunBank
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}"
+            );
             app.MapRazorPages();
 
             app.Run();
