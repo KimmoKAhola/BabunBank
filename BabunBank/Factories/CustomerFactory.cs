@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BabunBank.Models;
 using DataAccessLibrary.Data;
-using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Factories;
 
@@ -12,7 +11,7 @@ public static class CustomerFactory
         try
         {
             var customer = mapper.Map<CreateCustomerModel, Customer>(model);
-            return customer;
+            return customer; //TODO create an account to this customer. Need to add disposition as well as owner.
         }
         catch (Exception e)
         {

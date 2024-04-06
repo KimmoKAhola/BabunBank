@@ -66,6 +66,9 @@ html, body, a {
 
 /*Reset done*/
 
+:root{
+  --CTA: #ffdb1e;
+}
 
 /*Wrapper for view height*/
 
@@ -835,6 +838,15 @@ table{
 
 .create-customer-form-btn{
   height: 50px;
+  background-color: #295956;
+  border: none;
+  transition: 0.2s ease-in;
+  border-radius: 0.25rem;
+  color: white;
+}
+
+.create-customer-form-btn:hover{
+  color: var(--CTA);
 }
 
 .Test{
