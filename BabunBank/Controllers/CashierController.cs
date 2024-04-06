@@ -1,11 +1,8 @@
 ﻿using AutoMapper;
-using BabunBank.Configurations;
 using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models;
-using BabunBank.Models.Customer;
 using BabunBank.Services;
-using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -63,8 +60,10 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
 
         var customer = CustomerFactory.Create(model, mapper);
 
-        await customerService.CreateCustomerAsync(customer);
-        return View();
+        if (await customerService.CreateCustomerAsync(customer))
+            return View();
+
+        return View(); //TODO redirect to error page
     }
 
     public async Task<IActionResult> Delete(int id)

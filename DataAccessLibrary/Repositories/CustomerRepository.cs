@@ -17,12 +17,18 @@ public class CustomerRepository(BankAppDataContext dbContext) : BaseRepository<C
         return customer;
     }
 
+    /// <summary>
+    /// Soft deletes the chosen customer
+    /// </summary>
+    /// <param name="expression"></param>
+    /// <returns></returns>
     public override async Task<bool> DeleteAsync(Expression<Func<Customer, bool>> expression)
     {
         try
         {
             var customer = await dbContext.Customers.FirstAsync(expression);
             customer.IsDeleted = true;
+            dbContext.Set<Customer>().Update(customer);
 
             await dbContext.SaveChangesAsync();
             return true;

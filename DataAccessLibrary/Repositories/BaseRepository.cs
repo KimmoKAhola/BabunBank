@@ -78,6 +78,11 @@ public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
         return null!;
     }
 
+    /// <summary>
+    /// Hard deletes the chosen entity. No going back!
+    /// </summary>
+    /// <param name="expression"></param>
+    /// <returns></returns>
     public virtual async Task<bool> DeleteAsync(Expression<Func<TEntity, bool>> expression)
     {
         try

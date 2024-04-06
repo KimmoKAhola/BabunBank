@@ -10,13 +10,13 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace BabunBank.Services;
 
-public class CustomerService(DataCustomerService customerService, IMapper mapper)
+public class CustomerService(DataCustomerService dataCustomerService, IMapper mapper)
 {
     private readonly int _pageSize = 5;
 
     public async Task<CustomerViewModel> GetCustomerViewModelAsync(int id)
     {
-        var result = await customerService.GetAsync(id);
+        var result = await dataCustomerService.GetAsync(id);
 
         var customerViewModel = mapper.Map<CustomerViewModel>(result);
         return customerViewModel;
@@ -29,7 +29,7 @@ public class CustomerService(DataCustomerService customerService, IMapper mapper
         int pageNumber
     )
     {
-        var customers = customerService.GetAll(sortColumn, sortOrder);
+        var customers = dataCustomerService.GetAll(sortColumn, sortOrder);
 
         if (!string.IsNullOrEmpty(q))
         {
@@ -49,12 +49,12 @@ public class CustomerService(DataCustomerService customerService, IMapper mapper
 
     public async Task<bool> CreateCustomerAsync(Customer customer)
     {
-        return await customerService.CreateAsync(customer);
+        return await dataCustomerService.CreateAsync(customer);
     }
 
     public async Task<bool> DeleteCustomerAsync(int id)
     {
-        var customer = await customerService.GetAsync(id);
-        return await customerService.DeleteAsync(customer);
+        var customer = await dataCustomerService.GetAsync(id);
+        return await dataCustomerService.DeleteAsync(customer);
     }
 }

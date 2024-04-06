@@ -1,6 +1,5 @@
 ﻿using DataAccessLibrary.Data;
 using DataAccessLibrary.Repositories;
-using Microsoft.IdentityModel.Tokens;
 
 namespace DataAccessLibrary.DataServices;
 
@@ -27,49 +26,32 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         {
             var result = customerRepository.GetAllAsync();
 
-            if (sortColumn == "Gender")
+            switch (sortColumn)
             {
-                if (sortOrder == "asc")
-                {
+                case "Gender" when sortOrder == "asc":
                     result = result.OrderBy(x => x.Gender);
-                }
-                else
-                {
+                    break;
+                case "Gender":
                     result = result.OrderByDescending(x => x.Gender);
-                }
-            }
-            else if (sortColumn == "GivenName")
-            {
-                if (sortOrder == "asc")
-                {
+                    break;
+                case "GivenName" when sortOrder == "asc":
                     result = result.OrderBy(x => x.Givenname);
-                }
-                else
-                {
+                    break;
+                case "GivenName":
                     result = result.OrderByDescending(x => x.Givenname);
-                }
-            }
-            else if (sortColumn == "Surname")
-            {
-                if (sortOrder == "asc")
-                {
+                    break;
+                case "Surname" when sortOrder == "asc":
                     result = result.OrderBy(x => x.Surname);
-                }
-                else
-                {
+                    break;
+                case "Surname":
                     result = result.OrderByDescending(x => x.Surname);
-                }
-            }
-            else if (sortColumn == "Country")
-            {
-                if (sortOrder == "asc")
-                {
+                    break;
+                case "Country" when sortOrder == "asc":
                     result = result.OrderBy(x => x.Country);
-                }
-                else
-                {
+                    break;
+                case "Country":
                     result = result.OrderByDescending(x => x.Country);
-                }
+                    break;
             }
 
             return result;
