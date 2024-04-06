@@ -20,6 +20,9 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
     {
         try
         {
+            if (await CheckUserExists(model.Id))
+                return false;
+
             await identityUserRepository.CreateAsync(model);
             return true;
         }
@@ -33,5 +36,18 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
     public async Task<bool> DeleteAsync(string id)
     {
         return await identityUserRepository.DeleteAsync(x => x.Id == id);
+    }
+
+    public async Task<bool> CheckUserExists(string id)
+    {
+        try
+        {
+            return await identityUserRepository.ExistsAsync(x => x.Id == id);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }
