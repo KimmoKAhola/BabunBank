@@ -1,4 +1,6 @@
-﻿using BabunBank.Models;
+﻿using AutoMapper;
+using BabunBank.Models;
+using BabunBank.Models.Admin;
 using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Factories;
@@ -12,8 +14,14 @@ public static class IdentityUserFactory
     {
         try
         {
-            var user = new IdentityUser();
-            await userManager.CreateAsync(user);
+            var user = new IdentityUser
+            {
+                UserName = model.UserName,
+                Email = model.Email,
+                EmailConfirmed = model.EmailConfirmed,
+            };
+            await userManager.CreateAsync(user, model.Password);
+
             return user;
         }
         catch (Exception e)

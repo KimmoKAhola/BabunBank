@@ -15,6 +15,9 @@ public class SignUpModel
     public string Email { get; set; } = null!;
 
     [Required]
+    public string Password { get; set; } = null!;
+
+    [Required]
     public bool EmailConfirmed { get; set; } = true;
 
     [Required]

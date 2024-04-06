@@ -18,6 +18,7 @@ public class MappingProfile : Profile
         CreateMap<Transaction, TransactionViewModel>();
         CreateMap<CreateCustomerModel, Customer>();
         CreateMap<IdentityUser, IdentityUserViewModel>();
+        CreateMap<IdentityUser, SignUpModel>();
 
         //TODO practice these
         CreateMap<Customer, CustomerViewModel>()

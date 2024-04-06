@@ -1,15 +1,22 @@
-﻿using BabunBank.Configurations;
+﻿using AutoMapper;
+using BabunBank.Configurations;
+using BabunBank.Factories;
+using BabunBank.Models;
 using BabunBank.Services;
 using DataAccessLibrary.Data;
-using Humanizer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BabunBank.Controllers;
 
 [Authorize(Roles = RoleNames.Admin)]
-public class AdminController(IdentityUserService identityUserService) : Controller
+public class AdminController(
+    IdentityUserService identityUserService,
+    UserManager<IdentityUser> userManager,
+    IMapper mapper
+) : Controller
 {
     // GET
     public async Task<IActionResult> Index()
@@ -34,6 +41,19 @@ public class AdminController(IdentityUserService identityUserService) : Controll
 
         ViewBag.AvailableRoles = roles;
         return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Create(SignUpModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        await IdentityUserFactory.CreateUser(model, userManager);
+        // var result = mapper.Map<SignUpModel>(user); //TODO Needed?
+        return RedirectToAction("Index");
     }
 
     public async Task<IActionResult> Read(string id)

@@ -20,7 +20,7 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
     {
         try
         {
-            if (await CheckUserExists(model.Id))
+            if (await CheckUserExists(model.Email))
                 return false;
 
             await identityUserRepository.CreateAsync(model);
