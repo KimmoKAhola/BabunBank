@@ -853,3 +853,7 @@ table{
   display: flex;
   flex-direction: column;
 }
+
+#UserRole{
+  height: 50px;
+}

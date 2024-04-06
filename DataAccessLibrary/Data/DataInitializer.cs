@@ -68,6 +68,7 @@ public class DataInitializer(BankAppDataContext dbContext, UserManager<IdentityU
             Email = userName,
             EmailConfirmed = true
         };
+
         await userManager.CreateAsync(user, password);
 
         string[] roleNames = roles.Select(role => role.ToString()).ToArray();

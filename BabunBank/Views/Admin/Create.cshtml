@@ -1,0 +1,42 @@
+﻿@using DataAccessLibrary.Data
+@model SignUpModel
+
+@{
+    ViewBag.Title = "Create a new User";
+    Layout = "_Layout";
+}
+
+<h2>Create a new user</h2>
+
+<form method="post" class="container create-customer-form">
+    
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="create-customer-form-row">
+        <span class="Test">
+            <label asp-for="UserName">First Name</label>
+            <input asp-for="UserName" type="text" placeholder="Username">
+            <span asp-validation-for="UserName"></span>
+        </span>
+        <span class="Test">
+            <label asp-for="Email">Email</label>
+            <input asp-for="Email" type="text" placeholder="Email">
+            <span asp-validation-for="Email"></span>
+        </span>
+    </div>
+
+    <div class="create-customer-form-row">
+        <span class="Test">
+            <label asp-for="UserRole">User role</label>
+            <select asp-for="UserRole" name="" id="UserRole">
+            @foreach (var role in @ViewBag.AvailableRoles as List<SelectListItem>)
+            {
+                <option value="@role.Value">@role.Text</option>
+            }
+            <span asp-validation-for="UserRole"></span>
+            </select>
+        </span>
+        <span class="Test">
+            <button type="submit" class="create-customer-form-btn">Create a new User</button>
+        </span>
+    </div>
+</form>

@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BabunBank")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14523ab1cd843980f33ff9b5bd02617dd2b328d7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+185acf11aa7ef135306315f8e530467c182fd035")]
 [assembly: System.Reflection.AssemblyProductAttribute("BabunBank")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BabunBank")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

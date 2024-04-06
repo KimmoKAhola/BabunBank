@@ -18,21 +18,31 @@
       <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo.svg" alt="bank logotype"/></a>
       <nav class="navbar-links">
         <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
-        @* <a class="navbar-link" asp-area="" asp-controller="Account" asp-action="Index">Customer</a> TODO*@
+        @if (!SignInManager.IsSignedIn(User))
+        {
+          <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Contact Us</a>
+          <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        }
+        @if (User.IsInRole("Cashier"))
+        {
+          <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a>
+        }
+        @if (User.IsInRole("Admin"))
+        {
+          <a class="navbar-link" asp-area="" asp-controller="Admin" asp-action="Create">Users</a>
+        }
       </nav>
     </div>
     <div class="navbar-site-settings">
       @if(SignInManager.IsSignedIn(User)){
         <div id="logged-in">
-    @if (User.Identity.Name.Contains("richard"))
+    @if (User.Identity.Name.Contains("richard") && User.Identity.Name.Contains("chalk"))
     {
-    <img src="~/images/chalk-profile.jpg" alt="richard TODO">
+      <img src="~/images/chalk-profile.jpg" alt="richard TODO">
     }
     else
     {
-    <img src="https://avatar.iran.liara.run/public" alt="richard TODO">
+      <img src="https://avatar.iran.liara.run/public" alt="richard TODO">
     }
 
     <p>Hello @User.Identity?.Name</p>
