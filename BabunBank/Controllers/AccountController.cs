@@ -1,4 +1,7 @@
 ﻿using BabunBank.Configurations.Enums;
+using BabunBank.Factories;
+using BabunBank.Models.Account;
+using BabunBank.Models.Cashier;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 namespace BabunBank.Controllers;
 
 [Authorize(Roles = $"{UserRoleNames.Admin}, {UserRoleNames.Cashier}")]
-public class AccountController(AccountService accountService) : Controller
+public class AccountController(AccountService accountService, TransactionService transactionService)
+    : Controller
 {
     public async Task<IActionResult> Details(int id)
     {
@@ -15,5 +19,53 @@ public class AccountController(AccountService accountService) : Controller
         if (result == null)
             return RedirectToAction("Index", "Error");
         return View(result);
+    }
+
+    public async Task<IActionResult> Deposit(int id)
+    {
+        var account = await accountService.GetAccountViewModelAsync(id);
+        if (account == null)
+            return RedirectToAction("Index", "Error");
+
+        var model = new CreateDepositModel
+        {
+            AccountId = account.AccountId,
+            Balance = account.Balance,
+            Date = DateOnly.FromDateTime(DateTime.Now),
+            Type = "Debit",
+            Operation = "Deposit"
+        };
+
+        return View(model);
+    }
+
+    [HttpPost, ActionName("Deposit")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Deposit(
+        int id,
+        [Bind("AccountId, Date, Type, Operation, Amount,Balance,Symbol, Bank, Account")]
+            CreateDepositModel model
+    )
+    {
+        if (!ModelState.IsValid)
+        {
+            TempData["ErrorMessage"] = "Incorrect values provided.";
+            return View(model);
+        }
+
+        var account = await accountService.GetAccountViewModelAsync(id);
+        var transaction = DepositFactory.Create(model, account); //Har skapat en transaction
+        await transactionService.CreateTransactionAsync(transaction);
+        return View();
+    }
+
+    public async Task<IActionResult> Withdraw()
+    {
+        return View();
+    }
+
+    public async Task<IActionResult> Transfer()
+    {
+        return View();
     }
 }

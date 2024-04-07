@@ -7,8 +7,8 @@ namespace BabunBank.Models.Account;
 /// </summary>
 public class AccountViewModel
 {
-    public int AccountId { get; set; }
-    public DateOnly Created { get; set; }
-    public decimal Balance { get; set; }
-    public List<TransactionViewModel> Transactions { get; set; }
+    public int AccountId { get; init; }
+    public DateOnly Created { get; init; }
+    public decimal Balance { get; init; }
+    public List<TransactionViewModel>? Transactions { get; set; }
 }

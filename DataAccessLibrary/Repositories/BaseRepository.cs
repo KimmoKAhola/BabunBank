@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
     where TEntity : class
 {
-    public virtual async Task<TEntity> CreateAsync(TEntity entity)
+    public virtual async Task<TEntity?> CreateAsync(TEntity entity)
     {
         try
         {
@@ -59,15 +59,17 @@ public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
         try
         {
             var result = await dbContext.Set<TEntity>().FirstOrDefaultAsync(expression);
-            if (result != null)
-            {
-                dbContext.Entry(result).CurrentValues.SetValues(entity);
-            }
+            if (result == null)
+                return result!;
+
+            dbContext.Entry(result).CurrentValues.SetValues(entity);
+            await dbContext.SaveChangesAsync();
+
+            return result!;
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
         }
 
         return null!;

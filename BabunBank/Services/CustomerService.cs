@@ -1,12 +1,8 @@
 ﻿using AutoMapper;
-using BabunBank.Models;
-using BabunBank.Models.Account;
 using BabunBank.Models.Customer;
-using BabunBank.Models.Transaction;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace BabunBank.Services;
 
