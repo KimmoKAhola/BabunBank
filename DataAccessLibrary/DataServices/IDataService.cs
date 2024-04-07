@@ -7,5 +7,5 @@ public interface IDataService<T>
     IQueryable<T> GetAll(string sortOrder, string sortColumn);
     Task<bool?> CreateAsync(T model);
     Task<bool?> DeleteAsync(T model);
-    Task<T> UpdateAsync(T model);
+    Task<T?> UpdateAsync(T model);
 }
