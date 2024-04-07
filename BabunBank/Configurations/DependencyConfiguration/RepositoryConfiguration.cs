@@ -8,6 +8,7 @@ public static class RepositoryConfiguration
     {
         services.AddScoped<CustomerRepository>();
         services.AddScoped<AccountRepository>();
+        services.AddScoped<TransactionRepository>();
         services.AddScoped<IdentityUserRepository>();
     }
 }

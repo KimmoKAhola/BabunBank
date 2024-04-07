@@ -12,10 +12,12 @@ public static class ServiceConfiguration
         services.AddScoped<DataCustomerService>();
         services.AddScoped<DataLandingPageService>();
         services.AddScoped<DataIdentityUserService>();
+        services.AddScoped<DataTransactionService>();
 
         //Services
         services.AddScoped<CustomerService>();
         services.AddScoped<AccountService>();
+        services.AddScoped<TransactionService>();
         services.AddScoped<LandingPageService>();
         services.AddScoped<IdentityUserService>();
     }
