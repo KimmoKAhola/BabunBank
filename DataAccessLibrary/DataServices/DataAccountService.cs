@@ -30,7 +30,8 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
 
     public async Task<bool?> CreateAsync(Account model)
     {
-        throw new NotImplementedException();
+        var account = await accountRepository.CreateAsync(model);
+        return account != null;
     }
 
     public async Task<bool?> DeleteAsync(Account model)
@@ -38,8 +39,10 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         throw new NotImplementedException();
     }
 
-    public async Task<Account> UpdateAsync(Account model)
+    public async Task<Account?> UpdateAsync(Account model)
     {
-        throw new NotImplementedException();
+        return await accountRepository.UpdateAsync(x => x.AccountId == model.AccountId, model);
     }
+
+    public async Task Deposit(Account model) { }
 }
