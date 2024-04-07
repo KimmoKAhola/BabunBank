@@ -3,6 +3,7 @@ using BabunBank.Configurations;
 using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models;
+using BabunBank.Models.User;
 using BabunBank.Services;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -44,16 +45,16 @@ public class AdminController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(SignUpModel model)
+    public async Task<IActionResult> Create(SignUpUserModel userModel)
     {
-        TempData["SuccessMessage"] = $"The user {model.UserName} has been successfully created";
+        TempData["SuccessMessage"] = $"The user {userModel.UserName} has been successfully created";
         if (!ModelState.IsValid)
         {
             TempData["SuccessMessage"] = $"Incorrect values provided. Please fix";
-            return View(model);
+            return View(userModel);
         }
 
-        await IdentityUserFactory.CreateUser(model, userManager);
+        await IdentityUserFactory.CreateUser(userModel, userManager);
         // var result = mapper.Map<SignUpModel>(user); //TODO Needed?
         return RedirectToAction("Index");
     }

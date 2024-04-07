@@ -64,7 +64,7 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(CreateCustomerModel model)
+    public async Task<IActionResult> Create(SignUpCustomerModel model)
     {
         if (!ModelState.IsValid)
         {
@@ -84,6 +84,7 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
         else
         {
             TempData["ErrorMessage"] = "A CATASTROPHIC ERROR OCCURED!";
+            return NotFound();
             return RedirectToAction("Index", "Error");
         }
 

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BabunBank.Models;
 using BabunBank.Models.Admin;
+using BabunBank.Models.User;
 using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Factories;
@@ -8,7 +9,7 @@ namespace BabunBank.Factories;
 public static class IdentityUserFactory
 {
     public static async Task<IdentityUser> CreateUser(
-        SignUpModel model,
+        SignUpUserModel userModel,
         UserManager<IdentityUser> userManager
     )
     {
@@ -16,11 +17,11 @@ public static class IdentityUserFactory
         {
             var user = new IdentityUser
             {
-                UserName = model.UserName,
-                Email = model.Email,
-                EmailConfirmed = model.EmailConfirmed,
+                UserName = userModel.UserName,
+                Email = userModel.Email,
+                EmailConfirmed = userModel.EmailConfirmed,
             };
-            await userManager.CreateAsync(user, model.Password);
+            await userManager.CreateAsync(user, userModel.Password);
 
             return user;
         }

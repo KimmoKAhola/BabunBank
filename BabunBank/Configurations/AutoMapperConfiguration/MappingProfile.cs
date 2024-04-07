@@ -4,6 +4,7 @@ using BabunBank.Models.Account;
 using BabunBank.Models.Admin;
 using BabunBank.Models.Customer;
 using BabunBank.Models.Transaction;
+using BabunBank.Models.User;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Identity;
 
@@ -16,9 +17,9 @@ public class MappingProfile : Profile
         CreateMap<Account, AccountViewModel>();
         CreateMap<Customer, CustomerViewModel>();
         CreateMap<Transaction, TransactionViewModel>();
-        CreateMap<CreateCustomerModel, Customer>();
+        CreateMap<SignUpCustomerModel, Customer>();
         CreateMap<IdentityUser, IdentityUserViewModel>();
-        CreateMap<IdentityUser, SignUpModel>();
+        CreateMap<IdentityUser, SignUpUserModel>();
 
         //TODO practice these
         CreateMap<Customer, CustomerViewModel>()
