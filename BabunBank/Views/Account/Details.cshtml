@@ -6,38 +6,42 @@
 }
 
 <div class="account-details container">
-<h1>All transactions for the account with id @Model.AccountId</h1>
-    <table class="data-table">
-        <thead>
+    <h1>All transactions for the account with id @Model.AccountId</h1>
+    <h2>Current balance is: @Model.Balance</h2>
+    <div>
+        <a asp-controller="Account" asp-action="Deposit" asp-route-id="@Model.AccountId" class="btn-primary">Deposit to this account</a>
+        <a asp-controller="Account" asp-action="Withdraw" class="btn-primary">Withdraw from this account</a>
+        <a asp-controller="Account" asp-action="Transfer" class="btn-primary">Transfer from this account to another account</a>
+        <a asp-controller="Cashier" asp-action="Index" class="btn-primary">Go back</a>
+    </div>
+<table class="data-table">
+    <thead>
+    <tr>
+        <th>Transaction Id</th>
+        <th>Amount</th>
+        <th>Balance</th>
+        <th>Date</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var transaction in @Model.Transactions)
+    {
         <tr>
-            <th>Transaction Id</th>
-            <th>Amount</th>
-            <th>Balance</th>
-            <th>Date</th>
-            <th></th>
+            <th>Transaction Id: @transaction.TransactionId</th>
+            <th>Amount: @(transaction.Amount.ToString("C2"))</th>
+            <th>Balance: @(transaction.Balance.ToString("C2"))</th>
+            <th>Date: @transaction.Date</th>
+            <th>
+                <button class="btn-primary">Create</button>
+                <button class="btn-primary">Read</button>
+                <button class="btn-primary">Update</button>
+                <button class="btn-primary">Delete</button>
+            </th>
         </tr>
-        </thead>
-        <tbody>
-        @foreach (var transaction in @Model.Transactions)
-        {
-            <tr>
-                <th>Transaction Id: @transaction.TransactionId</th>
-                <th>Amount: @(transaction.Amount.ToString("C2"))</th>
-                <th>Balance: @(transaction.Balance.ToString("C2"))</th>
-                <th>Date: @transaction.Date</th>
-                <th>
-                    <button class="btn-primary">Create</button>
-                    <button class="btn-primary">Read</button>
-                    <button class="btn-primary">Update</button>
-                    <button class="btn-primary">Delete</button>
-                </th>
-            </tr>
-        }
-        </tbody>
+    }
+    </tbody>
         
         
 </table>
-    <button class="btn-primary">
-        <p><a asp-controller="Cashier" asp-action="Index">Go back</a></p>
-    </button>
 </div>
