@@ -1,8 +1,10 @@
-﻿namespace BabunBank.Services;
+﻿using DataAccessLibrary.Data;
+
+namespace BabunBank.Services;
 
 public interface ITransferService
 {
-    public decimal Withdraw();
-    public decimal Deposit();
-    public decimal Transfer();
+    public Task<bool> Withdraw(int id, decimal amount);
+    public Task<Account?> Deposit(int id, decimal amount);
+    public Task<bool> Transfer(int fromAccId, int toAccId, decimal amount);
 }
