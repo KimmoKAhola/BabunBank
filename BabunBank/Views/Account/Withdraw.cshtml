@@ -1,4 +1,5 @@
-﻿
+﻿@using System.Globalization
+@model BabunBank.Models.Cashier.CreateWithdrawalModel
 
 @{
     ViewBag.Title = "title";
@@ -6,3 +7,27 @@
 }
 
 <h2>Cashier Withdraw</h2>
+<div class="container">
+    <h2>Cashier Deposit</h2>
+    <h2>Your current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
+    <form method="post" asp-controller="Account" asp-action="Withdraw">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="Amount">Deposit amount</label>
+                <input asp-for="Amount" type="number">
+                <span asp-validation-for="Amount"></span>
+            </span>
+        </div>
+        <input type="hidden" asp-for="AccountId">
+        <input type="hidden" asp-for="Date">
+        <input type="hidden" asp-for="Type">
+        <input type="hidden" asp-for="Operation">
+        <input type="hidden" asp-for="Balance">
+        <input type="hidden" asp-for="Symbol">
+        <input type="hidden" asp-for="Bank">
+        <input type="hidden" asp-for="Account">
+        <button type="submit" class="create-customer-form-btn">Create Withdrawal</button>
+    </form>
+    <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.AccountId" class="btn-primary">Return</a>
+</div>
