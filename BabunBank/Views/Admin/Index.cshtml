@@ -20,7 +20,8 @@
     <tr>
         <th>Id</th>
         <th>Username</th>
-        <th>Password</th>
+        <th>Email</th>
+        <th>User role</th>
         <th></th>
     </tr>
     </thead>   
@@ -28,27 +29,28 @@
     @foreach (var systemUser in @Model)
     {
         <tr>
-            <th>@systemUser.Id</th>
+            <th>@systemUser.UserId</th>
             <th>@systemUser.Username</th>
             <th>@systemUser.Email</th>
+            <th>@systemUser.RoleName</th>
             <th>
                 @* TODO Is read and update needed? This can probably be improved a lot *@
-                <button class="btn-primary"><a asp-controller="Admin" asp-action="Read" asp-route-id="@systemUser.Id">View</a></button>
-                <button class="btn-primary"><a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.Id">Update</a></button>
+                <a asp-controller="Admin" asp-action="Read" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">View</a>
+                <a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">Update</a>
                 @if (User?.Identity?.Name != systemUser.Username)
                 {
                     <button class="btn-danger">
-                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@systemUser.Id">Delete</a>
+                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@systemUser.UserId">Delete</a>
                     </button>
                 }
             </th>
         </tr>
     }
     <tr>
-        <th><a asp-controller="Admin" asp-action="Index">Go back</a></th>
+        <th><a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Go back</a></th>
         <th></th>
         <th></th>
-        <th><a asp-controller="Admin" asp-action="Create">Create a new user</a></th>
+        <th><a asp-controller="Admin" asp-action="Create" class="create-customer-form-btn">Create a new user</a></th>
     </tr>
     </tbody>
 </table>
