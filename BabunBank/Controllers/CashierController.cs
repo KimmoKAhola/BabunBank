@@ -9,6 +9,15 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
+public enum CustomerDropdownMenu
+{
+    Five = 5,
+    Ten = 10,
+    Fifteen = 15,
+    Twenty = 20,
+    TwentyFive = 25
+}
+
 [Authorize(Roles = $"{UserRoleNames.Cashier}, {UserRoleNames.Admin}")] //TODO add these to relevant pages
 public class CashierController(CustomerService customerService, IMapper mapper) : Controller
 {
@@ -27,9 +36,8 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
 
         if (pageSize == 0)
         {
-            pageSize = 10;
+            pageSize = 5;
         }
-        // pageSize = 5; //TODO make this into a dropdown in the View
 
         var customers = await customerService.GetAllCustomersViewModelAsync(
             sortColumn,
@@ -51,7 +59,6 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
     public async Task<IActionResult> Details(int id)
     {
         var result = await customerService.GetCustomerViewModelAsync(id);
-        //result > list of CustomerAccounts. Each account has a list of transactions
         if (result != null)
             return View(result);
         TempData["ErrorMessage"] = "A CATASTROPHIC ERROR OCCURED!";
