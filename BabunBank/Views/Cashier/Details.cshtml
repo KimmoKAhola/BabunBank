@@ -17,7 +17,7 @@
             @foreach (var account in @Model.CustomerAccounts)
             {
                 <p>Account Id: @account.AccountId</p>
-                <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId">View account details</a>
+                <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId" class="btn-primary">View account details</a>
             }
             <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-danger">Delete</a>
             <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="btn-primary">Go Back</a>
