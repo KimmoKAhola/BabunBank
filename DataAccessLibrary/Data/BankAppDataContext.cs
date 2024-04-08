@@ -33,7 +33,7 @@ public partial class BankAppDataContext : IdentityDbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         var configuration = new ConfigurationBuilder()
-            .AddJsonFile("appsettings.json", true, true)
+            .AddJsonFile("databaseAppsettings.json", true, true)
             .Build();
 
         var databaseConfig = new ConfigureDatabase(configuration);

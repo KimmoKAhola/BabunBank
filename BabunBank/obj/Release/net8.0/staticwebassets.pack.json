@@ -41,6 +41,14 @@
       "PackagePath": "staticwebassets\\images\\babun-large-logo.png"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-error-fullscreen.jpg",
+      "PackagePath": "staticwebassets\\images\\bg-error-fullscreen.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-error-fullscreen.webp",
+      "PackagePath": "staticwebassets\\images\\bg-error-fullscreen.webp"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-fullscreen.jpg",
       "PackagePath": "staticwebassets\\images\\bg-fullscreen.jpg"
     },

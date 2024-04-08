@@ -542,3 +542,4 @@ C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\scopedcss\Views
 C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\DataAccessLibrary.dll
 C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\DataAccessLibrary.pdb
 C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\Azure.Security.KeyVault.Secrets.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\databaseAppsettings.json
