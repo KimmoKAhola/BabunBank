@@ -1,4 +1,5 @@
-﻿@model BabunBank.Models.Cashier.CreateDepositModel
+﻿@using System.Globalization
+@model BabunBank.Models.Cashier.CreateDepositModel
 
 @{
     ViewBag.Title = "title";
@@ -6,7 +7,7 @@
 }
 <div class="container">
     <h2>Cashier Deposit</h2>
-    <h2>Your current balance is: @Model.Balance</h2>
+    <h2>Your current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
     <form method="post" asp-controller="Account" asp-action="Deposit">
         <div asp-validation-summary="ModelOnly"></div>
         <div class="create-customer-form-row">

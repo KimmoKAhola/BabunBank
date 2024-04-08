@@ -1,4 +1,5 @@
-﻿@model BabunBank.Models.Account.AccountViewModel
+﻿@using System.Globalization
+@model BabunBank.Models.Account.AccountViewModel
 
 @{
     ViewBag.Title = "Account Details";
@@ -7,7 +8,7 @@
 
 <div class="account-details container">
     <h1>All transactions for the account with id @Model.AccountId</h1>
-    <h2>Current balance is: @Model.Balance</h2>
+    <h2>Current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
     <div>
         <a asp-controller="Account" asp-action="Deposit" asp-route-id="@Model.AccountId" class="btn-primary">Deposit to this account</a>
         <a asp-controller="Account" asp-action="Withdraw" class="btn-primary">Withdraw from this account</a>
