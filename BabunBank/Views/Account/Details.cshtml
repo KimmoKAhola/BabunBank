@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using Microsoft.IdentityModel.Tokens
 @model BabunBank.Models.Account.AccountViewModel
 
 @{
@@ -11,8 +12,8 @@
     <h2>Current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
     <div>
         <a asp-controller="Account" asp-action="Deposit" asp-route-id="@Model.AccountId" class="btn-primary">Deposit to this account</a>
-        <a asp-controller="Account" asp-action="Withdraw" class="btn-primary">Withdraw from this account</a>
-        <a asp-controller="Account" asp-action="Transfer" class="btn-primary">Transfer from this account to another account</a>
+        <a asp-controller="Account" asp-action="Withdraw" asp-route-id="@Model.AccountId" class="btn-primary">Withdraw from this account</a>
+        <a asp-controller="Account" asp-action="Transfer" asp-route-id="@Model.AccountId" class="btn-primary">Transfer from this account to another account</a>
         <a asp-controller="Cashier" asp-action="Index" class="btn-primary">Go back</a>
     </div>
 <table class="data-table">
@@ -22,27 +23,20 @@
         <th>Amount</th>
         <th>Balance</th>
         <th>Date</th>
-        <th></th>
+        <th>Operation</th>
     </tr>
     </thead>
     <tbody>
     @foreach (var transaction in @Model.Transactions)
     {
         <tr>
-            <th>Transaction Id: @transaction.TransactionId</th>
-            <th>Amount: @(transaction.Amount.ToString("C2", new CultureInfo("sv-SE")))</th>
-            <th>Balance: @(transaction.Balance.ToString("C2", new CultureInfo("sv-SE")))</th>
-            <th>Date: @transaction.Date</th>
-            <th>
-                <button class="btn-primary">Create</button>
-                <button class="btn-primary">Read</button>
-                <button class="btn-primary">Update</button>
-                <button class="btn-primary">Delete</button>
-            </th>
+            <th>@transaction.TransactionId</th>
+            <th>@(transaction.Amount.ToString("C2", new CultureInfo("sv-SE")))</th>
+            <th>@(transaction.Balance.ToString("C2", new CultureInfo("sv-SE")))</th>
+            <th>@transaction.Date.ToString(new CultureInfo("sv-SE"))</th>
+            <th>@if(!@transaction.Operation.IsNullOrEmpty()) {@transaction.Operation} else { <p>N/A</p>}</th>
         </tr>
     }
     </tbody>
-        
-        
 </table>
 </div>
