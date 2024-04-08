@@ -30,8 +30,8 @@
     {
         <tr>
             <th>Transaction Id: @transaction.TransactionId</th>
-            <th>Amount: @(transaction.Amount.ToString("C2"))</th>
-            <th>Balance: @(transaction.Balance.ToString("C2"))</th>
+            <th>Amount: @(transaction.Amount.ToString("C2", new CultureInfo("sv-SE")))</th>
+            <th>Balance: @(transaction.Balance.ToString("C2", new CultureInfo("sv-SE")))</th>
             <th>Date: @transaction.Date</th>
             <th>
                 <button class="btn-primary">Create</button>
