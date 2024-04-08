@@ -1,4 +1,5 @@
-﻿using BabunBank.Models.Transaction;
+﻿using System.ComponentModel.DataAnnotations;
+using BabunBank.Models.Transaction;
 
 namespace BabunBank.Models.Account;
 

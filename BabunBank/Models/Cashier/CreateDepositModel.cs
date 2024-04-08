@@ -25,5 +25,4 @@ public class CreateDepositModel
     public string? Symbol { get; init; }
     public string? Bank { get; init; }
     public string? Account { get; init; }
-    public DataAccessLibrary.Data.Account DepositAccount { get; init; } = null!;
 }
