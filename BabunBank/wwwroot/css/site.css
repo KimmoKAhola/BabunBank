@@ -188,24 +188,27 @@ a:hover {
 
 /*Navbar*/
 
-.container.navbar {
+.navbar {
   display: flex;
   justify-content: space-between;
   padding-top: 12px;
   padding-bottom: 12px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.18);
+/*TODO nice or not?*/
+  background-color: #fcfcfc;
 }
 
-.container.navbar .navbar-navigation {
+.navbar .navbar-navigation {
   display: flex;
   align-items: center;
   gap: 80px;
 }
-.container.navbar .navbar-navigation .navbar-links {
+.navbar .navbar-navigation .navbar-links {
   display: flex;
   align-items: center;
   gap: 80px;
 }
-.container.navbar .navbar-site-settings {
+.navbar .navbar-site-settings {
   display: flex;
   align-items: center;
 }
@@ -842,10 +845,18 @@ table{
   transition: 0.2s ease-in;
   border-radius: 0.25rem;
   color: white;
+  display: inline-block;
+  width: fit-content;
+  a{
+    color: white;
+  }
 }
 
 .create-customer-form-btn:hover{
   color: var(--CTA);
+  a{
+    color: var(--CTA);
+  }
 }
 
 .Test{
@@ -878,4 +889,21 @@ table{
 .customer-filter-form select {
   flex: 1;
   margin-right: 5px; 
+}
+
+
+/*Contact page here*/
+
+#contact-form-textarea{
+  height: 500px;
+  width: 500px;
+  resize: none;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  border: 1px solid grey;
+  padding: 5px 10px;
+}
+
+#contact-form-textarea:focus{
+  outline: none;
 }
