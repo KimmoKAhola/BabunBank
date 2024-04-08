@@ -5,7 +5,7 @@ public interface IDataService<T>
 {
     Task<T?> GetAsync(int id);
     IQueryable<T> GetAll(string sortOrder, string sortColumn);
-    Task<bool?> CreateAsync(T model);
+    Task<bool?> CreateDepositAsync(T model);
     Task<bool?> DeleteAsync(T model);
     Task<T?> UpdateAsync(T model);
 }
