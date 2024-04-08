@@ -1,4 +1,4 @@
-﻿@model BabunBank.Models.LandingPage.LandingPageViewModel  
+﻿@model BabunBank.Models.Home.ContactUsModel
 @* TODO *@
 
 @{
@@ -10,19 +10,37 @@
 <h2>Let us know what you think</h2>
 
 @* Action signifies where the data will be sent TODO*@
-<form class="contact-form" method="post">
-    <div>
-    <label for="firstName">First name</label>
-    <input type="text" id="firstName" placeholder="Your first name">
+<form asp-controller="Home" asp-action="Contact" class="container create-contact-form" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <div class="create-customer-form-row">
+        <div class="Test">
+            <label asp-for="FirstName"></label>
+            <input asp-for="FirstName" type="text" placeholder="First name">
+            <span asp-validation-for="FirstName"></span>
+        </div>
     </div>
-    <div>
-    <label for="lastName">Last Name</label>
-    <input type="text" id="lastName" placeholder="Your last name">
+    <div class="create-customer-form-row">
+        <div class="Test">
+            <label asp-for="LastName"></label>
+            <input asp-for="LastName" type="text" placeholder="Last name">
+            <span asp-validation-for="LastName"></span>
+        </div>
     </div>
-    <div>
-    <label for="email">Email</label>
-    <input type="text" id="email" placeholder="Your email">
+    
+    <div class="create-customer-form-row">
+        <div class="Test">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" type="email" placeholder="Email">
+            <span asp-validation-for="Email"></span>
+        </div>
     </div>
-    <button type="submit">Submit</button>
+    <div class="create-customer-form-row">
+        <div class="Test">
+            <label asp-for="Message"></label>
+            <textarea id="contact-form-textarea" asp-for="Message" placeholder="Your message here..."></textarea>
+            <span asp-validation-for="Message"></span>
+        </div>
+    </div>
+    <button class="create-customer-form-btn" type="submit">Submit form</button>
 </form>
 </div>
