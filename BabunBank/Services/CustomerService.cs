@@ -44,7 +44,7 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
 
     public async Task<bool?> CreateCustomerAsync(Customer customer)
     {
-        return await dataCustomerService.CreateAsync(customer);
+        return await dataCustomerService.CreateDepositAsync(customer);
     }
 
     public async Task<bool?> DeleteCustomerAsync(int id)
