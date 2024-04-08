@@ -91,7 +91,6 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
         else
         {
             TempData["ErrorMessage"] = "A CATASTROPHIC ERROR OCCURED!";
-            return NotFound();
             return RedirectToAction("Index", "Error");
         }
 
