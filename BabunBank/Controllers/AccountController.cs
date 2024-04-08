@@ -43,13 +43,13 @@ public class AccountController(AccountService accountService, TransactionService
     public async Task<IActionResult> Deposit(
         int id,
         [Bind("AccountId, Date, Type, Operation, Amount,Balance,Symbol, Bank")]
-            CreateDepositModel model
+            CreateDepositModel depositModel
     )
     {
         if (!ModelState.IsValid)
         {
             TempData["ErrorMessage"] = "Incorrect values provided.";
-            return View(model);
+            return View(depositModel);
         }
 
         var account = await accountService.GetAccountViewModelAsync(id);
@@ -57,8 +57,8 @@ public class AccountController(AccountService accountService, TransactionService
         {
             return RedirectToAction("Index", "Error");
         }
-        var transaction = DepositFactory.Create(model, account); //Har skapat en transaction
-        if (await transactionService.CreateTransactionAsync(transaction) == null)
+        var transaction = TransactionFactory.CreateDeposit(depositModel); //Har skapat en transaction
+        if (await transactionService.CreateDepositAsync(transaction) == null)
         {
             return RedirectToAction("Index", "Error"); //Something went wrong
         }
