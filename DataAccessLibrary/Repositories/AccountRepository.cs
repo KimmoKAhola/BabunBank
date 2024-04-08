@@ -6,7 +6,7 @@ namespace DataAccessLibrary.Repositories;
 
 public class AccountRepository(BankAppDataContext dbContext) : BaseRepository<Account>(dbContext)
 {
-    public override async Task<Account> GetAsync(Expression<Func<Account, bool>> expression)
+    public override async Task<Account?> GetAsync(Expression<Func<Account, bool>> expression)
     {
         try
         {
@@ -15,6 +15,7 @@ public class AccountRepository(BankAppDataContext dbContext) : BaseRepository<Ac
                 .ThenInclude(x => x.Customer)
                 .Include(x => x.Transactions)
                 .FirstOrDefaultAsync(expression);
+
             return result ?? null!;
         }
         catch (Exception e)
