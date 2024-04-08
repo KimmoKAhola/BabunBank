@@ -13,17 +13,28 @@
             <th>Id</th>
             <th>Username</th>
             <th>Email</th>
+            <th>User Role</th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <td>@Model.Id</td>
+            <td>@Model.UserId</td>
             <td>@Model.Username</td>
             <td>@Model.Email</td>
+            <td>@Model.RoleName</td>
+            <td>
+                <a asp-controller="Admin" asp-action="Read" asp-route-id="@Model.UserId" class="create-customer-form-btn">View</a>
+                <a asp-controller="Admin" asp-action="Update" asp-route-id="@Model.UserId" class="create-customer-form-btn">Update</a>
+                @if (User?.Identity?.Name != Model.Username)
+                {
+                    <button class="btn-danger">
+                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@Model.UserId">Delete</a>
+                    </button>
+                }
+            </td>
         </tr>
         </tbody>
     </table>
-    <button class="btn-primary">
-        <a asp-controller="Admin" asp-action="Index">Go back</a>
-    </button>
+    <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn">Go back</a>
 </div>
