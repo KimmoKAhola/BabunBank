@@ -5,15 +5,15 @@ namespace DataAccessLibrary.DataServices;
 
 public class DataIdentityUserService(IdentityUserRepository identityUserRepository)
 {
-    public async Task<IdentityUser> GetAsync(string id)
+    public async Task<(IdentityUser User, IdentityRole Role)> GetAsync(string id)
     {
         var result = await identityUserRepository.GetAsync(x => x.Id == id);
         return result;
     }
 
-    public IQueryable<IdentityUser> GetAll()
+    public Task<IEnumerable<(IdentityUser User, IdentityRole Role)>> GetAll()
     {
-        return identityUserRepository.GetAllAsync().AsQueryable();
+        return identityUserRepository.GetAllAsync();
     }
 
     public async Task<bool> CreateAsync(IdentityUser model)
