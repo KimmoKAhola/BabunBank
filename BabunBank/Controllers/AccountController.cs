@@ -15,7 +15,6 @@ public class AccountController(AccountService accountService, TransactionService
     public async Task<IActionResult> Details(int id)
     {
         var result = await accountService.GetAccountViewModelAsync(id);
-
         if (result == null)
             return RedirectToAction("Index", "Error");
         return View(result);
@@ -43,7 +42,7 @@ public class AccountController(AccountService accountService, TransactionService
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Deposit(
         int id,
-        [Bind("AccountId, Date, Type, Operation, Amount,Balance,Symbol, Bank, Account")]
+        [Bind("AccountId, Date, Type, Operation, Amount,Balance,Symbol, Bank")]
             CreateDepositModel model
     )
     {
@@ -54,9 +53,17 @@ public class AccountController(AccountService accountService, TransactionService
         }
 
         var account = await accountService.GetAccountViewModelAsync(id);
+        if (account == null)
+        {
+            return RedirectToAction("Index", "Error");
+        }
         var transaction = DepositFactory.Create(model, account); //Har skapat en transaction
-        await transactionService.CreateTransactionAsync(transaction);
-        return View();
+        if (await transactionService.CreateTransactionAsync(transaction) == null)
+        {
+            return RedirectToAction("Index", "Error"); //Something went wrong
+        }
+
+        return RedirectToAction("Details", new { id = account.AccountId });
     }
 
     public async Task<IActionResult> Withdraw()
