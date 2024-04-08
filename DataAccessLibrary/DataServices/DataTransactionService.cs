@@ -7,29 +7,17 @@ namespace DataAccessLibrary.DataServices;
 public class DataTransactionService(
     TransactionRepository transactionRepository,
     AccountRepository accountRepository
-) : IDataService<Transaction>
+)
 {
-    public Transaction Deposit(int id, decimal amount, Account account)
-    {
-        var transaction = new Transaction
-        {
-            AccountId = account.AccountId,
-            Balance = account.Balance + amount,
-            Date = DateOnly.FromDateTime(DateTime.Now),
-        };
-
-        return transaction;
-    }
-
-    public async Task<bool?> CreateAsync(Transaction model)
+    public async Task<bool?> CreateDepositAsync(Transaction deposit)
     {
         //Get the account associated with the model
-        var account = await accountRepository.GetAsync(x => x.AccountId == model.AccountId);
+        var account = await accountRepository.GetAsync(x => x.AccountId == deposit.AccountId);
         if (account == null)
             return null!;
 
         //Create a new transaction
-        var newTransaction = await transactionRepository.CreateAsync(model);
+        var newTransaction = await transactionRepository.CreateAsync(deposit);
 
         //Sum of all transaction amounts
         var newAccountBalance = await transactionRepository
@@ -45,41 +33,31 @@ public class DataTransactionService(
         return true;
     }
 
-    public async Task<Transaction?> Transfer()
+    public async Task<bool?> CreateWithdrawalAsync(Transaction withdrawal)
     {
-        //TODO This can use deposit and withdraw since they have the logic already
-        return null!;
+        var account = await accountRepository.GetAsync(x => x.AccountId == withdrawal.AccountId);
+        if (account == null)
+            return null!;
+
+        //Create a new transaction
+        var newTransaction = await transactionRepository.CreateAsync(withdrawal);
+
+        //Sum of all transaction amounts
+        var newAccountBalance = await transactionRepository
+            .GetAllAsync()
+            .Where(x => x.AccountId == newTransaction.AccountId)
+            .SumAsync(x => x.Amount);
+
+        //Update the balance according to transactions
+        account.Balance = newAccountBalance;
+
+        //Update the account. Check for null here? TODO
+        await accountRepository.UpdateAsync(x => x.AccountId == account.AccountId, account);
+        return true;
     }
 
-    public async Task<Transaction?> Withdraw()
+    public async Task<bool?> CreateTransferAsync(Transaction deposit, Transaction withdrawal)
     {
-        //TODO check the deposit
-
-        return null!;
-    }
-
-    public async Task<Transaction?> GetAsync(int id)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IQueryable<Transaction> GetAll(string sortOrder, string sortColumn)
-    {
-        throw new NotImplementedException();
-    }
-
-    public IQueryable<Transaction> GetAll()
-    {
-        return transactionRepository.GetAllAsync();
-    }
-
-    public async Task<bool?> DeleteAsync(Transaction model)
-    {
-        throw new NotImplementedException();
-    }
-
-    public async Task<Transaction?> UpdateAsync(Transaction model)
-    {
-        throw new NotImplementedException();
+        return true;
     }
 }
