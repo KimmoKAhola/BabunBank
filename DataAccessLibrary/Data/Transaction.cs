@@ -9,7 +9,7 @@ public partial class Transaction
 
     public int AccountId { get; set; }
 
-    public DateOnly Date { get; set; }
+    public DateOnly Date { get; set; } //Change this to datetime TODO
 
     public string Type { get; set; } = null!;
 
