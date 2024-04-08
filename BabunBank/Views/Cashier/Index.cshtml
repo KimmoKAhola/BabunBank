@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BabunBank.Models.Customer.CustomerViewModel>
+﻿@using BabunBank.Controllers
+@model IEnumerable<BabunBank.Models.Customer.CustomerViewModel>
 
 @{
     ViewBag.Title = "Account title";
@@ -9,14 +10,14 @@
 <div class="customer-container">
     <form class="customer-filter-form" method="get" action="@Url.Action("Index", "Cashier")">
         <input name="q" value="@ViewBag.Q" placeholder="Search here....">
-        @Html.DropDownList("pageSize", new List<SelectListItem>
-{
-    new SelectListItem {Text="5", Value = "5", Selected = ViewBag.PageSize == 5},
-    new SelectListItem {Text="10", Value = "10", Selected = ViewBag.PageSize == 10},
-    new SelectListItem {Text="15", Value = "15", Selected = ViewBag.PageSize == 15},
-    new SelectListItem {Text="20", Value = "20", Selected = ViewBag.PageSize == 20},
-    new SelectListItem {Text="25", Value = "25", Selected = ViewBag.PageSize == 25},
-}, new {@class = "dropdown-list"})
+        @Html.DropDownList("pageSize", Enum.GetValues(typeof(CustomerDropdownMenu))
+            .Cast<CustomerDropdownMenu>()
+            .Select(x => new SelectListItem
+            {   
+                Text = ((int)x).ToString(),
+                Value = ((int)x).ToString(),
+                Selected = ViewBag.PageSize == (int)x
+            }), new {@class = "dropdown-list"})
         <input class="btn-primary" type="submit" value="Apply filters"/>
     </form>
     <h2>Page: @ViewBag.CurrentPage</h2>
