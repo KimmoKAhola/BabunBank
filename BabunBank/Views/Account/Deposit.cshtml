@@ -27,4 +27,5 @@
         <input type="hidden" asp-for="Account">
         <button type="submit" class="create-customer-form-btn">Create Deposit</button>
     </form>
+    <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.AccountId" class="btn-primary">Return</a>
 </div>
