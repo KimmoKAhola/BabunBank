@@ -5,13 +5,18 @@ namespace BabunBank.Services;
 
 public class TransactionService(DataTransactionService dataTransactionService)
 {
-    public async Task<Transaction> GetTransaction()
+    public async Task<bool?> CreateDepositAsync(Transaction transaction)
     {
-        return await dataTransactionService.GetAsync(960);
+        return await dataTransactionService.CreateDepositAsync(transaction);
     }
 
-    public async Task<bool?> CreateTransactionAsync(Transaction transaction)
+    public async Task<bool?> CreateWithdrawalAsync(Transaction transaction)
     {
-        return await dataTransactionService.CreateAsync(transaction);
+        return await dataTransactionService.CreateWithdrawalAsync(transaction);
+    }
+
+    public async Task<bool?> CreateTransferAsync(Transaction deposit, Transaction withdrawal)
+    {
+        return await dataTransactionService.CreateTransferAsync(deposit, withdrawal);
     }
 }
