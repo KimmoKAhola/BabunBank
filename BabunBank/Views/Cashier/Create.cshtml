@@ -4,99 +4,100 @@
     ViewBag.Title = "Create customer";
     Layout = "_Layout";
 }
+<div class="container">
+    <h2>Create a new customer</h2>
+    <form method="post" class="create-customer-form">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="GivenName">First Name</label>
+                <input asp-for="GivenName" type="text" placeholder="First name">
+                <span asp-validation-for="GivenName"></span>
+            </span>
+            <span class="Test">
+                <label asp-for="SurName">Last Name</label>
+                <input asp-for="SurName" type="text" placeholder="Last name">
+                <span asp-validation-for="SurName"></span>
+            </span>
+        </div>
 
-<h2>Create a new customer</h2>
-<form method="post" class="container create-customer-form">
-    
-    <div asp-validation-summary="ModelOnly"></div>
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="GivenName">First Name</label>
-            <input asp-for="GivenName" type="text" placeholder="First name">
-            <span asp-validation-for="GivenName"></span>
-        </span>
-        <span class="Test">
-            <label asp-for="SurName">Last Name</label>
-            <input asp-for="SurName" type="text" placeholder="Last name">
-            <span asp-validation-for="SurName"></span>
-        </span>
-    </div>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="Gender">Gender</label>
+                <input asp-for="Gender" type="text" placeholder="Gender">
+                <span asp-validation-for="Gender"></span>
+            </span>
+            <span class="Test">
+                <label asp-for="StreetAddress">Address</label>
+                <input asp-for="StreetAddress" type="text" placeholder="Address">
+                <span asp-validation-for="StreetAddress"></span>
+            </span>
+        </div>
 
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="Gender">Gender</label>
-            <input asp-for="Gender" type="text" placeholder="Gender">
-            <span asp-validation-for="Gender"></span>
-        </span>
-        <span class="Test">
-            <label asp-for="StreetAddress">Address</label>
-            <input asp-for="StreetAddress" type="text" placeholder="Address">
-            <span asp-validation-for="StreetAddress"></span>
-        </span>
-    </div>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="City">City</label>
+                <input asp-for="City" type="text" placeholder="City">
+                <span asp-validation-for="City"></span>
+            </span>
+            <span class="Test">
+                <label asp-for="Zipcode">Zip Code</label>
+                <input asp-for="Zipcode" type="text" placeholder="Zip Code">
+                <span asp-validation-for="Zipcode"></span>
+            </span>
+        </div>
 
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="City">City</label>
-            <input asp-for="City" type="text" placeholder="City">
-            <span asp-validation-for="City"></span>
-        </span>
-        <span class="Test">
-            <label asp-for="Zipcode">Zip Code</label>
-            <input asp-for="Zipcode" type="text" placeholder="Zip Code">
-            <span asp-validation-for="Zipcode"></span>
-        </span>
-    </div>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="Country">Country</label>
+                <input asp-for="Country" type="text" placeholder="Country">
+                <span asp-validation-for="Country"></span>
+            </span>
+            <span class="Test">
+                <label asp-for="CountryCode">Country Code</label>
+                <input asp-for="CountryCode" type="text" placeholder="Country Code">
+                <span asp-validation-for="CountryCode"></span>
+            </span>
+        </div>
 
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="Country">Country</label>
-            <input asp-for="Country" type="text" placeholder="Country">
-            <span asp-validation-for="Country"></span>
-        </span>
-        <span class="Test">
-            <label asp-for="CountryCode">Country Code</label>
-            <input asp-for="CountryCode" type="text" placeholder="Country Code">
-            <span asp-validation-for="CountryCode"></span>
-        </span>
-    </div>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="Birthday">Birthday</label>
+                <input asp-for="Birthday" type="date" placeholder="Birthday">
+                <span asp-validation-for="Birthday"></span>
+            </span>
+            <span class="Test">
+                <label asp-for="NationalId">National Id</label>
+                <input asp-for="NationalId" type="text" placeholder="National Id">
+                <span asp-validation-for="NationalId"></span>
+            </span>
+        </div>
 
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="Birthday">Birthday</label>
-            <input asp-for="Birthday" type="date" placeholder="Birthday">
-            <span asp-validation-for="Birthday"></span>
-        </span>
-        <span class="Test">
-            <label asp-for="NationalId">National Id</label>
-            <input asp-for="NationalId" type="text" placeholder="National Id">
-            <span asp-validation-for="NationalId"></span>
-        </span>
-    </div>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="TelephoneCountryCode">Telephone Country Code</label>
+                <input asp-for="TelephoneCountryCode" type="text" placeholder="Telephone Country Code">
+                <span asp-validation-for="TelephoneCountryCode"></span>
+            </span>
+            <span class="Test">
+                <label asp-for="TelephoneNumber">Telephone Number</label>
+                <input asp-for="TelephoneNumber" type="text" placeholder="Telephone Number">
+                <span asp-validation-for="TelephoneNumber"></span>
+            </span>
+        </div>
 
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="TelephoneCountryCode">Telephone Country Code</label>
-            <input asp-for="TelephoneCountryCode" type="text" placeholder="Telephone Country Code">
-            <span asp-validation-for="TelephoneCountryCode"></span>
-        </span>
-        <span class="Test">
-            <label asp-for="TelephoneNumber">Telephone Number</label>
-            <input asp-for="TelephoneNumber" type="text" placeholder="Telephone Number">
-            <span asp-validation-for="TelephoneNumber"></span>
-        </span>
-    </div>
-
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="EmailAddress">Email Address</label>
-            <input asp-for="EmailAddress" type="text" placeholder="Email Address">
-            <span asp-validation-for="EmailAddress"></span>
-        </span>
-    </div>
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <button type="submit" class="create-customer-form-btn">Create customer</button>
-        </span>
-    </div>
-</form>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="EmailAddress">Email Address</label>
+                <input asp-for="EmailAddress" type="text" placeholder="Email Address">
+                <span asp-validation-for="EmailAddress"></span>
+            </span>
+        </div>
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <button type="submit" class="create-customer-form-btn">Create customer</button>
+            </span>
+        </div>
+    </form>
+    <a asp-controller="Cashier" asp-action="Index" class="mt-3 create-customer-form-btn">Return</a>
+</div>
