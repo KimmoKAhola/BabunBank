@@ -164,18 +164,18 @@ public partial class BankAppDataContext : IdentityDbContext
                 .HasConstraintName("FK_Transactions_Accounts");
         });
 
-        modelBuilder.Entity<User>(entity =>
-        {
-            entity.HasKey(e => e.UserId).HasName("PK_User_UserID");
-
-            entity.ToTable("User");
-
-            entity.Property(e => e.UserId).HasColumnName("UserID");
-            entity.Property(e => e.FirstName).HasMaxLength(40);
-            entity.Property(e => e.LastName).HasMaxLength(40);
-            entity.Property(e => e.LoginName).HasMaxLength(40);
-            entity.Property(e => e.PasswordHash).HasMaxLength(64).IsFixedLength();
-        });
+        // modelBuilder.Entity<User>(entity =>
+        // {
+        //     entity.HasKey(e => e.UserId).HasName("PK_User_UserID");
+        //
+        //     entity.ToTable("User");
+        //
+        //     entity.Property(e => e.UserId).HasColumnName("UserID");
+        //     entity.Property(e => e.FirstName).HasMaxLength(40);
+        //     entity.Property(e => e.LastName).HasMaxLength(40);
+        //     entity.Property(e => e.LoginName).HasMaxLength(40);
+        //     entity.Property(e => e.PasswordHash).HasMaxLength(64).IsFixedLength();
+        // });
 
         OnModelCreatingPartial(modelBuilder);
     }
