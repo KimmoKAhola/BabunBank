@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using BabunBank.Configurations.Enums;
 using BabunBank.Models;
 using BabunBank.Models.Admin;
 using BabunBank.Models.User;
+using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Factories;
@@ -22,7 +24,7 @@ public static class IdentityUserFactory
                 EmailConfirmed = userModel.EmailConfirmed,
             };
             await userManager.CreateAsync(user, userModel.Password);
-
+            await userManager.AddToRolesAsync(user, new[] { userModel.UserRole.ToString() });
             return user;
         }
         catch (Exception e)
