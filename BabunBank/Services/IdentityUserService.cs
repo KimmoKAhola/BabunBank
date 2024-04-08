@@ -6,22 +6,34 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BabunBank.Services;
 
-public class IdentityUserService(DataIdentityUserService dataIdentityUserService, IMapper mapper)
+public class IdentityUserService(DataIdentityUserService dataIdentityUserService)
 {
     public async Task<IdentityUserViewModel> GetSingleAsync(string id)
     {
         var result = await dataIdentityUserService.GetAsync(id);
 
-        var user = mapper.Map<IdentityUserViewModel>(result);
+        var user = new IdentityUserViewModel
+        {
+            UserId = result.User.Id,
+            Username = result.User.UserName,
+            Email = result.User.Email,
+            RoleName = result.Role.Name
+        };
 
         return user;
     }
 
     public async Task<IEnumerable<IdentityUserViewModel>> GetAllAsync()
     {
-        var result = await dataIdentityUserService.GetAll().ToListAsync();
+        var result = await dataIdentityUserService.GetAll();
 
-        var users = mapper.Map<IEnumerable<IdentityUserViewModel>>(result);
+        var users = result.Select(x => new IdentityUserViewModel
+        {
+            UserId = x.User.Id,
+            Username = x.User.UserName,
+            Email = x.User.Email,
+            RoleName = x.Role.Name
+        });
 
         return users;
     }
