@@ -66,9 +66,46 @@ public class AccountController(AccountService accountService, TransactionService
         return RedirectToAction("Details", new { id = account.AccountId });
     }
 
-    public async Task<IActionResult> Withdraw()
+    public async Task<IActionResult> Withdraw(int id)
     {
-        return View();
+        var account = await accountService.GetAccountViewModelAsync(id);
+        if (account == null)
+            return RedirectToAction("Index", "Error");
+
+        var model = new CreateWithdrawalModel
+        {
+            AccountId = account.AccountId,
+            Balance = account.Balance,
+            Date = DateOnly.FromDateTime(DateTime.Now),
+            Type = "Debit",
+            Operation = "Withdrawal"
+        };
+
+        return View(model);
+    }
+
+    [HttpPost, ActionName("Withdraw")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Withdraw(int id, CreateWithdrawalModel withdrawalModel)
+    {
+        if (!ModelState.IsValid)
+        {
+            TempData["ErrorMessage"] = "Incorrect values provided.";
+            return View(withdrawalModel);
+        }
+
+        var account = await accountService.GetAccountViewModelAsync(id);
+        if (account == null)
+            return RedirectToAction("Index", "Error");
+
+        var withdrawal = TransactionFactory.CreateWithdrawal(withdrawalModel);
+
+        if (await transactionService.CreateWithdrawalAsync(withdrawal) == null)
+        {
+            return RedirectToAction("Index", "Error");
+        }
+
+        return RedirectToAction("Details", new { id = account.AccountId });
     }
 
     public async Task<IActionResult> Transfer()
