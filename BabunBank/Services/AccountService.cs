@@ -15,7 +15,7 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
 
         var accountViewModel = mapper.Map<AccountViewModel>(result);
         accountViewModel.Transactions = accountViewModel
-            .Transactions.OrderByDescending(t => t.Date)
+            ?.Transactions?.OrderByDescending(t => t.TransactionId)
             .ToList();
         return accountViewModel;
     }
