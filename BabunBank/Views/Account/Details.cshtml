@@ -1,6 +1,6 @@
 ﻿@using System.Globalization
 @using Microsoft.IdentityModel.Tokens
-@model BabunBank.Models.Account.AccountViewModel
+@model BabunBank.Models.ViewModels.Account.AccountViewModel
 
 @{
     ViewBag.Title = "Account Details";
@@ -8,35 +8,45 @@
 }
 
 <div class="account-details container">
-    <h1>All transactions for the account with id @Model.AccountId</h1>
+    @* TODO 50 is a magic string *@
+    <h1>The 50 newest transactions for the account with id @Model.AccountId</h1>
     <h2>Current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
-    <div>
-        <a asp-controller="Account" asp-action="Deposit" asp-route-id="@Model.AccountId" class="btn-primary">Deposit to this account</a>
-        <a asp-controller="Account" asp-action="Withdraw" asp-route-id="@Model.AccountId" class="btn-primary">Withdraw from this account</a>
-        <a asp-controller="Account" asp-action="Transfer" asp-route-id="@Model.AccountId" class="btn-primary">Transfer from this account to another account</a>
-        <a asp-controller="Cashier" asp-action="Index" class="btn-primary">Go back</a>
+    <div class="customer-card-button-row" id="account-details-header">
+        <a asp-controller="Account" asp-action="Deposit" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Deposit to this account</a>
+        <a asp-controller="Account" asp-action="Withdraw" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Withdraw from this account</a>
+        <a asp-controller="Account" asp-action="Transfer" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Transfer from this account to another account</a>
+        <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Go back</a>
     </div>
-<table class="data-table">
-    <thead>
-    <tr>
-        <th>Transaction Id</th>
-        <th>Amount</th>
-        <th>Balance</th>
-        <th>Date</th>
-        <th>Operation</th>
-    </tr>
-    </thead>
-    <tbody>
-    @foreach (var transaction in @Model.Transactions)
-    {
+    <table class="data-table">
+        <thead>
         <tr>
-            <th>@transaction.TransactionId</th>
-            <th>@(transaction.Amount.ToString("C2", new CultureInfo("sv-SE")))</th>
-            <th>@(transaction.Balance.ToString("C2", new CultureInfo("sv-SE")))</th>
-            <th>@transaction.Date.ToString(new CultureInfo("sv-SE"))</th>
-            <th>@if(!@transaction.Operation.IsNullOrEmpty()) {@transaction.Operation} else { <p>N/A</p>}</th>
+            <th>Transaction Id</th>
+            <th>Amount</th>
+            <th>Balance</th>
+            <th>Date</th>
+            <th>Operation</th>
         </tr>
-    }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        @foreach (var transaction in @Model.Transactions)
+        {
+            <tr>
+                <th>@transaction.TransactionId</th>
+                <th>@(transaction.Amount.ToString("C2", new CultureInfo("sv-SE")))</th>
+                <th>@(transaction.Balance.ToString("C2", new CultureInfo("sv-SE")))</th>
+                <th>@transaction.Date.ToString(new CultureInfo("sv-SE"))</th>
+                <th>
+                    @if (!@transaction.Operation.IsNullOrEmpty())
+                    {
+                        @transaction.Operation
+                    }
+                    else
+                    {
+                        <p>N/A</p>
+                    }
+                </th>
+            </tr>
+        }
+        </tbody>
+    </table>
 </div>
