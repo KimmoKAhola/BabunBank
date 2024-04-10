@@ -1,4 +1,4 @@
-﻿@model BabunBank.Models.Customer.SignUpCustomerModel
+﻿@model BabunBank.Models.FormModels.Customer.SignUpCustomerModel
 
 @{
     ViewBag.Title = "Create customer";
@@ -10,12 +10,12 @@
         <div asp-validation-summary="ModelOnly"></div>
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="GivenName">First Name</label>
+                <label asp-for="GivenName"></label>
                 <input asp-for="GivenName" type="text" placeholder="First name">
                 <span asp-validation-for="GivenName"></span>
             </span>
             <span class="Test">
-                <label asp-for="SurName">Last Name</label>
+                <label asp-for="SurName"></label>
                 <input asp-for="SurName" type="text" placeholder="Last name">
                 <span asp-validation-for="SurName"></span>
             </span>
@@ -23,12 +23,12 @@
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="Gender">Gender</label>
+                <label asp-for="Gender"></label>
                 <input asp-for="Gender" type="text" placeholder="Gender">
                 <span asp-validation-for="Gender"></span>
             </span>
             <span class="Test">
-                <label asp-for="StreetAddress">Address</label>
+                <label asp-for="StreetAddress"></label>
                 <input asp-for="StreetAddress" type="text" placeholder="Address">
                 <span asp-validation-for="StreetAddress"></span>
             </span>
@@ -36,12 +36,12 @@
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="City">City</label>
+                <label asp-for="City"></label>
                 <input asp-for="City" type="text" placeholder="City">
                 <span asp-validation-for="City"></span>
             </span>
             <span class="Test">
-                <label asp-for="Zipcode">Zip Code</label>
+                <label asp-for="Zipcode"></label>
                 <input asp-for="Zipcode" type="text" placeholder="Zip Code">
                 <span asp-validation-for="Zipcode"></span>
             </span>
@@ -49,12 +49,12 @@
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="Country">Country</label>
+                <label asp-for="Country"></label>
                 <input asp-for="Country" type="text" placeholder="Country">
                 <span asp-validation-for="Country"></span>
             </span>
             <span class="Test">
-                <label asp-for="CountryCode">Country Code</label>
+                <label asp-for="CountryCode"></label>
                 <input asp-for="CountryCode" type="text" placeholder="Country Code">
                 <span asp-validation-for="CountryCode"></span>
             </span>
@@ -62,12 +62,12 @@
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="Birthday">Birthday</label>
+                <label asp-for="Birthday"></label>
                 <input asp-for="Birthday" type="date" placeholder="Birthday">
                 <span asp-validation-for="Birthday"></span>
             </span>
             <span class="Test">
-                <label asp-for="NationalId">National Id</label>
+                <label asp-for="NationalId"></label>
                 <input asp-for="NationalId" type="text" placeholder="National Id">
                 <span asp-validation-for="NationalId"></span>
             </span>
@@ -75,12 +75,12 @@
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="TelephoneCountryCode">Telephone Country Code</label>
+                <label asp-for="TelephoneCountryCode"></label>
                 <input asp-for="TelephoneCountryCode" type="text" placeholder="Telephone Country Code">
                 <span asp-validation-for="TelephoneCountryCode"></span>
             </span>
             <span class="Test">
-                <label asp-for="TelephoneNumber">Telephone Number</label>
+                <label asp-for="TelephoneNumber"></label>
                 <input asp-for="TelephoneNumber" type="text" placeholder="Telephone Number">
                 <span asp-validation-for="TelephoneNumber"></span>
             </span>
@@ -88,7 +88,7 @@
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="EmailAddress">Email Address</label>
+                <label asp-for="EmailAddress"></label>
                 <input asp-for="EmailAddress" type="text" placeholder="Email Address">
                 <span asp-validation-for="EmailAddress"></span>
             </span>
