@@ -90,8 +90,9 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         }
     }
 
-    public async Task<Customer> UpdateAsync(Customer model)
+    public async Task<bool?> UpdateAsync(Customer model)
     {
-        throw new NotImplementedException();
+        return await customerRepository.UpdateAsync(x => x.CustomerId == model.CustomerId, model)
+            != null;
     }
 }
