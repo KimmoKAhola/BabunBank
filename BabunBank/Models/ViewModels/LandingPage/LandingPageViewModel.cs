@@ -1,5 +1,4 @@
-﻿
-namespace BabunBank.Models.LandingPage;
+﻿namespace BabunBank.Models.ViewModels.LandingPage;
 
 public class LandingPageViewModel
 {
