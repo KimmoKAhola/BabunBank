@@ -3,7 +3,7 @@ using BabunBank.Configurations;
 using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models;
-using BabunBank.Models.User;
+using BabunBank.Models.FormModels.User;
 using BabunBank.Services;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Authorization;
