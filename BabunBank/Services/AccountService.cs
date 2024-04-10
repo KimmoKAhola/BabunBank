@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BabunBank.Models.Account;
+using BabunBank.Models.ViewModels.Account;
 using DataAccessLibrary.DataServices;
 
 namespace BabunBank.Services;
@@ -14,8 +14,11 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
             return null!;
 
         var accountViewModel = mapper.Map<AccountViewModel>(result);
+        accountViewModel.CustomerId = result.Dispositions.First(x => x.Type == "OWNER").CustomerId; //TODO add this to automapper?
+
         accountViewModel.Transactions = accountViewModel
             ?.Transactions?.OrderByDescending(t => t.TransactionId)
+            .Take(50) //TODO 50 is a magic string!!! Fix later
             .ToList();
         return accountViewModel;
     }
