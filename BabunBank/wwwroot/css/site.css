@@ -52,11 +52,7 @@ table {
   border-spacing: 0;
 }
 
-* {
-  font-family: "Satoshi", sans-serif;
-}
-
-html, body, a {
+*, html, body, a {
   line-height: 160%;
   font-weight: 400;
   color: #070707;
@@ -749,7 +745,12 @@ table{
 .customer-card-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
-  border: 1px solid black;
+  /*border: 1px solid gray;*/
+  padding: 0.75rem;
+  border-radius: 24px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #edf8ea;
+  /*todo is this the right color?*/
   .customer-card-left{
     display: flex;
     flex-direction: column;
@@ -759,16 +760,51 @@ table{
   }
   
   .customer-card-right{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    width: 100%;
+    text-align: center;
+    font-size: 2rem;
+    img{
+      width: 90%;
+      height: 90%;
+      margin-bottom: 1rem;
+    }
   }
+}
+
+.customer-card-profile-name{
+  display: flex;
+  flex-grow: 1;
+  width: 100%;
+  justify-content: center;
 }
 
 .account-details.container{
   place-items: center;
   text-align: start;
 }
+
+
+.customer-card-button-row{
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.customer-card-button-row .create-customer-form-btn,
+.customer-card-button-row .btn-regret {
+  width: calc(100% / 4);
+  display: flex; 
+  /*flex-grow: 1;*/
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 8px;
+  i{
+    color: #efefef;
+  }
+}
+
 
 /*Login section here*/
 
@@ -852,6 +888,17 @@ table{
   }
 }
 
+a.create-customer-form-btn{
+  display: flex;
+  align-items: center;
+}
+
+.create-customer-form-btn.view-more{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .create-customer-form-btn:hover{
   color: var(--CTA);
   a{
@@ -859,9 +906,25 @@ table{
   }
 }
 
+.btn-regret{
+  height: 50px;
+  display: flex;
+  align-items: center;
+  /*background-color: #a32831;*/
+  background-color: #ff000f;
+  color: white;
+  border-radius: 0.25rem;
+}
+
+.btn-regret:hover{
+  background-color: #d1000d;
+  color: white;
+}
+
 .Test{
   display: flex;
   flex-direction: column;
+  /*margin-bottom: 24px;*/
 }
 
 #UserRole{
@@ -883,6 +946,7 @@ table{
   max-width: 720px;
   width: 100%;
   justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .customer-filter-form input,
@@ -891,6 +955,9 @@ table{
   margin-right: 5px; 
 }
 
+#filter-page-result{
+  font-size: 1.25rem;
+}
 
 /*Contact page here*/
 
