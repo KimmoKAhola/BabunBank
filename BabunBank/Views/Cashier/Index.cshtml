@@ -5,8 +5,8 @@
     ViewBag.Title = "Account title";
     Layout = "_Layout";
 }
-
-<div class="customer-container">
+<div id="customer-bg">
+    <div class="customer-container">
     @* TODO Remove this later, or style it better*@
     <h1 id="customer-index-header">Customer index page</h1>
     <form class="customer-filter-form" method="get" action="@Url.Action("Index", "Cashier")">
@@ -127,7 +127,11 @@
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-q="@ViewBag.Q">
-                        <button class="create-customer-form-btn view-more">View more <i class="material-symbols-outlined">arrow_forward</i></button>
+                        <button class="create-customer-form-btn view-more">View
+                            
+                            @* <i class="material-symbols-outlined">arrow_forward</i> *@
+                            <i class="material-symbols-outlined">chevron_right</i>
+                        </button>
                     </a></td>
             </tr>
         }
@@ -177,4 +181,5 @@
         <a asp-controller="Cashier" asp-action="Create" class="create-customer-form-btn">Create new customer</a>
         <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return</a>
     </span>
+</div>
 </div>

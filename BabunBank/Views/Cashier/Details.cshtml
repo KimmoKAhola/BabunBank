@@ -4,86 +4,87 @@
     ViewBag.Title = "Customer Details";
     Layout = "_Layout";
 }
-
-<div class="container customer">
-    <h1 class="success">@TempData["CreatedUser"]</h1>
-    <div class="customer-card-container">
-        <div class="customer-card-left">
-            <table>
-                <thead>
-                <tr>
-                    <th>Customer information</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>Name: @Model.GivenName @Model.Surname</td>
-                </tr>
-                <tr>
-                    <td>Gender: @Model.Gender</td>
-                </tr>
-                <tr>
-                    <td>Address: @Model.Streetaddress</td>
-                </tr>
-                <tr>
-                    <td>Zip Code: @Model.Zipcode</td>
-                </tr>
-                <tr>
-                    <td>Country: @Model.Country</td>
-                </tr>
-                <tr>
-                    <td>Account Overview: </td>
-                </tr>
-                </tbody>
-            </table>
-            <button class="create-customer-form-btn">Show/Hide transactions 
-                @* TODO add functionality to toggle<i class="material-symbols-outlined"> *@
-                @*     visibility *@
-                @* </i> *@
-                @* *@
-                @* <i class="material-symbols-outlined"> *@
-                @*     visibility_off *@
-                @* </i> *@
-            </button>
+<div id="customer-details-bg">
+    <div class="container customer">
+        <h1 class="success">@TempData["CreatedUser"]</h1>
+        <div class="customer-card-container">
+            <div class="customer-card-left">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Customer information</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>Name: @Model.GivenName @Model.Surname</td>
+                    </tr>
+                    <tr>
+                        <td>Gender: @Model.Gender</td>
+                    </tr>
+                    <tr>
+                        <td>Address: @Model.Streetaddress</td>
+                    </tr>
+                    <tr>
+                        <td>Zip Code: @Model.Zipcode</td>
+                    </tr>
+                    <tr>
+                        <td>Country: @Model.Country</td>
+                    </tr>
+                    <tr>
+                        <td>Account Overview: </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="create-customer-form-btn">Show/Hide transactions
+                    @* TODO add functionality to toggle<i class="material-symbols-outlined"> *@
+                    @*     visibility *@
+                    @* </i> *@
+                    @* *@
+                    @* <i class="material-symbols-outlined"> *@
+                    @*     visibility_off *@
+                    @* </i> *@
+                </button>
+            </div>
+            <div class="customer-card-right">
+                @if (@Model.Gender == "male")
+                {
+                    <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
+                }
+                else
+                {
+                    <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
+                }
+                <h2 class="customer-card-profile-name">@Model.GivenName @Model.Surname</h2>
+            </div>
         </div>
-        <div class="customer-card-right">
-            @if (@Model.Gender == "male")
+        <div class="customer-card-button-row">
+            @foreach (var account in @Model.CustomerAccounts)
             {
-                <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
+                <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId" class="create-customer-form-btn">
+                    View account ID: @account.AccountId
+                    <i class="material-symbols-outlined">search</i>
+                </a>
             }
-            else
-            {
-                <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
-            }
-            <h2 class="customer-card-profile-name">@Model.GivenName @Model.Surname</h2>
-        </div>
-    </div>
-    <div class="customer-card-button-row">
-        @foreach (var account in @Model.CustomerAccounts)
-        {
-            <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId" class="create-customer-form-btn">
-                View account ID: @account.AccountId
-                <i class="material-symbols-outlined">search</i>
+            <a asp-action="Update" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">
+                Edit customer information
+                <i class="material-symbols-outlined">
+                    edit
+                </i>
             </a>
-        }
-        <a asp-action="Update" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">
-            Edit customer information
-            <i class="material-symbols-outlined">
-                edit
-            </i>
-        </a>
-        <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-regret">
-            Delete Customer
-            <i class="material-symbols-outlined">
-                delete
-            </i>
-        </a>
-        <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="create-customer-form-btn">
-            Return to previous menu
-            <i class="material-symbols-outlined">
-                keyboard_return
-            </i>
-        </a>
+            <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-regret">
+                Delete Customer
+                <i class="material-symbols-outlined">
+                    delete
+                </i>
+            </a>
+            <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="create-customer-form-btn">
+                Return to previous menu
+                <i class="material-symbols-outlined">
+                    keyboard_return
+                </i>
+            </a>
+        </div>
     </div>
 </div>
     

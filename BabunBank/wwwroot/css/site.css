@@ -755,6 +755,7 @@ table{
 .customer-card-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
+  margin-bottom: 24px;
   /*border: 1px solid gray;*/
   padding: 0.75rem;
   border-radius: 24px;
@@ -887,15 +888,25 @@ table{
 .create-customer-form-btn{
   height: 50px;
   background-color: #295956;
+  /*background-color: #31795a;*/
   border: none;
   transition: 0.2s ease-in;
   border-radius: 0.25rem;
-  color: white;
+  color: var(--CTA);
   display: inline-block;
   width: fit-content;
   a{
-    color: white;
+    /*color: white;*/
+    color: #fffde8;
   }
+  i{
+    color: var(--CTA);
+  }
+}
+
+.create-customer-form-btn:hover{
+  background-color: #31795a;
+  color: #fffdf9;
 }
 
 a.create-customer-form-btn{
@@ -909,10 +920,25 @@ a.create-customer-form-btn{
   gap: 12px;
 }
 
+#clear-filter-button:hover{
+  background-color: #31795a;
+  color: #fffde8;
+  display: grid;
+  place-items: center;
+}
+
+
 .create-customer-form-btn:hover{
-  color: var(--CTA);
+  background-color: #31795a;
+  color: #fffde8;
+  /*color: var(--CTA);*/
   a{
-    color: var(--CTA);
+    background-color: #31795a;
+    color: #fffde8;
+    /*color: var(--CTA);*/
+  }
+  i{
+    color: #fffde8;
   }
 }
 
@@ -921,13 +947,14 @@ a.create-customer-form-btn{
   display: flex;
   align-items: center;
   /*background-color: #a32831;*/
-  background-color: #ff000f;
+  /*background-color: #ff000f;*/
+  background-color: #ef4444;
   color: white;
   border-radius: 0.25rem;
 }
 
 .btn-regret:hover{
-  background-color: #d1000d;
+  background-color: #d63d3d;
   color: white;
 }
 
@@ -980,6 +1007,15 @@ a.create-customer-form-btn{
 }
 
 #clear-filter-button{
+  background-color: #295956;
+  color: var(--CTA);
+  display: grid;
+  place-items: center;
+}
+
+#clear-filter-button:hover{
+  background-color: #31795a;
+  color: #fffde8;
   display: grid;
   place-items: center;
 }
@@ -1042,4 +1078,14 @@ a.create-customer-form-btn{
   margin-bottom: 4rem;
   margin-top: 2rem;
   text-align: center;
+}
+
+#customer-bg, #customer-details-bg{
+  /*background-color: #ebf3ee;*/
+  background-color: #edf1ee;
+  /*background-color: #edf8ea;*/
+}
+
+#customer-details-bg{
+  padding: 32px;
 }
