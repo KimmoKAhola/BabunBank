@@ -1,5 +1,5 @@
 ﻿@using BabunBank.Controllers
-@model IEnumerable<BabunBank.Models.Customer.CustomerViewModel>
+@model IEnumerable<BabunBank.Models.ViewModels.Customer.CustomerViewModel>
 
 @{
     ViewBag.Title = "Account title";
@@ -14,13 +14,14 @@
             .Cast<CustomerDropdownMenu>()
             .Select(x => new SelectListItem
             {   
-                Text = ((int)x).ToString(),
+                Text = $"{((int)x).ToString()} results per page",
                 Value = ((int)x).ToString(),
                 Selected = ViewBag.PageSize == (int)x
             }), new {@class = "dropdown-list"})
-        <input class="btn-primary" type="submit" value="Apply filters"/>
+        <input class="create-customer-form-btn" type="submit" value="Apply filters"/>
+        <input class="create-customer-form-btn" type="submit" value="Clear filters"/>
     </form>
-    <h2>Page: @ViewBag.CurrentPage</h2>
+    <h2 id="filter-page-result">Page: @ViewBag.CurrentPage (of @ViewBag.TotalPageCount)</h2>
     
     <table class="data-table">
         <thead class="header">
@@ -69,41 +70,51 @@
                        asp-route-sortColumn="@ViewBag.SortColumn"
                        asp-route-sortOrder="@ViewBag.SortOrder"
                        asp-route-q ="@ViewBag.Q">
-                        <button class="btn-primary">View more <i class="material-symbols-outlined">arrow_forward</i></button>
+                        <button class="create-customer-form-btn view-more">View more <i class="material-symbols-outlined">arrow_forward</i></button>
                     </a></td>
-                @* <a class="navbar-link" asp-area="" asp-controller="Customer" asp-action="Index">Customer</a> *@
             </tr>
         }
-        <tr>
-            <td>
-                <button class="btn-primary">
-                    <a asp-action="Index"
-                       asp-controller="Cashier"
-                       asp-route-sortColumn="@ViewBag.SortColumn"
-                       asp-route-sortOrder="@ViewBag.SortOrder"
-                       asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-                       asp-route-q ="@ViewBag.Q"
-                       asp-route-pageSize="@ViewBag.PageSize">Previous</a>
-                </button>
-            </td>
-            
-            <td></td>
-            <td></td>
-            <td></td>
-            <td>
-                <button class="btn-primary">
-                    <a asp-action="Index" 
-                       asp-controller="Cashier" 
-                       asp-route-sortColumn="@ViewBag.SortColumn"
-                       asp-route-sortOrder="@ViewBag.SortOrder"
-                       asp-route-pageNumber="@(ViewBag.CurrentPage+1)"
-                       asp-route-q="@ViewBag.Q"
-                       asp-route-pageSize="@ViewBag.PageSize">Next</a>
-                </button>
-            </td>
-        </tr>
-        </tbody>
+        @if (@ViewBag.TotalPageCount > 1)
+        {
+            <tr>
+                <td>
+                    @if (@ViewBag.CurrentPage > 1)
+                    {
+                        <button class="create-customer-form-btn">
+                            <a asp-action="Index"
+                               asp-controller="Cashier"
+                               asp-route-sortColumn="@ViewBag.SortColumn"
+                               asp-route-sortOrder="@ViewBag.SortOrder"
+                               asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+                               asp-route-q="@ViewBag.Q"
+                               asp-route-pageSize="@ViewBag.PageSize">Previous page</a>
+                        </button>
+                    }
+                </td>
 
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    @if (@ViewBag.CurrentPage < ViewBag.TotalPageCount)
+                    {
+                        <button class="create-customer-form-btn">
+                            <a asp-action="Index"
+                               asp-controller="Cashier"
+                               asp-route-sortColumn="@ViewBag.SortColumn"
+                               asp-route-sortOrder="@ViewBag.SortOrder"
+                               asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
+                               asp-route-q="@ViewBag.Q"
+                               asp-route-pageSize="@ViewBag.PageSize">Next page</a>
+                        </button>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
     </table>
-    <a asp-controller="Cashier" asp-action="Create">Create new customer</a>
+    <span>
+        <a asp-controller="Cashier" asp-action="Create" class="create-customer-form-btn">Create new customer</a>
+        <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return</a>
+    </span>
 </div>
