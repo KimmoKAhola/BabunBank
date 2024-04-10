@@ -5,9 +5,9 @@
 }
 
 
-<div class="container">
-    <h2>Edit the customer @Model.GivenName @Model.SurName</h2>
-    <form method="post" class="create-customer-form">
+<div class="cashier-update container">
+    <h2 id="update-customer-header">Edit the customer @Model.GivenName @Model.SurName</h2>
+    <form method="post" class="create-customer-form" id="cashier-update-form">
         <div asp-validation-summary="ModelOnly"></div>
 
         <input asp-for="CustomerId" type="hidden">
@@ -94,12 +94,21 @@
 
 
         <div class="create-customer-form-row">
-            <span class="Test">
-                <button type="submit" class="create-customer-form-btn">Submit</button>
+            <span class="Test" id="cashier-submit">
+                <button type="submit" class="create-customer-form-btn" id="cashier-submit-button">
+                    Save changes
+                    <i class="material-symbols-outlined">
+                        save
+                    </i>
+                </button>
             </span>
             
-            <span class="Test">
-                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
+            <span class="Test" id="cashier-return">
+                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn" id="cashier-return-button">
+                    Return to overview<i class="material-symbols-outlined">
+                        keyboard_return
+                    </i>
+                </a>
             </span>
         </div>
     </form>

@@ -15,7 +15,8 @@ public enum CustomerDropdownMenu
     Ten = 10,
     Fifteen = 15,
     Twenty = 20,
-    TwentyFive = 25
+    TwentyFive = 25,
+    Fifty = 50
 }
 
 [Authorize(Roles = $"{UserRoleNames.Cashier}, {UserRoleNames.Admin}")] //TODO add these to relevant pages
@@ -57,6 +58,18 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
         ViewBag.TotalPageCount = totalPageCount;
 
         return View(customers);
+    }
+
+    public IActionResult Clear()
+    {
+        ViewBag.SortColumn = "";
+        ViewBag.SortOrder = "";
+        ViewBag.CurrentPage = 1;
+        ViewBag.Q = "";
+        ViewBag.PageSize = 0;
+        ViewBag.TotalPageCount = 0;
+
+        return RedirectToAction("Index");
     }
 
     public async Task<IActionResult> Details(int id)
