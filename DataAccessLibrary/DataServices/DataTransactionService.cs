@@ -19,6 +19,9 @@ public class DataTransactionService(
         //Create a new transaction
         var newTransaction = await transactionRepository.CreateAsync(deposit);
 
+        if (newTransaction == null)
+            return false;
+
         //Sum of all transaction amounts
         var newAccountBalance = await transactionRepository
             .GetAllAsync()
@@ -41,6 +44,9 @@ public class DataTransactionService(
 
         //Create a new transaction
         var newTransaction = await transactionRepository.CreateAsync(withdrawal);
+
+        if (newTransaction == null)
+            return false;
 
         //Sum of all transaction amounts
         var newAccountBalance = await transactionRepository
