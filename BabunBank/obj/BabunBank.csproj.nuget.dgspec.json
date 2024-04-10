@@ -94,6 +94,10 @@
             "MySql.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.0, )"
+            },
+            "ScottPlot": {
+              "target": "Package",
+              "version": "[5.0.25, )"
             }
           },
           "imports": [

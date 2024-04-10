@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CRcX8uy3OshupM3zlkTvgaD3OQjLLv/CGRt/opvRAII=",
+  "Hash": "gRLrmjNJ6oDx3dXXnACN4KQjaJ+5K4nyZUps0xZ2KYw=",
   "Source": "BabunBank",
   "BasePath": "_content/BabunBank",
   "Mode": "Default",
@@ -1896,6 +1896,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\teambuilding-bg.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\temp_plot.png",
+      "SourceId": "BabunBank",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/temp_plot.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\temp_plot.png"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",

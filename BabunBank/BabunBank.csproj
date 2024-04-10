@@ -22,6 +22,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="ScottPlot" Version="5.0.25" />
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +67,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLibrary\DataAccessLibrary.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\temp_plot.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\UIStateModels\" />
+    <Folder Include="Models\ViewModels\" />
   </ItemGroup>
 
 </Project>

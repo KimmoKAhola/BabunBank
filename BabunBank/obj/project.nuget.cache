@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "m1Y2Scm2b3LiPVQT7gnWB0JXe37zqpxGoGNqJXaeDTiVVHkg10+Wly9j2eO1rbDm6pteyA3PRT3KyN7R7jv8mg==",
+  "dgSpecHash": "Zrf5uXNtmZtns0jwjm3N6Rqi/QXZ2DbuX0rWtHyAuiZNFm+x0lWp2prKKzhTTxKYUKTQmo3dErUUu2jWawHuhQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\BabunBank.csproj",
   "expectedPackageFiles": [
@@ -147,6 +147,11 @@
     "C:\\Users\\kahol\\.nuget\\packages\\nuget.projectmodel\\6.9.1\\nuget.projectmodel.6.9.1.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
+    "C:\\Users\\kahol\\.nuget\\packages\\scottplot\\5.0.25\\scottplot.5.0.25.nupkg.sha512",
+    "C:\\Users\\kahol\\.nuget\\packages\\skiasharp\\2.88.7\\skiasharp.2.88.7.nupkg.sha512",
+    "C:\\Users\\kahol\\.nuget\\packages\\skiasharp.nativeassets.linux.nodependencies\\2.88.7\\skiasharp.nativeassets.linux.nodependencies.2.88.7.nupkg.sha512",
+    "C:\\Users\\kahol\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.7\\skiasharp.nativeassets.macos.2.88.7.nupkg.sha512",
+    "C:\\Users\\kahol\\.nuget\\packages\\skiasharp.nativeassets.win32\\2.88.7\\skiasharp.nativeassets.win32.2.88.7.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\system.codedom\\5.0.0\\system.codedom.5.0.0.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\system.collections.immutable\\7.0.0\\system.collections.immutable.7.0.0.nupkg.sha512",

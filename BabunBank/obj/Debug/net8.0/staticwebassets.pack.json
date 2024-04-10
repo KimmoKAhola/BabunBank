@@ -153,6 +153,10 @@
       "PackagePath": "staticwebassets\\images\\teambuilding-bg.jpg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\temp_plot.png",
+      "PackagePath": "staticwebassets\\images\\temp_plot.png"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
