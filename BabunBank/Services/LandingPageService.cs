@@ -1,6 +1,6 @@
-﻿
-using BabunBank.Models.LandingPage;
+﻿using BabunBank.Models.ViewModels.LandingPage;
 using DataAccessLibrary.DataServices;
+
 namespace BabunBank.Services;
 
 /// <summary>
@@ -16,7 +16,11 @@ public class LandingPageService(DataLandingPageService landingPageService)
         var viewModel = new LandingPageViewModel
         {
             NumberOfAccounts = accountData.Count(),
-            NumberOfCustomers = accountData.SelectMany(a => a.Dispositions).Select(d => d.CustomerId).Distinct().Count(),
+            NumberOfCustomers = accountData
+                .SelectMany(a => a.Dispositions)
+                .Select(d => d.CustomerId)
+                .Distinct()
+                .Count(),
             TotalAccountBalance = accountData.Sum(a => a.Balance)
         };
 
