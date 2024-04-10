@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using BabunBank.Models.Customer;
+using BabunBank.Models.FormModels.Cashier;
+using BabunBank.Models.ViewModels.Customer;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,15 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         return customerViewModel;
     }
 
-    public async Task<IEnumerable<CustomerViewModel>> GetAllCustomersViewModelAsync(
+    public async Task<EditCustomerModel?> GetEditCustomerViewModelAsync(int id)
+    {
+        var result = await dataCustomerService.GetAsync(id);
+
+        var editableCustomerModel = mapper.Map<EditCustomerModel>(result);
+        return editableCustomerModel;
+    }
+
+    public async Task<(IEnumerable<CustomerViewModel>, int)> GetAllCustomersViewModelAsync(
         string sortColumn,
         string sortOrder,
         string q,
@@ -39,12 +48,18 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
 
         var customerViewModel = mapper.Map<IEnumerable<CustomerViewModel>>(result);
 
-        return customerViewModel;
+        return (customerViewModel, customers.Count(x => !x.IsDeleted));
     }
 
     public async Task<bool?> CreateCustomerAsync(Customer customer)
     {
         return await dataCustomerService.CreateDepositAsync(customer);
+    }
+
+    public async Task<bool?> UpdateCustomerAsync(EditCustomerModel customerModel)
+    {
+        var customer = mapper.Map<Customer>(customerModel);
+        return await dataCustomerService.UpdateAsync(customer);
     }
 
     public async Task<bool?> DeleteCustomerAsync(int id)
