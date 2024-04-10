@@ -1,8 +1,7 @@
 ﻿using AutoMapper;
 using BabunBank.Configurations.Enums;
 using BabunBank.Models;
-using BabunBank.Models.Admin;
-using BabunBank.Models.User;
+using BabunBank.Models.FormModels.User;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Identity;
 
