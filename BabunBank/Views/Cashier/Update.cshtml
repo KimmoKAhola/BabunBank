@@ -1,0 +1,106 @@
+﻿@model BabunBank.Models.FormModels.Cashier.EditCustomerModel
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+
+<div class="container">
+    <h2>Edit the customer @Model.GivenName @Model.SurName</h2>
+    <form method="post" class="create-customer-form">
+        <div asp-validation-summary="ModelOnly"></div>
+
+        <input asp-for="CustomerId" type="hidden">
+        <input asp-for="NationalId" type="hidden">
+        <input asp-for="Birthday" type="hidden">
+        
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="GivenName"></label>
+                <input asp-for="GivenName" type="text">
+                <span asp-validation-for="GivenName"></span>
+            </span>
+
+            <span class="Test">
+                <label asp-for="SurName"></label>
+                <input asp-for="SurName" type="text">
+                <span asp-validation-for="SurName"></span>
+            </span>
+        </div>
+        
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="Gender"></label>
+                <input asp-for="Gender" type="text">
+                <span asp-validation-for="Gender"></span>
+            </span>
+        
+            <span class="Test">
+                <label asp-for="StreetAddress"></label>
+                <input asp-for="StreetAddress" type="text">
+                <span asp-validation-for="StreetAddress"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="City"></label>
+                <input asp-for="City" type="text">
+                <span asp-validation-for="City"></span>
+            </span>
+
+            <span class="Test">
+                <label asp-for="Country"></label>
+                <input asp-for="Country" type="text">
+                <span asp-validation-for="Country"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="Zipcode"></label>
+                <input asp-for="Zipcode" type="text">
+                <span asp-validation-for="Zipcode"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="CountryCode"></label>
+                <input asp-for="CountryCode" type="text">
+                <span asp-validation-for="CountryCode"></span>
+            </span>
+
+            <span class="Test">
+                <label asp-for="TelephoneCountryCode"></label>
+                <input asp-for="TelephoneCountryCode" type="text">
+                <span asp-validation-for="TelephoneCountryCode"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="TelephoneNumber"></label>
+                <input asp-for="TelephoneNumber" type="text">
+                <span asp-validation-for="TelephoneNumber"></span>
+            </span>
+
+            <span class="Test">
+                <label asp-for="EmailAddress"></label>
+                <input asp-for="EmailAddress" type="email">
+                <span asp-validation-for="EmailAddress"></span>
+            </span>
+        </div>
+
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <button type="submit" class="create-customer-form-btn">Submit</button>
+            </span>
+            
+            <span class="Test">
+                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
+            </span>
+        </div>
+    </form>
+</div>
