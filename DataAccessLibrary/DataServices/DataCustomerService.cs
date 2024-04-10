@@ -28,6 +28,12 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
 
             switch (sortColumn)
             {
+                case "Id" when sortOrder == "asc":
+                    result = result.OrderBy(x => x.CustomerId);
+                    break;
+                case "Id":
+                    result = result.OrderByDescending(x => x.CustomerId);
+                    break;
                 case "Gender" when sortOrder == "asc":
                     result = result.OrderBy(x => x.Gender);
                     break;

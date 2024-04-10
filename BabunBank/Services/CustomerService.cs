@@ -35,7 +35,11 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
     {
         var customers = dataCustomerService.GetAll(sortColumn, sortOrder);
 
-        if (!string.IsNullOrEmpty(q))
+        if (int.TryParse(q, out int value))
+        {
+            customers = customers.Where(x => x.CustomerId == value);
+        }
+        else if (!string.IsNullOrEmpty(q))
         {
             customers = customers.Where(x => x.Givenname.Contains(q) || x.Surname.Contains(q));
         }

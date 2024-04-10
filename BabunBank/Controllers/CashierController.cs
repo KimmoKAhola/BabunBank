@@ -47,7 +47,7 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
             pageSize
         );
 
-        totalPageCount = (int)Math.Ceiling((double)(totalPageCount / pageSize));
+        totalPageCount = (int)Math.Ceiling((double)totalPageCount / pageSize);
 
         ViewBag.SortColumn = sortColumn;
         ViewBag.SortOrder = sortOrder;

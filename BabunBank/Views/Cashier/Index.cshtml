@@ -26,6 +26,26 @@
     <table class="data-table">
         <thead class="header">
         <tr>
+            <th>
+                <span class="customer-table">
+                        Id
+                    <a asp-action="Index" asp-controller="Cashier"
+                       asp-route-sortColumn="Id"
+                       asp-route-sortOrder="asc"
+                       asp-route-q="@ViewBag.Q"
+                       style="text-decoration:none">
+                            <i class="material-symbols-outlined">expand_more</i>
+                        </a>
+
+                        <a asp-action="Index" asp-controller="Cashier"
+                           asp-route-sortColumn="Id"
+                           asp-route-sortOrder="desc"
+                           asp-route-q="@ViewBag.Q"
+                           style="text-decoration:none">
+                            <i class="material-symbols-outlined">expand_less</i>
+                        </a>
+                    </span>
+            </th>
             @foreach (var column in new[] { "Gender", "GivenName", "Surname", "Country" })
             {
                 <th>
@@ -38,7 +58,7 @@
                            style="text-decoration:none">
                             <i class="material-symbols-outlined">expand_more</i>
                         </a>
-                    
+
                         <a asp-action="Index" asp-controller="Cashier"
                            asp-route-sortColumn="@column"
                            asp-route-sortOrder="desc"
@@ -59,6 +79,7 @@
         @foreach (var customer in Model)
         {
             <tr>
+                <td>@customer.CustomerId</td>
                 <td>@customer.Gender</td>
                 <td>@customer.GivenName</td>
                 <td>@customer.Surname</td>
@@ -91,7 +112,7 @@
                         </button>
                     }
                 </td>
-
+                <td></td>
                 <td></td>
                 <td></td>
                 <td></td>
