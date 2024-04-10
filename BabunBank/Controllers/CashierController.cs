@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
-using BabunBank.Models;
-using BabunBank.Models.Customer;
+using BabunBank.Models.FormModels.Cashier;
+using BabunBank.Models.FormModels.Customer;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +39,7 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
             pageSize = 5;
         }
 
-        var customers = await customerService.GetAllCustomersViewModelAsync(
+        var (customers, totalPageCount) = await customerService.GetAllCustomersViewModelAsync(
             sortColumn,
             sortOrder,
             q,
@@ -47,11 +47,14 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
             pageSize
         );
 
+        totalPageCount = (int)Math.Ceiling((double)(totalPageCount / pageSize));
+
         ViewBag.SortColumn = sortColumn;
         ViewBag.SortOrder = sortOrder;
         ViewBag.CurrentPage = pageNumber;
         ViewBag.Q = q;
         ViewBag.PageSize = pageSize;
+        ViewBag.TotalPageCount = totalPageCount;
 
         return View(customers);
     }
@@ -97,6 +100,33 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
         @TempData["CreatedUser"] =
             $"Your user {customer.CustomerId} {customer.Givenname} has been created and can be seen below.";
         return RedirectToAction(nameof(Details), new { id = customer.CustomerId });
+    }
+
+    public async Task<IActionResult> Update(int id)
+    {
+        var model = await customerService.GetEditCustomerViewModelAsync(id);
+        if (model == null)
+            return RedirectToAction("Index", "Error");
+
+        return View(model);
+    }
+
+    [HttpPost, ActionName("Update")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Update(
+        int id,
+        [Bind(
+            "CustomerId, GivenName, Gender, SurName, StreetAddress, City, Zipcode, Country, CountryCode, TelephoneCountryCode, TelephoneNumber, EmailAddress, NationalId, Birthday"
+        )]
+            EditCustomerModel model
+    )
+    {
+        if (!ModelState.IsValid)
+            return View(model);
+
+        await customerService.UpdateCustomerAsync(model);
+
+        return RedirectToAction(nameof(Details), new { id = id });
     }
 
     public async Task<IActionResult> Delete(int id)
