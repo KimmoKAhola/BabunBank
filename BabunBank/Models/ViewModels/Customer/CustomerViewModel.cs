@@ -1,7 +1,6 @@
-﻿using BabunBank.Models.Account;
-using BabunBank.Models.Transaction;
+﻿using BabunBank.Models.ViewModels.Account;
 
-namespace BabunBank.Models.Customer;
+namespace BabunBank.Models.ViewModels.Customer;
 
 /// <summary>
 /// Det ska gå att söka efter kund på namn och stad

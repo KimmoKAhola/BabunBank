@@ -1,4 +1,4 @@
-﻿namespace BabunBank.Models.Transaction;
+﻿namespace BabunBank.Models.ViewModels.Transaction;
 
 public class TransactionViewModel
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Build.Framework;
 
-namespace BabunBank.Models.Admin;
+namespace BabunBank.Models.ViewModels.Admin;
 
 public class IdentityUserViewModel
 {

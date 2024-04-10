@@ -1,4 +1,4 @@
-namespace BabunBank.Models
+namespace BabunBank.Models.ViewModels.Error
 {
     public class ErrorViewModel
     {

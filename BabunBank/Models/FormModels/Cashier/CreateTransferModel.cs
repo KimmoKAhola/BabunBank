@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BabunBank.Models.Cashier;
+namespace BabunBank.Models.FormModels.Cashier;
 
 public class CreateTransferModel
 {

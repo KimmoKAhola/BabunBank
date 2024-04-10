@@ -1,6 +1,6 @@
 ﻿using Microsoft.Build.Framework;
 
-namespace BabunBank.Models.Home;
+namespace BabunBank.Models.FormModels.Home;
 
 public class ContactUsModel
 {
