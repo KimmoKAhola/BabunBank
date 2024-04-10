@@ -39,9 +39,10 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         throw new NotImplementedException();
     }
 
-    public async Task<Account?> UpdateAsync(Account model)
+    public async Task<bool?> UpdateAsync(Account model)
     {
-        return await accountRepository.UpdateAsync(x => x.AccountId == model.AccountId, model);
+        return await accountRepository.UpdateAsync(x => x.AccountId == model.AccountId, model)
+            != null;
     }
 
     public async Task Deposit(Account model) { }
