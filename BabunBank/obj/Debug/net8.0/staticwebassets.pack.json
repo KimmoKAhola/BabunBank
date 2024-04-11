@@ -37,6 +37,14 @@
       "PackagePath": "staticwebassets\\images\\Mediamodifier-Design.svg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Test.png",
+      "PackagePath": "staticwebassets\\images\\Test.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Test2.png",
+      "PackagePath": "staticwebassets\\images\\Test2.png"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\babun-large-logo.png",
       "PackagePath": "staticwebassets\\images\\babun-large-logo.png"
     },

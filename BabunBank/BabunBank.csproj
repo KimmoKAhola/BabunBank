@@ -67,6 +67,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DataAccessLibrary\DataAccessLibrary.csproj" />
+    <ProjectReference Include="..\DetectMoneyLaundering\DetectMoneyLaundering.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -76,6 +77,7 @@
   <ItemGroup>
     <Folder Include="Models\UIStateModels\" />
     <Folder Include="Models\ViewModels\" />
+    <Folder Include="wwwroot\images\moneylaundering\" />
   </ItemGroup>
 
 </Project>

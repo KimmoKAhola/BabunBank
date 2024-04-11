@@ -3,7 +3,10 @@ using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models.FormModels.Cashier;
 using BabunBank.Models.FormModels.Customer;
+using BabunBank.Models.ViewModels.Account;
 using BabunBank.Services;
+using DataAccessLibrary.Data;
+using DetectMoneyLaundering.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -20,7 +23,11 @@ public enum CustomerDropdownMenu
 }
 
 [Authorize(Roles = $"{UserRoleNames.Cashier}, {UserRoleNames.Admin}")] //TODO add these to relevant pages
-public class CashierController(CustomerService customerService, IMapper mapper) : Controller
+public class CashierController(
+    CustomerService customerService,
+    MoneyLaunderingService moneyLaunderingService,
+    IMapper mapper
+) : Controller
 {
     public async Task<IActionResult> Index(
         string sortColumn,
@@ -150,5 +157,12 @@ public class CashierController(CustomerService customerService, IMapper mapper) 
             return RedirectToAction("Index", "Error");
         }
         return RedirectToAction("Delete");
+    }
+
+    public async Task<IActionResult> Inspect(int id)
+    {
+        var sus = await moneyLaunderingService.InspectAccount(id);
+
+        return View(sus);
     }
 }

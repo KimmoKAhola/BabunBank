@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLibrary", "DataAc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BabunBank-API", "BabunBank-API\BabunBank-API.csproj", "{C57058F1-6D54-439A-91B6-C2BFEE97F822}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DetectMoneyLaundering", "DetectMoneyLaundering\DetectMoneyLaundering.csproj", "{9CD5C064-1A69-44CC-AC5C-49F0E578FAF6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C57058F1-6D54-439A-91B6-C2BFEE97F822}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C57058F1-6D54-439A-91B6-C2BFEE97F822}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C57058F1-6D54-439A-91B6-C2BFEE97F822}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CD5C064-1A69-44CC-AC5C-49F0E578FAF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CD5C064-1A69-44CC-AC5C-49F0E578FAF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CD5C064-1A69-44CC-AC5C-49F0E578FAF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CD5C064-1A69-44CC-AC5C-49F0E578FAF6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
