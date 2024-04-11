@@ -1,8 +1,7 @@
-Cool project
-#Babun Bank MVC Project
+# Babun Bank MVC Project
 
-#Data Access Library
+# Data Access Library
 
-#API
+# API
 
-#Console application
+# Console application
