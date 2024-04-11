@@ -7,179 +7,188 @@
 }
 <div id="customer-bg">
     <div class="customer-container">
-    @* TODO Remove this later, or style it better*@
-    <h1 id="customer-index-header">Customer index page</h1>
-    <form class="customer-filter-form" method="get" action="@Url.Action("Index", "Cashier")">
-        <div class="form-group">
-            <input name="q" value="@ViewBag.Q" placeholder="Search here....">
-        </div>
-        <div class="form-group">
-            @Html.DropDownList("pageSize", Enum.GetValues(typeof(CustomerDropdownMenu))
-                .Cast<CustomerDropdownMenu>()
-                .Select(x => new SelectListItem
+        @* TODO Remove this later, or style it better*@
+        <h1 id="customer-index-header">Customer index page</h1>
+        <form class="customer-filter-form" method="get" action="@Url.Action("Index", "Cashier")">
+            <div class="form-group" id="cashier-search-bar">
+                <input name="q" value="@ViewBag.Q" placeholder="Search here....">
+            </div>
+            <div class="form-group">
+                @Html.DropDownList("pageSize", Enum.GetValues(typeof(CustomerDropdownMenu))
+                    .Cast<CustomerDropdownMenu>()
+                    .Select(x => new SelectListItem
+                    {
+                        Text = $"{((int)x).ToString()} results per page",
+                        Value = ((int)x).ToString(),
+                        Selected = ViewBag.PageSize == (int)x
+                    }), new { @class = "dropdown-list" })
+            </div>
+            <div class="form-group">
+                <input class="create-customer-form-btn" type="submit" value="Apply filters"/>
+            </div>
+            <div class="form-group">
+                <a asp-controller="Cashier" asp-action="Clear" class="create-customer-form-btn" id="clear-filter-button">Clear filters</a>
+            </div>
+        </form>
+        @if (ViewBag.TotalPageCount > 0)
+        {
+            <h2 id="filter-page-result">Page: @ViewBag.CurrentPage (of @ViewBag.TotalPageCount)</h2>
+        }
+        <span id="cashier-buttons">
+            <a asp-controller="Cashier" asp-action="Create" class="create-customer-form-btn">Create new customer</a>
+            <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return</a>
+        </span>
+        @if (ViewBag.TotalPageCount > 0)
+        {
+            <table class="data-table" id="data-table">
+                <thead class="header">
+                <tr>
+                    <th>
+                        <span class="customer-table">
+                            Id
+                            <a asp-action="Index" asp-controller="Cashier"
+                               asp-route-sortColumn="Id"
+                               asp-route-sortOrder="asc"
+                               asp-route-q="@ViewBag.Q"
+                               style="text-decoration:none">
+                                <i class="material-symbols-outlined">expand_more</i>
+                            </a>
+
+                            <a asp-action="Index" asp-controller="Cashier"
+                               asp-route-sortColumn="Id"
+                               asp-route-sortOrder="desc"
+                               asp-route-q="@ViewBag.Q"
+                               style="text-decoration:none">
+                                <i class="material-symbols-outlined">expand_less</i>
+                            </a>
+                        </span>
+                    </th>
+                    @foreach (var column in new[] { "GivenName", "Surname", "Country", "City", "Gender", "Birth Date" })
+                    {
+                        <th>
+                            <span class="customer-table">
+                                @column
+                                <a asp-action="Index" asp-controller="Cashier"
+                                   asp-route-sortColumn="@column"
+                                   asp-route-sortOrder="asc"
+                                   asp-route-q="@ViewBag.Q"
+                                   style="text-decoration:none">
+                                    <i class="material-symbols-outlined">expand_more</i>
+                                </a>
+
+                                <a asp-action="Index" asp-controller="Cashier"
+                                   asp-route-sortColumn="@column"
+                                   asp-route-sortOrder="desc"
+                                   asp-route-q="@ViewBag.Q"
+                                   style="text-decoration:none">
+                                    <i class="material-symbols-outlined">expand_less</i>
+                                </a>
+                            </span>
+                        </th>
+                    }
+
+                    <th>
+                        <span class="customer-table">
+                            National Id
+                            <a asp-action="Index" asp-controller="Cashier"
+                               asp-route-sortColumn="Id"
+                               asp-route-sortOrder="asc"
+                               asp-route-q="@ViewBag.Q"
+                               style="text-decoration:none">
+                                <i class="material-symbols-outlined">expand_more</i>
+                            </a>
+
+                            <a asp-action="Index" asp-controller="Cashier"
+                               asp-route-sortColumn="Id"
+                               asp-route-sortOrder="desc"
+                               asp-route-q="@ViewBag.Q"
+                               style="text-decoration:none">
+                                <i class="material-symbols-outlined">expand_less</i>
+                            </a>
+                        </span>
+                    </th>
+
+                    <th>
+
+                    </th>
+                </tr>
+
+
+                </thead>
+                <tbody class="body">
+
+                @foreach (var customer in Model)
                 {
-                    Text = $"{((int)x).ToString()} results per page",
-                    Value = ((int)x).ToString(),
-                    Selected = ViewBag.PageSize == (int)x
-                }), new { @class = "dropdown-list" })
-        </div>
-        <div class="form-group">
-            <input class="create-customer-form-btn" type="submit" value="Apply filters"/>
-        </div>
-        <div class="form-group">
-            <a asp-controller="Cashier" asp-action="Clear" class="create-customer-form-btn" id="clear-filter-button">Clear filters</a>
-        </div>
-    </form>
-    <h2 id="filter-page-result">Page: @ViewBag.CurrentPage (of @ViewBag.TotalPageCount)</h2>
-
-    <table class="data-table">
-        <thead class="header">
-        <tr>
-            <th>
-                <span class="customer-table">
-                    Id
-                    <a asp-action="Index" asp-controller="Cashier"
-                       asp-route-sortColumn="Id"
-                       asp-route-sortOrder="asc"
-                       asp-route-q="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">expand_more</i>
-                    </a>
-
-                    <a asp-action="Index" asp-controller="Cashier"
-                       asp-route-sortColumn="Id"
-                       asp-route-sortOrder="desc"
-                       asp-route-q="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">expand_less</i>
-                    </a>
-                </span>
-            </th>
-            @foreach (var column in new[] { "GivenName", "Surname", "Country", "City", "Gender", "Birth Date" })
-            {
-                <th>
-                    <span class="customer-table">
-                        @column
-                        <a asp-action="Index" asp-controller="Cashier"
-                           asp-route-sortColumn="@column"
-                           asp-route-sortOrder="asc"
-                           asp-route-q="@ViewBag.Q"
-                           style="text-decoration:none">
-                            <i class="material-symbols-outlined">expand_more</i>
-                        </a>
-
-                        <a asp-action="Index" asp-controller="Cashier"
-                           asp-route-sortColumn="@column"
-                           asp-route-sortOrder="desc"
-                           asp-route-q="@ViewBag.Q"
-                           style="text-decoration:none">
-                            <i class="material-symbols-outlined">expand_less</i>
-                        </a>
-                    </span>
-                </th>
-            }
-
-            <th>
-                <span class="customer-table">
-                    National Id
-                    <a asp-action="Index" asp-controller="Cashier"
-                       asp-route-sortColumn="Id"
-                       asp-route-sortOrder="asc"
-                       asp-route-q="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">expand_more</i>
-                    </a>
-
-                    <a asp-action="Index" asp-controller="Cashier"
-                       asp-route-sortColumn="Id"
-                       asp-route-sortOrder="desc"
-                       asp-route-q="@ViewBag.Q"
-                       style="text-decoration:none">
-                        <i class="material-symbols-outlined">expand_less</i>
-                    </a>
-                </span>
-            </th>
-            
-            <th>
-
-            </th>
-        </tr>
-        
-        
-        </thead>
-        <tbody class="body">
-
-        @foreach (var customer in Model)
-        {
-            <tr>
-                <td>@customer.CustomerId</td>
-                <td>@customer.Gender</td>
-                <td>@customer.GivenName</td>
-                <td>@customer.Surname</td>
-                <td>@customer.Country</td>
-                <td>@customer.Gender</td>
-                <td>@customer.BirthDay</td>
-                <td>@(customer.NationalId ?? "N/A")</td>
-                <td>
-                    <a asp-controller="Cashier" asp-action="Details"
-                       asp-route-id="@customer.CustomerId"
-                       asp-route-country="@customer.Country"
-                       asp-route-sortColumn="@ViewBag.SortColumn"
-                       asp-route-sortOrder="@ViewBag.SortOrder"
-                       asp-route-q="@ViewBag.Q">
-                        <button class="create-customer-form-btn view-more">View
-                            
-                            @* <i class="material-symbols-outlined">arrow_forward</i> *@
-                            <i class="material-symbols-outlined">chevron_right</i>
-                        </button>
-                    </a></td>
-            </tr>
-        }
-        @if (ViewBag.TotalPageCount > 1)
-        {
-            <tr>
-                <td>
-                    @if (ViewBag.CurrentPage > 1)
-                    {
-                        <button class="create-customer-form-btn">
-                            <a asp-action="Index"
-                               asp-controller="Cashier"
+                    <tr>
+                        <td>@customer.CustomerId</td>
+                        <td>@customer.Gender</td>
+                        <td>@customer.GivenName</td>
+                        <td>@customer.Surname</td>
+                        <td>@customer.Country</td>
+                        <td>@customer.Gender</td>
+                        <td>@customer.BirthDay</td>
+                        <td>@(customer.NationalId ?? "N/A")</td>
+                        <td>
+                            <a asp-controller="Cashier" asp-action="Details"
+                               asp-route-id="@customer.CustomerId"
+                               asp-route-country="@customer.Country"
                                asp-route-sortColumn="@ViewBag.SortColumn"
                                asp-route-sortOrder="@ViewBag.SortOrder"
-                               asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-                               asp-route-q="@ViewBag.Q"
-                               asp-route-pageSize="@ViewBag.PageSize">Previous page</a>
-                        </button>
-                    }
-                </td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    @if (ViewBag.CurrentPage < ViewBag.TotalPageCount)
-                    {
-                        <button class="create-customer-form-btn">
-                            <a asp-action="Index"
-                               asp-controller="Cashier"
-                               asp-route-sortColumn="@ViewBag.SortColumn"
-                               asp-route-sortOrder="@ViewBag.SortOrder"
-                               asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
-                               asp-route-q="@ViewBag.Q"
-                               asp-route-pageSize="@ViewBag.PageSize">Next page</a>
-                        </button>
-                    }
-                </td>
-            </tr>
+                               asp-route-q="@ViewBag.Q">
+                                <button class="create-customer-form-btn view-more">View
+
+                                    @* <i class="material-symbols-outlined">arrow_forward</i> *@
+                                    <i class="material-symbols-outlined">chevron_right</i>
+                                </button>
+                            </a></td>
+                    </tr>
+                }
+                @if (ViewBag.TotalPageCount > 1)
+                {
+                    <tr class="data-table-button-row">
+                        <td class="no-border">
+                            @if (ViewBag.CurrentPage > 1)
+                            {
+                                <button class="create-customer-form-btn">
+                                    <a asp-action="Index"
+                                       asp-controller="Cashier"
+                                       asp-route-sortColumn="@ViewBag.SortColumn"
+                                       asp-route-sortOrder="@ViewBag.SortOrder"
+                                       asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+                                       asp-route-q="@ViewBag.Q"
+                                       asp-route-pageSize="@ViewBag.PageSize">Previous page</a>
+                                </button>
+                            }
+                        </td>
+                        <td class="no-border"></td>
+                        <td class="no-border"></td>
+                        <td class="no-border"></td>
+                        <td class="no-border"></td>
+                        <td class="no-border"></td>
+                        <td class="no-border"></td>
+                        <td class="no-border"></td>
+                        <td class="no-border">
+                            @if (ViewBag.CurrentPage < ViewBag.TotalPageCount)
+                            {
+                                <button class="create-customer-form-btn">
+                                    <a asp-action="Index"
+                                       asp-controller="Cashier"
+                                       asp-route-sortColumn="@ViewBag.SortColumn"
+                                       asp-route-sortOrder="@ViewBag.SortOrder"
+                                       asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
+                                       asp-route-q="@ViewBag.Q"
+                                       asp-route-pageSize="@ViewBag.PageSize">Next page</a>
+                                </button>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
         }
-        </tbody>
-    </table>
-    <span>
-        <a asp-controller="Cashier" asp-action="Create" class="create-customer-form-btn">Create new customer</a>
-        <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return</a>
-    </span>
-</div>
+        else
+        {
+            <h2>No results for your query "@ViewBag.Q"</h2>
+        }
+    </div>
 </div>
