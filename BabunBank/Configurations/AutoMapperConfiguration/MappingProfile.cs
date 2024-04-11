@@ -15,7 +15,7 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
-        CreateMap<Account, AccountViewModel>();
+        CreateMap<Account, AccountViewModel>().ReverseMap();
         CreateMap<Customer, CustomerViewModel>();
         CreateMap<Transaction, TransactionViewModel>();
         CreateMap<SignUpCustomerModel, Customer>();
