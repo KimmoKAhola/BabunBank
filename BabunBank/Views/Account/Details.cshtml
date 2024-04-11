@@ -12,11 +12,14 @@
     <h1>The 50 newest transactions for the account with id @Model.AccountId</h1>
     <h2>Current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
     <div class="customer-card-button-row" id="account-details-header">
-        <a asp-controller="Account" asp-action="Deposit" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Deposit to this account</a>
-        <a asp-controller="Account" asp-action="Withdraw" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Withdraw from this account</a>
-        <a asp-controller="Account" asp-action="Transfer" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Transfer from this account to another account</a>
-        <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Go back</a>
+        <a asp-controller="Account" asp-action="Deposit" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Deposit</a>
+        <a asp-controller="Account" asp-action="Withdraw" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Withdraw</a>
+        <a asp-controller="Account" asp-action="Transfer" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Transfer</a>
+        <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
     </div>
+    
+    <a asp-controller="Cashier" asp-action="Inspect" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Inspect customer</a>
+    
     <table class="data-table">
         <thead>
         <tr>
