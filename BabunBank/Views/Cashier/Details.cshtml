@@ -47,14 +47,22 @@
                 </button>
             </div>
             <div class="customer-card-right">
-                @if (@Model.Gender == "male")
-                {
-                    <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
-                }
-                else
-                {
-                    <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
-                }
+                <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-regret" id="customer-delete-button">
+                    <span>
+                        Delete
+                    </span>
+                    <i class="material-symbols-outlined">
+                        delete
+                    </i>
+                </a>
+                    @if (@Model.Gender == "male")
+                    {
+                        <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
+                    }
+                    else
+                    {
+                        <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
+                    }
                 <h2 class="customer-card-profile-name">@Model.GivenName @Model.Surname</h2>
             </div>
         </div>
@@ -72,12 +80,7 @@
                     edit
                 </i>
             </a>
-            <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-regret">
-                Delete Customer
-                <i class="material-symbols-outlined">
-                    delete
-                </i>
-            </a>
+            
             <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="create-customer-form-btn">
                 Return to previous menu
                 <i class="material-symbols-outlined">
