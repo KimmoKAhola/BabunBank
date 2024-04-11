@@ -1,5 +1,6 @@
 ﻿using BabunBank.Services;
 using DataAccessLibrary.DataServices;
+using DetectMoneyLaundering.Services;
 
 namespace BabunBank.Configurations.DependencyConfiguration;
 
@@ -20,5 +21,8 @@ public static class ServiceConfiguration
         services.AddScoped<TransactionService>();
         services.AddScoped<LandingPageService>();
         services.AddScoped<IdentityUserService>();
+
+        //Laundering Services
+        services.AddScoped<MoneyLaunderingService>();
     }
 }
