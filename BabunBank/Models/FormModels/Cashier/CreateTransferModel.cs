@@ -11,17 +11,20 @@ public class CreateTransferModel
     public int ToAccountId { get; init; }
 
     [Required]
-    public DateOnly Date { get; init; }
-
-    [Required]
-    public string Type { get; init; } = null!;
-
-    [Required]
-    public string Operation { get; init; } = null!;
-
-    [Required]
-    [Range(100, 10000)]
+    [Range(1, 100000)]
     public decimal Amount { get; init; }
+
+    [Required]
+    public DateOnly Date { get; init; } = DateOnly.FromDateTime(DateTime.Now);
+
+    [Required]
+    public string Type { get; init; } = "Debit";
+
+    [Required]
+    public string OperationSender { get; init; } = "Transfer to";
+
+    [Required]
+    public string OperationReceiver { get; init; } = "Transfer from";
 
     [Required]
     public decimal Balance { get; init; }

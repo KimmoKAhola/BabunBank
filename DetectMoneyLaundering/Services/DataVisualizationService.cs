@@ -3,19 +3,19 @@ using ScottPlot;
 
 namespace DetectMoneyLaundering.Services;
 
-public class DataVisualizationService
+public static class DataVisualizationService
 {
     public static void CreatePlot(InspectAccountModel model)
     {
-        ScottPlot.Plot myPlot = new();
-        ScottPlot.Plot myPlot2 = new();
+        Plot myPlot = new();
+        Plot myPlot2 = new();
         var length = model.TransactionsOverLimit.Count(x => x.Amount > 15000);
-        var length2 = model.NormalTransactions.Count();
-        DateTime[] xs = new DateTime[length];
-        DateTime[] xs2 = new DateTime[length2];
-        decimal[] ys = model.TransactionsOverLimit.Select(x => x.Amount).ToArray();
-        decimal[] ys2 = model.NormalTransactions.Select(x => x.Amount).ToArray();
-        int counter = 0;
+        var length2 = model.NormalTransactions.Count;
+        var xs = new DateTime[length];
+        var xs2 = new DateTime[length2];
+        var ys = model.TransactionsOverLimit.Select(x => x.Amount).ToArray();
+        var ys2 = model.NormalTransactions.Select(x => x.Amount).ToArray();
+        var counter = 0;
         foreach (var dateForTransaction in model.TransactionsOverLimit)
         {
             xs[counter] = DateTime.Parse(dateForTransaction.Date.ToString());

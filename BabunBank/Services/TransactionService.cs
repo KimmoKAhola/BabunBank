@@ -1,4 +1,6 @@
-﻿using DataAccessLibrary.Data;
+﻿using AutoMapper;
+using BabunBank.Models.FormModels.Cashier;
+using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 
 namespace BabunBank.Services;
@@ -15,8 +17,33 @@ public class TransactionService(DataTransactionService dataTransactionService)
         return await dataTransactionService.CreateWithdrawalAsync(transaction);
     }
 
-    public async Task<bool?> CreateTransferAsync(Transaction deposit, Transaction withdrawal)
+    public async Task<bool?> CreateTransferAsync(CreateTransferModel transfer)
     {
+        var deposit = new Transaction
+        {
+            AccountId = transfer.ToAccountId,
+            Date = transfer.Date,
+            Type = transfer.Type,
+            Operation = $"{transfer.OperationSender}" + $"{transfer.ToAccountId}",
+            Amount = transfer.Amount,
+            Balance = transfer.Balance,
+            Symbol = transfer.Symbol,
+            Bank = transfer.Bank,
+            Account = transfer.Account
+        };
+
+        var withdrawal = new Transaction
+        {
+            AccountId = transfer.FromAccountId,
+            Date = transfer.Date,
+            Type = transfer.Type,
+            Operation = $"{transfer.OperationReceiver}" + $"{transfer.FromAccountId}",
+            Amount = (transfer.Amount * -1),
+            Balance = transfer.Balance,
+            Symbol = transfer.Symbol,
+            Bank = transfer.Bank,
+            Account = transfer.Account
+        };
         return await dataTransactionService.CreateTransferAsync(deposit, withdrawal);
     }
 }

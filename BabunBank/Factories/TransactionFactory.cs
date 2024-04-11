@@ -57,4 +57,29 @@ public static class TransactionFactory
             throw;
         }
     }
+
+    public static CreateTransferModel CreateTransfer(CreateTransferModel model)
+    {
+        try
+        {
+            var transfer = new CreateTransferModel
+            {
+                FromAccountId = model.FromAccountId,
+                ToAccountId = model.ToAccountId,
+                Amount = model.Amount,
+                Type = model.Type,
+                Balance = model.Balance,
+                Symbol = model.Symbol,
+                Bank = model.Symbol,
+                Account = model.Account
+            };
+
+            return transfer;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

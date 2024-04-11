@@ -558,3 +558,10 @@ C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\DetectMoneyLaun
 C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\DetectMoneyLaundering.exe
 C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\DetectMoneyLaundering.dll
 C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\DetectMoneyLaundering.pdb
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\System.Web.Mvc.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\System.Web.Razor.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\System.Web.Helpers.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\System.Web.WebPages.Deployment.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\System.Web.WebPages.Razor.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\System.Web.WebPages.dll
+C:\Users\kahol\source\repos\BabunBank\BabunBank\bin\Debug\net8.0\Microsoft.Web.Infrastructure.dll

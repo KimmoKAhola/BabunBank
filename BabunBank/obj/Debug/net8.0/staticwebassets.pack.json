@@ -37,14 +37,6 @@
       "PackagePath": "staticwebassets\\images\\Mediamodifier-Design.svg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Test.png",
-      "PackagePath": "staticwebassets\\images\\Test.png"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\Test2.png",
-      "PackagePath": "staticwebassets\\images\\Test2.png"
-    },
-    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\babun-large-logo.png",
       "PackagePath": "staticwebassets\\images\\babun-large-logo.png"
     },
@@ -141,6 +133,14 @@
       "PackagePath": "staticwebassets\\images\\logoipsum-331.svg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\normal-transactions.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\normal-transactions.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\suscpicious-transactions.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\suscpicious-transactions.png"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
       "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
     },
@@ -159,10 +159,6 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\teambuilding-bg.jpg",
       "PackagePath": "staticwebassets\\images\\teambuilding-bg.jpg"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\temp_plot.png",
-      "PackagePath": "staticwebassets\\images\\temp_plot.png"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",

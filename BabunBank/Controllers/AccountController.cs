@@ -1,9 +1,11 @@
-﻿using BabunBank.Configurations.Enums;
+﻿using System.Globalization;
+using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models.FormModels.Cashier;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BabunBank.Controllers;
 
@@ -107,8 +109,38 @@ public class AccountController(AccountService accountService, TransactionService
         return RedirectToAction("Details", new { id = account.AccountId });
     }
 
-    public async Task<IActionResult> Transfer()
+    public async Task<IActionResult> Transfer(int id)
     {
-        return View();
+        var account = await accountService.GetAccountViewModelAsync(id);
+
+        if (account == null)
+            return RedirectToAction("Index", "Error");
+
+        var model = new CreateTransferModel
+        {
+            FromAccountId = account.CustomerId,
+            Balance = account.Balance,
+        };
+
+        return View(model);
+    }
+
+    [HttpPost, ActionName("Transfer")]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Transfer(CreateTransferModel transferModel)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(); //Error
+        }
+
+        var transfer = TransactionFactory.CreateTransfer(transferModel);
+
+        var result = await transactionService.CreateTransferAsync(transfer);
+
+        if (result is null or false)
+            return View(); //Error
+
+        return RedirectToAction("Details", new { id = transferModel.FromAccountId });
     }
 }

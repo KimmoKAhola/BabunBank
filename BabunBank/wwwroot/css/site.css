@@ -840,6 +840,45 @@ table{
   }
 }
 
+.customer-card-crud{
+  display: flex;
+  gap: 16px;
+}
+
+.customer-card-crud button, .customer-card-crud a{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  transition: 0.4s ease-in;
+  i{
+    font-weight: lighter;
+    font-size: 1.75rem;
+    color: #f0f0f0;
+    transition: 0.4s ease-in;
+  }
+  span{
+    display: none;
+    color: #fcfcfc;
+    transition: 0.4s ease-in;
+  }
+}
+
+.customer-card-crud button:hover, .customer-card-crud a:hover{
+  min-width: 100px;
+  /*width: fit-content;*/
+  border-radius: 4px;
+  transition: 0.4s ease-in;
+  i{
+    display: none;
+    transition: 0.4s ease-in;
+  }
+  span{
+    display: inline;
+    transition: 0.4s ease-in;
+    text-align: center;
+  }
+}
+
 #customer-delete-button{
   position: absolute;
   top: 0;
@@ -855,10 +894,12 @@ table{
     font-weight: lighter;
     font-size: 1.75rem;
     color: #f0f0f0;
+    transition: 0.4s ease-in;
   }
   span{
     display: none;
     color: #fcfcfc;
+    transition: 0.4s ease-in;
   }
 }
 
@@ -866,11 +907,14 @@ table{
   width: 100px;
   border-radius: 4px;
   background-color: var(--danger-hover);
+  transition: 0.4s ease-in;
   i{
     display: none;
+    transition: 0.4s ease-in;
   }
   span{
     display: inline;
+    transition: 0.4s ease-in;
   }
 }
 
@@ -957,12 +1001,23 @@ table{
   width: 20px;
 }
 
+.container.create-customer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  height: auto;
+}
+
 .create-customer-form {
+  padding: 48px;
+  border-radius: 4px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  flex-grow: 0;
+  background-color: var(--bg-light);
 }
 
 .create-customer-form-row{
@@ -1006,6 +1061,7 @@ table{
 a.create-customer-form-btn{
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .create-customer-form-btn.view-more{
@@ -1183,6 +1239,7 @@ a.create-customer-form-btn{
   border-radius: 12px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
   padding: 24px;
+  margin-bottom: 24px;
 }
 
 #cashier-search-bar input{
