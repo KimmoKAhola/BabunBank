@@ -79,22 +79,26 @@
 </div>
 @RenderBody()
 
-<div class="container">
-  <div class="navbar-footer">
-    <p>&copy; @DateTime.Now.Year babun inc. <img src="~/images/Logo.svg" alt="TODO"></p>
-    <nav>
-      <a href="#">Privacy & Terms</a>
-      <a href="#">Cookies</a>
-      @* <a asp-controller="Home" asp-action="Contact">Contact Us</a> *@
-    </nav>
-    <div>
-      <img src="~/images/instagram.svg" alt="logo"/>
-      <img src="~/images/instagram.svg" alt="logo"/>
-      <img src="~/images/instagram.svg" alt="logo"/>
-      <img src="~/images/instagram.svg" alt="logo"/>
+@if (!SignInManager.IsSignedIn(User))
+{
+  <div class="container">
+    <div class="navbar-footer">
+      <p>&copy; @DateTime.Now.Year babun inc. <img src="~/images/Logo.svg" alt="TODO"></p>
+      <nav>
+        <a href="#">Privacy & Terms</a>
+        <a href="#">Cookies</a>
+        @* <a asp-controller="Home" asp-action="Contact">Contact Us</a> *@
+      </nav>
+      <div>
+        <img src="~/images/instagram.svg" alt="logo"/>
+        <img src="~/images/instagram.svg" alt="logo"/>
+        <img src="~/images/instagram.svg" alt="logo"/>
+        <img src="~/images/instagram.svg" alt="logo"/>
+      </div>
     </div>
   </div>
-</div>
+}
+
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="~/js/site.js" asp-append-version="true"></script>
