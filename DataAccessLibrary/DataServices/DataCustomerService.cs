@@ -101,4 +101,9 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         return await customerRepository.UpdateAsync(x => x.CustomerId == model.CustomerId, model)
             != null;
     }
+
+    public async Task<bool> ExistsAsync(Expression<Func<Customer, bool>> predicate)
+    {
+        return await customerRepository.ExistsAsync(predicate);
+    }
 }
