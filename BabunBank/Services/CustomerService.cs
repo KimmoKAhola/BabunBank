@@ -1,9 +1,13 @@
-﻿using AutoMapper;
+﻿using System.Linq.Expressions;
+using System.Web.Mvc;
+using AutoMapper;
 using BabunBank.Models.FormModels.Cashier;
 using BabunBank.Models.ViewModels.Customer;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
+using DataAccessLibrary.DataServices.Enums;
 using Microsoft.EntityFrameworkCore;
+using ModelStateDictionary = System.Web.WebPages.Html.ModelStateDictionary;
 
 namespace BabunBank.Services;
 
@@ -67,9 +71,36 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         return await dataCustomerService.CreateDepositAsync(customer);
     }
 
-    public async Task<bool?> UpdateCustomerAsync(EditCustomerModel customerModel)
+    public async Task<bool?> UpdateCustomerAsync(
+        EditCustomerModel customerModel,
+        Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary modelState
+    )
     {
+        if (
+            await dataCustomerService.ExistsAsync(x =>
+                x.Emailaddress == customerModel.EmailAddress
+                && x.CustomerId != customerModel.CustomerId
+            )
+        )
+        {
+            modelState.AddModelError("EmailAddress", "That email address already exists.");
+            return false;
+        }
+
+        if (
+            await dataCustomerService.ExistsAsync(x =>
+                x.Telephonenumber == customerModel.TelephoneNumber
+                && x.CustomerId != customerModel.CustomerId
+            )
+        )
+        {
+            modelState.AddModelError("TelephoneNumber", "That phone number already exists.");
+            return false;
+        }
+
         var customer = mapper.Map<Customer>(customerModel);
+        customer.Gender = Enum.GetName(typeof(GenderOptions), customerModel.GenderRole);
+        customer.Country = Enum.GetName(typeof(CountryOptions), customerModel.CountryValue);
         return await dataCustomerService.UpdateAsync(customer);
     }
 
