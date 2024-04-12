@@ -157,8 +157,10 @@ public class CashierController(
         {
             validation.AddToModelState(ModelState);
             return View(model);
+        }
 
-        await customerService.UpdateCustomerAsync(model);
+        if (!(bool)await customerService.UpdateCustomerAsync(model, ModelState))
+            return View(model);
 
         return RedirectToAction(nameof(Details), new { id = id });
     }
