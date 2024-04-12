@@ -50,4 +50,32 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
             throw;
         }
     }
+
+    public async Task<bool> CheckUserExistsByUserName(string username)
+    {
+        try
+        {
+            return await identityUserRepository.ExistsAsync(x => x.Id == username);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return false;
+    }
+
+    public async Task<bool> CheckUserExistsByEmail(string email)
+    {
+        try
+        {
+            return await identityUserRepository.ExistsAsync(x => x.Email == email);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return false;
+    }
 }
