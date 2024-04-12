@@ -47,4 +47,14 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
     {
         return await dataIdentityUserService.DeleteAsync(id);
     }
+
+    public async Task<bool> CheckIfExistsByUsernameAsync(string username)
+    {
+        return await dataIdentityUserService.CheckUserExistsByUserName(username);
+    }
+
+    public async Task<bool> CheckIfExistsByEmailAsync(string email)
+    {
+        return await dataIdentityUserService.CheckUserExistsByEmail(email);
+    }
 }
