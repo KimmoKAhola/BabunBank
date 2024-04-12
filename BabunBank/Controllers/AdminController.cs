@@ -22,10 +22,7 @@ public class AdminController(
     // GET
     public async Task<IActionResult> Index()
     {
-        var roles = Enum.GetValues(typeof(UserRole))
-            .Cast<UserRole>()
-            .Select(x => new SelectListItem { Value = x.ToString(), Text = x.ToString() })
-            .ToList();
+        var roles = dropDownService.GetRoles();
 
         ViewBag.AvailableRoles = roles;
 
@@ -35,10 +32,7 @@ public class AdminController(
 
     public IActionResult Create()
     {
-        var roles = Enum.GetValues(typeof(UserRole))
-            .Cast<UserRole>()
-            .Select(x => new SelectListItem { Value = x.ToString(), Text = x.ToString() })
-            .ToList();
+        var roles = dropDownService.GetRoles();
 
         ViewBag.AvailableRoles = roles;
         return View();
