@@ -1,22 +1,21 @@
-﻿using AutoMapper;
-using BabunBank.Configurations;
-using BabunBank.Configurations.Enums;
+﻿using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
-using BabunBank.Models;
+using BabunBank.Models.CustomValidators;
 using BabunBank.Models.FormModels.User;
 using BabunBank.Services;
-using DataAccessLibrary.Data;
+using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BabunBank.Controllers;
 
 [Authorize(Roles = UserRoleNames.Admin)]
 public class AdminController(
     IdentityUserService identityUserService,
-    UserManager<IdentityUser> userManager
+    UserManager<IdentityUser> userManager,
+    DropDownService dropDownService,
+    UserValidator userValidator
 ) : Controller
 {
     // GET
@@ -41,12 +40,26 @@ public class AdminController(
     [HttpPost]
     public async Task<IActionResult> Create(SignUpUserModel userModel)
     {
-        TempData["SuccessMessage"] = $"The user {userModel.UserName} has been successfully created";
-        if (!ModelState.IsValid)
+        var roles = dropDownService.GetRoles();
+
+        ViewBag.AvailableRoles = roles;
+        var validationResult = await userValidator.ValidateAsync(userModel);
+
+        if (!validationResult.IsValid)
         {
-            TempData["SuccessMessage"] = $"Incorrect values provided. Please fix";
+            foreach (var errorMessage in validationResult.Errors)
+            {
+                ModelState.AddModelError(errorMessage.PropertyName, errorMessage.ErrorMessage);
+            }
             return View(userModel);
         }
+
+        // TempData["SuccessMessage"] = $"The user {userModel.UserName} has been successfully created";
+        // if (!ModelState.IsValid)
+        // {
+        //     TempData["SuccessMessage"] = $"Incorrect values provided. Please fix";
+        //     return View(userModel);
+        // }
 
         await IdentityUserFactory.CreateUser(userModel, userManager);
         // var result = mapper.Map<SignUpModel>(user); //TODO Needed?
