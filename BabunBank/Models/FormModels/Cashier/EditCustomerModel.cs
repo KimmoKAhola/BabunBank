@@ -43,7 +43,7 @@ public class EditCustomerModel
     public string Zipcode { get; init; } = null!;
 
     [Required]
-    [Range(1, 3, ErrorMessage = "Please choose a valid option")]
+    [Range(1, 4, ErrorMessage = "Please choose a valid option")]
     public int CountryValue { get; set; }
 
     public string CountryCode { get; set; } = null!;

@@ -17,7 +17,7 @@ public class CreateDepositModel
     public string Operation { get; init; } = null!;
 
     [Required]
-    [Range(1, 100000)]
+    [Range(0.01, 100000)]
     public decimal Amount { get; init; }
 
     [Required]
