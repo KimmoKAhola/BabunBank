@@ -14,16 +14,16 @@
     <div asp-validation-summary="ModelOnly"></div>
     <div class="create-customer-form-row">
         <div class="Test">
-            <label asp-for="FirstName"></label>
+            <label asp-for="FirstName">First Name</label>
             <input asp-for="FirstName" type="text" placeholder="First name">
-            <span asp-validation-for="FirstName"></span>
+            <span asp-validation-for="FirstName" class="text-danger"></span>
         </div>
     </div>
     <div class="create-customer-form-row">
         <div class="Test">
-            <label asp-for="LastName"></label>
+            <label asp-for="LastName">Last Name</label>
             <input asp-for="LastName" type="text" placeholder="Last name">
-            <span asp-validation-for="LastName"></span>
+            <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
     </div>
     
@@ -31,16 +31,22 @@
         <div class="Test">
             <label asp-for="Email"></label>
             <input asp-for="Email" type="email" placeholder="Email">
-            <span asp-validation-for="Email"></span>
+            <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>
     <div class="create-customer-form-row">
         <div class="Test">
             <label asp-for="Message"></label>
             <textarea id="contact-form-textarea" asp-for="Message" placeholder="Your message here..."></textarea>
-            <span asp-validation-for="Message"></span>
+            <span asp-validation-for="Message" class="text-danger"></span>
         </div>
     </div>
     <button class="create-customer-form-btn" type="submit">Submit form</button>
 </form>
 </div>
+
+@section Scripts
+
+{
+    <partial name="_ValidationScriptsPartial" />
+}
