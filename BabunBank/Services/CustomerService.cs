@@ -109,4 +109,14 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         var customer = await dataCustomerService.GetAsync(id);
         return await dataCustomerService.DeleteAsync(customer);
     }
+
+    public async Task<bool> CheckExistsByEmailAsync(string email)
+    {
+        return await dataCustomerService.ExistsAsync(x => x.Emailaddress == email);
+    }
+
+    public async Task<bool> CheckExistsByTelephoneNumber(string number)
+    {
+        return await dataCustomerService.ExistsAsync(x => x.Telephonenumber == number);
+    }
 }
