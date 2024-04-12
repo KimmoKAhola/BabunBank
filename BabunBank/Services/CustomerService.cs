@@ -22,7 +22,14 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         var result = await dataCustomerService.GetAsync(id);
 
         var editableCustomerModel = mapper.Map<EditCustomerModel>(result);
+        editableCustomerModel.CountryValue = (int)ConvertCountryToEnum(result.Country);
+
         return editableCustomerModel;
+    }
+
+    private static CountryOptions ConvertCountryToEnum(string country)
+    {
+        return Enum.TryParse<CountryOptions>(country, out var value) ? value : 0;
     }
 
     public async Task<(IEnumerable<CustomerViewModel>, int)> GetAllCustomersViewModelAsync(
