@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ioNQ9J+4UNEX+eIuu4oEca/7Mry4L/ClwAKf9jrzT4I=",
+  "Hash": "onP7sNbmnmiYnNS6qP9lvoMRy6BR9WHsPcIdLk6HBq8=",
   "Source": "BabunBank",
   "BasePath": "_content/BabunBank",
   "Mode": "Default",
@@ -1820,6 +1820,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\moneylaundering\\normal-transactions.png"
+    },
+    {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\piechart.png",
+      "SourceId": "BabunBank",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/moneylaundering/piechart.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\moneylaundering\\piechart.png"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\suscpicious-transactions.png",

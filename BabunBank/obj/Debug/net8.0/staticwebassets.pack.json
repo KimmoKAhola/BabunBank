@@ -137,6 +137,10 @@
       "PackagePath": "staticwebassets\\images\\moneylaundering\\normal-transactions.png"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\piechart.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\piechart.png"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\suscpicious-transactions.png",
       "PackagePath": "staticwebassets\\images\\moneylaundering\\suscpicious-transactions.png"
     },
