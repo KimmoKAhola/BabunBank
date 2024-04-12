@@ -24,7 +24,9 @@ public enum CustomerDropdownMenu
 public class CashierController(
     CustomerService customerService,
     MoneyLaunderingService moneyLaunderingService,
-    IMapper mapper
+    DropDownService dropDownService,
+    IMapper mapper,
+    EditCustomerValidation customerValidation
 ) : Controller
 {
     public async Task<IActionResult> Index(
@@ -88,12 +90,17 @@ public class CashierController(
 
     public IActionResult Create()
     {
+        ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
+        ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
         return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(SignUpCustomerModel model)
     {
+        ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
+        ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
+
         if (!ModelState.IsValid)
         {
             return View(model);
@@ -122,6 +129,9 @@ public class CashierController(
 
     public async Task<IActionResult> Update(int id)
     {
+        ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
+        ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
+
         var model = await customerService.GetEditCustomerViewModelAsync(id);
         if (model == null)
             return RedirectToAction("Index", "Error");
@@ -134,12 +144,18 @@ public class CashierController(
     public async Task<IActionResult> Update(
         int id,
         [Bind(
-            "CustomerId, GivenName, Gender, SurName, StreetAddress, City, Zipcode, Country, CountryCode, TelephoneCountryCode, TelephoneNumber, EmailAddress, NationalId, Birthday"
+            "CustomerId, GivenName, GenderRole, SurName, StreetAddress, City, Zipcode, CountryValue, CountryCode, TelephoneCountryCode, TelephoneNumber, EmailAddress, NationalId, Birthday"
         )]
             EditCustomerModel model
     )
     {
-        if (!ModelState.IsValid)
+        ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
+        ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
+
+        var validation = await customerValidation.ValidateAsync(model);
+        if (!validation.IsValid)
+        {
+            validation.AddToModelState(ModelState);
             return View(model);
 
         await customerService.UpdateCustomerAsync(model);
