@@ -1,11 +1,9 @@
-﻿using System.Globalization;
-using BabunBank.Configurations.Enums;
+﻿using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models.FormModels.Cashier;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace BabunBank.Controllers;
 
@@ -13,6 +11,11 @@ namespace BabunBank.Controllers;
 public class AccountController(AccountService accountService, TransactionService transactionService)
     : Controller
 {
+    /// <summary>
+    /// Presents the details for a single customer and the customers account.
+    /// </summary>
+    /// <param name="id">The accound Id</param>
+    /// <returns>A view with an account view model</returns>
     public async Task<IActionResult> Details(int id)
     {
         var result = await accountService.GetAccountViewModelAsync(id);
@@ -39,7 +42,8 @@ public class AccountController(AccountService accountService, TransactionService
         return View(model);
     }
 
-    [HttpPost, ActionName("Deposit")]
+    [HttpPost]
+    [ActionName("Deposit")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Deposit(
         int id,
@@ -55,14 +59,10 @@ public class AccountController(AccountService accountService, TransactionService
 
         var account = await accountService.GetAccountViewModelAsync(id);
         if (account == null)
-        {
             return RedirectToAction("Index", "Error");
-        }
         var transaction = TransactionFactory.CreateDeposit(depositModel); //Har skapat en transaction
         if (await transactionService.CreateDepositAsync(transaction) == null)
-        {
             return RedirectToAction("Index", "Error"); //Something went wrong
-        }
 
         return RedirectToAction("Details", new { id = account.AccountId });
     }
@@ -85,7 +85,8 @@ public class AccountController(AccountService accountService, TransactionService
         return View(model);
     }
 
-    [HttpPost, ActionName("Withdraw")]
+    [HttpPost]
+    [ActionName("Withdraw")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Withdraw(int id, CreateWithdrawalModel withdrawalModel)
     {
@@ -102,9 +103,7 @@ public class AccountController(AccountService accountService, TransactionService
         var withdrawal = TransactionFactory.CreateWithdrawal(withdrawalModel);
 
         if (await transactionService.CreateWithdrawalAsync(withdrawal) == null)
-        {
             return RedirectToAction("Index", "Error");
-        }
 
         return RedirectToAction("Details", new { id = account.AccountId });
     }
@@ -119,20 +118,19 @@ public class AccountController(AccountService accountService, TransactionService
         var model = new CreateTransferModel
         {
             FromAccountId = account.CustomerId,
-            Balance = account.Balance,
+            Balance = account.Balance
         };
 
         return View(model);
     }
 
-    [HttpPost, ActionName("Transfer")]
+    [HttpPost]
+    [ActionName("Transfer")]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Transfer(CreateTransferModel transferModel)
     {
         if (!ModelState.IsValid)
-        {
             return View(); //Error
-        }
 
         var transfer = TransactionFactory.CreateTransfer(transferModel);
 
