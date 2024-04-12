@@ -78,7 +78,7 @@
                         delete
                     </i>
                 </a>
-                    @if (@Model.Gender == "male")
+                    @if (@Model.Gender.ToLower() == "male")
                     {
                         <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
                     }
