@@ -7,7 +7,9 @@ using BabunBank.Models.ViewModels.Account;
 using BabunBank.Models.ViewModels.Customer;
 using BabunBank.Models.ViewModels.Transaction;
 using DataAccessLibrary.Data;
+using DataAccessLibrary.DataServices.Enums;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BabunBank.Configurations.AutoMapperConfiguration;
 
@@ -19,7 +21,6 @@ public class MappingProfile : Profile
         CreateMap<Customer, CustomerViewModel>();
         CreateMap<Transaction, TransactionViewModel>();
         CreateMap<SignUpCustomerModel, Customer>();
-
         CreateMap<IdentityUser, SignUpUserModel>();
         CreateMap<EditCustomerModel, CustomerViewModel>();
         CreateMap<CustomerViewModel, EditCustomerModel>();
