@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
 using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
+using BabunBank.Models.CustomValidators;
 using BabunBank.Models.FormModels.Cashier;
 using BabunBank.Models.FormModels.Customer;
 using BabunBank.Services;
+using DataAccessLibrary.DataServices;
 using DetectMoneyLaundering.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
