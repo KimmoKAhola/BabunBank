@@ -56,13 +56,9 @@
               "target": "Package",
               "version": "[13.0.1, )"
             },
-            "Azure.Identity": {
+            "FluentValidation": {
               "target": "Package",
-              "version": "[1.10.3, )"
-            },
-            "Azure.Security.KeyVault.Secrets": {
-              "target": "Package",
-              "version": "[4.6.0, )"
+              "version": "[11.9.0, )"
             },
             "Microsoft.AspNet.Mvc": {
               "target": "Package",
