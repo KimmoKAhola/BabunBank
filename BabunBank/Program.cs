@@ -1,10 +1,6 @@
-using Azure.Identity;
-using Azure.Security.KeyVault.Secrets;
 using BabunBank.Configurations.AutoMapperConfiguration;
 using BabunBank.Configurations.DependencyConfiguration;
 using DataAccessLibrary.Data;
-using DataAccessLibrary.Exceptions;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -35,14 +31,23 @@ namespace BabunBank
                 .AddEntityFrameworkStores<BankAppDataContext>();
             builder.Services.AddControllersWithViews();
 
+            //Optional formhelper configs
+
+
             RepositoryConfiguration.Configure(builder.Services);
             ServiceConfiguration.Configure(builder.Services);
 
             //Seeding
             builder.Services.AddTransient<DataInitializer>();
-
             //Automapper
             builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+            builder
+                .Services.AddMvc()
+                .AddViewOptions(options =>
+                {
+                    options.HtmlHelperOptions.ClientValidationEnabled = true;
+                });
 
             var app = builder.Build();
 
