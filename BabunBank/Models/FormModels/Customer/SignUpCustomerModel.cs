@@ -1,14 +1,15 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using BabunBank.Models.CustomAnnotations;
 
 namespace BabunBank.Models.FormModels.Customer;
 
 public class SignUpCustomerModel
 {
-    [Required(ErrorMessage = "The gender is a required field.")]
-    [StringLength(6, MinimumLength = 2, ErrorMessage = "Please enter between 2-6 characters.")]
+    [Required]
+    [Range(1, 3)]
     [DisplayName("Gender")]
-    public string Gender { get; init; } = null!;
+    public int GenderRole { get; init; }
 
     [Required]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
@@ -36,9 +37,9 @@ public class SignUpCustomerModel
     public string Zipcode { get; init; } = null!;
 
     [Required]
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
+    [Range(1, 5)]
     [DisplayName("Country")]
-    public string Country { get; init; } = null!;
+    public int Country { get; init; }
 
     [Required]
     [StringLength(2, ErrorMessage = "A country code can only consist of 2 characters.")]
@@ -46,14 +47,15 @@ public class SignUpCustomerModel
     public string CountryCode { get; init; } = null!;
 
     [DisplayName("Date of Birth")]
+    [MinimumAgeAnnotation]
     public DateOnly? Birthday { get; init; }
 
     [StringLength(20, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
     [DisplayName("National Id")]
     public string? NationalId { get; init; }
 
-    [RegularExpression(@"^\+[0-9]+$", ErrorMessage = "Only numbers are allowed after the + sign.")]
-    [StringLength(10, ErrorMessage = "Please enter at least 2 characters, starting with a +.")]
+    [RegularExpression(@"^\d{2,}$", ErrorMessage = "Only numbers are allowed.")]
+    [StringLength(10, ErrorMessage = "Please enter at least 2 numbers.")]
     [DisplayName("Phone Country Code")]
     public string? TelephoneCountryCode { get; init; }
 
