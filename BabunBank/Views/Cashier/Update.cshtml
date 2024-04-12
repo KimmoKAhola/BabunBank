@@ -13,32 +13,38 @@
         <input asp-for="CustomerId" type="hidden">
         <input asp-for="NationalId" type="hidden">
         <input asp-for="Birthday" type="hidden">
+        <input asp-for="CountryCode" type="hidden">
         
         <div class="create-customer-form-row">
             <span class="Test">
                 <label asp-for="GivenName"></label>
                 <input asp-for="GivenName" type="text">
-                <span asp-validation-for="GivenName"></span>
+                <span asp-validation-for="GivenName" class="text-danger"></span>
             </span>
 
             <span class="Test">
                 <label asp-for="SurName"></label>
                 <input asp-for="SurName" type="text">
-                <span asp-validation-for="SurName"></span>
+                <span asp-validation-for="SurName" class="text-danger"></span>
             </span>
         </div>
         
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="Gender"></label>
-                <input asp-for="Gender" type="text">
-                <span asp-validation-for="Gender"></span>
+                <label asp-for="GenderRole"></label>
+                <select asp-for="GenderRole" name="GenderRole" id="GenderRole" class="enum-dropdown">
+                    @foreach (var gender in @ViewBag.AvailableGenders as List<SelectListItem>)
+                    {
+                        <option value="@gender.Value">@gender.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="GenderRole" class="text-danger"></span>
             </span>
         
             <span class="Test">
                 <label asp-for="StreetAddress"></label>
                 <input asp-for="StreetAddress" type="text">
-                <span asp-validation-for="StreetAddress"></span>
+                <span asp-validation-for="StreetAddress" class="text-danger"></span>
             </span>
         </div>
 
@@ -46,13 +52,22 @@
             <span class="Test">
                 <label asp-for="City"></label>
                 <input asp-for="City" type="text">
-                <span asp-validation-for="City"></span>
+                <span asp-validation-for="City" class="text-danger"></span>
             </span>
 
             <span class="Test">
-                <label asp-for="Country"></label>
-                <input asp-for="Country" type="text">
-                <span asp-validation-for="Country"></span>
+                @* <label asp-for="Country"></label> *@
+                @* <input asp-for="Country" type="text"> *@
+                @* <span asp-validation-for="Country"></span> *@
+                
+                <label asp-for="CountryValue">Country</label>
+                <select asp-for="CountryValue" name="CountryValue" class="enum-dropdown">
+                    @foreach (var country in @ViewBag.AvailableCountries as List<SelectListItem>)
+                    {
+                        <option value="@country.Value">@country.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="CountryValue" class="text-danger"></span>
             </span>
         </div>
 
@@ -60,21 +75,13 @@
             <span class="Test">
                 <label asp-for="Zipcode"></label>
                 <input asp-for="Zipcode" type="text">
-                <span asp-validation-for="Zipcode"></span>
-            </span>
-        </div>
-
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <label asp-for="CountryCode"></label>
-                <input asp-for="CountryCode" type="text">
-                <span asp-validation-for="CountryCode"></span>
+                <span asp-validation-for="Zipcode" class="text-danger"></span>
             </span>
 
             <span class="Test">
                 <label asp-for="TelephoneCountryCode"></label>
                 <input asp-for="TelephoneCountryCode" type="text">
-                <span asp-validation-for="TelephoneCountryCode"></span>
+                <span asp-validation-for="TelephoneCountryCode" class="text-danger"></span>
             </span>
         </div>
 
@@ -82,13 +89,13 @@
             <span class="Test">
                 <label asp-for="TelephoneNumber"></label>
                 <input asp-for="TelephoneNumber" type="text">
-                <span asp-validation-for="TelephoneNumber"></span>
+                <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
             </span>
 
             <span class="Test">
                 <label asp-for="EmailAddress"></label>
                 <input asp-for="EmailAddress" type="email">
-                <span asp-validation-for="EmailAddress"></span>
+                <span asp-validation-for="EmailAddress" class="text-danger"></span>
             </span>
         </div>
 
