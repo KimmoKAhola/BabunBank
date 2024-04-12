@@ -12,11 +12,13 @@ public class EditCustomerModel
 
     [Required]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
+    [RegularExpression(@"^\D{2,}$")]
     [DisplayName("First Name")]
     public string GivenName { get; init; } = null!;
 
     [Required]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
+    [RegularExpression(@"^\D{2,}$")]
     [DisplayName("Last Name")]
     public string SurName { get; init; } = null!;
 
@@ -52,7 +54,7 @@ public class EditCustomerModel
     public string? TelephoneCountryCode { get; init; }
 
     [StringLength(25, MinimumLength = 2)]
-    [RegularExpression(@"^[\d\s]{2,}$", ErrorMessage = "Only numbers and whitespace are allowed.")]
+    // [RegularExpression(@"^[\d\s]{2,}$", ErrorMessage = "Only numbers and whitespace are allowed.")]
     [DisplayName("Phone Number")]
     public string? TelephoneNumber { get; init; }
 
