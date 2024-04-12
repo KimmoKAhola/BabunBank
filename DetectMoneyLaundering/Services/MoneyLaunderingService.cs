@@ -39,7 +39,7 @@ public class MoneyLaunderingService(BankAppDataContext dbContext)
 
         result.CustomerName = account.Dispositions.First(x => x.Type == "OWNER").Customer.Givenname;
         result.CustomerId = account.Dispositions.First(x => x.Type == "OWNER").CustomerId;
-        DataVisualizationService.CreatePlot(result);
+        DataVisualizationService.CreateIndividualPlot(result);
 
         return result;
     }
