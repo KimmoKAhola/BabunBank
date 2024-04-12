@@ -20,10 +20,10 @@ public class EditCustomerModel
     [DisplayName("Last Name")]
     public string SurName { get; init; } = null!;
 
-    [Required(ErrorMessage = "The gender is a required field.")]
-    [StringLength(6, MinimumLength = 2, ErrorMessage = "Please enter between 2-6 characters.")]
+    [Required]
+    [Range(1, 3, ErrorMessage = "Please choose a valid option.")]
     [DisplayName("Gender")]
-    public string Gender { get; init; } = null!;
+    public int GenderRole { get; init; }
 
     [Required]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
@@ -41,21 +41,10 @@ public class EditCustomerModel
     public string Zipcode { get; init; } = null!;
 
     [Required]
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
-    [DisplayName("Country")]
-    public string Country { get; init; } = null!;
+    [Range(1, 3, ErrorMessage = "Please choose a valid option")]
+    public int CountryValue { get; set; }
 
-    [Required]
-    [StringLength(2, ErrorMessage = "A country code can only consist of 2 characters.")]
-    [DisplayName("Country Code")]
-    public string CountryCode { get; init; } = null!;
-
-    // [DisplayName("Date of Birth")]
-    // public DateOnly? Birthday { get; init; }
-    //
-    // [StringLength(20, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
-    // [DisplayName("National Id")]
-    // public string? NationalId { get; init; }
+    public string CountryCode { get; set; } = null!;
 
     [RegularExpression(@"^\d{2,}$", ErrorMessage = "Only numbers are allowed.")]
     [StringLength(10, ErrorMessage = "Please enter at least 2 numbers.")]
