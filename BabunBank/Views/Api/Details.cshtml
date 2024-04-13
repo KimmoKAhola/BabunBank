@@ -1,0 +1,22 @@
+﻿@model BabunBank.Models.ViewModels.ApiBlog.BlogPost
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+<div id="blogpost-bg">
+    <div class="container blogpost" id="blogpost-detail">
+        <h2 class="blogpost-title">@char.ToUpper(@Model.Title[0])@Model.Title[1..]</h2>
+        <h2 class="blogpost-card-body">@(Model.Content)</h2>
+    
+        <div class="blogpost-author-date-card">
+            <img src="~/images/chalk-profile.jpg" alt="TODO">
+            <div class="blogpost-card-author">
+                <h2 class="blogpost-author">Written by @Model.Author</h2>
+                <div class="blogpost-card-line-break"></div>
+                <h2 class="blogpost-card-date">@Model.DateCreated.ToShortDateString() @Model.DateCreated.ToString("HH:mm:ss")</h2>
+            </div>
+        </div>
+        <a asp-controller="Api" asp-action="Index" class="create-customer-form-btn" id="blogpost-return-button">Return to blog posts...</a>
+    </div>
+</div>
