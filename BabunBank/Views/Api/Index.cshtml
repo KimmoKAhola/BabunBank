@@ -1,0 +1,59 @@
+﻿@model IEnumerable<BabunBank.Models.ViewModels.ApiBlog.BlogPost>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+<div id="blogposts-bg">
+    <div class="container blogpost">
+        <div class="blogpost-container">
+            @foreach (var blogpost in Model)
+            {
+                <a asp-controller="Api" asp-action="Details" asp-route-id="@blogpost.Id" class="blogpost-card"> 
+                    <img src="~/images/landing-page-icon.svg" alt="todo">
+                    <h2 class="blogpost-card-title">@char.ToUpper(@blogpost.Title[0])@blogpost.Title[1..]</h2>
+                    <p class="blogpost-card-text">@blogpost.Description</p>
+                    <p class="blogpost-card-text">@(blogpost.Content[..120])...</p>
+                    <div class="blogpost-card-bottom"><img src="~/images/chalk-profile.jpg" alt="todo" class="blogpost-card-image"><p class="blogpost-card-text">@blogpost.Author @blogpost.DateCreated</p></div>
+                </a>
+            }
+        </div>
+        
+        <div class="blogpost-pagination">
+            <a asp-controller="Api"
+               asp-route-pageNumber="@(ViewBag.CurrentPage-1)"
+               asp-route-pageSize ="@ViewBag.PageSize"
+               class="create-customer-form-btn">
+                Prev
+            </a>
+            @if (ViewBag.CurrentPage > 1)
+            { 
+                <a class="pagination-inactive-button" asp-controller="Api"
+                   asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+                   asp-route-pageSize="@ViewBag.PageSize">
+                    @(ViewBag.CurrentPage - 1)
+                </a>
+            }
+            else { <a></a> }
+            <a class="pagination-active-button"
+               asp-route-pageNumber="@ViewBag.CurrentPage"
+               asp-route-pageSize ="@ViewBag.PageSize">
+                @ViewBag.CurrentPage
+            </a>
+            @if (ViewBag.CurrentPage < ViewBag.TotalPageCount)
+            {
+                <a class="pagination-inactive-button" asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
+                   asp-route-pageSize="@ViewBag.PageSize">
+                    @(ViewBag.CurrentPage + 1)
+                </a>
+            }
+            else { <a></a> }
+            <a asp-controller="Api" 
+               asp-route-pageNumber="@(ViewBag.CurrentPage+1)" 
+               asp-route-pageSize ="@ViewBag.PageSize"
+               class="create-customer-form-btn">
+                Next
+            </a>
+        </div>
+    </div>
+</div>
