@@ -19,7 +19,7 @@ public class TransferValidator : AbstractValidator<CreateDepositModel>
         RuleFor(deposit => deposit.Amount)
             .NotNull()
             .WithMessage("Deposit amount is required.")
-            .InclusiveBetween(0.01m, 10000m)
+            .InclusiveBetween(0.01m, 100000m)
             .WithMessage("Deposit amount must be between 0.01 and 100000")
             .PrecisionScale(8, 2, true)
             .WithMessage("You can at most have 2 decimals.");
