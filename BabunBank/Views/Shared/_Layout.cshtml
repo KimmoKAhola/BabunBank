@@ -25,6 +25,7 @@
       <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo.svg" alt="bank logotype"/></a>
       <nav class="navbar-links">
         <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <a asp-controller="Api" asp-action="Index" class="navbar-link">Our News</a>
         @if (!SignInManager.IsSignedIn(User))
         {
           <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>

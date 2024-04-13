@@ -23,6 +23,7 @@ public static class ServiceConfiguration
         services.AddScoped<LandingPageService>();
         services.AddScoped<IdentityUserService>();
         services.AddScoped<DropDownService>();
+        services.AddScoped<ApiService>();
 
         //Laundering Services
         services.AddScoped<MoneyLaunderingService>();
@@ -31,5 +32,7 @@ public static class ServiceConfiguration
         services.AddScoped<UserValidator>();
         services.AddScoped<ContactUsValidator>();
         services.AddScoped<EditCustomerValidation>();
+
+        services.AddHttpClient();
     }
 }
