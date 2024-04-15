@@ -1,0 +1,265 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Babun-API</name>
+    </assembly>
+    <members>
+        <member name="T:Babun_API.Controllers.AdController">
+            <summary>
+            Version 2 of the API. This requires the Web abb to be used.
+            </summary>
+            <param name="dbContext"></param>
+        </member>
+        <member name="M:Babun_API.Controllers.AdController.#ctor(Babun_API.Data.ApiContext,AutoMapper.IMapper,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Version 2 of the API. This requires the Web abb to be used.
+            </summary>
+            <param name="dbContext"></param>
+        </member>
+        <member name="M:Babun_API.Controllers.AdController.Get(System.Int32)">
+            <summary>
+            Fetches a singular ad by its database ID.
+            </summary>
+            <param name="id">The ID of the ad to fetch.</param>
+            <returns>
+            Returns an HTTP status code 200 (OK) along with the ad object if found,
+            or an HTTP status code 404 (Not Found) if the ad with the specified ID does not exist.
+            </returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AdController.Get">
+            <summary>
+            Obtain all database objects.
+            </summary>
+            <returns>Returns all available database objects, deleted and non-deleted (soft delete implemented).</returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AdController.Create(Babun_API.Models.CreateAdModel)">
+             <summary>
+             Create a new database object.
+             </summary>
+             <remarks>
+             Please do not do anything stupid. The database has a limit of 500 rows
+             </remarks>
+             <param name="model">A create ad model form</param>
+             <returns>Ok(object), return BadRequest if limit is reached, returns status code 500 if the save to database fails.</returns>
+            
+        </member>
+        <member name="M:Babun_API.Controllers.AdController.Update(System.Int32,BabunBank.Models.FormModels.Api.EditAdModel)">
+            <summary>
+            Update a database object to something else.
+            Authorization required with a JWT token.
+            </summary>
+            <param name="id">The id of the database object to update</param>
+            <param name="model">Your model of the object to update. See schema requirements below</param>
+            <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
+            NotFound if the item does not exist. Status code 500 if the database fails.</returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AdController.Delete(System.Int32)">
+            <summary>
+            Soft deletes a specific Ad.
+            </summary>
+            <param name="id">The id of the database object to delete.</param>
+            <returns>BadRequest if the database minimum amount of 100 has been reached.
+            NotFound if the ad does not exist.
+            Status code 500 if the database fails.</returns>
+        </member>
+        <member name="T:Babun_API.Controllers.AdsController">
+            <summary>
+            A controller for handling ads. The ads can be used at blogposts however you wish.
+            </summary>
+            <param name="dbContext">The relevant database context</param>
+            <param name="mapper">Automapper to convert between data transfer objects.</param>
+        </member>
+        <member name="M:Babun_API.Controllers.AdsController.#ctor(Babun_API.Data.ApiContext,AutoMapper.IMapper)">
+            <summary>
+            A controller for handling ads. The ads can be used at blogposts however you wish.
+            </summary>
+            <param name="dbContext">The relevant database context</param>
+            <param name="mapper">Automapper to convert between data transfer objects.</param>
+        </member>
+        <member name="M:Babun_API.Controllers.AdsController.Get(System.Int32)">
+            <summary>
+            Fetches a singular ad by its database ID.
+            </summary>
+            <param name="id">The ID of the ad to fetch.</param>
+            <returns>
+            Returns an HTTP status code 200 (OK) along with the ad object if found,
+            or an HTTP status code 404 (Not Found) if the ad with the specified ID does not exist.
+            </returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AdsController.Get">
+            <summary>
+            Obtain all database objects.
+            </summary>
+            <returns>Returns all available database objects, deleted and non-deleted (soft delete implemented).</returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AdsController.Create(Babun_API.Models.CreateAdModel)">
+             <summary>
+             Create a new database object.
+             </summary>
+             <remarks>
+             Please do not do anything stupid. The database has a limit of 500 rows
+             </remarks>
+             <param name="model">A create ad model form</param>
+             <returns>Ok(object), return BadRequest if limit is reached, returns status code 500 if the save to database fails.</returns>
+            
+        </member>
+        <member name="M:Babun_API.Controllers.AdsController.Update(System.Int32,BabunBank.Models.FormModels.Api.EditAdModel)">
+            <summary>
+            Update a database object to something else.
+            Authorization required with a JWT token.
+            </summary>
+            <param name="id">The id of the database object to update</param>
+            <param name="model">Your model of the object to update. See schema requirements below</param>
+            <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
+            NotFound if the item does not exist. Status code 500 if the database fails.</returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AdsController.Delete(System.Int32)">
+            <summary>
+            Soft deletes a specific Ad.
+            </summary>
+            <param name="id">The id of the database object to delete.</param>
+            <returns>BadRequest if the database minimum amount of 100 has been reached.
+            NotFound if the ad does not exist.
+            Status code 500 if the database fails.</returns>
+        </member>
+        <member name="T:Babun_API.Controllers.TokenController">
+            <summary>
+            Generates a token that is needed for authorization in this api.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Controllers.TokenController.GenerateToken">
+            <summary>
+            Get a 10 minute token to access the v1 api.
+            This will not work for v2.
+            </summary>
+            <returns>A token is returned as a simple string. Lasts for 10 minutes.</returns>
+        </member>
+        <member name="T:Babun_API.Migrations.Initial">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.Initial.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.Initial.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.Initial.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Babun_API.Migrations.updatedAdstable">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.updatedAdstable.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.updatedAdstable.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.updatedAdstable.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Babun_API.Migrations.addedsoftdeletetothedatabase">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.addedsoftdeletetothedatabase.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.addedsoftdeletetothedatabase.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.addedsoftdeletetothedatabase.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Babun_API.Migrations.renamedthecolumn">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.renamedthecolumn.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.renamedthecolumn.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.renamedthecolumn.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Babun_API.Models.CreateAdModel">
+            <summary>
+            A model for creating new ads to the database.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.CreateAdModel.Title">
+            <summary>
+            A title for the ad. 5-50 characters.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.CreateAdModel.Author">
+            <summary>
+            Author name. 2-50 characters.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.CreateAdModel.Description">
+            <summary>
+            Short description. 5-30 characters.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.CreateAdModel.Content">
+            <summary>
+            Content for the ad. 50-2000 characters.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.CreateAdModel.DateCreated">
+            <summary>
+            Date Created.
+            Can be set to a previous date if you wish.
+            </summary>
+        </member>
+        <member name="T:Babun_API.Models.ViewAdModel">
+            <summary>
+            A model for displaying database objects.
+            All properties are immutable.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.ViewAdModel.Id">
+            <summary>
+            The database id for the ad.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.ViewAdModel.Title">
+            <summary>
+            Title for the ad.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.ViewAdModel.Author">
+            <summary>
+            The name of the Author.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.ViewAdModel.Description">
+            <summary>
+            The ad's description.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.ViewAdModel.Content">
+            <summary>
+            The ad's content.
+            The text body.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.ViewAdModel.IsDeleted">
+            <summary>
+            Property for soft deletion.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.ViewAdModel.DateCreated">
+            <summary>
+            Display when the ad was created.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.ViewAdModel.LastModified">
+            <summary>
+            Property to display if/when the ad was modified.
+            Nullable.
+            </summary>
+        </member>
+    </members>
+</doc>

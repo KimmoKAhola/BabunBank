@@ -1,0 +1,50 @@
+﻿@model BabunBank.Models.FormModels.Api.EditAdModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="container update-blogpost">
+    <form asp-controller="Api" asp-action="Update" method="post">
+        <input type="hidden" asp-for="id">
+        <input type="hidden" asp-for="isDeleted">
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="title">Title</label>
+                <input asp-for="title" type="text">
+                <span asp-validation-for="title"></span>
+            </span>
+
+            <span class="Test">
+                <label asp-for="author">Author</label>
+                <input asp-for="author" type="text">
+                <span asp-validation-for="author"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="description">Description</label>
+                <input class="blogpost-edit-description" asp-for="description" type="text">
+                <span asp-validation-for="description"></span>
+            </span>
+        </div>
+        
+        <div class="create-customer-form-row">
+            <div class="Test">
+                <span class="Test">
+                <label asp-for="content">Content</label>
+                <textarea class="blogpost-edit-textarea" asp-for="content" type="text"></textarea>
+                <span asp-validation-for="content"></span>
+            </span>
+            </div>
+        </div>
+
+        <div class="create-customer-form-row" id="update-blogpost-button">
+            <a asp-controller="Api" asp-action="Index" class="create-customer-form-btn">Discard changes</a>
+            <button type="submit" class="create-customer-form-btn">Save changes</button>
+        </div>
+    </form>
+</div>

@@ -8,7 +8,7 @@ namespace BabunBank
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -52,12 +52,9 @@ namespace BabunBank
             var app = builder.Build();
 
             //Create this seeding async. Use Task.Run and Wait() So that the main method does not have to be async
-            Task.Run(async () =>
-                {
-                    await using var scope = app.Services.CreateAsyncScope();
-                    await scope.ServiceProvider.GetService<DataInitializer>().SeedData();
-                })
-                .Wait();
+
+            await using var scope = app.Services.CreateAsyncScope();
+            await scope.ServiceProvider.GetService<DataInitializer>().SeedData();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -90,7 +87,7 @@ namespace BabunBank
 
             app.MapRazorPages();
 
-            app.Run();
+            await app.RunAsync();
         }
     }
 }

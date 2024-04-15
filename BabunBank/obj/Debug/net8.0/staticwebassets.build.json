@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "33b2PnrU2cbDhVV/la/ILXdnpIZrW6f8OmhsLRHNBhs=",
+  "Hash": "wzZg/uAOvbDCIcmbvG+9Z88DuKN8eDEM+5kV6REkBGk=",
   "Source": "BabunBank",
   "BasePath": "_content/BabunBank",
   "Mode": "Default",
@@ -1364,6 +1364,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\bg-fullscreen.webp"
+    },
+    {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\blogpost-icon.svg",
+      "SourceId": "BabunBank",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/blogpost-icon.svg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\blogpost-icon.svg"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\chalk-profile.jpg",

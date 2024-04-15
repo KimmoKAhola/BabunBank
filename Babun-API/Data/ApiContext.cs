@@ -10,5 +10,5 @@ public class ApiContext : DbContext
     public ApiContext(DbContextOptions<ApiContext> options)
         : base(options) { }
 
-    public DbSet<Ad> Ads { get; init; }
+    public DbSet<Ads> Ads { get; init; }
 }

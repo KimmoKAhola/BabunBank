@@ -32,7 +32,7 @@ public class DataInitializer(ApiContext dbContext)
             {
                 try
                 {
-                    var ad = new Ad
+                    var ad = new Ads
                     {
                         Title = faker.Company.Bs(),
                         Author = faker.Name.FullName(),

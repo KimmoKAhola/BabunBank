@@ -11,11 +11,13 @@
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
   <link rel="icon" href="~/favicon-16x16.png" type="image/svg+xml" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
   <script src="~/lib/jquery/dist/jquery.min.js"></script>
   <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
   <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
   <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
   
 </head>
 <body class="wrapper">
@@ -25,11 +27,11 @@
       <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo.svg" alt="bank logotype"/></a>
       <nav class="navbar-links">
         <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-        <a asp-controller="Api" asp-action="Index" class="navbar-link">Our News</a>
+        <a asp-controller="Api" asp-action="Index" class="navbar-link">News</a>
         @if (!SignInManager.IsSignedIn(User))
         {
           <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
-          <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+          <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy & API usage</a>
         }
         @if (User.IsInRole(UserRoleNames.Cashier))
         {

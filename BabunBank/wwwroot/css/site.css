@@ -1112,6 +1112,7 @@ a.create-customer-form-btn{
 .Test{
   display: flex;
   flex-direction: column;
+  flex: 1;
   /*margin-bottom: 24px;*/
 }
 
@@ -1119,6 +1120,7 @@ a.create-customer-form-btn{
   border: 1px solid rgba(12, 65, 40, 0.2);
   color: rgba(3, 51, 47, 0.45);
 }
+
 
 .Test select{
   padding: 10px;
@@ -1408,7 +1410,7 @@ a.create-customer-form-btn{
 }
 
 .blogpost-card-text{
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.5);
   font-size: 14px;
 }
 
@@ -1438,6 +1440,27 @@ a.create-customer-form-btn{
   font-size: 72px;
   line-height: 4.5rem;
   margin-bottom: 2rem;
+}
+
+.blogpost-modified-subtitle{
+  color: rgba(0, 0, 0, 0.7);
+  margin-bottom: 24px;
+}
+
+.blogpost-admin-edit{
+  display: flex;
+  align-items: center;
+  margin-top: 24px;
+  gap: 12px;
+}
+
+.blogpost-admin-edit:hover{
+  transition: 0.2s ease-in;
+  color: rgba(0, 0, 0, 0.6);
+  i{
+    transition: 0.4s ease-in;
+    color: rgba(0, 0, 0, 0.6);
+  }
 }
 
 .blogpost-author-date-card{
@@ -1493,13 +1516,55 @@ a.create-customer-form-btn{
   margin-bottom: 24px;
 }
 
+.container.update-blogpost{
+  margin-top: 72px;
+  place-items: center;
+}
+
+.blogpost-edit-textarea{
+  height: 500px;
+  width: 100%;
+  resize: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  border: 1px solid rgba(12, 65, 40, 0.2);
+}
+
+.blogpost-edit-description{
+  height: 50px;
+  width: 100%;
+  resize: none;
+  border-radius: 4px;
+  padding: 5px 10px;
+  border: 1px solid rgba(12, 65, 40, 0.2);
+}
+
+.blogpost-edit-textarea:focus{
+  outline: none;
+}
+
+#update-blogpost-button{
+  justify-content: end;
+}
+
 .pagination-active-button{
   height: 50px;
-  background-color: red;
+  width: 50px;
+  background-color: var(--CTA-btn);
+  color: var(--CTA);
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 0.25rem;
+  /*border-radius: 0.25rem;*/
+  border-radius: 50%;
+}
+
+.pagination-active-button:hover{
+  color: var(--CTA);
+}
+
+.pagination-inactive-button:hover{
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .pagination-inactive-button{

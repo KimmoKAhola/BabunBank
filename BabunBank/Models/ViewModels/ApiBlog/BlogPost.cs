@@ -9,4 +9,6 @@ public class BlogPost
     public string Content { get; set; }
     public DateTime DateCreated { get; set; }
     public DateTime? LastModified { get; set; }
+
+    public bool IsDeleted { get; set; }
 }

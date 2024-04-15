@@ -57,6 +57,10 @@
       "PackagePath": "staticwebassets\\images\\bg-fullscreen.webp"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\blogpost-icon.svg",
+      "PackagePath": "staticwebassets\\images\\blogpost-icon.svg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\chalk-profile.jpg",
       "PackagePath": "staticwebassets\\images\\chalk-profile.jpg"
     },
@@ -131,6 +135,18 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-331.svg",
       "PackagePath": "staticwebassets\\images\\logoipsum-331.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\normal-transactions.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\normal-transactions.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\piechart.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\piechart.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\suscpicious-transactions.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\suscpicious-transactions.png"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",

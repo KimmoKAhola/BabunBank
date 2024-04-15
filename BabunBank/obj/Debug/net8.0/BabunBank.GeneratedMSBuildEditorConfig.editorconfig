@@ -94,12 +94,24 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cVXBkYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/kahol/source/repos/BabunBank/BabunBank/Views/Api/Authenticate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBpXEF1dGhlbnRpY2F0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kahol/source/repos/BabunBank/BabunBank/Views/Api/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBpXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/kahol/source/repos/BabunBank/BabunBank/Views/Api/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBpXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/kahol/source/repos/BabunBank/BabunBank/Views/Api/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBpXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/kahol/source/repos/BabunBank/BabunBank/Views/Api/Update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBpXFVwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/kahol/source/repos/BabunBank/BabunBank/Views/Cashier/Create.cshtml]

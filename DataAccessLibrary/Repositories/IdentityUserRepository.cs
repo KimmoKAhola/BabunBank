@@ -22,6 +22,22 @@ public class IdentityUserRepository(BankAppDataContext dbContext)
         }
     }
 
+    public async Task<IdentityUser> GetAsync(string username, string hash)
+    {
+        try
+        {
+            var user = await dbContext.Users.FirstOrDefaultAsync(x =>
+                x.UserName == username && x.PasswordHash == hash
+            );
+            return user;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
     public async Task<(IdentityUser? User, IdentityRole? Role)> GetAsync(
         Expression<Func<IdentityUser, bool>> expression
     )
@@ -121,7 +137,8 @@ public class IdentityUserRepository(BankAppDataContext dbContext)
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
         }
+
+        return false;
     }
 }
