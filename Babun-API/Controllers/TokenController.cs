@@ -40,8 +40,7 @@ public class TokenController : ControllerBase
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature
-            ),
-            Subject = new ClaimsIdentity(new[] { new Claim("V2Claim", "true") })
+            )
         };
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
