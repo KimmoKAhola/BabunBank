@@ -1,3 +1,4 @@
+using Asp.Versioning;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,6 +7,8 @@ namespace Babun_API.Controllers;
 /// <summary>
 /// AccountController class handles API endpoints related to account operations.
 /// </summary>
+[ApiVersion("1.0")]
+[ApiExplorerSettings(GroupName = "v1")]
 [Route("api/[controller]")]
 [ApiController]
 public class AccountController(DataAccountService dataAccountService) : ControllerBase
