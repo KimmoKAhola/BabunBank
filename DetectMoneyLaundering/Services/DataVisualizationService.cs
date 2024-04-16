@@ -1,4 +1,5 @@
-﻿using DetectMoneyLaundering.Models;
+﻿using DataAccessLibrary.Data;
+using DetectMoneyLaundering.Models;
 using ScottPlot;
 
 namespace DetectMoneyLaundering.Services;
@@ -9,6 +10,29 @@ public static class DataVisualizationService
     private static readonly string _badColor = "#ef4444";
 
     public static void CreateIndividualPlot(InspectAccountModel model)
+    {
+        var transactionsOverLimit = model
+            .TransactionsOverLimit.Where(x => x.Amount > 15000)
+            .ToArray();
+        var normalTransactions = model.NormalTransactions.ToArray();
+        var length = transactionsOverLimit.Length;
+        var length2 = normalTransactions.Length;
+
+        // Plot Creation
+        CreateSuspiciousTransactionsPlot(transactionsOverLimit, length, model.CustomerName);
+        CreateNormalTransactionsPlot(normalTransactions, length2, model.CustomerName);
+
+        var percentageOfSuspiciousTransactions = length / (length + (double)length2);
+
+        // Pie chart
+        CreatePieChart(percentageOfSuspiciousTransactions, model.CustomerName);
+    }
+
+    private static void CreateSuspiciousTransactionsPlot(
+        Transaction[] transactions,
+        int length,
+        string customerName
+    )
     {
         Plot myPlot = new();
         Plot myPlot2 = new();
