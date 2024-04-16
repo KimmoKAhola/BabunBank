@@ -4,6 +4,23 @@
         <name>Babun-API</name>
     </assembly>
     <members>
+        <member name="T:Babun_API.Controllers.AccountController">
+            <summary>
+            AccountController class handles API endpoints related to account operations.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Controllers.AccountController.#ctor(DataAccessLibrary.DataServices.DataAccountService)">
+            <summary>
+            AccountController class handles API endpoints related to account operations.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Controllers.AccountController.Get(System.Int32)">
+            <summary>
+            Retrieves an account by its ID.
+            </summary>
+            <param name="id">The ID of the account to retrieve.</param>
+            <returns>The account with the specified ID.</returns>
+        </member>
         <member name="T:Babun_API.Controllers.AdController">
             <summary>
             Version 2 of the API. This requires the Web abb to be used.
@@ -124,15 +141,17 @@
         </member>
         <member name="T:Babun_API.Controllers.TokenController">
             <summary>
-            Generates a token that is needed for authorization in this api.
+            This class generates a token that is needed for authorization in the API.
             </summary>
         </member>
         <member name="M:Babun_API.Controllers.TokenController.GenerateToken">
             <summary>
-            Get a 10 minute token to access the v1 api.
+            Get a 10-minute token to access the v1 API.
             This will not work for v2.
             </summary>
-            <returns>A token is returned as a simple string. Lasts for 10 minutes.</returns>
+            <returns>
+            A token is returned as a simple string. Lasts for 10 minutes.
+            </returns>
         </member>
         <member name="T:Babun_API.Migrations.Initial">
             <inheritdoc />
