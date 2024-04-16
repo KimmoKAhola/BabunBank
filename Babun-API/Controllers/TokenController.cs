@@ -1,14 +1,17 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Babun_API.Controllers;
 
 /// <summary>
-/// Generates a token that is needed for authorization in this api.
+/// This class generates a token that is needed for authorization in the API.
 /// </summary>
+[ApiVersion("1.0")]
+[ApiExplorerSettings(GroupName = "v1")]
 [Route("[controller]")]
 [ApiController]
 public class TokenController : ControllerBase
