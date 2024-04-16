@@ -15,6 +15,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile("apiAppsettings.json", false, true);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+var secondConnectionString = builder.Configuration.GetConnectionString("SecondaryConnection");
 
 builder.Services.AddDbContext<ApiContext>(opt => opt.UseSqlServer(connectionString));
 
