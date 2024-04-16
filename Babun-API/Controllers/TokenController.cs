@@ -16,10 +16,12 @@ public class TokenController : ControllerBase
     private static readonly TimeSpan TokenLifeTime = TimeSpan.FromMinutes(10);
 
     /// <summary>
-    /// Get a 10 minute token to access the v1 api.
+    /// Get a 10-minute token to access the v1 API.
     /// This will not work for v2.
     /// </summary>
-    /// <returns>A token is returned as a simple string. Lasts for 10 minutes.</returns>
+    /// <returns>
+    /// A token is returned as a simple string. Lasts for 10 minutes.
+    /// </returns>
     [ProducesResponseType(typeof(string), 200)]
     [HttpGet]
     public IActionResult GenerateToken()
