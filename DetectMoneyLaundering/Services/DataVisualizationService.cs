@@ -41,8 +41,6 @@ public static class DataVisualizationService
 
         foreach (var dateForTransaction in transactions)
         {
-            xs2[counter] = DateTime.Parse(dateForNormalTransaction.Date.ToString());
-            counter++;
             xs[transactionCounter] = DateTime.Parse(dateForTransaction.Date.ToString());
             transactionCounter++;
         }
@@ -58,21 +56,40 @@ public static class DataVisualizationService
         myPlot.SavePng("wwwroot/images/moneylaundering/suscpicious-transactions.png", 800, 800);
     }
 
-        //Good plot
-        var scatter2 = myPlot2.Add.ScatterPoints(xs2, ys2);
-        scatter2 = myPlot2.Add.ScatterPoints(xs2, ys2);
-        scatter2.MarkerStyle.Shape = MarkerShape.FilledCircle;
-        scatter2.MarkerStyle.Size = 6;
-        scatter2.MarkerStyle.Fill.Color = Color.FromHex(_goodColor);
-        myPlot2.Axes.DateTimeTicksBottom();
-        myPlot2.Title($"All normal transactions for the customer {model.CustomerName}");
-        myPlot2.XLabel("Date");
-        myPlot2.YLabel("Transaction amount in SEK");
-        myPlot2.SavePng("wwwroot/images/moneylaundering/normal-transactions.png", 800, 800);
+    private static void CreateNormalTransactionsPlot(
+        Transaction[] transactions,
+        int length,
+        string customerName
+    )
+    {
+        Plot myPlot = new();
+        var xs = new DateTime[length];
+        var ys = transactions.Select(x => x.Amount).ToArray();
+        int transactionCounter = 0;
 
-        var percentageOfSuspiciousTransactions = length / (length + (double)length2);
+        foreach (var dateForTransaction in transactions)
+        {
+            xs[transactionCounter] = DateTime.Parse(dateForTransaction.Date.ToString());
+            transactionCounter++;
+        }
 
-        //Pie chart
+        var scatter = myPlot.Add.ScatterPoints(xs, ys);
+        scatter.MarkerStyle.Shape = MarkerShape.FilledCircle;
+        scatter.MarkerStyle.Size = 6;
+        scatter.MarkerStyle.Fill.Color = Color.FromHex(_goodColor);
+        myPlot.Axes.DateTimeTicksBottom();
+        myPlot.Title($"All normal transactions for the customer {customerName}");
+        myPlot.XLabel("Date");
+        myPlot.YLabel("Transaction amount in SEK");
+        myPlot.SavePng("wwwroot/images/moneylaundering/normal-transactions.png", 800, 800);
+    }
+
+    private static void CreatePieChart(
+        double percentageOfSuspiciousTransactions,
+        string customerName
+    )
+    {
+        Plot myPlot = new();
         List<PieSlice> pieSlices =
         [
             new PieSlice
@@ -89,20 +106,17 @@ public static class DataVisualizationService
             }
         ];
 
-        var piePlot = myPlot3.Add.Pie(pieSlices);
+        var piePlot = myPlot.Add.Pie(pieSlices);
         piePlot.DonutFraction = .5;
         piePlot.ExplodeFraction = 0.1;
-
-        myPlot3.ShowLegend();
-
-        myPlot3.Title($"Percentage overview of transactions for the customer {model.CustomerName}");
-        myPlot3.SavePng("wwwroot/images/moneylaundering/piechart.png", 800, 800);
+        myPlot.ShowLegend();
+        myPlot.Title($"Percentage overview of transactions for the customer {customerName}");
+        myPlot.SavePng("wwwroot/images/moneylaundering/piechart.png", 800, 800);
     }
 
     public static void CreateGeneralPlot()
     {
         Plot myPlot = new();
-
         myPlot.SavePng("wwwroot/images/moneylaundering/bigplot.png", 800, 800);
     }
 }
