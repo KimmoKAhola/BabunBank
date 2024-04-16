@@ -35,38 +35,28 @@ public static class DataVisualizationService
     )
     {
         Plot myPlot = new();
-        Plot myPlot2 = new();
-        Plot myPlot3 = new();
-        var length = model.TransactionsOverLimit.Count(x => x.Amount > 15000);
-        var length2 = model.NormalTransactions.Count;
         var xs = new DateTime[length];
-        var xs2 = new DateTime[length2];
-        var ys = model.TransactionsOverLimit.Select(x => x.Amount).ToArray();
-        var ys2 = model.NormalTransactions.Select(x => x.Amount).ToArray();
-        var counter = 0;
-        foreach (var dateForTransaction in model.TransactionsOverLimit)
-        {
-            xs[counter] = DateTime.Parse(dateForTransaction.Date.ToString());
-            counter++;
-        }
+        var ys = transactions.Select(x => x.Amount).ToArray();
+        int transactionCounter = 0;
 
-        counter = 0;
-        foreach (var dateForNormalTransaction in model.NormalTransactions)
+        foreach (var dateForTransaction in transactions)
         {
             xs2[counter] = DateTime.Parse(dateForNormalTransaction.Date.ToString());
             counter++;
+            xs[transactionCounter] = DateTime.Parse(dateForTransaction.Date.ToString());
+            transactionCounter++;
         }
 
-        //Bad plot
         var scatter = myPlot.Add.ScatterPoints(xs, ys);
         scatter.MarkerStyle.Shape = MarkerShape.FilledCircle;
         scatter.MarkerStyle.Size = 6;
         scatter.MarkerStyle.Fill.Color = Color.FromHex(_badColor);
         myPlot.Axes.DateTimeTicksBottom();
-        myPlot.Title($"All suspicious transactions for the customer {model.CustomerName}");
+        myPlot.Title($"All suspicious transactions for the customer {customerName}");
         myPlot.XLabel("Date");
         myPlot.YLabel("Transaction amount in SEK");
         myPlot.SavePng("wwwroot/images/moneylaundering/suscpicious-transactions.png", 800, 800);
+    }
 
         //Good plot
         var scatter2 = myPlot2.Add.ScatterPoints(xs2, ys2);
