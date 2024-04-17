@@ -1,5 +1,10 @@
 # Babun Bank MVC Project
 
+# Babun Bank MVC Project
+
+<details>
+  <summary>Babun Bank MVC Project</summary>
+
 MVC stands for Model, View, Controller. We have used this design pattern to separate the logic of our application into
 distinct layers:
 
@@ -8,7 +13,40 @@ distinct layers:
 - Controllers: Acts as an interface between Model and View components.
 
 The main features of our MVC project include user authentication, account management, and transaction management.
+</details>
 
+<details>
+  <summary>`CustomerFactory` Class</summary>
+
+The `CustomerFactory` class is a static factory class in the main MVC bank project. It serves to create `Customer`
+objects from `SignUpCustomerModel` data provided during a customer's signup process. To perform this conversion, it
+utilizes `AutoMapper`, a popular object-object mapper in .NET.
+
+The `Create` method of this class accepts a `SignUpCustomerModel` object and an `IMapper` instance as parameters.
+The `IMapper` is used to map the data from the `SignUpCustomerModel` to a new `Customer` object.
+
+
+</details>
+
+<details>
+  <summary>`Create` Method</summary>
+
+The `Create` method in the `CustomerFactory` class works to generate a `Customer` instance from the
+provided `SignUpCustomerModel` object:
+
+- `model`: This is the model captured during signup. It is of the type `SignUpCustomerModel`.
+- `mapper`: This `IMapper` instance is used to convert the `SignUpCustomerModel` into a `Customer` object.
+
+This method returns a `Customer` object mapped from the `SignUpCustomerModel` object. If any error occurs during the
+conversion, it throws an exception.
+
+**Note:** Currently, the creation of an account for the customer, the disposition, and the owner details are not handled
+in this method.
+
+It is important to be aware that the `CustomerFactory` class is a part of the larger Babun Bank MVC software
+solution.```
+
+</details>
 ## `CustomerFactory` Class
 
 The `CustomerFactory` class is a static factory class in the main MVC bank project. It serves to create `Customer`
