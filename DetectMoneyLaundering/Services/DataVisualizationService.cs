@@ -8,11 +8,12 @@ public static class DataVisualizationService
 {
     private static readonly string _goodColor = "#169DE9";
     private static readonly string _badColor = "#ef4444";
+    private const decimal SuspiciousTransactionThreshold = 15000M;
 
     public static void CreateIndividualPlot(InspectAccountModel model)
     {
         var transactionsOverLimit = model
-            .TransactionsOverLimit.Where(x => x.Amount > 15000)
+            .TransactionsOverLimit.Where(x => x.Amount > SuspiciousTransactionThreshold)
             .ToArray();
         var normalTransactions = model.NormalTransactions.ToArray();
         var length = transactionsOverLimit.Length;
