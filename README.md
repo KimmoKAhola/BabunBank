@@ -44,6 +44,153 @@ between the data access layer and the business logic layer of an application.
 
 The main job of the Repository pattern is to hide the details of how exactly the data gets pulled from the database.
 
+# `DataAccountService` Class
+
+This class is located within the `DataAccessLibrary.DataServices` namespace in the `DataAccessLibrary` services folder.
+
+The `DataAccountService` class serves as a data service layer over the `AccountRepository`.
+
+The following methods are provided:
+
+1. `GetAsync(int id)`
+
+   This method is intended to retrieve an account asynchronously given the account ID.
+
+2. `GetAll(string sortOrder, string sortColumn)`
+
+   This method is meant to retrieve all accounts, potentially sorted depending on provided parameters.
+
+3. `CreateDepositAsync(Account model)`
+
+   This method creates a deposit in the provided account model asynchronously.
+
+4. `DeleteAsync(Account model)`
+
+   This method is not implemented in this class.
+
+5. `UpdateAsync(Account model)`
+
+   This method updates the information of the provided account model asynchronously.
+
+# `DataCustomerService` Class
+
+This class is also located within the `DataAccessLibrary.DataServices` namespace in the `DataAccessLibrary` services folder.
+
+The `DataCustomerService` class serves as a data service layer for the `CustomerRepository`.
+
+The following methods are provided:
+
+1. `GetAsync(int id)`
+
+   This method retrieves a customer asynchronously given the customer ID.
+
+2. `GetAll(string sortOrder, string sortColumn)`
+
+   This method retrieves all customer data, potentially ordered depending on provided parameters.
+
+3. `CreateDepositAsync(Customer model)`
+
+   This method creates a deposit for the provided customer model.
+
+4. `DeleteAsync(Customer customer)`
+
+   This method deletes a customer's account given the customer object.
+
+5. `UpdateAsync(Customer model)`
+
+   This method updates the information of the provided customer model asynchronously.
+
+6. `ExistsAsync(Expression<Func<Customer, bool>> predicate)`
+
+   This method checks the existence of a customer that satisfies a particular condition (predicate).
+
+> Note: `IDataService` is one of the dependencies in the classes above. Please make sure to have the relevant interfaces within your namespace.
+
+# `DataIdentityUserService` Class
+
+This class is located within the `DataAccessLibrary.DataServices` namespace in the `DataAccessLibrary` Services folder.
+
+The `DataIdentityUserService` class serves as a data service layer over the `IdentityUserRepository`.
+
+The following methods are provided:
+
+1. `GetAsync(string id)`
+
+   This method retrieves an identity user and their role asynchronously, given the user's ID.
+
+2. `GetAll()`
+
+   This method retrieves all identity users and their respective roles.
+
+3. `CreateAsync(IdentityUser model)`
+
+   This method creates an identity user asynchronously.
+
+4. `DeleteAsync(string id)`
+
+   This method deletes an identity user given the user's ID.
+
+5. `CheckUserExists(string id)` and `CheckUserExistsByUserName(string username)` and `CheckUserExistsByEmail(string email)`
+
+   These methods check if a user exists based on their ID, username, or email.
+
+# `DataLandingPageService` Class
+
+This class is also located within the `DataAccessLibrary.DataServices` namespace in the `DataAccessLibrary` Services folder.
+
+The `DataLandingPageService` class serves to retrieve account data for landing pages from a provided context.
+
+The following method is provided:
+
+1. `GetLandingPageQuery()`
+
+   This method retrieves all account data for landing page, including related information with the `Dispositions` and `Customer`.
+
+> Note: Please make sure to have the correct dependencies (`Microsoft.AspNetCore.Identity.IdentityUser` and `Microsoft.AspNetCore.Identity.IdentityRole` for `DataIdentityUserService`, `DataAccessLibrary.Data.BankAppDataContext` for `DataLandingPageService`) within your project.
+
+# `DataTransactionService` Class
+
+This class is located within the `DataAccessLibrary.DataServices` namespace in the `DataAccessLibrary` services folder.
+
+The `DataTransactionService` class serves as a data service layer over the `TransactionRepository` and `AccountRepository`.
+
+The following methods are provided:
+
+1. `CreateDepositAsync(Transaction deposit)`
+
+   This method creates a deposit transaction into an account.
+
+2. `CreateWithdrawalAsync(Transaction withdrawal)`
+
+   This method creates a withdrawal transaction from an account.
+
+3. `CreateTransferAsync(Transaction deposit, Transaction withdrawal)`
+
+   This method performs a transfer between two accounts.
+
+# `DropDownService` Class
+
+This class is also located within the `DataAccessLibrary.DataServices` namespace in the `DataAccessLibrary` services folder.
+
+The `DropDownService` class generates list items for dropdown selections.
+
+The following methods are provided:
+
+1. `GetRoles()`
+
+   This method retrieves all user roles as a list of SelectListItem.
+
+2. `GetGenderOptions()`
+
+   This method retrieves all gender options as a list of SelectListItem.
+
+3. `GetCountryOptions()`
+
+   This method retrieves all country options as a list of SelectListItem.
+
+> Note: These classes use many different dependencies, including `Microsoft.AspNetCore.Mvc.Rendering.SelectListItem` and `DataAccessLibrary.DataServices.Enums.UserRole` among others. Please ensure you have these dependencies within your project.
+
+
 ## API
 
 The API project provides a RESTful service which allows bank transactions to be done remotely via HTTP requests.

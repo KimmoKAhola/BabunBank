@@ -44,6 +44,4 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         return await accountRepository.UpdateAsync(x => x.AccountId == model.AccountId, model)
             != null;
     }
-
-    public async Task Deposit(Account model) { }
 }
