@@ -1,6 +1,7 @@
 # Babun Bank MVC Project
 
-# Babun Bank MVC Project
+<details>
+  <summary>Babun Bank MVC Project</summary>
 
 MVC stands for Model, View, Controller. We have used this design pattern to separate the logic of our application into
 distinct layers:
@@ -10,8 +11,10 @@ distinct layers:
 - Controllers: Acts as an interface between Model and View components.
 
 The main features of our MVC project include user authentication, account management, and transaction management.
+</details>
 
-## `CustomerFactory` Class
+<details>
+  <summary>`CustomerFactory` Class</summary>
 
 The `CustomerFactory` class is a static factory class in the main MVC bank project. It serves to create `Customer`
 objects from `SignUpCustomerModel` data provided during a customer's signup process. To perform this conversion, it
@@ -20,7 +23,10 @@ utilizes `AutoMapper`, a popular object-object mapper in .NET.
 The `Create` method of this class accepts a `SignUpCustomerModel` object and an `IMapper` instance as parameters.
 The `IMapper` is used to map the data from the `SignUpCustomerModel` to a new `Customer` object.
 
-### `Create` Method
+</details>
+
+<details>
+  <summary>`Create` Method</summary>
 
 The `Create` method in the `CustomerFactory` class works to generate a `Customer` instance from the
 provided `SignUpCustomerModel` object:
@@ -35,7 +41,8 @@ conversion, it throws an exception.
 in this method.
 
 It is important to be aware that the `CustomerFactory` class is a part of the larger Babun Bank MVC software
-solution.```
+solution.
+</details>
 
 ## Data Access Library
 
