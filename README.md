@@ -1,5 +1,4 @@
-# Babun Bank MVC Project
-
+<details>
 # Babun Bank MVC Project
 
 MVC stands for Model, View, Controller. We have used this design pattern to separate the logic of our application into
@@ -36,6 +35,8 @@ in this method.
 
 It is important to be aware that the `CustomerFactory` class is a part of the larger Babun Bank MVC software
 solution.```
+
+</details>
 
 ## Data Access Library
 
