@@ -11,6 +11,32 @@ distinct layers:
 
 The main features of our MVC project include user authentication, account management, and transaction management.
 
+## `CustomerFactory` Class
+
+The `CustomerFactory` class is a static factory class in the main MVC bank project. It serves to create `Customer`
+objects from `SignUpCustomerModel` data provided during a customer's signup process. To perform this conversion, it
+utilizes `AutoMapper`, a popular object-object mapper in .NET.
+
+The `Create` method of this class accepts a `SignUpCustomerModel` object and an `IMapper` instance as parameters.
+The `IMapper` is used to map the data from the `SignUpCustomerModel` to a new `Customer` object.
+
+### `Create` Method
+
+The `Create` method in the `CustomerFactory` class works to generate a `Customer` instance from the
+provided `SignUpCustomerModel` object:
+
+- `model`: This is the model captured during signup. It is of the type `SignUpCustomerModel`.
+- `mapper`: This `IMapper` instance is used to convert the `SignUpCustomerModel` into a `Customer` object.
+
+This method returns a `Customer` object mapped from the `SignUpCustomerModel` object. If any error occurs during the
+conversion, it throws an exception.
+
+**Note:** Currently, the creation of an account for the customer, the disposition, and the owner details are not handled
+in this method.
+
+It is important to be aware that the `CustomerFactory` class is a part of the larger Babun Bank MVC software
+solution.```
+
 ## Data Access Library
 
 In the Data Access Library, we have implemented the Repository pattern. It is used to create an abstraction layer
@@ -162,20 +188,58 @@ The response of this API is a token returned as a simple string. The token lasts
 The main goal of this service is to encapsulate the bank and advertisement operations inside a set of API endpoints,
 ensuring the security and integrity of data is met, and a consistent and simple interface is provided to consumers.
 
-## Console Application
+## Data Visualization Service Class
 
-The Console application is a command-line interface for the banking system, designed for system administrators. It uses
-the Command pattern to define each operation as an object, simplifying the expansion of system capabilities.
+# `DataVisualizationService` Class
 
-Common tasks include creating and managing user accounts, updating system settings, and performing batch updates of bank
-records.
+This class is located within the `DetectMoneyLaundering.Services` namespace in the Console Application of the solution.
 
-## Prerequisites, Installation, and Other Sections...
+The `DataVisualizationService` class is a static class that is utilized for creating and managing various forms of visual data representations, namely plots and charts, based on transactional data. This is primarily geared towards distinguishing between suspicious and normal transactions.
 
-Replace this with the rest of your README file as indicated in the previous message.
+The following methods are provided:
 
-# Data Access Library
+1.  `CreateIndividualPlot(InspectAccountModel model)`
 
-# API
+    This method is used to create visual representations for individual account models. It creates plots for suspicious transactions, normal transactions, and an accompanying pie chart for percentage distribution of the transactions.
 
-# Console application
+2.  `CreateSuspiciousTransactionsPlot(Transaction[] transactions, int length, string customerName)`
+
+    This private method generates plots for suspicious transactions. It takes an array of `Transaction` objects, their number, and the `CustomerName` as arguments.
+
+3.  `CreateNormalTransactionsPlot(Transaction[] transactions, int length, string customerName)`
+
+    Similar to the previous method, this private method generates plots for normal transactions.
+
+4.  `CreatePieChart(double percentageOfSuspiciousTransactions, string customerName)`
+
+    This private method creates a pie chart showing the percentage distribution of suspicious and normal transactions.
+
+5.  `CreateGeneralPlot()`
+
+    This public method creates a general plot with default settings.
+
+We utilize the ScottPlot library for graphical visualization of the transaction data. The suspicious transactions are marked with a red color, while normal ones are marked with a blue color.
+
+The plots created are saved as `.png` images within the `wwwroot/images/moneylaundering/` directory.
+
+> Note: You will need to have the ScottPlot library installed in your solution to use this class.
+> 
+> # `MoneyLaunderingService` Class
+
+This class is located within the `DetectMoneyLaundering.Services` namespace in the Console Application of the solution.
+
+The `MoneyLaunderingService` class serves to investigate a particular account's transactions for potential money laundering evidence. Data from these investigations can be visualized using the associated `DataVisualizationService`.
+
+The following methods are provided:
+
+1. `GetAccount(int id)`
+
+   This method, given an account ID, fetches the associated `Account` object from the database, along with its related `Transactions` and `Dispositions`. The function returns a `Task<Account?>`, which signifies the asynchronous nature of the operation.
+
+2. `InspectAccount(int id)`
+
+   This method takes an account ID as its input and processes the associated account's transactions. It creates an `InspectAccountModel` object, where normal transactions and transactions over the limit (15000 in this case) are categorized. This model is then passed to `DataVisualizationService.CreateIndividualPlot(result)` to enable creating a visual representation of the transactions.
+
+> Note: The `DataAccessLibrary` and `DetectMoneyLaundering.Models` namespaces are being used in this class. Be sure to have these dependencies correctly set up in your project.
+
+> Note 2: To use this class, please make sure you have a functional `BankAppDataContext` instance, which is a necessity for the functioning of methods within this class.
