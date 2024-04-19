@@ -144,9 +144,12 @@ public static class DataVisualizationService
         myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
     }
 
-    public static void CreatePlotForAllTransactions(Test test, VisualizationModes mode)
+    public static void CreatePlotForAllTransactions(
+        List<InspectAccountModel> accountsToInspect,
+        VisualizationModes mode
+    )
     {
-        var maxValue = test.ListOfSusAccounts.Max(x => x.TransactionsOverLimit.Count);
+        var maxValue = accountsToInspect.Max(x => x.TransactionsOverLimit.Count);
         const int numberOfBins = 80;
 
         var barPlotValues = new double[numberOfBins][];
@@ -158,7 +161,7 @@ public static class DataVisualizationService
             barPlotValues[i][0] = increment * (i + 1);
         }
 
-        foreach (var customer in test.ListOfSusAccounts)
+        foreach (var customer in accountsToInspect)
         {
             var badTransactionCount = customer.TransactionsOverLimit.Count;
 
