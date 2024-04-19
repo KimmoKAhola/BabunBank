@@ -6,6 +6,7 @@ using BabunBank.Models.FormModels.Cashier;
 using BabunBank.Models.FormModels.Customer;
 using BabunBank.Services;
 using DataAccessLibrary.DataServices;
+using DetectMoneyLaundering;
 using DetectMoneyLaundering.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
