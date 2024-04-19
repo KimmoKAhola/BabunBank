@@ -2,6 +2,7 @@ using System.Diagnostics;
 using BabunBank.Models.CustomValidators;
 using BabunBank.Models.FormModels.Home;
 using BabunBank.Models.ViewModels.Error;
+using BabunBank.Models.ViewModels.LandingPage;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Mvc;
 
@@ -42,6 +43,13 @@ namespace BabunBank.Controllers
 
             validationResult.AddToModelState(ModelState);
             return View(model);
+        }
+
+        public async Task<IActionResult> Details(string country)
+        {
+            var result = await landingPageService.GetDetailedLandingPageInfo(country);
+
+            return View(result);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
