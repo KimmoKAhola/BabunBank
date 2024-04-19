@@ -185,7 +185,7 @@ public static class DataVisualizationService
         myPlot.XLabel("Transaction span");
         myPlot.XTicks(positions, labels);
         myPlot.XAxis.TickLabelStyle(rotation: 90);
-        var filePath = GetFilePath(VisualizationModes.Console, PlotNames.Aggregate.ToString());
+        var filePath = GetFilePath(mode, PlotNames.Aggregate.ToString());
         myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
     }
 }
