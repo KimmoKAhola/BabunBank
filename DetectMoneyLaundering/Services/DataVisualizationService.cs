@@ -15,23 +15,23 @@ public static class DataVisualizationService
     private const string XLabel = "Date";
     private const int Granularity = 10;
 
-    public static void CreateIndividualPlot(InspectAccountModel model)
+    public static void CreateIndividualPlot(InspectAccountModel model, VisualizationModes mode)
     {
         var transactionsOverLimit = model
-            .TransactionsOverLimit.Where(x => x.Amount > SuspiciousTransactionThreshold)
+            .TransactionsOverLimit.Where(x => Math.Abs(x.Amount) > SuspiciousTransactionThreshold)
             .ToArray();
         var normalTransactions = model.NormalTransactions.ToArray();
         var length = transactionsOverLimit.Length;
         var length2 = normalTransactions.Length;
 
         // Plot Creation
-        CreateSuspiciousTransactionsPlot(transactionsOverLimit, length, model.CustomerName);
-        CreateNormalTransactionsPlot(normalTransactions, length2, model.CustomerName);
+        CreateSuspiciousTransactionsPlot(transactionsOverLimit, length, model.CustomerName, mode);
+        CreateNormalTransactionsPlot(normalTransactions, length2, model.CustomerName, mode);
 
         var percentageOfSuspiciousTransactions = length / (length + (double)length2);
 
         // Pie chart
-        CreatePieChart(percentageOfSuspiciousTransactions, model.CustomerName);
+        CreatePieChart(percentageOfSuspiciousTransactions, model.CustomerName, mode);
     }
 
     private static void CreateSuspiciousTransactionsPlot(
