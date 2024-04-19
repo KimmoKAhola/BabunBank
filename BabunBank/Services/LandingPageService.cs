@@ -24,4 +24,22 @@ public class LandingPageService(DataLandingPageService landingPageService)
 
         return viewModel;
     }
+
+    public async Task<IEnumerable<DetailedLandingPageViewModel>> GetDetailedLandingPageInfo(
+        string country
+    )
+    {
+        var data = await landingPageService.GetDetailedLandingPageQuery(country);
+
+        var temp = data.Select(x => new DetailedLandingPageViewModel
+        {
+            CustomerId = x.CustomerId,
+            AccountId = x.AccountId,
+            Name = x.CustomerName,
+            Country = x.Country,
+            AccountSum = x.TotalBalance
+        });
+
+        return temp;
+    }
 }
