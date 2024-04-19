@@ -149,6 +149,18 @@
       "PackagePath": "staticwebassets\\images\\moneylaundering\\suscpicious-transactions.png"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\test1.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\test1.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\test2.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\test2.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\test3.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\test3.png"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
       "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
     },

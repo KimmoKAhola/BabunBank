@@ -56,7 +56,7 @@ utilizes `AutoMapper`, a popular object-object mapper in .NET.
 The `Create` method of this class accepts a `SignUpCustomerModel` object and an `IMapper` instance as parameters.
 The `IMapper` is used to map the data from the `SignUpCustomerModel` to a new `Customer` object.
 
-### `Create` Method
+### `Creatmlte` Method
 
 The `Create` method in the `CustomerFactory` class works to generate a `Customer` instance from the
 provided `SignUpCustomerModel` object:
