@@ -47,15 +47,15 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         return result;
     }
 
-    public async Task<Test> InspectAllAccounts()
+    public async Task<List<InspectAccountModel>> InspectAllAccounts()
     {
-        var result = new Test();
+        var accountsToInspect = new List<InspectAccountModel>();
         var allAccounts = await dataAccountService.GetAllAsync().ToListAsync();
 
         foreach (var account in allAccounts)
         {
             var temp = new InspectAccountModel();
-            result.ListOfSusAccounts.Add(temp);
+            accountsToInspect.Add(temp);
             foreach (var transaction in account.Transactions)
             {
                 transaction.Amount = Math.Abs(transaction.Amount);
@@ -79,6 +79,6 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
             temp.CustomerId = ownerDisposition.CustomerId;
         }
 
-        return result;
+        return accountsToInspect;
     }
 }
