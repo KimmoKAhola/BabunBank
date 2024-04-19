@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace DataAccessLibrary.Data;
 
-namespace DataAccessLibrary.Data;
-
-public partial class Transaction
+public class Transaction
 {
-    public int TransactionId { get; set; }
+    public int TransactionId { get; init; }
 
     public int AccountId { get; set; }
 
