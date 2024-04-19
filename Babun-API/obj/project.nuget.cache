@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4gzAgLT1dyMECL1DF4VlAKsC+D5nbpeLIeYPX1xyg5mox/spPg8PmdYgxW8sDXLOGCCfOajKwNCrbj+IEPxYKw==",
+  "dgSpecHash": "CDzRYe1Li9151DtMHyGClZQ8j5dRWn6lRVlIBKGphmXs0FuiZUCN9N316OH4464mEMcnfZ0OpSsnw5awt8PTBQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\Babun-API\\Babun-API.csproj",
   "expectedPackageFiles": [
@@ -167,11 +167,7 @@
     "C:\\Users\\kahol\\.nuget\\packages\\nuget.projectmodel\\6.9.1\\nuget.projectmodel.6.9.1.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\nuget.protocol\\6.9.1\\nuget.protocol.6.9.1.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\nuget.versioning\\6.9.1\\nuget.versioning.6.9.1.nupkg.sha512",
-    "C:\\Users\\kahol\\.nuget\\packages\\scottplot\\5.0.25\\scottplot.5.0.25.nupkg.sha512",
-    "C:\\Users\\kahol\\.nuget\\packages\\skiasharp\\2.88.7\\skiasharp.2.88.7.nupkg.sha512",
-    "C:\\Users\\kahol\\.nuget\\packages\\skiasharp.nativeassets.linux.nodependencies\\2.88.7\\skiasharp.nativeassets.linux.nodependencies.2.88.7.nupkg.sha512",
-    "C:\\Users\\kahol\\.nuget\\packages\\skiasharp.nativeassets.macos\\2.88.7\\skiasharp.nativeassets.macos.2.88.7.nupkg.sha512",
-    "C:\\Users\\kahol\\.nuget\\packages\\skiasharp.nativeassets.win32\\2.88.7\\skiasharp.nativeassets.win32.2.88.7.nupkg.sha512",
+    "C:\\Users\\kahol\\.nuget\\packages\\scottplot\\4.1.74\\scottplot.4.1.74.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.6\\sqlitepclraw.bundle_e_sqlite3.2.1.6.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\sqlitepclraw.core\\2.1.6\\sqlitepclraw.core.2.1.6.nupkg.sha512",
     "C:\\Users\\kahol\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.6\\sqlitepclraw.lib.e_sqlite3.2.1.6.nupkg.sha512",

@@ -23,7 +23,7 @@
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="7.5.1" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
     <PackageReference Include="MySql.EntityFrameworkCore" Version="8.0.0" />
-    <PackageReference Include="ScottPlot" Version="5.0.25" />
+    <PackageReference Include="ScottPlot" Version="4.1.74" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.5.1" />
     <PackageReference Include="toastr" Version="2.1.1" />
   </ItemGroup>
