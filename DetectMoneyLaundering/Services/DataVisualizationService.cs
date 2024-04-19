@@ -41,8 +41,9 @@ public static class DataVisualizationService
     )
     {
         Plot myPlot = new();
-        var xs = new DateTime[length];
-        var ys = transactions.Select(x => x.Amount).ToArray();
+        var labels = new string[length];
+        var xs = new double[length];
+        var ys = transactions.Select(x => (double)x.Amount).ToArray();
         int transactionCounter = 0;
 
         foreach (var dateForTransaction in transactions)
