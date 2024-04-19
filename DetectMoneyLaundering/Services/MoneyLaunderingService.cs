@@ -39,9 +39,46 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
 
         result.TotalNumberOfTransactions = account.Transactions.Count();
 
-        result.CustomerName = account.Dispositions.First(x => x.Type == "OWNER").Customer.Givenname;
-        result.CustomerId = account.Dispositions.First(x => x.Type == "OWNER").CustomerId;
-        DataVisualizationService.CreateIndividualPlot(result);
+        result.CustomerName = account
+            .Dispositions.First(x => x.Type.ToLower() == "owner")
+            .Customer.Givenname;
+        result.CustomerId = account.Dispositions.First(x => x.Type.ToLower() == "owner").CustomerId;
+        DataVisualizationService.CreateIndividualPlot(result, mode);
+
+        return result;
+    }
+
+    public async Task<Test> InspectAllAccounts()
+    {
+        var result = new Test();
+        var allAccounts = await dataAccountService.GetAllAsync().ToListAsync();
+
+        foreach (var account in allAccounts)
+        {
+            var temp = new InspectAccountModel();
+            result.ListOfSusAccounts.Add(temp);
+            foreach (var transaction in account.Transactions)
+            {
+                transaction.Amount = Math.Abs(transaction.Amount);
+                if (transaction.Amount > 15000M)
+                {
+                    temp.TransactionsOverLimit.Add(transaction);
+                }
+                else
+                {
+                    temp.NormalTransactions.Add(transaction);
+                }
+            }
+
+            temp.TotalNumberOfTransactions =
+                temp.NormalTransactions.Count + temp.TransactionsOverLimit.Count;
+
+            var ownerDisposition = account.Dispositions.First(x => x.Type.ToLower() == "owner");
+
+            temp.CustomerName =
+                ownerDisposition.Customer.Givenname + " " + ownerDisposition.Customer.Surname;
+            temp.CustomerId = ownerDisposition.CustomerId;
+        }
 
         return result;
     }
