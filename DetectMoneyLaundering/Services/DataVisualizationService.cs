@@ -53,16 +53,28 @@ public static class DataVisualizationService
             xs[transactionCounter] = transactionCounter;
             transactionCounter++;
         }
-
-        var scatter = myPlot.Add.ScatterPoints(xs, ys);
-        scatter.MarkerStyle.Shape = MarkerShape.FilledCircle;
-        scatter.MarkerStyle.Size = 6;
-        scatter.MarkerStyle.Fill.Color = Color.FromHex(_badColor);
-        myPlot.Axes.DateTimeTicksBottom();
+        var scatter = myPlot.AddScatter(xs, ys, BadColor, 0, 8);
+        myPlot.Add(scatter);
         myPlot.Title($"All suspicious transactions for the customer {customerName}");
-        myPlot.XLabel("Date");
-        myPlot.YLabel("Transaction amount in SEK");
-        myPlot.SavePng("../../../test/suscpicious-transactions.png", 800, 800);
+        myPlot.XLabel(XLabel);
+        myPlot.YLabel(YLabel);
+        myPlot.XTicks(labels);
+        myPlot.XAxis.TickLabelStyle(rotation: 90);
+
+        var filePath = GetFilePath(mode, PlotNames.SuspiciousTransactions.ToString());
+        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+    }
+
+    private static string GetFilePath(VisualizationModes mode, string fileEnding)
+    {
+        var filePath = mode switch
+        {
+            VisualizationModes.Web => $"wwwroot/images/moneylaundering/{fileEnding}.png",
+            VisualizationModes.Console => $"../../../test/{fileEnding}.png",
+            _ => ""
+        };
+
+        return filePath;
     }
 
     private static void CreateNormalTransactionsPlot(
