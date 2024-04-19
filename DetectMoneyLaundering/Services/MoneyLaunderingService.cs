@@ -11,13 +11,11 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
     public async Task<Account?> GetAccount(int id)
     {
         return await dataAccountService.GetAsync(id);
-        // return await dbContext
-        //     .Accounts.Include(a => a.Transactions)
-        //     .Include(a => a.Dispositions)
-        //     .ThenInclude(d => d.Customer)
-        //     .FirstOrDefaultAsync(a =>
-        //         a.Dispositions.First(d => d.Type == "OWNER").CustomerId == id
-        //     );
+    }
+
+    public async Task<IEnumerable<Account>> GetAllAccounts()
+    {
+        return await dataAccountService.GetAllAsync().ToListAsync();
     }
 
     public async Task<InspectAccountModel> InspectAccount(int id, VisualizationModes mode)
