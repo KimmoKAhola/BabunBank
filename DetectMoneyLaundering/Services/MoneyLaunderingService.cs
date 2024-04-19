@@ -20,13 +20,14 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         //     );
     }
 
-    public async Task<InspectAccountModel> InspectAccount(int id)
+    public async Task<InspectAccountModel> InspectAccount(int id, VisualizationModes mode)
     {
         var result = new InspectAccountModel();
         var account = await GetAccount(id);
 
         foreach (var transaction in account.Transactions)
         {
+            transaction.Amount = Math.Abs(transaction.Amount);
             if (transaction.Amount > 15000)
             {
                 result.TransactionsOverLimit.Add(transaction);
