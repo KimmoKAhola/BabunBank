@@ -28,6 +28,27 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         }
     }
 
+    public IQueryable<Account> GetAllAsync()
+    {
+        try
+        {
+            var transferLimit = 15000M;
+            var result = accountRepository
+                .GetAllAsync()
+                .Where(a => a.Transactions.Any(t => Math.Abs(t.Amount) > transferLimit))
+                .Include(a => a.Transactions)
+                .Include(a => a.Dispositions)
+                .ThenInclude(d => d.Customer);
+
+            return result;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
     public async Task<bool?> CreateDepositAsync(Account model)
     {
         var account = await accountRepository.CreateAsync(model);
