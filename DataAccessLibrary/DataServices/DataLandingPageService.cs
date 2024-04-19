@@ -56,10 +56,54 @@ public class DataLandingPageService(BankAppDataContext dbContext)
         )>
     > GetDetailedLandingPageQuery(string country)
     {
-        var data = await dbContext.Accounts
-            .Include(x => x.Dispositions)
-            .ThenInclude(x => x.Customer).ToListAsync();
-        
-        return data;
+        var queryResult = await dbContext
+            .Transactions.Join(
+                dbContext.Accounts,
+                t => t.AccountId,
+                a => a.AccountId,
+                (t, a) => new { Transaction = t, Account = a }
+            )
+            .Join(
+                dbContext.Dispositions,
+                ta => ta.Account.AccountId,
+                d => d.AccountId,
+                (ta, d) => new { TransactionWithAccount = ta, Disposition = d }
+            )
+            .Join(
+                dbContext.Customers,
+                tad => tad.Disposition.CustomerId,
+                c => c.CustomerId,
+                (tad, c) => new { TransactionWithAccountAndDisposition = tad, Customer = c }
+            )
+            .Where(tc =>
+                tc.Customer.Country.ToLower() == country
+                && tc.TransactionWithAccountAndDisposition.Disposition.Type.ToLower() == "owner"
+            )
+            .GroupBy(tc => new
+            {
+                tc.Customer.Country,
+                tc.TransactionWithAccountAndDisposition.TransactionWithAccount.Account.AccountId,
+                tc.Customer.CustomerId,
+                CustomerName = tc.Customer.Givenname + " " + tc.Customer.Surname
+            })
+            .Select(group => new
+            {
+                Country = group.Key.Country,
+                CustomerId = group.Key.CustomerId,
+                AccountId = group.Key.AccountId,
+                TotalBalance = group.Sum(x =>
+                    x.TransactionWithAccountAndDisposition.TransactionWithAccount.Transaction.Amount
+                ),
+                CustomerName = group.Key.CustomerName
+            })
+            .OrderByDescending(grouping => grouping.TotalBalance)
+            .Take(10)
+            .ToListAsync();
+
+        var result = queryResult.Select(x =>
+            (x.Country, x.AccountId, x.CustomerId, x.TotalBalance, x.CustomerName)
+        );
+
+        return result;
     }
 }
