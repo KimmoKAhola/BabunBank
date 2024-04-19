@@ -179,7 +179,7 @@ public class CashierController(
 
     public async Task<IActionResult> Inspect(int id)
     {
-        var sus = await moneyLaunderingService.InspectAccount(id);
+        var sus = await moneyLaunderingService.InspectAccount(id, VisualizationModes.Web);
 
         return View(sus);
     }
