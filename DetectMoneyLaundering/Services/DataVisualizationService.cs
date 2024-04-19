@@ -37,7 +37,8 @@ public static class DataVisualizationService
     private static void CreateSuspiciousTransactionsPlot(
         Transaction[] transactions,
         int length,
-        string customerName
+        string customerName,
+        VisualizationModes mode
     )
     {
         Plot myPlot = new();
@@ -48,7 +49,8 @@ public static class DataVisualizationService
 
         foreach (var dateForTransaction in transactions)
         {
-            xs[transactionCounter] = DateTime.Parse(dateForTransaction.Date.ToString());
+            labels[transactionCounter] = dateForTransaction.Date.ToString();
+            xs[transactionCounter] = transactionCounter;
             transactionCounter++;
         }
 
