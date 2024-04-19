@@ -54,7 +54,7 @@ public static class DataVisualizationService
         myPlot.Title($"All suspicious transactions for the customer {customerName}");
         myPlot.XLabel("Date");
         myPlot.YLabel("Transaction amount in SEK");
-        myPlot.SavePng("wwwroot/images/moneylaundering/suscpicious-transactions.png", 800, 800);
+        myPlot.SavePng("../../../test/suscpicious-transactions.png", 800, 800);
     }
 
     private static void CreateNormalTransactionsPlot(
@@ -82,7 +82,7 @@ public static class DataVisualizationService
         myPlot.Title($"All normal transactions for the customer {customerName}");
         myPlot.XLabel("Date");
         myPlot.YLabel("Transaction amount in SEK");
-        myPlot.SavePng("wwwroot/images/moneylaundering/normal-transactions.png", 800, 800);
+        myPlot.SavePng("../../../test/normal-transactions.png", 800, 800);
     }
 
     private static void CreatePieChart(
@@ -112,12 +112,12 @@ public static class DataVisualizationService
         piePlot.ExplodeFraction = 0.1;
         myPlot.ShowLegend();
         myPlot.Title($"Percentage overview of transactions for the customer {customerName}");
-        myPlot.SavePng("wwwroot/images/moneylaundering/piechart.png", 800, 800);
+        myPlot.SavePng("../../../test/piechart.png", 800, 800);
     }
 
     public static void CreateGeneralPlot()
     {
         Plot myPlot = new();
-        myPlot.SavePng("wwwroot/images/moneylaundering/bigplot.png", 800, 800);
+        myPlot.SavePng("../../../test/bigplot.png", 800, 800);
     }
 }
