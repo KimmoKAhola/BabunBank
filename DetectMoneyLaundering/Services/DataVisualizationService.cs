@@ -6,8 +6,8 @@ namespace DetectMoneyLaundering.Services;
 
 public static class DataVisualizationService
 {
-    private static readonly string _goodColor = "#169DE9";
-    private static readonly string _badColor = "#ef4444";
+    private static readonly Color BadColor = Color.FromArgb(239, 68, 68);
+    private static readonly Color GoodColor = Color.FromArgb(22, 157, 233);
     private const decimal SuspiciousTransactionThreshold = 15000M;
 
     public static void CreateIndividualPlot(InspectAccountModel model)
