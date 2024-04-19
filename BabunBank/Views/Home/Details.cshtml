@@ -1,0 +1,19 @@
+﻿@using System.Globalization
+@model IEnumerable<BabunBank.Models.ViewModels.LandingPage.DetailedLandingPageViewModel>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Top 10 in @Model.First().Country</h2>
+<div class="container">
+    @foreach (var customer in Model)
+    {
+        <h3>Customer Id: @customer.CustomerId</h3>
+        <h3>Account Id: @customer.AccountId</h3>
+        <h3>Name @customer.Name</h3>
+        <h3 style="margin-bottom: 24px">Account sum: @customer.AccountSum.ToString("C2", new CultureInfo("sv-SE"))</h3>
+        
+    }
+</div>
