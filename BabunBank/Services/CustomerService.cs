@@ -44,7 +44,7 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         int pageSize
     )
     {
-        var customers = dataCustomerService.GetAll(sortColumn, sortOrder);
+        var customers = dataCustomerService.GetAllAsync(sortColumn, sortOrder);
 
         if (int.TryParse(q, out int value))
         {
