@@ -14,59 +14,41 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
 
             return customer;
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            Console.WriteLine(e);
-            throw;
+            return null;
         }
     }
 
-    public IQueryable<Customer> GetAll(string sortColumn, string sortOrder)
+    public IQueryable<Customer> GetAll(string? sortColumn, string? sortOrder)
     {
         try
         {
-            var result = customerRepository.GetAllAsync();
-
-            switch (sortColumn)
+            var sortingExpressions = new Dictionary<string, Expression<Func<Customer, object>>>
             {
-                case "Id" when sortOrder == "asc":
-                    result = result.OrderBy(x => x.CustomerId);
-                    break;
-                case "Id":
-                    result = result.OrderByDescending(x => x.CustomerId);
-                    break;
-                case "Gender" when sortOrder == "asc":
-                    result = result.OrderBy(x => x.Gender);
-                    break;
-                case "Gender":
-                    result = result.OrderByDescending(x => x.Gender);
-                    break;
-                case "GivenName" when sortOrder == "asc":
-                    result = result.OrderBy(x => x.Givenname);
-                    break;
-                case "GivenName":
-                    result = result.OrderByDescending(x => x.Givenname);
-                    break;
-                case "Surname" when sortOrder == "asc":
-                    result = result.OrderBy(x => x.Surname);
-                    break;
-                case "Surname":
-                    result = result.OrderByDescending(x => x.Surname);
-                    break;
-                case "Country" when sortOrder == "asc":
-                    result = result.OrderBy(x => x.Country);
-                    break;
-                case "Country":
-                    result = result.OrderByDescending(x => x.Country);
-                    break;
+                { "Id", c => c.CustomerId },
+                { "Gender", c => c.Gender },
+                { "GivenName", c => c.Givenname },
+                { "Surname", c => c.Surname },
+                { "Country", c => c.Country }
+            };
+            var queryResult = customerRepository.GetAllAsync();
+
+            if (sortColumn == null || sortOrder == null)
+                return queryResult;
+
+            if (sortingExpressions.ContainsKey(sortColumn))
+            {
+                return sortOrder == "asc"
+                    ? queryResult.OrderBy(sortingExpressions[sortColumn])
+                    : queryResult.OrderByDescending(sortingExpressions[sortColumn]);
             }
 
-            return result;
+            return queryResult;
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            Console.WriteLine(e);
-            throw;
+            return customerRepository.GetAllAsync();
         }
     }
 
@@ -77,10 +59,9 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
             await customerRepository.CreateAsync(model);
             return true;
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            Console.WriteLine(e);
-            throw;
+            return false;
         }
     }
 
@@ -90,10 +71,9 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         {
             return await customerRepository.DeleteAsync(x => x.CustomerId == customer.CustomerId);
         }
-        catch (Exception e)
+        catch (Exception)
         {
-            Console.WriteLine(e);
-            throw;
+            return false;
         }
     }
 
