@@ -1,5 +1,4 @@
 ﻿using DataAccessLibrary.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLibrary.Repositories;
 
