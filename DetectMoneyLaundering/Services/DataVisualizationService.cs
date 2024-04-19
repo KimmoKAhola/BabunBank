@@ -9,6 +9,11 @@ public static class DataVisualizationService
     private static readonly Color BadColor = Color.FromArgb(239, 68, 68);
     private static readonly Color GoodColor = Color.FromArgb(22, 157, 233);
     private const decimal SuspiciousTransactionThreshold = 15000M;
+    private const int ImageHeight = 800;
+    private const int ImageWidth = 1400;
+    private const string YLabel = "Normalized transaction amount in SEK";
+    private const string XLabel = "Date";
+    private const int Granularity = 10;
 
     public static void CreateIndividualPlot(InspectAccountModel model)
     {
