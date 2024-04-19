@@ -1,25 +1,26 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using System.Globalization;
 using DataAccessLibrary.Data;
+using DataAccessLibrary.DataServices;
+using DataAccessLibrary.Repositories;
 using DetectMoneyLaundering.Services;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-using (var dbContext = new BankAppDataContext())
+var builder = Host.CreateDefaultBuilder(args);
+
+builder.ConfigureServices(services =>
 {
-    var test = new MoneyLaunderingService(dbContext);
+    services.AddDbContext<BankAppDataContext>();
+    services.AddScoped<AccountRepository>();
+    services.AddScoped<DataAccountService>();
+    services.AddScoped<MoneyLaunderingService>();
+});
 
-    var result = await test.GetAccount(2);
+var serviceProvider = builder.Build().Services;
 
-    // var sus = test.InspectAccount(result);
-    //
-    // foreach (var transaction in sus.TransactionsOverLimit)
-    // {
-    //     Console.WriteLine("Transaction Id: " + transaction.TransactionId);
-    //     Console.WriteLine(
-    //         "Transaction Amount: " + transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))
-    //     );
-    // }
+var moneyLaunderingService = serviceProvider.GetRequiredService<MoneyLaunderingService>();
 
-    Console.ReadKey();
-}
+var inspectResult = await moneyLaunderingService.InspectAccount(2);
+Console.WriteLine($"Customer Name: {inspectResult.CustomerName}");
+Console.ReadKey();
