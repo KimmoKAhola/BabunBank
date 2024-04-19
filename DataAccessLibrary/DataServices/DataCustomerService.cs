@@ -20,7 +20,7 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         }
     }
 
-    public IQueryable<Customer> GetAll(string? sortColumn, string? sortOrder)
+    public IQueryable<Customer> GetAllAsync(string? sortColumn, string? sortOrder)
     {
         try
         {
