@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using DetectMoneyLaundering
 @model DetectMoneyLaundering.Models.InspectAccountModel
 
 @{
@@ -8,32 +9,37 @@
 <h2>Inspecting customer @Model.CustomerName</h2>
 <h3>Here are the suspicious transactions for this customer</h3>
 <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
+<p>Do you wish to change the image settings? Adjust the plots here:</p>
+<div class="container">
+    <input type="range" min="0" max="100" value="50" oninput="rangeValue.innerText = this.value">
+    <p id="rangeValue">100</p>
+</div>
 <div class="container inspect">
-    <div>
-        <table class="data-table">
-            <thead class="data-table-header">
-            <tr>
-                <th>Transaction Id</th>
-                <th>Transaction Amount</th>
-                <th>Transaction Date</th>
-                <th>Type</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            @foreach (var transaction in @Model.TransactionsOverLimit)
-            {
-
-                <tr>
-                    <td>@transaction.TransactionId</td>
-                    <td>@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
-                    <td>@transaction.Date</td>
-                    <td>Transaction above @($"{15000:C2}")</td>
-                </tr>
-            }
-            </tbody>
-        </table>
-    </div>
+    @* <div> *@
+    @*     <table class="data-table"> *@
+    @*         <thead class="data-table-header"> *@
+    @*         <tr> *@
+    @*             <th>Transaction Id</th> *@
+    @*             <th>Transaction Amount</th> *@
+    @*             <th>Transaction Date</th> *@
+    @*             <th>Type</th> *@
+    @*         </tr> *@
+    @*         </thead> *@
+    @* *@
+    @*         <tbody> *@
+    @*         @foreach (var transaction in @Model.TransactionsOverLimit) *@
+    @*         { *@
+    @* *@
+    @*             <tr> *@
+    @*                 <td>@transaction.TransactionId</td> *@
+    @*                 <td>@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td> *@
+    @*                 <td>@transaction.Date</td> *@
+    @*                 <td>Transaction above @($"{15000:C2}")</td> *@
+    @*             </tr> *@
+    @*         } *@
+    @*         </tbody> *@
+    @*     </table> *@
+    @* </div> *@
     <div id="inspect-customer-plot-container">
         <div class="inspect-customer-plot">
             <img class="carousel-img" src="~/images/moneylaundering/@($"{PlotNames.SuspiciousTransactions}.png")" alt="todo">
