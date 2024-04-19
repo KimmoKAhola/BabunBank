@@ -13,7 +13,7 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         return result;
     }
 
-    public IQueryable<Account> GetAll(string sortOrder, string sortColum)
+    public IQueryable<Account> GetAllAsync(string sortOrder, string sortColum)
     {
         try
         {
