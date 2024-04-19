@@ -1,21 +1,23 @@
 ﻿using DataAccessLibrary.Data;
+using DataAccessLibrary.DataServices;
 using DetectMoneyLaundering.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DetectMoneyLaundering.Services;
 
 //TODO Rename me to something better
-public class MoneyLaunderingService(BankAppDataContext dbContext)
+public class MoneyLaunderingService(DataAccountService dataAccountService)
 {
     public async Task<Account?> GetAccount(int id)
     {
-        return await dbContext
-            .Accounts.Include(a => a.Transactions)
-            .Include(a => a.Dispositions)
-            .ThenInclude(d => d.Customer)
-            .FirstOrDefaultAsync(a =>
-                a.Dispositions.First(d => d.Type == "OWNER").CustomerId == id
-            );
+        return await dataAccountService.GetAsync(id);
+        // return await dbContext
+        //     .Accounts.Include(a => a.Transactions)
+        //     .Include(a => a.Dispositions)
+        //     .ThenInclude(d => d.Customer)
+        //     .FirstOrDefaultAsync(a =>
+        //         a.Dispositions.First(d => d.Type == "OWNER").CustomerId == id
+        //     );
     }
 
     public async Task<InspectAccountModel> InspectAccount(int id)
