@@ -72,7 +72,7 @@ public static class DataVisualizationService
         var filePath = mode switch
         {
             VisualizationModes.Web => $"wwwroot/images/moneylaundering/{fileEnding}.png",
-            VisualizationModes.Console => $"../../../test/{fileEnding}.png",
+            VisualizationModes.Console => $"../../../Plots/{fileEnding}.png",
             _ => ""
         };
 
