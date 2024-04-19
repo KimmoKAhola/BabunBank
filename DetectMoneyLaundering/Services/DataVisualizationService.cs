@@ -112,32 +112,34 @@ public static class DataVisualizationService
 
     private static void CreatePieChart(
         double percentageOfSuspiciousTransactions,
-        string customerName
+        string customerName,
+        VisualizationModes mode
     )
     {
         Plot myPlot = new();
-        List<PieSlice> pieSlices =
+        double[] pieSlices =
         [
-            new PieSlice
-            {
-                Value = percentageOfSuspiciousTransactions,
-                FillColor = Color.FromHex(_badColor),
-                Label = $"Suspicious transactions - {percentageOfSuspiciousTransactions:P2}"
-            },
-            new PieSlice
-            {
-                Value = 1 - percentageOfSuspiciousTransactions,
-                FillColor = Color.FromHex(_goodColor),
-                Label = $"Normal transactions - {1 - percentageOfSuspiciousTransactions:P2}"
-            }
+            percentageOfSuspiciousTransactions,
+            1 - percentageOfSuspiciousTransactions
         ];
-
-        var piePlot = myPlot.Add.Pie(pieSlices);
-        piePlot.DonutFraction = .5;
-        piePlot.ExplodeFraction = 0.1;
-        myPlot.ShowLegend();
+        Color[] colors = [BadColor, GoodColor];
+        string[] labels =
+        [
+            $"Suspicious Transactions {percentageOfSuspiciousTransactions:P2}",
+            $"Normal Transactions {1 - percentageOfSuspiciousTransactions:P2}"
+        ];
+        var piePlot = myPlot.AddPie(pieSlices);
+        piePlot.SliceLabels = labels;
+        piePlot.Explode = true;
+        piePlot.DonutSize = 0.6;
+        piePlot.SliceFillColors = colors;
+        myPlot.Legend(true, Alignment.LowerRight);
+        myPlot.Grid(true);
         myPlot.Title($"Percentage overview of transactions for the customer {customerName}");
-        myPlot.SavePng("../../../test/piechart.png", 800, 800);
+
+        var filePath = GetFilePath(mode, PlotNames.PieChart.ToString());
+
+        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
     }
 
     public static void CreateGeneralPlot()
