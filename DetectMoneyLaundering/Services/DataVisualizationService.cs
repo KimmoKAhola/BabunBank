@@ -92,19 +92,22 @@ public static class DataVisualizationService
 
         foreach (var dateForTransaction in transactions)
         {
-            xs[transactionCounter] = DateTime.Parse(dateForTransaction.Date.ToString());
+            if (transactionCounter % Granularity == 0)
+                labels[transactionCounter] = dateForTransaction.Date.ToString();
+            xs[transactionCounter] = transactionCounter;
             transactionCounter++;
         }
 
-        var scatter = myPlot.Add.ScatterPoints(xs, ys);
-        scatter.MarkerStyle.Shape = MarkerShape.FilledCircle;
-        scatter.MarkerStyle.Size = 6;
-        scatter.MarkerStyle.Fill.Color = Color.FromHex(_goodColor);
-        myPlot.Axes.DateTimeTicksBottom();
+        var scatter = myPlot.AddScatter(xs, ys, GoodColor, 0, 8);
+        myPlot.Add(scatter);
         myPlot.Title($"All normal transactions for the customer {customerName}");
-        myPlot.XLabel("Date");
-        myPlot.YLabel("Transaction amount in SEK");
-        myPlot.SavePng("../../../test/normal-transactions.png", 800, 800);
+        myPlot.XLabel(XLabel);
+        myPlot.YLabel(YLabel);
+        myPlot.XTicks(labels);
+        myPlot.XAxis.TickLabelStyle(rotation: 90);
+
+        var filePath = GetFilePath(mode, PlotNames.NormalTransactions.ToString());
+        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
     }
 
     private static void CreatePieChart(
