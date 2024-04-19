@@ -142,9 +142,48 @@ public static class DataVisualizationService
         myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
     }
 
-    public static void CreateGeneralPlot()
+    public static void CreatePlotForAllTransactions(Test test, VisualizationModes mode)
     {
+        var maxValue = test.ListOfSusAccounts.Max(x => x.TransactionsOverLimit.Count);
+        const int numberOfBins = 80;
+
+        var barPlotValues = new double[numberOfBins][];
+        var increment = maxValue / (double)numberOfBins;
+
+        for (var i = 0; i < numberOfBins; i++)
+        {
+            barPlotValues[i] = new double[2];
+            barPlotValues[i][0] = increment * (i + 1);
+        }
+
+        foreach (var customer in test.ListOfSusAccounts)
+        {
+            var badTransactionCount = customer.TransactionsOverLimit.Count;
+
+            var barPlotBinIndex = (int)Math.Ceiling(badTransactionCount / increment) - 1;
+            if (barPlotBinIndex < 0)
+                barPlotBinIndex = 0;
+            barPlotValues[barPlotBinIndex][1]++;
+        }
+
         Plot myPlot = new();
-        myPlot.SavePng("../../../test/bigplot.png", 800, 800);
+        var positions = new double[numberOfBins];
+        var labels = new string[numberOfBins];
+        for (int i = 0; i < numberOfBins; i++)
+        {
+            var bar = myPlot.AddBar(barPlotValues[i][0] - increment / 2, barPlotValues[i][1]);
+            bar.BarWidth = increment - 1;
+            positions[i] = barPlotValues[i][0] - increment / 2;
+            labels[i] = $"{(int)(barPlotValues[i][0] - increment)} - {(int)barPlotValues[i][0]}";
+        }
+
+        myPlot.SetAxisLimits(xMin: 0, yMin: 0);
+        myPlot.Title("Aggregate bar plot of suspicious transactions for all customers");
+        myPlot.YLabel("Number of suspicious transactions per span");
+        myPlot.XLabel("Transaction span");
+        myPlot.XTicks(positions, labels);
+        myPlot.XAxis.TickLabelStyle(rotation: 90);
+        var filePath = GetFilePath(VisualizationModes.Console, PlotNames.Aggregate.ToString());
+        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
     }
 }
