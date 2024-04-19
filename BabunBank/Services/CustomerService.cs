@@ -37,9 +37,9 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
     }
 
     public async Task<(IEnumerable<CustomerViewModel>, int)> GetAllCustomersViewModelAsync(
-        string sortColumn,
-        string sortOrder,
-        string q,
+        string? sortColumn,
+        string? sortOrder,
+        string? q,
         int pageNumber,
         int pageSize
     )
