@@ -1,4 +1,5 @@
 ﻿using BabunBank.Models.ViewModels.LandingPage;
+using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 
 namespace BabunBank.Services;
@@ -9,20 +10,17 @@ namespace BabunBank.Services;
 /// <param name="landingPageService"></param>
 public class LandingPageService(DataLandingPageService landingPageService)
 {
-    public async Task<LandingPageViewModel> GetLandingPageInfo()
+    public async Task<IEnumerable<LandingPageViewModel>> GetLandingPageInfo()
     {
         var accountData = await landingPageService.GetLandingPageQuery();
 
-        var viewModel = new LandingPageViewModel
+        var viewModel = accountData.Select(x => new LandingPageViewModel
         {
-            NumberOfAccounts = accountData.Count(),
-            NumberOfCustomers = accountData
-                .SelectMany(a => a.Dispositions)
-                .Select(d => d.CustomerId)
-                .Distinct()
-                .Count(),
-            TotalAccountBalance = accountData.Sum(a => a.Balance)
-        };
+            Country = x.country,
+            NumberOfCustomers = x.NumberOfCustomers,
+            TotalBalancePerCountry = x.TotalBalancePerCountry,
+            NumberOfAccounts = x.NumberOfAccounts
+        });
 
         return viewModel;
     }
