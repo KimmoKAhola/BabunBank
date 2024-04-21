@@ -18,7 +18,8 @@ public class CreateWithdrawalModel
 
     [Required]
     [Range(1, 100000)]
-    public decimal Amount { get; set; }
+    [MaximumAmount(nameof(Balance))]
+    public decimal Amount { get; init; }
 
     [Required]
     public decimal Balance { get; init; }
