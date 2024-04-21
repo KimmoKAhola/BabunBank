@@ -33,15 +33,15 @@
                         <td>Country: @Model.Country</td>
                     </tr>
                     <tr>
-                        @foreach (var account in Model.CustomerAccounts)
-                        {
-                            <td style="display: flex; align-items: center; gap: 12px">
-                                Account Id: @account.AccountId (@account.Type)
-                                <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId" class="inspect-account-button">
-                                    <i class="material-symbols-outlined">search</i>
-                                </a>
-                            </td>
-                        }
+                    @foreach (var account in Model.CustomerAccounts)
+                    {
+                        <td style="display: flex; align-items: center; gap: 12px">
+                            Account Id: @account.AccountId (@account.Type)
+                            <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId" class="inspect-account-button">
+                                <i class="material-symbols-outlined">search</i>
+                            </a>
+                        </td>
+                    }
                     </tbody>
                 </table>
                 <div class="customer-card-crud">
