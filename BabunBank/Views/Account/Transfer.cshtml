@@ -10,7 +10,7 @@
 <h2>Cashier transfer</h2>
 <div class="container mb-5">
     <h2>Cashier Deposit</h2>
-    <h2>Your current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
+    <h2>Your current balance is: @Model.BalanceSender.ToString("C2", new CultureInfo("sv-SE"))</h2>
     <form method="post" asp-controller="Account" asp-action="Transfer">
         <div asp-validation-summary="ModelOnly"></div>
         <div class="create-customer-form-row">
@@ -35,7 +35,7 @@
         @* <input type="hidden" asp-for="Type"> *@
         <input type="hidden" asp-for="OperationSender">
         <input type="hidden" asp-for="OperationReceiver">
-        <input type="hidden" asp-for="Balance">
+        <input type="hidden" asp-for="BalanceSender">
         <input type="hidden" asp-for="Symbol">
         <input type="hidden" asp-for="Bank">
         <input type="hidden" asp-for="Account">
