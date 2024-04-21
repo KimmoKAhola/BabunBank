@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BabunBank.Models.FormModels.Cashier;
+using BabunBank.Models.ViewModels.Account;
 using DataAccessLibrary.Data;
 
 namespace BabunBank.Factories;

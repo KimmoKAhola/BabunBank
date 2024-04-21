@@ -36,6 +36,10 @@ public class MappingProfile : Profile
             );
 
         CreateMap<Account, AccountViewModel>()
+            .ForMember(
+                dest => dest.Balance,
+                opt => opt.MapFrom(src => src.Transactions.Sum(t => t.Amount))
+            )
             .ForMember(dest => dest.Transactions, opt => opt.MapFrom(src => src.Transactions))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Dispositions.First().Type));
     }
