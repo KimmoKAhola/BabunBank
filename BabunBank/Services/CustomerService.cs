@@ -25,6 +25,7 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
 
         var editableCustomerModel = mapper.Map<EditCustomerModel>(result);
         editableCustomerModel.CountryValue = (int)ConvertCountryToEnum(result.Country);
+        editableCustomerModel.GenderRole = (int)ConvertGenderToEnum(result.Gender);
 
         return editableCustomerModel;
     }
@@ -32,6 +33,11 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
     private static CountryOptions ConvertCountryToEnum(string country)
     {
         return Enum.TryParse<CountryOptions>(country, out var value) ? value : 0;
+    }
+
+    private static GenderOptions ConvertGenderToEnum(string gender)
+    {
+        return Enum.TryParse<GenderOptions>(gender, out var value) ? value : 0;
     }
 
     public async Task<(IEnumerable<CustomerViewModel>, int)> GetAllCustomersViewModelAsync(
