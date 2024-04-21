@@ -49,7 +49,7 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         }
     }
 
-    public async Task<bool?> CreateDepositAsync(Account model)
+    public async Task<bool?> CreateAsync(Account model)
     {
         var account = await accountRepository.CreateAsync(model);
         return account != null;
