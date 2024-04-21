@@ -112,8 +112,67 @@
     </div>
 </div>
 
-@foreach (var acc in Model.CustomerAccounts)
-{
-    <p>@acc.AccountId</p>
-}
+
+<script defer>
     
+        function formatCurrency(amount, currency = 'SEK', locale = 'sv-SE') {
+            return new Intl.NumberFormat(locale, {
+                style: 'currency',
+                currency: currency
+            }).format(amount);
+        }
+        
+        let pageNo = 1;
+
+        document.addEventListener("DOMContentLoaded", function () {
+            showMore();
+        });
+
+        function showMore() {
+            fetch(`/Cashier/ShowMore?id=@Model.CustomerId&pageNo=${pageNo}`)
+                .then((response) => response.json())
+                .then((transactions) => {
+                    pageNo += 1;
+                    transactions.forEach(drawElements);
+                });
+        }
+
+        function formatDate(dateString, locale = 'sv-SE') {
+            return new Date(dateString).toLocaleDateString(locale);
+        }
+
+        function drawElements(transaction) {
+            let table = document.querySelector("#transactionTable tbody");
+            let row = `<tr>
+                            <td>${transaction.transactionId}</td>
+                            <td>${formatDate(transaction.date)}</td>
+                            <td>${formatCurrency(transaction.amount)}</td>
+                            <td>${formatCurrency(transaction.balance)}</td>
+                            <td>${transaction.type}</td>
+                    </tr>`;
+            table.insertAdjacentHTML('beforeend', row);
+        }
+
+</script>
+<script>
+    function toggleTransactions (){
+        const table = document.getElementById("transactionTable");
+        const loadMoreButton = document.getElementById("loadMore-button");
+        const goToTopButton = document.getElementById("goToTop-button");
+        const visible = document.getElementById("show");
+        const invisible = document.getElementById("doNotShow");
+        
+
+        table.classList.toggle("hidden");
+        loadMoreButton.classList.toggle("hidden");
+        goToTopButton.classList.toggle("hidden");
+        visible.classList.toggle("hidden");
+        invisible.classList.toggle("hidden");
+    }
+</script>
+<script>
+    function goToTop(){
+        document.body.scrollTop = 0; // For Safari
+        document.documentElement.scrollTop = 0;
+    }
+</script>
