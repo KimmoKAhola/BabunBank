@@ -22,7 +22,6 @@ public class CustomerRepository(BankAppDataContext dbContext) : BaseRepository<C
         catch (Exception e)
         {
             Console.WriteLine(e);
-            // throw new DataAccessLibraryException("Error");
         }
 
         return null!;
