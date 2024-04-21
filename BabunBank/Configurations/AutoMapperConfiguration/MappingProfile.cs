@@ -36,6 +36,7 @@ public class MappingProfile : Profile
             );
 
         CreateMap<Account, AccountViewModel>()
-            .ForMember(x => x.Transactions, x => x.MapFrom(a => a.Transactions));
+            .ForMember(dest => dest.Transactions, opt => opt.MapFrom(src => src.Transactions))
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Dispositions.First().Type));
     }
 }
