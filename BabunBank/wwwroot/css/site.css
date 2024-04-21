@@ -159,14 +159,14 @@ tbody.body{
   border-bottom: none;
 }
 
-.data-table tbody tr:last-child, .data-table tbody{
-  border-bottom: none;
-  background-color: transparent;
-}
+/*.data-table tbody tr:last-child, .data-table tbody{*/
+/*  border-bottom: none;*/
+/*  background-color: transparent;*/
+/*}*/
 
-.data-table tbody tr:last-child:hover {
-  background-color: transparent;
-}
+/*.data-table tbody tr:last-child:hover {*/
+/*  background-color: transparent;*/
+/*}*/
 
 .data-table tbody tr:hover {
   background-color: #c7c1af;
@@ -499,6 +499,7 @@ a:hover {
   /*background-color: #eaf3ee;*/
   background-color: #1a4137;
   min-height: 100vh;
+  margin-bottom: 72px;
 }
 
 #landing-page-body{
@@ -578,6 +579,7 @@ a:hover {
   display: flex;
   justify-content: space-evenly;
   gap: 20px;
+  margin-bottom: 72px;
 }
 
 

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "vEfB9d2owPieKaN0KHsiNCRey3s5LXZ/6NB/kbL8GP0=",
+  "Hash": "Bj9cRtS72hPUfWBuGz+CdgAm1yTnDAghmWiUjaG5Rp0=",
   "Source": "BabunBank",
   "BasePath": "_content/BabunBank",
   "Mode": "Default",
@@ -1440,25 +1440,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\flag-of-denmark.svg"
-    },
-    {
-      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finlan.svg",
-      "SourceId": "BabunBank",
-      "SourceType": "Discovered",
-      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
-      "BasePath": "_content/BabunBank",
-      "RelativePath": "images/flag-of-finlan.svg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\flag-of-finlan.svg"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.svg",

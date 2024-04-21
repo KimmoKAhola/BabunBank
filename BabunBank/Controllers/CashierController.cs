@@ -36,8 +36,8 @@ public class CashierController(
         string sortColumn,
         string sortOrder,
         string q,
-        int pageNumber,
-        int pageSize
+        int pageNumber = 0,
+        int pageSize = 50
     )
     {
         if (pageNumber == 0)
@@ -47,7 +47,7 @@ public class CashierController(
 
         if (pageSize == 0)
         {
-            pageSize = 5;
+            pageSize = 50;
         }
 
         var (customers, totalPageCount) = await customerService.GetAllCustomersViewModelAsync(

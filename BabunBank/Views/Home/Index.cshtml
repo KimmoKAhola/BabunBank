@@ -1,4 +1,4 @@
-﻿@using System.Globalization
+﻿@using System.Security.Cryptography
 @model IEnumerable<BabunBank.Models.ViewModels.LandingPage.LandingPageViewModel>
 @{
     ViewData["Title"] = "Home Page";
@@ -39,99 +39,60 @@
     </div>
 </div>
 
-@* Landing page info *@
 
-@* <div id="country-page-bg"> *@
-@*     <div id="landing-page-body"> *@
-@*         <div id="header"> *@
-@*             <h2>Providing quality services since 2013</h2> *@
-@*             $1$ <a href="#">TODO <i class="material-symbols-outlined"> #1# *@
-@*             $1$     arrow_right_alt #1# *@
-@*             $1$ </i></a> #1# *@
-@*         </div> *@
-@*         <div class="landing-page-info"> *@
-@*             <div class="landing-page-summary"> *@
-@*                 <div> *@
-@*                     <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO"> *@
-@*                     <h3> *@
-@*                         @Model.[0] accounts *@
-@*                     </h3>  *@
-@*                     <p>From the nordic countries</p> *@
-@*                 </div> *@
-@*                 <div class="landing-page-arrow"> *@
-@*                     <img src="~/images/landing-page-arrow.svg" alt="TODO"> *@
-@*                 </div> *@
-@*             </div> *@
-@*              *@
-@*             <div class="landing-page-summary"> *@
-@*                 <div> *@
-@*                     <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO"> *@
-@*                     <h3> *@
-@*                         @Model.NumberOfCustomers customers *@
-@*                     </h3> *@
-@*                     <p>We have more than 5000 satisfied customers in the nordic countries</p> *@
-@*                 </div> *@
-@*                 <div class="landing-page-arrow"> *@
-@*                     <img src="~/images/landing-page-arrow.svg" alt="TODO"> *@
-@*                 </div> *@
-@*             </div> *@
-@*              *@
-@*             <div class="landing-page-summary last"> *@
-@*                 <div> *@
-@*                     <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO"> *@
-@*                     <h3> *@
-@*                         @(Model.TotalBalancePerCountry.ToString("C2")) *@
-@*                     </h3> *@
-@*                     <p>From the nordic countries</p> *@
-@*                 </div> *@
-@*             </div> *@
-@*         </div> *@
-@*     </div> *@
-@* *@
-@*     <div id="card-section"> *@
-@*             <div class="country-card"> *@
-@*                 <img class="country-flag" src="~/images/flag-of-finland.svg" alt="logo"> *@
-@*                 <h3>Country data</h3> *@
-@*                 <p>Stay updated, check your bank account to manage funds and track transactions securely.</p> *@
-@*                 <button>See more <i class="fa-solid fa-arrow-right"></i></button> *@
-@*             </div> *@
-@*              *@
-@*             <div class="country-card"> *@
-@*                 <img class="country-flag" src="~/images/flag-of-sweden.svg" alt="logo"> *@
-@*                 <h3>Country data</h3> *@
-@*                 <p>Stay updated, check your bank account to manage funds and track transactions securely.</p> *@
-@*                 <button>See more <i class="fa-solid fa-arrow-right"></i></button> *@
-@*             </div> *@
-@*              *@
-@*             <div class="country-card"> *@
-@*                 <img class="country-flag" src="~/images/flag-of-norway.svg" alt="logo"> *@
-@*                 <h3>Country data</h3> *@
-@*                 <p>Stay updated, check your bank account to manage funds and track transactions securely.</p> *@
-@*                 <button>See more <i class="fa-solid fa-arrow-right"></i></button> *@
-@*             </div> *@
-@*              *@
-@*             <div class="country-card"> *@
-@*                 <img class="country-flag" src="~/images/flag-of-denmark.svg" alt="logo"> *@
-@*                 <h3>Country data</h3> *@
-@*                 <p>Stay updated, check your bank account to manage funds and track transactions securely.</p> *@
-@*                 <button>See more <i class="fa-solid fa-arrow-right"></i></button> *@
-@*         </div> *@
-@*             </div> *@
-@*      *@
-@* </div> *@
-
-
-<div class="landing-page-bg">
-    @foreach (var i in Model)
-    {
-        <a asp-controller="Home" asp-action="Details" asp-route-country="@i.Country" class="landing-page-summary">
-            <div>
-                <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
-                <h3>Country: @i.Country</h3>
-                <h3>No of Acc: @i.NumberOfAccounts</h3>
-                <h3>No of Cus: @i.NumberOfCustomers</h3>
-                <h3>Country bal sum: @i.TotalBalancePerCountry.ToString("C2", new CultureInfo("sv-SE"))</h3>
+<div id="country-page-bg">
+    <div id="landing-page-body">
+        <div id="header">
+            <h2>Providing quality services since 2013</h2>
+            @* <a href="#">TODO <i class="material-symbols-outlined"> *@
+            @*     arrow_right_alt *@
+            @* </i></a> *@
+        </div>
+        <div class="landing-page-info">
+            <div class="landing-page-summary">
+                <div>
+                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
+                    <h3>
+                        
+                    </h3>
+                    <p>From the nordic countries</p>
+                </div>
+                <div class="landing-page-arrow">
+                    <img src="~/images/landing-page-arrow.svg" alt="TODO">
+                </div>
             </div>
-        </a>
-    }
+
+            <div class="landing-page-summary">
+                <div>
+                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
+                    <h3>
+                         customers
+                    </h3>
+                    <p>We have more than 5000 satisfied customers in the nordic countries</p>
+                </div>
+                <div class="landing-page-arrow">
+                    <img src="~/images/landing-page-arrow.svg" alt="TODO">
+                </div>
+            </div>
+
+            <div class="landing-page-summary last">
+                <div>
+                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
+                    <h3>
+                        
+                    </h3>
+                    <p>From the nordic countries</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="card-section">
+        @foreach (var country in Model)
+        {
+            <div class="country-card">
+                <partial name="_CountryBox" model="country"/>
+            </div>
+        }
+    </div>
 </div>

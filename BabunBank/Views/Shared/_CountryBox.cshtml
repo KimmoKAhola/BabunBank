@@ -1,0 +1,12 @@
+@using System.Globalization
+@model BabunBank.Models.ViewModels.LandingPage.LandingPageViewModel
+
+<a asp-controller="Home" asp-action="Details" asp-route-country="@Model.Country" class="landing-page-summary">
+    <div>
+        <img class="country-flag" src="~/images/flag-of-@(Model.Country.ToLower()).svg" alt="logo">
+        <hp>Country: @Model.Country</hp>
+        <hp>No of Acc: @Model.NumberOfAccounts</hp>
+        <hp>No of Cus: @Model.NumberOfCustomers</hp>
+        <hp>Country bal sum: @Model.TotalBalancePerCountry.ToString("C2", new CultureInfo("sv-SE"))</hp>
+    </div>
+</a>

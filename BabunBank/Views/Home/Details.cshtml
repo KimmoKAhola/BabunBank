@@ -7,13 +7,13 @@
 }
 
 <h2>Top 10 in @Model.First().Country</h2>
+<a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return to home</a>
 <div class="container">
     @foreach (var customer in Model)
     {
-        <h3>Customer Id: @customer.CustomerId</h3>
-        <h3>Account Id: @customer.AccountId</h3>
-        <h3>Name @customer.Name</h3>
-        <h3 style="margin-bottom: 24px">Account sum: @customer.AccountSum.ToString("C2", new CultureInfo("sv-SE"))</h3>
-        
+        <hp>Customer Id: @customer.CustomerId</hp>
+        <hp>Account Id: @customer.AccountId</hp>
+        <hp>Name @customer.Name</hp>
+        <hp style="margin-bottom: 24px">Account sum: @customer.AccountSum.ToString("C2", new CultureInfo("sv-SE"))</hp>
     }
 </div>
