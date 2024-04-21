@@ -130,9 +130,11 @@ public class AccountController(AccountService accountService, TransactionService
     public async Task<IActionResult> Transfer(CreateTransferModel transferModel)
     {
         if (!ModelState.IsValid)
-            return View(); //Error
+            return View(transferModel); //Error
 
-        var transfer = TransactionFactory.CreateTransfer(transferModel);
+        var receiver = await accountService.GetAccountViewModelAsync(transferModel.ToAccountId);
+
+        var transfer = TransactionFactory.CreateTransfer(transferModel, receiver);
 
         var result = await transactionService.CreateTransferAsync(transfer);
 
