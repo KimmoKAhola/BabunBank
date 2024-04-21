@@ -23,6 +23,9 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         var result = new InspectAccountModel();
         var account = await GetAccount(id);
 
+        if (account == null)
+            return result;
+
         foreach (var transaction in account.Transactions)
         {
             transaction.Amount = Math.Abs(transaction.Amount);
@@ -36,7 +39,7 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
             }
         }
 
-        result.TotalNumberOfTransactions = account.Transactions.Count();
+        result.TotalNumberOfTransactions = account.Transactions.Count;
 
         result.CustomerName = account
             .Dispositions.First(x => x.Type.ToLower() == "owner")
