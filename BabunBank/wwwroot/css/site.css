@@ -848,6 +848,8 @@ table{
 }
 
 .customer-card-crud button, .customer-card-crud a{
+  display: grid;
+  place-items: center;
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -855,31 +857,16 @@ table{
   i{
     font-weight: lighter;
     font-size: 1.75rem;
-    color: #f0f0f0;
+    color: var(--CTA);
     transition: 0.4s ease-in;
   }
   span{
     display: none;
-    color: #fcfcfc;
+    color: var(--CTA);;
     transition: 0.4s ease-in;
   }
 }
 
-.customer-card-crud button:hover, .customer-card-crud a:hover{
-  min-width: 100px;
-  /*width: fit-content;*/
-  border-radius: 4px;
-  transition: 0.4s ease-in;
-  i{
-    display: none;
-    transition: 0.4s ease-in;
-  }
-  span{
-    display: inline;
-    transition: 0.4s ease-in;
-    text-align: center;
-  }
-}
 
 #customer-delete-button{
   position: absolute;
@@ -940,6 +927,19 @@ table{
   display: flex;
   justify-content: space-between;
   gap: 12px;
+}
+
+.inspect-account-button{
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  i{
+    font-size: 1rem;
+    color: var(--CTA);
+  }
+  background-color: var(--CTA-btn);
 }
 
 .customer-card-button-row .create-customer-form-btn,
