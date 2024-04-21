@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using BabunBank.Models.CustomAnnotations;
 
 namespace BabunBank.Models.FormModels.Cashier;
 
-public class CreateTransferModel
+public record CreateTransferModel
 {
     [Required]
     public int FromAccountId { get; init; }
@@ -11,7 +12,8 @@ public class CreateTransferModel
     public int ToAccountId { get; init; }
 
     [Required]
-    [Range(1, 100000)]
+    [Range(0.01, 100000)]
+    [MaximumAmount(nameof(BalanceSender))]
     public decimal Amount { get; init; }
 
     [Required]
@@ -27,7 +29,10 @@ public class CreateTransferModel
     public string OperationReceiver { get; init; } = "Transfer from";
 
     [Required]
-    public decimal Balance { get; init; }
+    public decimal BalanceSender { get; init; }
+
+    [Required]
+    public decimal BalanceReceiver { get; init; }
     public string? Symbol { get; init; }
     public string? Bank { get; init; }
     public string? Account { get; init; }

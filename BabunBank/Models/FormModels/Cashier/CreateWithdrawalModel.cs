@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using BabunBank.Models.CustomAnnotations;
 
 namespace BabunBank.Models.FormModels.Cashier;
 
