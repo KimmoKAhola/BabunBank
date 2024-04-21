@@ -58,7 +58,10 @@ public static class TransactionFactory
         }
     }
 
-    public static CreateTransferModel CreateTransfer(CreateTransferModel model)
+    public static CreateTransferModel CreateTransfer(
+        CreateTransferModel model,
+        AccountViewModel receiver
+    )
     {
         try
         {
@@ -68,7 +71,8 @@ public static class TransactionFactory
                 ToAccountId = model.ToAccountId,
                 Amount = model.Amount,
                 Type = model.Type,
-                Balance = model.Balance,
+                BalanceSender = model.BalanceSender,
+                BalanceReceiver = receiver.Balance,
                 Symbol = model.Symbol,
                 Bank = model.Symbol,
                 Account = model.Account
