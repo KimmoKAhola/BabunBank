@@ -2,7 +2,7 @@
 
 namespace BabunBank.Models.FormModels.Cashier;
 
-public class CreateWithdrawalModel
+public record CreateWithdrawalModel
 {
     [Required]
     public int AccountId { get; init; }
