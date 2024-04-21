@@ -74,6 +74,14 @@ table {
   --form-card-bg: #edf1ee;
 }
 
+.hidden{
+  display: none;
+}
+
+#goToTop-button.hidden, #show.hidden, #doNotShow.hidden{
+  display: none;
+}
+
 /*Wrapper for view height*/
 
 .wrapper {
@@ -770,9 +778,10 @@ button:hover{
   align-items: center;
 }
 
-table{
-  width: fit-content;
-}
+/*TODO needed?*/
+/*table{*/
+/*  width: fit-content;*/
+/*}*/
 
 
 
@@ -906,6 +915,16 @@ table{
     transition: 0.4s ease-in;
   }
 }
+
+#loadMore-button{
+  background-color: var(--CTA-btn);
+  width: 250px;
+  color: var(--CTA);
+  padding: 8px;
+  border-radius: 0.25rem;
+  border: none;
+}
+
 
 .customer-card-profile-name{
   display: flex;
@@ -1059,6 +1078,29 @@ table{
 .create-customer-form-btn:hover{
   background-color: var(--CTA-btn-hover);
   color: var(--off-white);
+}
+
+#loadMore-button:hover, #goToTop-button:hover{
+  background-color: var(--CTA-btn-hover);
+  color: var(--off-white);
+  transition: 0.2s ease-in;
+  i{
+    color: var(--off-white);
+  }
+}
+
+#goToTop-button{
+  height: 50px;
+  width: 50px;
+  background-color: var(--CTA-btn);
+  border: none;
+  transition: 0.2s ease-in;
+  border-radius: 50%;
+  i{
+    color: var(--CTA);
+  }
+  display: grid;
+  place-items: center;
 }
 
 a.create-customer-form-btn{
