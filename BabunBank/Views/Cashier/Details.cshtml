@@ -88,9 +88,27 @@
                 <h2 class="customer-card-profile-name">@Model.GivenName @Model.Surname</h2>
             </div>
         </div>
-        <div class="customer-card-button-row">
-            
-        </div>
+        <table class="data-table" id="transactionTable">
+            <thead>
+            <tr>
+                <th>Transaction Id</th>
+                <th>Transaction Date</th>
+                <th>Transaction Amount</th>
+                <th>Transaction Balance</th>
+                <th>Transaction Type</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <span style="display: flex; gap: 24px">
+            <button id="loadMore-button" onclick="showMore()">Load More</button>
+            <button id="goToTop-button" onclick="goToTop()">
+                <i class="material-symbols-outlined">
+                    arrow_upward
+                </i>
+            </button>
+        </span>
     </div>
 </div>
 
