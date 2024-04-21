@@ -25,7 +25,7 @@ public class EditCustomerModel
     [Required]
     [Range(1, 3, ErrorMessage = "Please choose a valid option.")]
     [DisplayName("Gender")]
-    public int GenderRole { get; init; }
+    public int GenderRole { get; set; }
 
     [Required]
     [StringLength(100, MinimumLength = 2, ErrorMessage = "Please enter at least 2 characters.")]
