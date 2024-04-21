@@ -45,9 +45,12 @@
                     </tbody>
                 </table>
                 <div class="customer-card-crud">
-                    <button class="create-customer-form-btn">
-                        <i class="material-symbols-outlined">
+                    <button class="create-customer-form-btn" id="toggleTransactionsButton" onclick="toggleTransactions()">
+                        <i class="material-symbols-outlined" id="doNotShow">
                             visibility
+                        </i>
+                        <i class="material-symbols-outlined hidden" id="show">
+                            visibility_off
                         </i>
                     </button>
                     <a asp-action="Update" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">
