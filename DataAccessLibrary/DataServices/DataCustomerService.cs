@@ -52,7 +52,7 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
         }
     }
 
-    public async Task<bool?> CreateDepositAsync(Customer model)
+    public async Task<bool?> CreateAsync(Customer model)
     {
         try
         {

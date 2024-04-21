@@ -26,8 +26,18 @@ public static class DataVisualizationService
         var length = transactionsOverLimit.Length;
         var length2 = normalTransactions.Length;
 
+        if (length2 == 0)
+            length2 = 1;
         // Plot Creation
-        CreateSuspiciousTransactionsPlot(transactionsOverLimit, length, model.CustomerName, mode);
+        if (length > 0)
+        {
+            CreateSuspiciousTransactionsPlot(
+                transactionsOverLimit,
+                length,
+                model.CustomerName,
+                mode
+            );
+        }
         CreateNormalTransactionsPlot(normalTransactions, length2, model.CustomerName, mode);
 
         var percentageOfSuspiciousTransactions = length / (length + (double)length2);

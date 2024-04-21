@@ -33,8 +33,15 @@
                         <td>Country: @Model.Country</td>
                     </tr>
                     <tr>
-                        <td>Account Overview: </td>
-                    </tr>
+                        @foreach (var account in Model.CustomerAccounts)
+                        {
+                            <td style="display: flex; align-items: center; gap: 12px">
+                                Account Id: @account.AccountId (@account.Type)
+                                <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId" class="inspect-account-button">
+                                    <i class="material-symbols-outlined">search</i>
+                                </a>
+                            </td>
+                        }
                     </tbody>
                 </table>
                 <div class="customer-card-crud">
@@ -43,17 +50,7 @@
                             visibility
                         </i>
                     </button>
-                    @foreach (var account in @Model.CustomerAccounts)
-                    {
-                        <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId" class="create-customer-form-btn">
-                            <span>View
-                                @* account @account.AccountId TODO poor animation*@
-                                </span>
-                            <i class="material-symbols-outlined">search</i>
-                        </a>
-                    }
                     <a asp-action="Update" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">
-                        @* Edit customer information *@
                         <span>Edit</span>
                         <i class="material-symbols-outlined">
                             edit
@@ -61,7 +58,6 @@
                     </a>
 
                     <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="create-customer-form-btn">
-                        @* Return to previous menu *@
                         <span>Return</span>
                         <i class="material-symbols-outlined">
                             keyboard_return
@@ -78,14 +74,14 @@
                         delete
                     </i>
                 </a>
-                    @if (@Model.Gender.ToLower() == "male")
-                    {
-                        <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
-                    }
-                    else
-                    {
-                        <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
-                    }
+                @if (@Model.Gender.ToLower() == "male")
+                {
+                    <img src="https://avatar.iran.liara.run/public/boy" alt="TODO">
+                }
+                else
+                {
+                    <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
+                }
                 <h2 class="customer-card-profile-name">@Model.GivenName @Model.Surname</h2>
             </div>
         </div>
@@ -94,4 +90,9 @@
         </div>
     </div>
 </div>
+
+@foreach (var acc in Model.CustomerAccounts)
+{
+    <p>@acc.AccountId</p>
+}
     
