@@ -91,6 +91,22 @@ public class CashierController(
         return RedirectToAction("Index", "Error");
     }
 
+    [HttpGet]
+    public async Task<JsonResult> ShowMore(int id, int pageNo)
+    {
+        var pageSize = 50;
+        var transactions = await customerService.GetCustomerViewModelAsync(id);
+
+        var result = transactions
+            .CustomerAccounts.First()
+            .Transactions.OrderByDescending(t => t.TransactionId)
+            .Skip((pageNo - 1) * pageSize)
+            .Take(pageSize)
+            .ToList();
+
+        return Json(result);
+    }
+
     public IActionResult Create()
     {
         ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
