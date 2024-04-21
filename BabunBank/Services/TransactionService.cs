@@ -24,9 +24,9 @@ public class TransactionService(DataTransactionService dataTransactionService)
             AccountId = transfer.ToAccountId,
             Date = transfer.Date,
             Type = transfer.Type,
-            Operation = $"{transfer.OperationSender}" + $"{transfer.ToAccountId}",
+            Operation = $"{transfer.OperationReceiver}" + $" account {transfer.FromAccountId}",
             Amount = transfer.Amount,
-            Balance = transfer.Balance,
+            Balance = transfer.BalanceReceiver,
             Symbol = transfer.Symbol,
             Bank = transfer.Bank,
             Account = transfer.Account
@@ -37,9 +37,9 @@ public class TransactionService(DataTransactionService dataTransactionService)
             AccountId = transfer.FromAccountId,
             Date = transfer.Date,
             Type = transfer.Type,
-            Operation = $"{transfer.OperationReceiver}" + $"{transfer.FromAccountId}",
+            Operation = $"{transfer.OperationSender}" + $" account {transfer.ToAccountId}",
             Amount = (transfer.Amount * -1),
-            Balance = transfer.Balance,
+            Balance = transfer.BalanceSender,
             Symbol = transfer.Symbol,
             Bank = transfer.Bank,
             Account = transfer.Account
