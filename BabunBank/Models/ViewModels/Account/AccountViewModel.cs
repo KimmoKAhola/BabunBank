@@ -11,5 +11,6 @@ public class AccountViewModel
     public int AccountId { get; init; }
     public DateOnly Created { get; init; }
     public decimal Balance { get; init; }
+    public string Type { get; init; } = null!;
     public List<TransactionViewModel>? Transactions { get; set; }
 }
