@@ -118,7 +118,7 @@ public class AccountController(AccountService accountService, TransactionService
         var model = new CreateTransferModel
         {
             FromAccountId = account.CustomerId,
-            Balance = account.Balance
+            BalanceSender = account.Balance
         };
 
         return View(model);
