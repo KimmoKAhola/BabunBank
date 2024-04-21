@@ -1,13 +1,11 @@
-﻿using System.Linq.Expressions;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using AutoMapper;
+using BabunBank.Factories;
 using BabunBank.Models.FormModels.Cashier;
 using BabunBank.Models.ViewModels.Customer;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using DataAccessLibrary.DataServices.Enums;
 using Microsoft.EntityFrameworkCore;
-using ModelStateDictionary = System.Web.WebPages.Html.ModelStateDictionary;
 
 namespace BabunBank.Services;
 
@@ -68,7 +66,17 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
 
     public async Task<bool?> CreateCustomerAsync(Customer customer)
     {
-        return await dataCustomerService.CreateDepositAsync(customer);
+        customer.Dispositions = new List<Disposition>();
+        var account = AccountFactory.CreateNewAccount();
+        customer.Dispositions.Add(
+            new Disposition
+            {
+                Account = account,
+                Customer = customer,
+                Type = "OWNER"
+            }
+        );
+        return await dataCustomerService.CreateAsync(customer);
     }
 
     public async Task<bool?> UpdateCustomerAsync(
