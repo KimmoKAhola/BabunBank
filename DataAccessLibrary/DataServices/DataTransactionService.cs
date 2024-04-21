@@ -62,17 +62,13 @@ public class DataTransactionService(
         return true;
     }
 
-    public async Task<bool?> CreateTransferAsync(Transaction deposit, Transaction withdrawal)
+    public async Task<bool> CreateTransferAsync(Transaction deposit, Transaction withdrawal)
     {
         try
         {
-            var dep = await CreateDepositAsync(deposit);
-            var tran = await CreateWithdrawalAsync(withdrawal);
+            var result = await transactionRepository.CreateTransferAsync(deposit, withdrawal);
 
-            if (dep == true && tran == true)
-                return true;
-
-            return null;
+            return result;
         }
         catch (Exception e)
         {
