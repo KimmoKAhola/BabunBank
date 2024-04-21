@@ -127,14 +127,12 @@
         document.addEventListener("DOMContentLoaded", function () {
             showMore();
         });
-
-        function showMore() {
-            fetch(`/Cashier/ShowMore?id=@Model.CustomerId&pageNo=${pageNo}`)
-                .then((response) => response.json())
-                .then((transactions) => {
-                    pageNo += 1;
-                    transactions.forEach(drawElements);
-                });
+        
+        async function showMore() {
+            const response = await fetch(`/Cashier/ShowMore?id=@Model.CustomerId&pageNo=${pageNo}`);
+            const transactions = await response.json();
+            pageNo += 1;
+            transactions.forEach(drawElements);
         }
 
         function formatDate(dateString, locale = 'sv-SE') {
