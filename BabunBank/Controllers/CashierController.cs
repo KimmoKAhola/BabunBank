@@ -180,8 +180,15 @@ public class CashierController(
 
     public async Task<IActionResult> Inspect(int id)
     {
-        var sus = await moneyLaunderingService.InspectAccount(id, VisualizationModes.Web);
+        var resultOfInspection = await moneyLaunderingService.InspectAccount(
+            id,
+            VisualizationModes.Web
+        );
 
-        return View(sus);
+        if (resultOfInspection.TransactionsOverLimit.Count == 0)
+            TempData["Message"] =
+                "There are too few transactions made on this account. No data to show.";
+
+        return View(resultOfInspection);
     }
 }
