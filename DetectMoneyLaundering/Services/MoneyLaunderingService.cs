@@ -42,8 +42,9 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
             .Dispositions.First(x => x.Type.ToLower() == "owner")
             .Customer.Givenname;
         result.CustomerId = account.Dispositions.First(x => x.Type.ToLower() == "owner").CustomerId;
+        if (result.NormalTransactions.Count <= 0 || result.TransactionsOverLimit.Count <= 0)
+            return result;
         DataVisualizationService.CreateIndividualPlot(result, mode);
-
         return result;
     }
 
