@@ -14,8 +14,7 @@ public static class CustomerFactory
             var customer = mapper.Map<SignUpCustomerModel, Customer>(model);
             customer.Gender = Enum.GetName(typeof(GenderOptions), model.GenderRole);
             customer.Country = Enum.GetName(typeof(CountryOptions), model.Country);
-
-            return customer; //TODO create an account to this customer. Need to add disposition as well as owner.
+            return customer;
         }
         catch (Exception e)
         {
