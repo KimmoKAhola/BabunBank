@@ -154,13 +154,77 @@ public class AdController(ApiContext dbContext, IMapper mapper) : ControllerBase
     }
 
     /// <summary>
+    /// Updates a singular ad specified by its ID with the provided patch document.
+    /// </summary>
+    /// <param name="id">The ID of the ad to update.</param>
+    /// <param name="patchDocument">The JSON patch document containing the updates to apply.</param>
+    /// <returns>
+    /// Returns an HTTP status code 200 (OK) if the ad is successfully updated,
+    /// an HTTP status code 400 (Bad Request) if the patch document is null or the ID is invalid,
+    /// an HTTP status code 404 (Not Found) if the ad with the specified ID does not exist,
+    /// an HTTP status code 409 (Conflict) if there is a concurrency conflict during the update,
+    /// an HTTP status code 500 (Internal Server Error) if an error occurs during the update.
+    /// </returns>
+    [HttpPatch("{id:int}")]
+    public async Task<IActionResult> Patch(
+        int id,
+        [FromBody] JsonPatchDocument<EditAdModel>? patchDocument
+    )
+    {
+        if (patchDocument == null || id <= 0)
+        {
+            return BadRequest();
+        }
+
+        var existingAd = await dbContext.Ads.FindAsync(id);
+
+        if (existingAd == null)
+        {
+            return BadRequest();
+        }
+
+        var editAdModel = mapper.Map<EditAdModel>(existingAd);
+        patchDocument.ApplyTo(editAdModel, ModelState);
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        existingAd = mapper.Map(editAdModel, existingAd);
+        existingAd.LastModified = DateTime.Now;
+
+        await using var transaction = await dbContext.Database.BeginTransactionAsync();
+        try
+        {
+            dbContext.Update(existingAd);
+            await dbContext.SaveChangesAsync();
+
+            await transaction.CommitAsync();
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            await transaction.RollbackAsync();
+            return Conflict();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            await transaction.RollbackAsync();
+            return StatusCode(StatusCodes.Status500InternalServerError);
+        }
+
+        return Ok();
+    }
+
+    /// <summary>
     /// Soft deletes a specific Ad.
     /// </summary>
     /// <param name="id">The id of the database object to delete.</param>
     /// <returns>BadRequest if the database minimum amount of 100 has been reached.
     /// NotFound if the ad does not exist.
     /// Status code 500 if the database fails.</returns>
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     [ProducesResponseType(200)]
     [ProducesResponseType(401)]
     [ProducesResponseType(500)]
