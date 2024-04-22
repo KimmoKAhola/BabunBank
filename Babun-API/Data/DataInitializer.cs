@@ -6,7 +6,7 @@ namespace Babun_API.Data;
 
 public class DataInitializer(ApiContext dbContext)
 {
-    private const int SeedingVariable = 100;
+    private const int SeedingVariable = 200;
 
     public async Task SeedData()
     {
@@ -26,7 +26,7 @@ public class DataInitializer(ApiContext dbContext)
     {
         var faker = new Faker();
         var random = new Random();
-        if (!await dbContext.Ads.AnyAsync())
+        if (await dbContext.Ads.CountAsync() < SeedingVariable)
         {
             for (var i = 0; i < SeedingVariable; i++)
             {
@@ -36,8 +36,8 @@ public class DataInitializer(ApiContext dbContext)
                     {
                         Title = faker.Company.Bs(),
                         Author = faker.Name.FullName(),
-                        Description = faker.Lorem.Sentence()[..15],
-                        Content = faker.Lorem.Paragraphs(random.Next(5, 9)),
+                        Description = faker.Lorem.Sentence()[..30],
+                        Content = faker.Lorem.Paragraphs(random.Next(5, 30)),
                         DateCreated = faker.Date.Past()
                     };
                     await dbContext.Ads.AddAsync(ad);
