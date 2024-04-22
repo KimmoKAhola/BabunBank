@@ -76,13 +76,11 @@
         <input type="hidden" asp-for="Bank">
         <input type="hidden" asp-for="Account">
         
-        <button type="submit" class="create-customer-form-btn" asp-route-pageNumber="@ViewBag.CurrentPage" asp-route-pageSize="@ViewBag.PageSize" asp-route-q="@ViewBag.Q">Create Transfer</button>
-        <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.FromAccountId" class="create-customer-form-btn">Return</a>
+        
         @if(@ViewBag.ListOfCustomers != null){
-            <table>
+            <table class="data-table">
                 <thead>
                 <tr>
-                    <th></th>
                     <th>Account Id</th>
                     <th>Customer Id</th>
                     <th>Customer Name</th>
@@ -93,11 +91,10 @@
                 @foreach (var account in @ViewBag.ListOfCustomers as IEnumerable<Account>)
                 {
                     <tr>
-                        <td><input type="radio" name="ToAccountId" asp-route-test="@account.AccountId" value="@account.AccountId"></td>
-                        <td>@account.AccountId</td>
+                        <td style="display: flex; align-items: center; gap: 12px"><input type="radio" name="ToAccountId" asp-route-test="@account.AccountId" value="@account.AccountId"> @account.AccountId</td>
                         <td>@account.Dispositions.First().CustomerId</td>
                         <td>@account.Dispositions.First().Customer.Givenname @account.Dispositions.First().Customer.Surname</td>
-                        <td>@account.Balance</td>
+                        <td>@account.Balance.ToString("C2", new CultureInfo("sv-SE"))</td>
                     </tr>
 
                 }
