@@ -4,6 +4,7 @@ using BabunBank.Models.FormModels.Api;
 using Babun_API.Data;
 using Babun_API.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -123,7 +124,7 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]
     [ProducesResponseType(500)]
-    [HttpPut("{id}")]
+    [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] EditAdModel model)
     {
         if (id != model.id)
@@ -140,11 +141,8 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
 
         try
         {
-            itemToUpdate.Title = model.title;
-            itemToUpdate.Author = model.author;
-            itemToUpdate.Description = model.description;
-            itemToUpdate.Content = model.content;
-            itemToUpdate.IsDeleted = model.isDeleted;
+            itemToUpdate = mapper.Map(model, itemToUpdate);
+
             itemToUpdate.LastModified = DateTime.Now;
 
             await dbContext.SaveChangesAsync();
@@ -170,7 +168,7 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
     /// Status code 500 if the database fails.</returns>
     [Authorize(AuthenticationSchemes = "V1Scheme")]
     [ApiVersion("1.0")]
-    [HttpDelete("{id}")]
+    [HttpDelete("{id:int}")]
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]
     [ProducesResponseType(404)]
