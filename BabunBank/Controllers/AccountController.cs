@@ -1,6 +1,6 @@
 ﻿using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
-using BabunBank.Models.FormModels.Cashier;
+using BabunBank.Models.FormModels.TransferModels;
 using BabunBank.Models.ViewModels.Account;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
