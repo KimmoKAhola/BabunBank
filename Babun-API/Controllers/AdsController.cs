@@ -160,6 +160,53 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
     }
 
     /// <summary>
+    /// Updates a partial ad by its ID with the specified patch document.
+    /// </summary>
+    /// <param name="id">The ID of the ad to update.</param>
+    /// <param name="patchDocument">The patch document containing the partial updates.</param>
+    /// <returns>
+    /// Returns an HTTP status code 200 (OK) if the ad is successfully updated,
+    /// an HTTP status code 400 (Bad Request) if the patch document or ID is invalid,
+    /// or an HTTP status code 404 (Not Found) if the ad with the specified ID does not exist.
+    /// </returns>
+    [Authorize(AuthenticationSchemes = "V1Scheme")]
+    [ApiVersion("1.0")]
+    [HttpPatch("{id:int}")]
+    public async Task<IActionResult> UpdateAdPartial(
+        int id,
+        [FromBody] JsonPatchDocument<EditAdModel>? patchDocument
+    )
+    {
+        if (patchDocument == null || id <= 0)
+        {
+            return BadRequest();
+        }
+
+        var existingAd = await dbContext.Ads.FindAsync(id);
+
+        if (existingAd == null)
+        {
+            return BadRequest();
+        }
+
+        var editAdModel = mapper.Map<EditAdModel>(existingAd);
+        patchDocument.ApplyTo(editAdModel, ModelState);
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        existingAd = mapper.Map(editAdModel, existingAd);
+        existingAd.LastModified = DateTime.Now;
+
+        dbContext.Update(existingAd);
+        await dbContext.SaveChangesAsync();
+
+        return Ok();
+    }
+
+    /// <summary>
     /// Soft deletes a specific Ad.
     /// </summary>
     /// <param name="id">The id of the database object to delete.</param>
