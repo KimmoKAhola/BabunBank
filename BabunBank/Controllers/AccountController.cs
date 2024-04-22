@@ -47,7 +47,7 @@ public class AccountController(AccountService accountService, TransactionService
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Deposit(
         int id,
-        [Bind("AccountId, Date, Type, Operation, Amount,Balance,Symbol, Bank")]
+        [Bind("AccountId, Date, Type, Operation, Amount, Balance, Symbol, Bank")]
             CreateDepositModel depositModel
     )
     {
