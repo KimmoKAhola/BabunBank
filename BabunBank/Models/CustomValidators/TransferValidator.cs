@@ -1,5 +1,5 @@
 ﻿using System.Data;
-using BabunBank.Models.FormModels.Cashier;
+using BabunBank.Models.FormModels.TransferModels;
 using FluentValidation;
 
 namespace BabunBank.Models.CustomValidators;

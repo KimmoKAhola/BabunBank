@@ -1,4 +1,5 @@
-﻿using DataAccessLibrary.Data;
+﻿using System.Data;
+using DataAccessLibrary.Data;
 
 namespace DataAccessLibrary.Repositories;
 
@@ -9,7 +10,7 @@ public class TransactionRepository(BankAppDataContext dbContext)
     {
         try
         {
-            entity.Balance += entity.Amount; //Should be sum of transactions
+            entity.Balance += entity.Amount; //TODO Should be sum of transactions
             dbContext.Set<Transaction>().Add(entity);
             await dbContext.SaveChangesAsync();
             return entity;
@@ -26,15 +27,20 @@ public class TransactionRepository(BankAppDataContext dbContext)
         await using var databaseTransaction = await dbContext.Database.BeginTransactionAsync();
         try
         {
-            deposit.Balance += deposit.Amount; //Should be sum of transactions
+            deposit.Balance += deposit.Amount; //TODO Should be sum of transactions
             dbContext.Set<Transaction>().Add(deposit);
 
-            withdrawal.Balance += withdrawal.Amount; //Should be sum of transactions
+            withdrawal.Balance += withdrawal.Amount; //TODO Should be sum of transactions
             dbContext.Set<Transaction>().Add(withdrawal);
 
             await dbContext.SaveChangesAsync();
             await databaseTransaction.CommitAsync();
             return true;
+        }
+        catch (DBConcurrencyException e)
+        {
+            await databaseTransaction.RollbackAsync();
+            Console.WriteLine(e + e.Message);
         }
         catch (Exception e)
         {

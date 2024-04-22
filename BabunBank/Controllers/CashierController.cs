@@ -2,8 +2,8 @@
 using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models.CustomValidators;
-using BabunBank.Models.FormModels.Cashier;
 using BabunBank.Models.FormModels.Customer;
+using BabunBank.Models.FormModels.CustomerModels;
 using BabunBank.Services;
 using DataAccessLibrary.DataServices;
 using DetectMoneyLaundering;

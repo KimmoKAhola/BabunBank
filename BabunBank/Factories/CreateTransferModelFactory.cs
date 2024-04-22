@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.Cashier;
+﻿using BabunBank.Models.FormModels.TransferModels;
 using BabunBank.Models.ViewModels.Account;
 
 namespace BabunBank.Factories;

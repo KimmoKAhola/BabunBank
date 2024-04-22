@@ -1,4 +1,4 @@
-﻿@model BabunBank.Models.FormModels.Api.EditAdModel
+﻿@model BabunBank.Models.FormModels.AdModels.EditAdModel
 
 @{
     ViewBag.Title = "title";
@@ -7,37 +7,37 @@
 
 <div class="container update-blogpost">
     <form asp-controller="Api" asp-action="Update" method="post">
-        <input type="hidden" asp-for="id">
-        <input type="hidden" asp-for="isDeleted">
+        <input type="hidden" asp-for="Id">
+        <input type="hidden" asp-for="IsDeleted">
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="title">Title</label>
-                <input asp-for="title" type="text">
-                <span asp-validation-for="title"></span>
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" type="text">
+                <span asp-validation-for="Title"></span>
             </span>
 
             <span class="Test">
-                <label asp-for="author">Author</label>
-                <input asp-for="author" type="text">
-                <span asp-validation-for="author"></span>
+                <label asp-for="Author">Author</label>
+                <input asp-for="Author" type="text">
+                <span asp-validation-for="Author"></span>
             </span>
         </div>
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="description">Description</label>
-                <input class="blogpost-edit-description" asp-for="description" type="text">
-                <span asp-validation-for="description"></span>
+                <label asp-for="Description">Description</label>
+                <input class="blogpost-edit-description" asp-for="Description" type="text">
+                <span asp-validation-for="Description"></span>
             </span>
         </div>
         
         <div class="create-customer-form-row">
             <div class="Test">
                 <span class="Test">
-                <label asp-for="content">Content</label>
-                <textarea class="blogpost-edit-textarea" asp-for="content" type="text"></textarea>
-                <span asp-validation-for="content"></span>
+                <label asp-for="Content">Content</label>
+                <textarea class="blogpost-edit-textarea" asp-for="Content" type="text"></textarea>
+                <span asp-validation-for="Content"></span>
             </span>
             </div>
         </div>

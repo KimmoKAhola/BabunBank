@@ -2,7 +2,7 @@
 
 namespace BabunBank.Models.CustomAnnotations;
 
-public class MaximumAmount(string comparisonProperty) : ValidationAttribute
+public class MaximumTransferAmount(string comparisonProperty) : ValidationAttribute
 {
     protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
     {

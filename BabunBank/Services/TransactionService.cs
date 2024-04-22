@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BabunBank.Models.FormModels.Cashier;
+using BabunBank.Models.FormModels.TransferModels;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 
