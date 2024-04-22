@@ -187,6 +187,23 @@ public class AccountController(AccountService accountService, TransactionService
             pageSize,
             q
         );
+    }
+
+    public async Task<IActionResult> Filter(
+        CreateTransferModel transferModel,
+        string q = "",
+        int pageNumber = 1,
+        int pageSize = 50
+    )
+    {
+        // ViewBag.ListOfCustomers = await accountService.RenameMe(
+        //     model.FromAccountId,
+        //     pageNumber,
+        //     pageSize,
+        //     q
+        // );
+
+        await GetListOfCustomers(transferModel, q, pageNumber, pageSize);
 
         ViewBag.CurrentPage = pageNumber;
         ViewBag.Q = q;
@@ -196,7 +213,7 @@ public class AccountController(AccountService accountService, TransactionService
             "Transfer",
             new
             {
-                id = model.FromAccountId,
+                id = transferModel.FromAccountId,
                 pageNumber = ViewBag.CurrentPage,
                 pageSize = ViewBag.PageSize,
                 q = ViewBag.Q
