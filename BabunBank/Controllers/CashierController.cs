@@ -127,9 +127,7 @@ public class CashierController(
         ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
 
         if (!ModelState.IsValid)
-        {
             return View(model);
-        }
 
         var customer = CustomerFactory.Create(model, mapper);
 
@@ -137,9 +135,7 @@ public class CashierController(
         if (result != null)
         {
             if (!(bool)result)
-            {
                 ModelState.AddModelError(string.Empty, "Failed to create customer.");
-            }
         }
         else
         {
