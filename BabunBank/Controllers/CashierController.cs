@@ -93,19 +93,24 @@ public class CashierController(
     }
 
     [HttpGet]
-    public async Task<JsonResult> ShowMore(int id, int pageNo)
+    public async Task<IActionResult> ShowMore(int id, int pageNo)
     {
-        var pageSize = 50;
         var transactions = await customerService.GetCustomerViewModelAsync(id);
 
-        var result = transactions
-            .CustomerAccounts.First()
-            .Transactions.OrderByDescending(t => t.TransactionId)
-            .Skip((pageNo - 1) * pageSize)
-            .Take(pageSize)
-            .ToList();
+        if (transactions == null)
+            return RedirectToAction("Index", "Error");
 
-        return Json(result);
+        var result = transactions
+            .CustomerAccounts.FirstOrDefault(d => d.Type.ToLower() == "owner")
+            ?.Transactions?.OrderByDescending(t => t.TransactionId)
+            .Skip((pageNo - 1) * TransactionLimit)
+            .Take(TransactionLimit)
+            .ToList(); //TODO put this in a service
+
+        if (result != null)
+            return Json(result);
+
+        return RedirectToAction("Index", "Error");
     }
 
     public IActionResult Create()
