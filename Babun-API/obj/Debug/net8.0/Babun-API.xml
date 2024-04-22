@@ -27,7 +27,7 @@
             </summary>
             <param name="dbContext"></param>
         </member>
-        <member name="M:Babun_API.Controllers.AdController.#ctor(Babun_API.Data.ApiContext,AutoMapper.IMapper,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:Babun_API.Controllers.AdController.#ctor(Babun_API.Data.ApiContext,AutoMapper.IMapper)">
             <summary>
             Version 2 of the API. This requires the Web abb to be used.
             </summary>
@@ -69,6 +69,20 @@
             <param name="model">Your model of the object to update. See schema requirements below</param>
             <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
             NotFound if the item does not exist. Status code 500 if the database fails.</returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AdController.Patch(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.Api.EditAdModel})">
+            <summary>
+            Updates a singular ad specified by its ID with the provided patch document.
+            </summary>
+            <param name="id">The ID of the ad to update.</param>
+            <param name="patchDocument">The JSON patch document containing the updates to apply.</param>
+            <returns>
+            Returns an HTTP status code 200 (OK) if the ad is successfully updated,
+            an HTTP status code 400 (Bad Request) if the patch document is null or the ID is invalid,
+            an HTTP status code 404 (Not Found) if the ad with the specified ID does not exist,
+            an HTTP status code 409 (Conflict) if there is a concurrency conflict during the update,
+            an HTTP status code 500 (Internal Server Error) if an error occurs during the update.
+            </returns>
         </member>
         <member name="M:Babun_API.Controllers.AdController.Delete(System.Int32)">
             <summary>
@@ -129,6 +143,18 @@
             <param name="model">Your model of the object to update. See schema requirements below</param>
             <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
             NotFound if the item does not exist. Status code 500 if the database fails.</returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AdsController.UpdateAdPartial(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.Api.EditAdModel})">
+            <summary>
+            Updates a partial ad by its ID with the specified patch document.
+            </summary>
+            <param name="id">The ID of the ad to update.</param>
+            <param name="patchDocument">The patch document containing the partial updates.</param>
+            <returns>
+            Returns an HTTP status code 200 (OK) if the ad is successfully updated,
+            an HTTP status code 400 (Bad Request) if the patch document or ID is invalid,
+            or an HTTP status code 404 (Not Found) if the ad with the specified ID does not exist.
+            </returns>
         </member>
         <member name="M:Babun_API.Controllers.AdsController.Delete(System.Int32)">
             <summary>
