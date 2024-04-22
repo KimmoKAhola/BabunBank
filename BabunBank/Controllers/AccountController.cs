@@ -32,20 +32,14 @@ public class AccountController(AccountService accountService, TransactionService
 
     public async Task<IActionResult> Deposit(int id)
     {
-        var account = await accountService.GetAccountViewModelAsync(id);
-        if (account == null)
+        var accountViewModel = await accountService.GetAccountViewModelAsync(id);
+
+        if (IsInvalidAccountViewModel(accountViewModel))
             return RedirectToAction("Index", "Error");
 
-        var model = new CreateDepositModel
-        {
-            AccountId = account.AccountId,
-            Balance = account.Balance,
-            Date = DateOnly.FromDateTime(DateTime.Now),
-            Type = "Debit",
-            Operation = "Deposit"
-        };
+        var depositModel = CreateTransferModelFactory.CreateDepositModel(accountViewModel);
 
-        return View(model);
+        return View(depositModel);
     }
 
     [HttpPost]
