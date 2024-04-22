@@ -60,11 +60,14 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
     {
         try
         {
-            var result = new List<Account>();
-
             if (int.TryParse(q, out var val))
             {
-                return result.Where(a => a.AccountId == val).ToList();
+                return await accountRepository
+                    .GetAllAsync()
+                    .Where(a => a.AccountId == val)
+                    .Include(a => a.Dispositions)
+                    .ThenInclude(d => d.Customer)
+                    .ToListAsync();
             }
 
             if (!q.IsNullOrEmpty())
@@ -84,7 +87,7 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
                     .ToListAsync();
             }
 
-            result = await accountRepository
+            var result = await accountRepository
                 .GetAllAsync()
                 .Where(a => a.AccountId != id)
                 .Include(a => a.Dispositions)
