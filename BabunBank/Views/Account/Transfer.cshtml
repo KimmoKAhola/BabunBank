@@ -9,7 +9,7 @@
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
-<div class="container mb-5">
+<div class="container mb-5 mt-5">
     <h2>Cashier Deposit</h2>
     <h2>Your current balance is: @Model.BalanceSender.ToString("C2", new CultureInfo("sv-SE"))</h2>
     
@@ -26,25 +26,27 @@
         <input type="hidden" asp-for="Symbol">
         <input type="hidden" asp-for="Bank">
         <input type="hidden" asp-for="Account">
-        <div class="form-group" id="cashier-search-bar">
-            <input name="q" value="@ViewBag.Q" placeholder="Search id or name">
-        </div>
-        <div class="form-group">
-            @Html.DropDownList("pageSize", Enum.GetValues(typeof(CustomerDropdownMenu))
-                .Cast<CustomerDropdownMenu>()
-                .Select(x => new SelectListItem
-                {
-                    Text = $"{((int)x).ToString()} results per page",
-                    Value = ((int)x).ToString(),
-                    Selected = ViewBag.PageSize == (int)x
-                }), new { @class = "dropdown-list" })
-        </div>
-        <div class="form-group">
-            <input class="create-customer-form-btn" type="submit" value="Apply filters"/>
-        </div>
-        <div class="form-group">
-            <a asp-controller="Account" asp-action="Clear" class="create-customer-form-btn" id="clear-filter-button">Clear filters</a>
-        </div>
+        <span style="display:flex; gap: 24px">
+            <div class="form-group" id="cashier-search-bar">
+                <input name="q" value="@ViewBag.Q" placeholder="Search id or name">
+            </div>
+            <div class="form-group">
+                @Html.DropDownList("pageSize", Enum.GetValues(typeof(CustomerDropdownMenu))
+                    .Cast<CustomerDropdownMenu>()
+                    .Select(x => new SelectListItem
+                    {
+                        Text = $"{((int)x).ToString()} results per page",
+                        Value = ((int)x).ToString(),
+                        Selected = ViewBag.PageSize == (int)x
+                    }), new { @class = "dropdown-list" })
+            </div>
+            <div class="form-group">
+                <input class="create-customer-form-btn" type="submit" value="Apply filters"/>
+            </div>
+            <div class="form-group">
+                <a asp-controller="Account" asp-action="Clear" class="create-customer-form-btn" id="clear-filter-button">Clear filters</a>
+            </div>
+        </span>
     </form>
     
     <form method="post" asp-controller="Account" asp-action="Transfer">
