@@ -75,14 +75,7 @@ public class AccountController(AccountService accountService, TransactionService
         if (account == null)
             return RedirectToAction("Index", "Error");
 
-        var model = new CreateWithdrawalModel
-        {
-            AccountId = account.AccountId,
-            Balance = account.Balance,
-            Date = DateOnly.FromDateTime(DateTime.Now),
-            Type = "Debit",
-            Operation = "Withdrawal"
-        };
+        var model = CreateTransferModelFactory.CreateWithdrawalModel(account);
 
         return View(model);
     }
@@ -98,8 +91,9 @@ public class AccountController(AccountService accountService, TransactionService
             return View(withdrawalModel);
         }
 
-        var account = await accountService.GetAccountViewModelAsync(id);
-        if (account == null)
+        var withdrawAccountViewModel = await accountService.GetAccountViewModelAsync(id);
+
+        if (withdrawAccountViewModel == null)
             return RedirectToAction("Index", "Error");
 
         var withdrawal = TransactionFactory.CreateWithdrawal(withdrawalModel);
@@ -107,7 +101,7 @@ public class AccountController(AccountService accountService, TransactionService
         if (await transactionService.CreateWithdrawalAsync(withdrawal) == null)
             return RedirectToAction("Index", "Error");
 
-        return RedirectToAction("Details", new { id = account.AccountId });
+        return RedirectToAction("Details", new { id = withdrawAccountViewModel.AccountId });
     }
 
     public async Task<IActionResult> Transfer(
