@@ -6,9 +6,11 @@ namespace BabunBank.Models.FormModels.Cashier;
 public record CreateTransferModel
 {
     [Required]
+    [Range(1, int.MaxValue)]
     public int FromAccountId { get; init; }
 
     [Required]
+    [Range(1, int.MaxValue)]
     public int ToAccountId { get; init; }
 
     [Required]
