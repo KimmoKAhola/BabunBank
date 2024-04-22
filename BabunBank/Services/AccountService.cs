@@ -22,4 +22,15 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
             .ToList();
         return accountViewModel;
     }
+
+    public async Task<object> RenameMe(int id, int pageNumber, int pageSize, string q)
+    {
+        var result = await dataAccountService.GetAllAccountsAndCustomersAsync(
+            id,
+            pageNumber,
+            pageSize,
+            q
+        );
+        return result;
+    }
 }
