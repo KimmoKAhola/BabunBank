@@ -7,6 +7,8 @@ namespace DataAccessLibrary.DataServices;
 
 public class DataAccountService(AccountRepository accountRepository) : IDataService<Account>
 {
+    private const decimal TransferLimit = 15000M;
+
     public async Task<Account?> GetAsync(int id)
     {
         var result = await accountRepository.GetAsync(x => x.AccountId == id);
@@ -33,10 +35,9 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
     {
         try
         {
-            var transferLimit = 15000M;
             var result = accountRepository
                 .GetAllAsync()
-                .Where(a => a.Transactions.Any(t => Math.Abs(t.Amount) > transferLimit))
+                .Where(a => a.Transactions.Any(t => Math.Abs(t.Amount) > TransferLimit))
                 .Include(a => a.Transactions)
                 .Include(a => a.Dispositions)
                 .ThenInclude(d => d.Customer);
