@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BabunBank.Models.FormModels.Cashier;
+namespace BabunBank.Models.FormModels.CustomerModels;
 
 public class EditCustomerModel
 {
