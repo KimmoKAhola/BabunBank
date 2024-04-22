@@ -173,7 +173,7 @@ builder.Services.AddAuthorization(options =>
     );
 });
 
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 builder.Services.AddApiVersioning(o =>
 {
