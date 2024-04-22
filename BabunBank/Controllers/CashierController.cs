@@ -15,12 +15,11 @@ namespace BabunBank.Controllers;
 
 public enum CustomerDropdownMenu
 {
-    Five = 5,
-    Ten = 10,
-    Fifteen = 15,
     Twenty = 20,
     TwentyFive = 25,
-    Fifty = 50
+    Fifty = 50,
+    SeventyFive = 75,
+    Hundred = 100
 }
 
 [Authorize(Roles = $"{UserRoleNames.Cashier}, {UserRoleNames.Admin}")] //TODO add these to relevant pages
@@ -32,6 +31,8 @@ public class CashierController(
     EditCustomerValidation customerValidation
 ) : Controller
 {
+    private const int TransactionLimit = 20;
+
     public async Task<IActionResult> Index(
         string sortColumn,
         string sortOrder,
