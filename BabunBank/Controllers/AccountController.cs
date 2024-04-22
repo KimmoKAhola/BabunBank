@@ -169,20 +169,15 @@ public class AccountController(AccountService accountService, TransactionService
         return RedirectToAction("Details", new { id = transferModel.FromAccountId });
     }
 
-    public async Task<IActionResult> Filter(
-        CreateTransferModel model,
+    private async Task GetListOfCustomers(
+        CreateTransferModel transferModel,
+        string q,
         int pageNumber,
-        int pageSize,
-        string q
+        int pageSize
     )
     {
-        if (pageNumber == 0)
-            pageNumber = 1;
-        if (pageSize == 0)
-            pageSize = 50;
-
         ViewBag.ListOfCustomers = await accountService.RenameMe(
-            model.FromAccountId,
+            transferModel.FromAccountId,
             pageNumber,
             pageSize,
             q
