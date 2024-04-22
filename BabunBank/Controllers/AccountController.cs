@@ -205,17 +205,37 @@ public class AccountController(AccountService accountService, TransactionService
     {
         if (pageNumber == 0)
             pageNumber = 1;
-        // string q = "";
-        // int pageNumber = 1;
-        // int pageSize = 50;
+        if (pageSize == 0)
+            pageSize = 50;
 
-
-
-        ViewBag.ListOfCustomers = await accountService.RenameMe(10, pageNumber, pageSize, q);
+        ViewBag.ListOfCustomers = await accountService.RenameMe(
+            model.FromAccountId,
+            pageNumber,
+            pageSize,
+            q
+        );
 
         ViewBag.CurrentPage = pageNumber;
         ViewBag.Q = q;
         ViewBag.PageSize = pageSize;
+
+        return RedirectToAction(
+            "Transfer",
+            new
+            {
+                id = model.FromAccountId,
+                pageNumber = ViewBag.CurrentPage,
+                pageSize = ViewBag.PageSize,
+                q = ViewBag.Q
+            }
+        );
+    }
+
+    public IActionResult Clear(CreateTransferModel model)
+    {
+        ViewBag.CurrentPage = 0;
+        ViewBag.Q = "";
+        ViewBag.PageSize = 50;
 
         return RedirectToAction(
             "Transfer",
