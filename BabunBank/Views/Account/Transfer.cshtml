@@ -41,6 +41,34 @@
         <input type="hidden" asp-for="Account">
         
         <button type="submit" class="create-customer-form-btn">Create Transfer</button>
+        <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.FromAccountId" class="create-customer-form-btn">Return</a>
+        @if(@ViewBag.ListOfCustomers != null){
+            <table>
+                <thead>
+                <tr>
+                    <th></th>
+                    <th>Account Id</th>
+                    <th>Customer Id</th>
+                    <th>Customer Name</th>
+                    <th>Customer Balance</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var account in @ViewBag.ListOfCustomers as IEnumerable<Account>)
+                {
+                    <tr>
+                        <td><input type="radio" name="ToAccountId" asp-route-test="@account.AccountId" value="@account.AccountId"></td>
+                        <td>@account.AccountId</td>
+                        <td>@account.Dispositions.First().CustomerId</td>
+                        <td>@account.Dispositions.First().Customer.Givenname @account.Dispositions.First().Customer.Surname</td>
+                        <td>@account.Balance</td>
+                    </tr>
+
+                }
+                </tbody>
+            </table>
+
+        }
     </form>
     <div class="blogpost-pagination" style="margin-bottom: 72px">
         <a asp-controller="Account"
