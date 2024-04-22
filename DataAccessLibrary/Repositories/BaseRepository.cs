@@ -109,7 +109,8 @@ public abstract class BaseRepository<TEntity>(BankAppDataContext dbContext)
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
         }
+
+        return false;
     }
 }
