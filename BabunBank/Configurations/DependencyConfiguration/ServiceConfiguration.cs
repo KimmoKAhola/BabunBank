@@ -10,7 +10,6 @@ public static class ServiceConfiguration
 {
     public static void Configure(IServiceCollection services)
     {
-        services.AddScoped<PasswordHasher<IdentityUser>>();
         //Library Services
         services.AddScoped<DataAccountService>();
         services.AddScoped<DataCustomerService>();
