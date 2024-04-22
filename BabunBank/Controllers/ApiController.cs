@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using BabunBank.Configurations.Enums;
 using BabunBank.Models.CustomValidators;
-using BabunBank.Models.FormModels.Api;
+using BabunBank.Models.FormModels.AdModels;
 using BabunBank.Models.FormModels.User;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -53,12 +53,12 @@ public class ApiController(ApiService apiService, AdValidator adValidator) : Con
 
         var model = new EditAdModel
         {
-            id = result.Id,
-            title = result.Title,
-            author = result.Author,
-            content = result.Content,
-            description = result.Description,
-            isDeleted = false
+            Id = result.Id,
+            Title = result.Title,
+            Author = result.Author,
+            Content = result.Content,
+            Description = result.Description,
+            IsDeleted = false
         };
 
         return View(model);

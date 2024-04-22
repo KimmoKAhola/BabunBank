@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.Api;
+﻿using BabunBank.Models.FormModels.AdModels;
 using FluentValidation;
 
 namespace BabunBank.Models.CustomValidators;
@@ -7,9 +7,9 @@ public class AdValidator : AbstractValidator<EditAdModel>
 {
     public AdValidator()
     {
-        RuleFor(ad => ad.id).NotNull();
+        RuleFor(ad => ad.Id).NotNull();
 
-        RuleFor(ad => ad.title)
+        RuleFor(ad => ad.Title)
             .NotEmpty()
             .WithMessage("Title can not be empty.")
             .MinimumLength(5)
@@ -18,7 +18,7 @@ public class AdValidator : AbstractValidator<EditAdModel>
             .WithMessage("Title has to be under 50 characters")
             .WithName("Title");
 
-        RuleFor(ad => ad.author)
+        RuleFor(ad => ad.Author)
             .NotEmpty()
             .WithMessage("Author name can not be empty")
             .MinimumLength(2)
@@ -29,7 +29,7 @@ public class AdValidator : AbstractValidator<EditAdModel>
             .WithMessage("No numbers are allowed")
             .WithName("Author");
 
-        RuleFor(ad => ad.description)
+        RuleFor(ad => ad.Description)
             .NotEmpty()
             .WithMessage("Description can not be empty.")
             .MinimumLength(5)
@@ -38,7 +38,7 @@ public class AdValidator : AbstractValidator<EditAdModel>
             .WithMessage("Description has to be under 30 characters")
             .WithName("Description");
 
-        RuleFor(ad => ad.content)
+        RuleFor(ad => ad.Content)
             .NotEmpty()
             .WithMessage("Content can not be empty.")
             .MinimumLength(50)

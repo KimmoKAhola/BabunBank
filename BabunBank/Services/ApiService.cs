@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
-using BabunBank.Models.FormModels.Api;
+using BabunBank.Models.FormModels.AdModels;
 using BabunBank.Models.FormModels.User;
 using BabunBank.Models.ViewModels.ApiBlog;
 using Microsoft.AspNetCore.Identity;
