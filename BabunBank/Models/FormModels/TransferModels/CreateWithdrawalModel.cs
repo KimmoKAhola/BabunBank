@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using BabunBank.Models.CustomAnnotations;
 
-namespace BabunBank.Models.FormModels.Cashier;
+namespace BabunBank.Models.FormModels.TransferModels;
 
 public record CreateWithdrawalModel
 {
@@ -19,7 +19,7 @@ public record CreateWithdrawalModel
 
     [Required]
     [Range(1, 100000)]
-    [MaximumAmount(nameof(Balance))]
+    [MaximumTransferAmount(nameof(Balance))]
     public decimal Amount { get; init; }
 
     [Required]
