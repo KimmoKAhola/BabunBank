@@ -11,6 +11,9 @@ namespace BabunBank.Controllers;
 public class AccountController(AccountService accountService, TransactionService transactionService)
     : Controller
 {
+    private const int StartingPage = 1;
+    private const int DefaultPageSize = 50;
+
     /// <summary>
     /// Presents the details for a single customer and the customers account.
     /// </summary>
@@ -110,8 +113,8 @@ public class AccountController(AccountService accountService, TransactionService
 
     public async Task<IActionResult> Transfer(
         int id,
-        int pageNumber = 0,
-        int pageSize = 50,
+        int pageNumber = StartingPage,
+        int pageSize = DefaultPageSize,
         string q = ""
     )
     {
@@ -167,9 +170,9 @@ public class AccountController(AccountService accountService, TransactionService
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> Transfer(
         CreateTransferModel transferModel,
-        int pageNumber,
-        int pageSize,
-        string q
+        string q = "",
+        int pageNumber = StartingPage,
+        int pageSize = DefaultPageSize
     )
     {
         if (pageNumber == 0)
