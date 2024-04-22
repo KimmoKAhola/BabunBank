@@ -216,7 +216,7 @@ public class AccountController(AccountService accountService, TransactionService
         );
     }
 
-    public IActionResult Clear(CreateTransferModel model)
+    public IActionResult Clear(CreateTransferModel transferModel)
     {
         ViewBag.CurrentPage = 0;
         ViewBag.Q = "";
@@ -226,7 +226,7 @@ public class AccountController(AccountService accountService, TransactionService
             "Transfer",
             new
             {
-                id = model.FromAccountId,
+                id = transferModel.FromAccountId,
                 pageNumber = ViewBag.CurrentPage,
                 pageSize = ViewBag.PageSize,
                 q = ViewBag.Q
