@@ -233,4 +233,9 @@ public class AccountController(AccountService accountService, TransactionService
             }
         );
     }
+
+    private static bool IsInvalidAccountViewModel(AccountViewModel? accountViewModel)
+    {
+        return accountViewModel == null;
+    }
 }
