@@ -1,6 +1,7 @@
 ﻿using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
 using BabunBank.Models.FormModels.Cashier;
+using BabunBank.Models.ViewModels.Account;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,10 +22,12 @@ public class AccountController(AccountService accountService, TransactionService
     /// <returns>A view with an account view model</returns>
     public async Task<IActionResult> Details(int id)
     {
-        var result = await accountService.GetAccountViewModelAsync(id);
-        if (result == null)
+        var accountViewModel = await accountService.GetAccountViewModelAsync(id);
+
+        if (IsInvalidAccountViewModel(accountViewModel))
             return RedirectToAction("Index", "Error");
-        return View(result);
+
+        return View(accountViewModel);
     }
 
     public async Task<IActionResult> Deposit(int id)
