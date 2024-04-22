@@ -140,36 +140,31 @@ public class AccountController(AccountService accountService, TransactionService
         int pageSize = DefaultPageSize
     )
     {
-        if (pageNumber == 0)
-            pageNumber = 1;
-        if (pageSize == 0)
-            pageSize = 50;
-
-        ViewBag.ListOfCustomers = await accountService.RenameMe(
-            transferModel.FromAccountId,
-            pageNumber,
-            pageSize,
-            q
-        );
+        await GetListOfCustomers(transferModel, q, pageNumber, pageSize);
 
         ViewBag.CurrentPage = pageNumber;
         ViewBag.Q = q;
         ViewBag.PageSize = pageSize;
 
         if (!ModelState.IsValid)
-            return View(transferModel); //Error
-
-        var receiver = await accountService.GetAccountViewModelAsync(transferModel.ToAccountId);
-
-        if (receiver is null)
             return View(transferModel);
 
-        var transfer = TransactionFactory.CreateTransfer(transferModel, receiver);
+        var receivingAccountViewModel = await accountService.GetAccountViewModelAsync(
+            transferModel.ToAccountId
+        );
 
-        var result = await transactionService.CreateTransferAsync(transfer);
+        if (IsInvalidAccountViewModel(receivingAccountViewModel))
+            return View(transferModel);
 
-        if (result is null or false)
-            return View(transferModel); //Error
+        var moneyTransfer = TransactionFactory.CreateTransfer(
+            transferModel,
+            receivingAccountViewModel
+        );
+
+        var resultOfTransfer = await transactionService.CreateTransferAsync(moneyTransfer);
+
+        if (resultOfTransfer is null or false)
+            return View(transferModel); //TODO return error smth went wrong
 
         return RedirectToAction("Details", new { id = transferModel.FromAccountId });
     }
