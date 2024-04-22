@@ -59,6 +59,8 @@
                 <input asp-for="Amount" type="number">
                 <span asp-validation-for="Amount"></span>
             </span>
+            <button type="submit" class="create-customer-form-btn" asp-route-pageNumber="@ViewBag.CurrentPage" asp-route-pageSize="@ViewBag.PageSize" asp-route-q="@ViewBag.Q">Create Transfer</button>
+            <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.FromAccountId" class="create-customer-form-btn">Return</a>
         </div>
         
         <input type="hidden" asp-for="FromAccountId">
