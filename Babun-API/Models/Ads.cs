@@ -19,21 +19,21 @@ public class Ads
     /// Represents the title of an advertisement.
     /// </summary>
     [Required]
-    [StringLength(50, MinimumLength = 5, ErrorMessage = "Please enter a title 5-50 characters.")]
+    [StringLength(100, MinimumLength = 5, ErrorMessage = "Please enter a title 5-100 characters.")]
     public string Title { get; set; } = null!;
 
     /// <summary>
     /// Represents the author of an advertisement.
     /// </summary>
     [Required]
-    [StringLength(50, MinimumLength = 2, ErrorMessage = "Enter 2-50 characters.")]
+    [StringLength(100, MinimumLength = 2, ErrorMessage = "Enter 2-100 characters.")]
     public string Author { get; set; } = null!;
 
     /// <summary>
     /// Represents the description of an advertisement.
     /// </summary>
     [Required]
-    [StringLength(30, MinimumLength = 5, ErrorMessage = "You can enter 5-30 characters.")]
+    [StringLength(100, MinimumLength = 5, ErrorMessage = "You can enter 5-100 characters.")]
     public string Description { get; set; } = null!;
 
     /// <summary>
@@ -41,12 +41,13 @@ public class Ads
     /// </summary>
     [Required]
     [StringLength(
-        2000,
+        10000,
         MinimumLength = 50,
-        ErrorMessage = "You can enter at most 2000 characters."
+        ErrorMessage = "You can enter at most 10000 characters."
     )]
     public string Content { get; set; } = null!;
 
+    /// <summary>
     /// Represents whether the advertisement has been deleted or not.
     /// </summary>
     [Required]
