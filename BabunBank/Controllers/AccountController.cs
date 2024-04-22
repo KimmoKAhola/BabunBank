@@ -165,11 +165,17 @@ public class AccountController(AccountService accountService, TransactionService
     [HttpPost]
     [ActionName("Transfer")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Transfer(CreateTransferModel transferModel)
+    public async Task<IActionResult> Transfer(
+        CreateTransferModel transferModel,
+        int pageNumber,
+        int pageSize,
+        string q
+    )
     {
-        string q = "";
-        int pageNumber = 0;
-        int pageSize = 50;
+        if (pageNumber == 0)
+            pageNumber = 1;
+        if (pageSize == 0)
+            pageSize = 50;
 
         ViewBag.ListOfCustomers = await accountService.RenameMe(
             transferModel.FromAccountId,
@@ -177,21 +183,25 @@ public class AccountController(AccountService accountService, TransactionService
             pageSize,
             q
         );
-        if (!ModelState.IsValid)
-            return View(transferModel); //Error
 
         ViewBag.CurrentPage = pageNumber;
         ViewBag.Q = q;
         ViewBag.PageSize = pageSize;
 
+        if (!ModelState.IsValid)
+            return View(transferModel); //Error
+
         var receiver = await accountService.GetAccountViewModelAsync(transferModel.ToAccountId);
+
+        if (receiver is null)
+            return View(transferModel);
 
         var transfer = TransactionFactory.CreateTransfer(transferModel, receiver);
 
         var result = await transactionService.CreateTransferAsync(transfer);
 
         if (result is null or false)
-            return View(); //Error
+            return View(transferModel); //Error
 
         return RedirectToAction("Details", new { id = transferModel.FromAccountId });
     }
