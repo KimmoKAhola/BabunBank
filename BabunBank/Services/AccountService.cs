@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BabunBank.Models.ViewModels.Account;
+using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 
 namespace BabunBank.Services;
@@ -23,7 +24,7 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
         return accountViewModel;
     }
 
-    public async Task<object> RenameMe(int id, int pageNumber, int pageSize, string q)
+    public async Task<IEnumerable<Account>> RenameMe(int id, int pageNumber, int pageSize, string q)
     {
         var result = await dataAccountService.GetAllAccountsAndCustomersAsync(
             id,
@@ -31,6 +32,7 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
             pageSize,
             q
         );
+
         return result;
     }
 }
