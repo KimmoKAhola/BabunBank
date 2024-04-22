@@ -108,8 +108,45 @@ public class AccountController(AccountService accountService, TransactionService
         return RedirectToAction("Details", new { id = account.AccountId });
     }
 
-    public async Task<IActionResult> Transfer(int id)
+    public async Task<IActionResult> Transfer(
+        int id,
+        int pageNumber = 0,
+        int pageSize = 50,
+        string q = ""
+    )
     {
+        if (ViewBag.Q != null)
+        {
+            q = ViewBag.Q;
+        }
+
+        if (ViewBag.CurrentPage != null)
+        {
+            pageNumber = ViewBag.CurrentPage;
+        }
+
+        if (ViewBag.PageSize != null)
+        {
+            pageSize = ViewBag.PageSize;
+        }
+
+        if (pageNumber == 0)
+        {
+            pageNumber = 1;
+        }
+
+        if (pageSize == 0)
+        {
+            pageSize = 50;
+        }
+
+        // totalPageCount = (int)Math.Ceiling((double)totalPageCount / pageSize);
+
+        ViewBag.CurrentPage = pageNumber;
+        ViewBag.Q = q;
+        ViewBag.PageSize = pageSize;
+        ViewBag.TotalPageCount = 0;
+
         var account = await accountService.GetAccountViewModelAsync(id);
 
         if (account == null)
@@ -121,6 +158,7 @@ public class AccountController(AccountService accountService, TransactionService
             BalanceSender = account.Balance
         };
 
+        ViewBag.ListOfCustomers = await accountService.RenameMe(id, pageNumber, pageSize, q);
         return View(model);
     }
 
