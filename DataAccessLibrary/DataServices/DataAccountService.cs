@@ -1,6 +1,7 @@
 ﻿using DataAccessLibrary.Data;
 using DataAccessLibrary.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace DataAccessLibrary.DataServices;
 
@@ -39,6 +40,42 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
                 .Include(a => a.Transactions)
                 .Include(a => a.Dispositions)
                 .ThenInclude(d => d.Customer);
+
+            return result;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<IEnumerable<Account>> GetAllAccountsAndCustomersAsync(
+        int id,
+        int pageNumber,
+        int pageSize,
+        string q
+    )
+    {
+        try
+        {
+            var result = await accountRepository
+                .GetAllAsync()
+                .Where(a => a.AccountId != id)
+                .Include(a => a.Dispositions)
+                .ThenInclude(d => d.Customer)
+                .OrderBy(a => a.AccountId)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            if (q.IsNullOrEmpty())
+                return result;
+
+            if (int.TryParse(q, out var val))
+            {
+                return result.Where(a => a.AccountId == val).ToList();
+            }
 
             return result;
         }
