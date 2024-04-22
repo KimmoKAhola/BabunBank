@@ -179,6 +179,16 @@
             A token is returned as a simple string. Lasts for 10 minutes.
             </returns>
         </member>
+        <member name="T:Babun_API.MappingProfile">
+            <summary>
+            Represents a mapping profile for AutoMapper.
+            </summary>
+        </member>
+        <member name="M:Babun_API.MappingProfile.#ctor">
+            <summary>
+            Represents a mapping profile for AutoMapper.
+            </summary>
+        </member>
         <member name="T:Babun_API.Migrations.Initial">
             <inheritdoc />
         </member>
@@ -226,6 +236,75 @@
         </member>
         <member name="M:Babun_API.Migrations.renamedthecolumn.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
+        </member>
+        <member name="T:Babun_API.Migrations.new">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.new.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.new.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.new.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Babun_API.Migrations.newagain">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.newagain.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.newagain.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.newagain.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="T:Babun_API.Models.Ads">
+            <summary>
+            Represents an advertisement.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.Ads.Id">
+            <summary>
+            Represents the unique identifier for an advertisement.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.Ads.Title">
+            <summary>
+            Represents the title of an advertisement.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.Ads.Author">
+            <summary>
+            Represents the author of an advertisement.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.Ads.Description">
+            <summary>
+            Represents the description of an advertisement.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.Ads.Content">
+            <summary>
+            Represents the content of an advertisement.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.Ads.IsDeleted">
+            <summary>
+            Represents whether the advertisement has been deleted or not.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.Ads.DateCreated">
+            <summary>
+            Represents the date and time the advertisement was created.
+            </summary>
+        </member>
+        <member name="P:Babun_API.Models.Ads.LastModified">
+            <summary>
+            Represents the date and time when the advertisement was last modified.
+            </summary>
         </member>
         <member name="T:Babun_API.Models.CreateAdModel">
             <summary>

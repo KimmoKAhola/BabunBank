@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "0TYOxqV6NDCRykC3i8UeCu8/gSjU+Kwr4DTJ7jSiYDo=",
+  "Hash": "/pv27iD1Y9P7y2XqXfQmdJVWMMqpL8/TBTJSkE2hPMc=",
   "Source": "Babun-API",
   "BasePath": "_content/Babun-API",
   "Mode": "Default",
@@ -312,25 +312,6 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\flag-of-denmark.svg"
-    },
-    {
-      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finlan.svg",
-      "SourceId": "BabunBank",
-      "SourceType": "Project",
-      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
-      "BasePath": "_content/BabunBank",
-      "RelativePath": "images/flag-of-finlan.svg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "AssetMergeBehavior": "PreferTarget",
-      "AssetMergeSource": "",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\flag-of-finlan.svg"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.svg",
@@ -694,12 +675,12 @@
       "OriginalItemSpec": "wwwroot\\images\\Mediamodifier-Design.svg"
     },
     {
-      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\normal-transactions.png",
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\NormalTransactions.png",
       "SourceId": "BabunBank",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
       "BasePath": "_content/BabunBank",
-      "RelativePath": "images/moneylaundering/normal-transactions.png",
+      "RelativePath": "images/moneylaundering/NormalTransactions.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -710,15 +691,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\moneylaundering\\normal-transactions.png"
+      "OriginalItemSpec": "wwwroot\\images\\moneylaundering\\NormalTransactions.png"
     },
     {
-      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\piechart.png",
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\PieChart.png",
       "SourceId": "BabunBank",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
       "BasePath": "_content/BabunBank",
-      "RelativePath": "images/moneylaundering/piechart.png",
+      "RelativePath": "images/moneylaundering/PieChart.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -729,15 +710,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\moneylaundering\\piechart.png"
+      "OriginalItemSpec": "wwwroot\\images\\moneylaundering\\PieChart.png"
     },
     {
-      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\suscpicious-transactions.png",
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\SuspiciousTransactions.png",
       "SourceId": "BabunBank",
       "SourceType": "Project",
       "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
       "BasePath": "_content/BabunBank",
-      "RelativePath": "images/moneylaundering/suscpicious-transactions.png",
+      "RelativePath": "images/moneylaundering/SuspiciousTransactions.png",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -748,7 +729,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\images\\moneylaundering\\suscpicious-transactions.png"
+      "OriginalItemSpec": "wwwroot\\images\\moneylaundering\\SuspiciousTransactions.png"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",

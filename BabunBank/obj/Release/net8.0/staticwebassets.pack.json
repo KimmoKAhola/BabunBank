@@ -69,10 +69,6 @@
       "PackagePath": "staticwebassets\\images\\flag-of-denmark.svg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finlan.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-finlan.svg"
-    },
-    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.svg",
       "PackagePath": "staticwebassets\\images\\flag-of-finland.svg"
     },
@@ -137,16 +133,16 @@
       "PackagePath": "staticwebassets\\images\\logoipsum-331.svg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\normal-transactions.png",
-      "PackagePath": "staticwebassets\\images\\moneylaundering\\normal-transactions.png"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\NormalTransactions.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\NormalTransactions.png"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\piechart.png",
-      "PackagePath": "staticwebassets\\images\\moneylaundering\\piechart.png"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\PieChart.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\PieChart.png"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\suscpicious-transactions.png",
-      "PackagePath": "staticwebassets\\images\\moneylaundering\\suscpicious-transactions.png"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\moneylaundering\\SuspiciousTransactions.png",
+      "PackagePath": "staticwebassets\\images\\moneylaundering\\SuspiciousTransactions.png"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
