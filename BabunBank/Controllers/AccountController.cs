@@ -57,14 +57,16 @@ public class AccountController(AccountService accountService, TransactionService
             return View(depositModel);
         }
 
-        var account = await accountService.GetAccountViewModelAsync(id);
-        if (account == null)
+        var accountViewModel = await accountService.GetAccountViewModelAsync(id);
+
+        if (IsInvalidAccountViewModel(accountViewModel))
             return RedirectToAction("Index", "Error");
+
         var transaction = TransactionFactory.CreateDeposit(depositModel); //Har skapat en transaction
         if (await transactionService.CreateDepositAsync(transaction) == null)
             return RedirectToAction("Index", "Error"); //Something went wrong
 
-        return RedirectToAction("Details", new { id = account.AccountId });
+        return RedirectToAction("Details", new { id = accountViewModel.AccountId });
     }
 
     public async Task<IActionResult> Withdraw(int id)
