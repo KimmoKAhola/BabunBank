@@ -4,6 +4,8 @@ using BabunBank.Models.FormModels.Api;
 using Babun_API.Data;
 using Babun_API.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,8 +24,7 @@ namespace Babun_API.Controllers;
 [ProducesResponseType(403)]
 [ProducesResponseType(500)]
 [ProducesResponseType(503)]
-public class AdController(ApiContext dbContext, IMapper mapper, IConfiguration configuration)
-    : ControllerBase
+public class AdController(ApiContext dbContext, IMapper mapper) : ControllerBase
 {
     /// <summary>
     /// Fetches a singular ad by its database ID.
@@ -116,7 +117,7 @@ public class AdController(ApiContext dbContext, IMapper mapper, IConfiguration c
     /// <param name="model">Your model of the object to update. See schema requirements below</param>
     /// <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
     /// NotFound if the item does not exist. Status code 500 if the database fails.</returns>
-    [HttpPut("{id}")]
+    [HttpPut("{id:int}")]
     [ProducesResponseType(400)]
     [ProducesResponseType(401)]
     [ProducesResponseType(500)]
@@ -136,13 +137,10 @@ public class AdController(ApiContext dbContext, IMapper mapper, IConfiguration c
 
         try
         {
-            itemToUpdate.Title = model.title;
-            itemToUpdate.Author = model.author;
-            itemToUpdate.Description = model.description;
-            itemToUpdate.Content = model.content;
-            itemToUpdate.IsDeleted = model.isDeleted;
+            itemToUpdate = mapper.Map(model, itemToUpdate);
             itemToUpdate.LastModified = DateTime.Now;
 
+            dbContext.Update(itemToUpdate);
             await dbContext.SaveChangesAsync();
         }
         catch (Exception)
