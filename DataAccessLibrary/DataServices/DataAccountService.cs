@@ -59,7 +59,31 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
     {
         try
         {
-            var result = await accountRepository
+            var result = new List<Account>();
+
+            if (int.TryParse(q, out var val))
+            {
+                return result.Where(a => a.AccountId == val).ToList();
+            }
+
+            if (!q.IsNullOrEmpty())
+            {
+                return await accountRepository
+                    .GetAllAsync()
+                    .Where(a => a.AccountId != id)
+                    .Where(a =>
+                        a.Dispositions.First().Customer.Givenname.ToLower().Contains(q.ToLower())
+                        || a.Dispositions.First().Customer.Surname.ToLower().Contains(q.ToLower())
+                    )
+                    .Include(a => a.Dispositions)
+                    .ThenInclude(d => d.Customer)
+                    .OrderBy(a => a.AccountId)
+                    .Skip((pageNumber - 1) * pageSize)
+                    .Take(pageSize)
+                    .ToListAsync();
+            }
+
+            result = await accountRepository
                 .GetAllAsync()
                 .Where(a => a.AccountId != id)
                 .Include(a => a.Dispositions)
@@ -68,14 +92,6 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
-
-            if (q.IsNullOrEmpty())
-                return result;
-
-            if (int.TryParse(q, out var val))
-            {
-                return result.Where(a => a.AccountId == val).ToList();
-            }
 
             return result;
         }
