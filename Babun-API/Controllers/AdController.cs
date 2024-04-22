@@ -1,6 +1,6 @@
 using Asp.Versioning;
 using AutoMapper;
-using BabunBank.Models.FormModels.Api;
+using BabunBank.Models.FormModels.AdModels;
 using Babun_API.Data;
 using Babun_API.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -123,7 +123,7 @@ public class AdController(ApiContext dbContext, IMapper mapper) : ControllerBase
     [ProducesResponseType(500)]
     public async Task<IActionResult> Update(int id, [FromBody] EditAdModel model)
     {
-        if (id != model.id)
+        if (id != model.Id)
         {
             return BadRequest("Wrong id provided.");
         }
