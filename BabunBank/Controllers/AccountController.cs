@@ -111,31 +111,6 @@ public class AccountController(AccountService accountService, TransactionService
         string q = ""
     )
     {
-        if (ViewBag.Q != null)
-        {
-            q = ViewBag.Q;
-        }
-
-        if (ViewBag.CurrentPage != null)
-        {
-            pageNumber = ViewBag.CurrentPage;
-        }
-
-        if (ViewBag.PageSize != null)
-        {
-            pageSize = ViewBag.PageSize;
-        }
-
-        if (pageNumber == 0)
-        {
-            pageNumber = 1;
-        }
-
-        if (pageSize == 0)
-        {
-            pageSize = 50;
-        }
-
         // totalPageCount = (int)Math.Ceiling((double)totalPageCount / pageSize);
 
         ViewBag.CurrentPage = pageNumber;
@@ -143,19 +118,16 @@ public class AccountController(AccountService accountService, TransactionService
         ViewBag.PageSize = pageSize;
         ViewBag.TotalPageCount = 0;
 
-        var account = await accountService.GetAccountViewModelAsync(id);
+        var senderAccountViewModel = await accountService.GetAccountViewModelAsync(id);
 
-        if (account == null)
+        if (senderAccountViewModel == null)
             return RedirectToAction("Index", "Error");
 
-        var model = new CreateTransferModel
-        {
-            FromAccountId = account.CustomerId,
-            BalanceSender = account.Balance
-        };
+        var transferModel = CreateTransferModelFactory.CreateTransferModel(senderAccountViewModel);
 
-        ViewBag.ListOfCustomers = await accountService.RenameMe(id, pageNumber, pageSize, q);
-        return View(model);
+        // ViewBag.ListOfCustomers = await accountService.RenameMe(id, pageNumber, pageSize, q);
+        await GetListOfCustomers(transferModel, q, pageNumber, pageSize);
+        return View(transferModel);
     }
 
     [HttpPost]
