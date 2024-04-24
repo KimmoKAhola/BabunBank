@@ -9,22 +9,7 @@
         <div class="blogpost-container">
             @foreach (var blogpost in Model)
             {
-                <a asp-controller="Api" asp-action="Details" asp-route-id="@blogpost.Id" class="blogpost-card"> 
-                    <img src="~/images/blogpost-icon.svg" alt="todo">
-                    <h2 class="blogpost-card-title">@char.ToUpper(@blogpost.Title[0])@blogpost.Title[1..]</h2>
-                    <p class="blogpost-card-text">@blogpost.Description</p>
-                    <p class="blogpost-card-text">
-                        @if (@blogpost.Content.Length > 180)
-                        {
-                            @(blogpost.Content[..180])
-                        }
-                        else
-                        {
-                            @blogpost.Content
-                        }
-                    </p>
-                    <div class="blogpost-card-bottom"><img src="~/images/chalk-profile.jpg" alt="todo" class="blogpost-card-image"><p class="blogpost-card-text">@blogpost.Author @blogpost.DateCreated</p></div>
-                </a>
+                <partial name="_BlogpostPartial" model="blogpost"/>
             }
         </div>
         
