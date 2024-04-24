@@ -7,8 +7,6 @@ public class AdValidator : AbstractValidator<EditAdModel>
 {
     public AdValidator()
     {
-        RuleFor(ad => ad.Id).NotNull();
-
         RuleFor(ad => ad.Title)
             .NotEmpty()
             .WithMessage("Title can not be empty.")
