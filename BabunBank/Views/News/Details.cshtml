@@ -12,7 +12,7 @@
     <div class="container blogpost" id="blogpost-detail">
         <h2 class="blogpost-title">@char.ToUpper(@Model.Title[0])@Model.Title[1..] @if (User.IsInRole(UserRoleNames.Admin))
             {
-                <a asp-controller="Api" asp-action="Update" asp-route-id="@Model.Id">
+                <a asp-controller="News" asp-action="Update" asp-route-id="@Model.Id">
                    <span class="blogpost-admin-edit">Edit this blog post <i class="material-symbols-outlined">edit</i></span>
                 </a>
             }</h2>
@@ -31,6 +31,6 @@
             </div>
         </div>
         
-        <a asp-controller="Api" asp-action="Index" class="create-customer-form-btn" id="blogpost-return-button">Return to blog posts...</a>
+        <a asp-controller="News" asp-action="Index" class="create-customer-form-btn" id="blogpost-return-button">Return to blog posts...</a>
     </div>
 </div>

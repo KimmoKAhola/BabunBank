@@ -14,19 +14,19 @@
         </div>
         
         <div class="blogpost-pagination">
-            <a asp-controller="Api"
+            <a asp-controller="News"
                asp-route-pageNumber="1"
                asp-route-pageSize="@ViewBag.PageSize">
                 First
             </a>
-            <a asp-controller="Api"
+            <a asp-controller="News"
                asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
                asp-route-pageSize="@ViewBag.PageSize" class="create-customer-form-btn">
                 Prev
             </a>
             @if (ViewBag.CurrentPage > 1)
             {
-                <a class="pagination-inactive-button" asp-controller="Api"
+                <a class="pagination-inactive-button" asp-controller="News"
                    asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
                    asp-route-pageSize="@ViewBag.PageSize">
                     @(ViewBag.CurrentPage - 1)
@@ -52,13 +52,13 @@
             {
                 <a></a>
             }
-            <a asp-controller="Api"
+            <a asp-controller="News"
                asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
                asp-route-pageSize="@ViewBag.PageSize"
                class="create-customer-form-btn">
                 Next
             </a>
-            <a asp-controller="Api"
+            <a asp-controller="News"
                asp-route-pageNumber="@ViewBag.TotalPageCount"
                asp-route-pageSize="@ViewBag.PageSize">
                 Last

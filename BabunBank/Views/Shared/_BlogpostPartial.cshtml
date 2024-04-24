@@ -1,7 +1,7 @@
 ﻿@model BabunBank.Models.ViewModels.ApiBlog.BlogPost
 
 
-<a asp-controller="Api" asp-action="Details" asp-route-id="@Model.Id" class="blogpost-card"> 
+<a asp-controller="News" asp-action="Details" asp-route-id="@Model.Id" class="blogpost-card"> 
     <img src="~/images/blogpost-icon.svg" alt="todo">
     <h2 class="blogpost-card-title">@char.ToUpper(@Model.Title[0])@Model.Title[1..]</h2>
     <p class="blogpost-card-text">@Model.Description</p>

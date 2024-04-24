@@ -6,7 +6,7 @@
 }
 
 <div class="container update-blogpost">
-    <form asp-controller="Api" asp-action="Update" method="post">
+    <form asp-controller="News" asp-action="Update" method="post">
         <input type="hidden" asp-for="Id">
         <input type="hidden" asp-for="IsDeleted">
 
@@ -43,7 +43,7 @@
         </div>
 
         <div class="create-customer-form-row" id="update-blogpost-button">
-            <a asp-controller="Api" asp-action="Index" class="create-customer-form-btn">Discard changes</a>
+            <a asp-controller="News" asp-action="Index" class="create-customer-form-btn">Discard changes</a>
             <button type="submit" class="create-customer-form-btn">Save changes</button>
         </div>
     </form>

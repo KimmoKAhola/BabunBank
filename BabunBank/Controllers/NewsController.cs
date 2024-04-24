@@ -9,7 +9,7 @@ using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace BabunBank.Controllers;
 
-public class ApiController(ApiService apiService, AdValidator adValidator) : Controller
+public class NewsController(NewsService newsService, AdValidator adValidator) : Controller
 {
     public async Task<IActionResult> Index(int pageNumber, int pageSize)
     {
@@ -23,7 +23,7 @@ public class ApiController(ApiService apiService, AdValidator adValidator) : Con
             pageSize = 9;
         }
 
-        var (result, totalPageCount) = await apiService.GetAll(pageNumber, pageSize);
+        var (result, totalPageCount) = await newsService.GetAll(pageNumber, pageSize);
 
         if (result == null || totalPageCount == null)
             return RedirectToAction("Index", "Error");
@@ -39,7 +39,7 @@ public class ApiController(ApiService apiService, AdValidator adValidator) : Con
 
     public async Task<IActionResult> Details(int id)
     {
-        var result = await apiService.Get(id);
+        var result = await newsService.Get(id);
 
         if (result == null)
             return RedirectToAction("Index", "Error");
@@ -49,7 +49,7 @@ public class ApiController(ApiService apiService, AdValidator adValidator) : Con
 
     public async Task<IActionResult> Update(int id)
     {
-        var result = await apiService.Get(id);
+        var result = await newsService.Get(id);
 
         var model = new EditAdModel
         {
@@ -77,7 +77,7 @@ public class ApiController(ApiService apiService, AdValidator adValidator) : Con
             return View(model);
         }
 
-        if (await apiService.Update(id, model))
+        if (await newsService.Update(id, model))
             return RedirectToAction("Details", new { id });
 
         return View(model);
@@ -86,7 +86,7 @@ public class ApiController(ApiService apiService, AdValidator adValidator) : Con
     [Microsoft.AspNetCore.Mvc.HttpDelete]
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await apiService.Delete(id);
+        var result = await newsService.Delete(id);
 
         if (result == false)
             return RedirectToAction("Index", "Error");
@@ -103,8 +103,8 @@ public class ApiController(ApiService apiService, AdValidator adValidator) : Con
     {
         var user2 = new User { UserName = "richard.erdos.chalk@gmail.se", Password = "Hejsan123#" };
 
-        var result = await apiService.Test(user2);
+        var result = await newsService.Test(user2);
 
-        return RedirectToAction("Index", "Api");
+        return RedirectToAction("Index", "News");
     }
 }

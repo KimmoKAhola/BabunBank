@@ -24,7 +24,7 @@ public static class ServiceConfiguration
         services.AddScoped<LandingPageService>();
         services.AddScoped<IdentityUserService>();
         services.AddScoped<DropDownService>();
-        services.AddScoped<ApiService>();
+        services.AddScoped<NewsService>();
 
         //Laundering Services
         services.AddScoped<MoneyLaunderingService>();

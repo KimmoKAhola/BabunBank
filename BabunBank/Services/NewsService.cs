@@ -12,13 +12,13 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace BabunBank.Services;
 
-public class ApiService
+public class NewsService
 {
     private readonly HttpClient _httpClient;
     private readonly SignInManager<IdentityUser> _signInManager;
     private readonly UserManager<IdentityUser> _userManager;
 
-    public ApiService(
+    public NewsService(
         IHttpClientFactory httpClientFactory,
         SignInManager<IdentityUser> signInManager,
         UserManager<IdentityUser> userManager
