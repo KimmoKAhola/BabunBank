@@ -2,7 +2,7 @@
 using BabunBank.Models.FormModels.AdModels;
 using Babun_API.Models;
 
-namespace Babun_API;
+namespace Babun_API.Infrastructure.Configurations;
 
 /// <summary>
 /// Represents a mapping profile for AutoMapper.
@@ -16,6 +16,6 @@ public class MappingProfile : Profile
     {
         CreateMap<Ads, ViewAdModel>().ReverseMap();
         CreateMap<Ads, CreateAdModel>().ReverseMap();
-        CreateMap<Ads, EditAdModel>().ReverseMap();
+        CreateMap<EditAdModel, Ads>().ReverseMap();
     }
 }
