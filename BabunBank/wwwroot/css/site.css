@@ -1629,3 +1629,7 @@ a.create-customer-form-btn{
 /*.pagination-active-button:hover{*/
 /*  box-shadow: 0 0 3px rgba(0, 0, 0, 0.17);*/
 /*}*/
+
+#login-bg{
+  background-color: var(--off-white);
+}
