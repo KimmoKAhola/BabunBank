@@ -2,6 +2,7 @@ using Asp.Versioning;
 using AutoMapper;
 using BabunBank.Models.FormModels.AdModels;
 using Babun_API.Data;
+using Babun_API.Infrastructure.Configurations;
 using Babun_API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
@@ -16,7 +17,7 @@ namespace Babun_API.Controllers;
 /// <param name="dbContext">The relevant database context</param>
 /// <param name="mapper">Automapper to convert between data transfer objects.</param>
 [ApiVersion("1.0")]
-[ApiExplorerSettings(GroupName = "v1")]
+[ApiExplorerSettings(GroupName = SwaggerConfiguration.Version1)]
 [Route("[controller]")]
 [ProducesResponseType(401)]
 [ProducesResponseType(403)]
@@ -148,7 +149,7 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
     /// <param name="model">Your model of the object to update. See schema requirements below</param>
     /// <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
     /// NotFound if the item does not exist. Status code 500 if the database fails.</returns>
-    [Authorize(AuthenticationSchemes = "V1Scheme")]
+    [Authorize(AuthenticationSchemes = SwaggerConfiguration.V1Scheme)]
     [ApiVersion("1.0")]
     [ProducesResponseType(typeof(ViewAdModel), 200)]
     [ProducesResponseType(400)]
@@ -157,11 +158,6 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(int id, [FromBody] EditAdModel model)
     {
-        if (id != model.Id)
-        {
-            return BadRequest("Wrong id provided.");
-        }
-
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
@@ -175,10 +171,12 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
 
             itemToUpdate.LastModified = DateTime.Now;
 
+            dbContext.Update(itemToUpdate);
             await dbContext.SaveChangesAsync();
         }
-        catch (Exception)
+        catch (Exception e)
         {
+            Console.WriteLine(e + e.Message);
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
 
@@ -199,7 +197,7 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
     /// an HTTP status code 400 (Bad Request) if the patch document or ID is invalid,
     /// or an HTTP status code 404 (Not Found) if the ad with the specified ID does not exist.
     /// </returns>
-    [Authorize(AuthenticationSchemes = "V1Scheme")]
+    [Authorize(AuthenticationSchemes = SwaggerConfiguration.V1Scheme)]
     [ApiVersion("1.0")]
     [HttpPatch("{id:int}")]
     public async Task<IActionResult> UpdateAdPartial(
@@ -243,7 +241,7 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
     /// <returns>BadRequest if the database minimum amount of 100 has been reached.
     /// NotFound if the ad does not exist.
     /// Status code 500 if the database fails.</returns>
-    [Authorize(AuthenticationSchemes = "V1Scheme")]
+    [Authorize(AuthenticationSchemes = SwaggerConfiguration.V1Scheme)]
     [ApiVersion("1.0")]
     [HttpDelete("{id:int}")]
     [ProducesResponseType(400)]
