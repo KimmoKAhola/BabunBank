@@ -49,25 +49,55 @@ public class AdsController(ApiContext dbContext, IMapper mapper) : ControllerBas
         return Ok(adViewModel);
     }
 
-    /// <summary>
-    /// Obtain all database objects.
-    /// </summary>
-    /// <returns>Returns all available database objects, deleted and non-deleted (soft delete implemented).</returns>
+    // /// <summary>
+    // /// This method returns a list of views for Ad Models.
+    // /// HTTP status code 200 is returned if successful, otherwise 400.
+    // /// </summary>
+    // /// <param name="isDeleted">Optional. If specified and true, the result will contain only deleted ads.</param>
+    // /// <returns>A Task that represents the asynchronous operation. The task result contains the IActionResult.</returns>
+    // [HttpGet]
+    // [ApiVersion("1.0")]
+    // [ActionName("GetAll")]
+    // [ProducesResponseType(typeof(List<ViewAdModel>), 200)]
+    // [ProducesResponseType(400)]
+    // public async Task<IActionResult> Get(bool? isDeleted)
+    // {
+    //     var result = await dbContext.Ads.ToListAsync();
+    //
+    //     if (isDeleted.GetValueOrDefault())
+    //     {
+    //         result = result.Where(x => x.IsDeleted).ToList();
+    //         var resultAds = mapper.Map<IEnumerable<Ads>, IEnumerable<ViewAdModel>>(result);
+    //         return Ok(resultAds);
+    //     }
+    //
+    //     result = result.Where(x => !x.IsDeleted).ToList();
+    //
+    //     if (result == null)
+    //         return BadRequest("No ads were found.");
+    //
+    //     var ads = mapper.Map<IEnumerable<Ads>, IEnumerable<ViewAdModel>>(result);
+    //
+    //     return Ok(ads);
+    // }
+
+
     [HttpGet]
     [ApiVersion("1.0")]
     [ActionName("GetAll")]
     [ProducesResponseType(typeof(List<ViewAdModel>), 200)]
-    [ProducesResponseType(400)]
-    public async Task<IActionResult> Get()
+    [ProducesResponseType(404)]
+    public async Task<IActionResult> Get(bool isDeleted)
     {
-        var result = await dbContext.Ads.ToListAsync();
+        var ads = await dbContext.Ads.ToListAsync();
 
-        if (result == null)
-            return BadRequest("No ads were found.");
+        var resultAds = mapper.Map<IEnumerable<Ads>, IEnumerable<ViewAdModel>>(ads);
 
-        var ads = mapper.Map<IEnumerable<Ads>, IEnumerable<ViewAdModel>>(result);
+        resultAds = isDeleted
+            ? resultAds.Where(x => x.IsDeleted).ToList()
+            : resultAds.Where(x => !x.IsDeleted).ToList();
 
-        return Ok(ads);
+        return Ok(resultAds);
     }
 
     /// <summary>
