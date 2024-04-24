@@ -2,6 +2,7 @@ using Asp.Versioning;
 using AutoMapper;
 using BabunBank.Models.FormModels.AdModels;
 using Babun_API.Data;
+using Babun_API.Infrastructure.Configurations;
 using Babun_API.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -16,10 +17,13 @@ namespace Babun_API.Controllers;
 /// </summary>
 /// <param name="dbContext"></param>
 [ApiVersion("2.0")]
-[ApiExplorerSettings(GroupName = "v2")]
+[ApiExplorerSettings(GroupName = SwaggerConfiguration.Version2)]
 [Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
-[Authorize(AuthenticationSchemes = "V2Scheme", Policy = "V2Policy")]
+[Authorize(
+    AuthenticationSchemes = SwaggerConfiguration.V2Scheme,
+    Policy = SwaggerConfiguration.V2Policy
+)]
 [ProducesResponseType(401)]
 [ProducesResponseType(403)]
 [ProducesResponseType(500)]
@@ -123,11 +127,6 @@ public class AdController(ApiContext dbContext, IMapper mapper) : ControllerBase
     [ProducesResponseType(500)]
     public async Task<IActionResult> Update(int id, [FromBody] EditAdModel model)
     {
-        if (id != model.Id)
-        {
-            return BadRequest("Wrong id provided.");
-        }
-
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
