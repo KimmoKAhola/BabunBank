@@ -1,11 +1,14 @@
 using System.Reflection;
 using System.Text;
 using Asp.Versioning;
+using BabunBank.Services;
 using Babun_API;
 using Babun_API.Data;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using DataAccessLibrary.Repositories;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -22,6 +25,11 @@ var secondConnectionString = builder.Configuration.GetConnectionString("Secondar
 
 builder.Services.AddDbContext<ApiContext>(opt => opt.UseSqlServer(connectionString));
 builder.Services.AddDbContext<BankAppDataContext>(opt => opt.UseSqlServer(connectionString));
+
+builder
+    .Services.AddDefaultIdentity<IdentityUser>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<BankAppDataContext>();
 
 builder.Services.AddScoped<AccountRepository>();
 builder.Services.AddScoped<TransactionRepository>();
