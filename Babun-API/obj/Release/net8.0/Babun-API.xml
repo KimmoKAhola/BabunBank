@@ -197,6 +197,77 @@
             Represents a mapping profile for AutoMapper.
             </summary>
         </member>
+        <member name="T:Babun_API.Infrastructure.Configurations.ServiceConfigurations">
+            <summary>
+            Provides service configurations for the application.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Infrastructure.Configurations.ServiceConfigurations.RegisterServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Registers all the necessary services for the application.
+            </summary>
+            <param name="builder">The WebApplicationBuilder instance to register services to.</param>
+        </member>
+        <member name="T:Babun_API.Infrastructure.Configurations.SwaggerConfiguration">
+            <summary>
+            Configuration class for Swagger documentation.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.Version1">
+            <summary>
+            The version number of the API.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.Version2">
+            <summary>
+            The second version number of the API.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V1Scheme">
+            <summary>
+            Represents the authentication scheme used for API version 1.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V2Scheme">
+            <summary>
+            V2Scheme represents the authentication scheme used in version 2 of the API.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V2Policy">
+            <summary>
+            The policy name for API version 2.0 authentication.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.AddSwaggerDocumentation(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Adds Swagger documentation to the Web Application.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> instance.</param>
+        </member>
+        <member name="M:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.AddSwaggerAuthentication(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Adds Swagger authentication to the Web Application.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> instance.</param>
+        </member>
+        <member name="M:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.AddSwaggerAuthorization(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Adds Swagger authorization to the Web Application.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> instance.</param>
+        </member>
+        <member name="M:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.UseSwaggerDocumentation(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            Adds Swagger documentation to the Web Application.
+            </summary>
+            <param name="app">The <see cref="T:Microsoft.AspNetCore.Builder.IApplicationBuilder"/> instance.</param>
+        </member>
+        <member name="M:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.AddSwaggerApiVersioning(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Adds API versioning to the Swagger documentation in the Web Application.
+            </summary>
+            <param name="builder">The <see cref="T:Microsoft.AspNetCore.Builder.WebApplicationBuilder"/> instance.</param>
+        </member>
         <member name="T:Babun_API.Migrations.Initial">
             <inheritdoc />
         </member>

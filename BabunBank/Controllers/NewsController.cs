@@ -53,8 +53,7 @@ public class NewsController(NewsService newsService, AdValidator adValidator) : 
 
         var model = new EditAdModel
         {
-            Id = result.Id,
-            Title = result.Title,
+            Title = result!.Title,
             Author = result.Author,
             Content = result.Content,
             Description = result.Description,

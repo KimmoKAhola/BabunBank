@@ -6,11 +6,6 @@ namespace BabunBank.Models.FormModels.AdModels;
 public class EditAdModel
 {
     [Required]
-    [System.Text.Json.Serialization.JsonIgnore]
-    [JsonProperty("id")]
-    public int Id { get; init; }
-
-    [Required]
     [StringLength(50, MinimumLength = 5)]
     [JsonProperty("title")]
     public string Title { get; init; } = null!;

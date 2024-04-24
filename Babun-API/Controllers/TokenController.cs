@@ -1,6 +1,8 @@
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using Asp.Versioning;
+using Babun_API.Infrastructure.Configurations;
 using Babun_API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -34,19 +36,19 @@ public class TokenController(
     [HttpGet]
     public IActionResult GenerateToken()
     {
-        var tokenString = GenerateTokenString();
+        var tokenString = GenerateTokenString(SwaggerConfiguration.V1ClaimType);
 
         return Ok(tokenString);
     }
 
-    private static string GenerateTokenString()
+    private static string GenerateTokenString(string claimType)
     {
         var section = LoadJwtSettings();
 
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = Encoding.ASCII.GetBytes(section["Key"]!);
 
-        var tokenDescriptor = SecurityTokenDescriptor(section, key);
+        var tokenDescriptor = SecurityTokenDescriptor(section, key, claimType);
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
         var tokenString = tokenHandler.WriteToken(token);
@@ -55,7 +57,8 @@ public class TokenController(
 
     private static SecurityTokenDescriptor SecurityTokenDescriptor(
         IConfiguration section,
-        byte[] key
+        byte[] key,
+        string claimType
     )
     {
         var tokenDescriptor = new SecurityTokenDescriptor
@@ -66,7 +69,8 @@ public class TokenController(
             SigningCredentials = new SigningCredentials(
                 new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature
-            )
+            ),
+            Subject = new ClaimsIdentity(new[] { new Claim(claimType, "true") })
         };
         return tokenDescriptor;
     }
@@ -76,7 +80,7 @@ public class TokenController(
         var config = new ConfigurationBuilder()
             .AddJsonFile("apiAppsettings.json", false, true)
             .Build();
-        var section = config.GetSection("JwtSettings");
+        var section = config.GetSection("JwtSettings:V2");
         return section;
     }
 
@@ -112,7 +116,7 @@ public class TokenController(
                 return Unauthorized();
             }
 
-            var token = GenerateTokenString();
+            var token = GenerateTokenString(SwaggerConfiguration.V2ClaimType);
 
             return Ok(token);
         }
