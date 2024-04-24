@@ -1,0 +1,19 @@
+﻿@model BabunBank.Models.ViewModels.ApiBlog.BlogPost
+
+
+<a asp-controller="Api" asp-action="Details" asp-route-id="@Model.Id" class="blogpost-card"> 
+    <img src="~/images/blogpost-icon.svg" alt="todo">
+    <h2 class="blogpost-card-title">@char.ToUpper(@Model.Title[0])@Model.Title[1..]</h2>
+    <p class="blogpost-card-text">@Model.Description</p>
+    <p class="blogpost-card-text">
+        @if (@Model.Content.Length > 180)
+        {
+            @(Model.Content[..180])
+        }
+        else
+        {
+            @Model.Content
+        }
+    </p>
+    <div class="blogpost-card-bottom"><img src="~/images/chalk-profile.jpg" alt="todo" class="blogpost-card-image"><p class="blogpost-card-text">@Model.Author @Model.DateCreated</p></div>
+</a>
