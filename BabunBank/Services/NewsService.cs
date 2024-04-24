@@ -111,7 +111,8 @@ public class NewsService
 
             var response = await _httpClient.GetAsync("api/v2/Ad");
 
-            var test = response.Content.ReadAsStringAsync();
+            var test = await response.Content.ReadAsStringAsync();
+            return test;
         }
 
         return null;

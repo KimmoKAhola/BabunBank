@@ -94,17 +94,17 @@ public class NewsController(NewsService newsService, AdValidator adValidator) : 
         return View();
     }
 
-    public async Task<IActionResult> Authenticate()
-    {
-        return View();
-    }
+    // public async Task<IActionResult> Authenticate()
+    // {
+    //     return View();
+    // }
 
     public async Task<IActionResult> Authenticate(User user)
     {
         var user2 = new User { UserName = "richard.erdos.chalk@gmail.se", Password = "Hejsan123#" };
 
         var result = await newsService.Test(user2);
-
+        ViewBag.Test = result;
         return RedirectToAction("Index", "News");
     }
 }
