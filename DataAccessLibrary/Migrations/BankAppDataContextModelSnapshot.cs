@@ -18,7 +18,7 @@ namespace DataAccessLibrary.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .UseCollation("SQL_Latin1_General_CP1_CI_AS")
-                .HasAnnotation("ProductVersion", "8.0.3")
+                .HasAnnotation("ProductVersion", "8.0.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -322,40 +322,6 @@ namespace DataAccessLibrary.Migrations
                     b.HasIndex(new[] { "AccountId" }, "IX_Transactions_AccountId");
 
                     b.ToTable("Transactions");
-                });
-
-            modelBuilder.Entity("DataAccessLibrary.Data.User", b =>
-                {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("UserID");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
-
-                    b.Property<string>("FirstName")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<string>("LastName")
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<string>("LoginName")
-                        .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
-
-                    b.Property<byte[]>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(64)
-                        .HasColumnType("binary(64)")
-                        .IsFixedLength();
-
-                    b.HasKey("UserId")
-                        .HasName("PK_User_UserID");
-
-                    b.ToTable("User", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

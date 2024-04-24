@@ -117,12 +117,6 @@
             or an HTTP status code 404 (Not Found) if the ad with the specified ID does not exist.
             </returns>
         </member>
-        <member name="M:Babun_API.Controllers.AdsController.Get">
-            <summary>
-            Obtain all database objects.
-            </summary>
-            <returns>Returns all available database objects, deleted and non-deleted (soft delete implemented).</returns>
-        </member>
         <member name="M:Babun_API.Controllers.AdsController.Create(Babun_API.Models.CreateAdModel)">
              <summary>
              Create a new database object.
@@ -170,6 +164,11 @@
             This class generates a token that is needed for authorization in the API.
             </summary>
         </member>
+        <member name="M:Babun_API.Controllers.TokenController.#ctor(Microsoft.AspNetCore.Identity.SignInManager{Microsoft.AspNetCore.Identity.IdentityUser},Microsoft.AspNetCore.Identity.UserManager{Microsoft.AspNetCore.Identity.IdentityUser})">
+            <summary>
+            This class generates a token that is needed for authorization in the API.
+            </summary>
+        </member>
         <member name="M:Babun_API.Controllers.TokenController.GenerateToken">
             <summary>
             Get a 10-minute token to access the v1 API.
@@ -177,6 +176,15 @@
             </summary>
             <returns>
             A token is returned as a simple string. Lasts for 10 minutes.
+            </returns>
+        </member>
+        <member name="M:Babun_API.Controllers.TokenController.Login(Babun_API.Models.LoginModel)">
+            <summary>
+            Logs in a user and generates a token for authorization in the API.
+            </summary>
+            <param name="login">The login information of the user.</param>
+            <returns>
+            If the login is successful, a token is returned as a simple string.
             </returns>
         </member>
         <member name="T:Babun_API.MappingProfile">
@@ -261,6 +269,18 @@
         <member name="M:Babun_API.Migrations.newagain.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <inheritdoc />
         </member>
+        <member name="T:Babun_API.Migrations.test">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.test.Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.test.Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Migrations.test.BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <inheritdoc />
+        </member>
         <member name="T:Babun_API.Models.Ads">
             <summary>
             Represents an advertisement.
@@ -335,6 +355,16 @@
             <summary>
             Date Created.
             Can be set to a previous date if you wish.
+            </summary>
+        </member>
+        <member name="T:Babun_API.Models.LoginModel">
+            <summary>
+            Represents the login information of a user.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Models.LoginModel.#ctor(System.String,System.String)">
+            <summary>
+            Represents the login information of a user.
             </summary>
         </member>
         <member name="T:Babun_API.Models.ViewAdModel">

@@ -14,6 +14,8 @@
           "BabunBank": "1.0.0",
           "Bogus": "35.5.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.4",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "8.0.4",
+          "Microsoft.AspNetCore.Identity.UI": "8.0.4",
           "Microsoft.AspNetCore.JsonPatch": "8.0.4",
           "Microsoft.AspNetCore.Mvc.NewtonsoftJson": "8.0.4",
           "Microsoft.EntityFrameworkCore": "8.0.4",
