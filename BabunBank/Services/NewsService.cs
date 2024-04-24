@@ -118,6 +118,18 @@ public class NewsService
         return null;
     }
 
+    private async Task<string> ValidateUser(string username, string password)
+    {
+        var requestBody = new { username, password };
+
+        var requestBodyJson = JsonSerializer.Serialize(requestBody);
+        var requestContent = new StringContent(requestBodyJson, Encoding.UTF8, "application/json");
+
+        var tokenResponse = await _httpClient.PostAsync("/Login", requestContent);
+
+        return await tokenResponse.Content.ReadAsStringAsync();
+    }
+
     private string GenerateToken()
     {
         var configuration = new ConfigurationBuilder()
@@ -153,24 +165,22 @@ public class NewsService
 
     public async Task<bool> Update(int id, EditAdModel model)
     {
-        var jsonContent = JsonSerializer.Serialize(model);
-
-        var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-        var tokenResponse = await _httpClient.GetAsync("Token");
-
-        var tokenString = await tokenResponse.Content.ReadAsStringAsync();
-
-        _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-            "Bearer",
-            tokenString
-        );
-
-        var response = await _httpClient.PutAsync($"/Ads/{id}", content);
-
         try
         {
+            var token = await ValidateUser("richard.chalk@systementor.se", "Hejsan123#");
+
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+                "Bearer",
+                token
+            );
+
+            var jsonModel = JsonSerializer.Serialize(model);
+            var modelContent = new StringContent(jsonModel, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PutAsync($"/api/v2/Ad/{id}", modelContent);
+
             response.EnsureSuccessStatusCode();
+
             return true;
         }
         catch (Exception e)
