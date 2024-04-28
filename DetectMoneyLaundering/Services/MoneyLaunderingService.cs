@@ -28,8 +28,8 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
 
         foreach (var transaction in account.Transactions)
         {
-            transaction.Amount = Math.Abs(transaction.Amount);
-            if (transaction.Amount > 15000)
+            // transaction.Amount = Math.Abs(transaction.Amount);
+            if (Math.Abs(transaction.Amount) > 15000)
             {
                 result.TransactionsOverLimit.Add(transaction);
             }
@@ -47,7 +47,13 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         result.CustomerId = account.Dispositions.First(x => x.Type.ToLower() == "owner").CustomerId;
         if (result.NormalTransactions.Count <= 0 || result.TransactionsOverLimit.Count <= 0)
             return result;
-        DataVisualizationService.CreateIndividualPlot(result, mode);
+        var scaling = new PlotScalingModel
+        {
+            HeightScaleFactor = 1.0,
+            WidthScaleFactor = 1.0,
+            FontScaleFactor = 1.0
+        };
+        DataVisualizationService.CreateIndividualPlot(result, mode, scaling);
         return result;
     }
 
@@ -62,8 +68,8 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
             accountsToInspect.Add(temp);
             foreach (var transaction in account.Transactions)
             {
-                transaction.Amount = Math.Abs(transaction.Amount);
-                if (transaction.Amount > 15000M)
+                // transaction.Amount = Math.Abs(transaction.Amount);
+                if (Math.Abs(transaction.Amount) > 15000M)
                 {
                     temp.TransactionsOverLimit.Add(transaction);
                 }
