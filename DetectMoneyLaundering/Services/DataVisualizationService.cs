@@ -46,12 +46,18 @@ public static class DataVisualizationService
                 scalingModel
             );
         }
-        CreateNormalTransactionsPlot(normalTransactions, length2, model.CustomerName, mode);
+        CreateNormalTransactionsPlot(
+            normalTransactions,
+            length2,
+            model.CustomerName,
+            mode,
+            scalingModel
+        );
 
         var percentageOfSuspiciousTransactions = length / (length + (double)length2);
 
         // Pie chart
-        CreatePieChart(percentageOfSuspiciousTransactions, model.CustomerName, mode);
+        CreatePieChart(percentageOfSuspiciousTransactions, model.CustomerName, mode, scalingModel);
     }
 
     private static void CreateSuspiciousTransactionsPlot(
