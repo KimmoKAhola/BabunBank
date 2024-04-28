@@ -59,10 +59,10 @@ public class AdminController(
         return RedirectToAction("Details", new { id = createdUser.Id });
     }
 
-    public async Task<IActionResult> Read(string id)
+    public async Task<IActionResult> Details(string id)
     {
-        var user = await identityUserService.GetSingleAsync(id);
-        return View(user);
+        var identityUserViewModel = await identityUserService.GetSingleAsync(id);
+        return View(identityUserViewModel);
     }
 
     public IActionResult Update()
