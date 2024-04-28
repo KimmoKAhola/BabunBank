@@ -73,8 +73,8 @@ public class AdminController(
     [HttpGet]
     public async Task<IActionResult> Delete(string id)
     {
-        var user = await identityUserService.GetSingleAsync(id);
-        return View(user);
+        var identityUserViewModel = await identityUserService.GetSingleAsync(id);
+        return View(identityUserViewModel);
     }
 
     [HttpPost]
