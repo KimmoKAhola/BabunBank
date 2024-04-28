@@ -28,6 +28,7 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         VisualizationModes mode,
         bool draw = true,
         string color = "",
+        string backgroundColor = "",
         int slider = ScalingDefault
     )
     {
@@ -63,12 +64,16 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
             return result;
 
         Color chosenColor = string.IsNullOrEmpty(color) ? Color.Empty : Color.FromName(color);
+        Color chosenBackgroundColor = string.IsNullOrEmpty(backgroundColor)
+            ? Color.Empty
+            : Color.FromName(backgroundColor);
         var scaling = new PlotScalingModel
         {
             HeightScaleFactor = (double)slider / ScalingDivider,
             WidthScaleFactor = (double)slider / ScalingDivider,
             FontScaleFactor = (double)slider / ScalingDivider,
-            Color = chosenColor
+            Color = chosenColor,
+            BackgroundColor = chosenBackgroundColor
         };
 
         DataVisualizationService.CreateIndividualPlot(result, mode, scaling);
