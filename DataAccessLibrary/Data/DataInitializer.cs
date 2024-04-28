@@ -5,6 +5,7 @@ namespace DataAccessLibrary.Data;
 
 public enum UserRole
 {
+    Choose,
     Admin,
     Customer, //TODO remove this later
     Cashier
