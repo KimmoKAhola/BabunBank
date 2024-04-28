@@ -149,8 +149,20 @@
       "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-admin-test.jpg",
+      "PackagePath": "staticwebassets\\images\\office-admin-test.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-admin-test.webp",
+      "PackagePath": "staticwebassets\\images\\office-admin-test.webp"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-test.jpg",
       "PackagePath": "staticwebassets\\images\\office-test.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-test.webp",
+      "PackagePath": "staticwebassets\\images\\office-test.webp"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-3727464.jpeg",
