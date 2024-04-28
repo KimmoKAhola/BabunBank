@@ -54,16 +54,9 @@ public class AdminController(
             return View(userModel);
         }
 
-        // TempData["SuccessMessage"] = $"The user {userModel.UserName} has been successfully created";
-        // if (!ModelState.IsValid)
-        // {
-        //     TempData["SuccessMessage"] = $"Incorrect values provided. Please fix";
-        //     return View(userModel);
-        // }
-
-        await IdentityUserFactory.CreateUser(userModel, userManager);
+        var createdUser = await IdentityUserFactory.CreateUser(userModel, userManager);
         // var result = mapper.Map<SignUpModel>(user); //TODO Needed?
-        return RedirectToAction("Index");
+        return RedirectToAction("Details", new { id = createdUser.Id });
     }
 
     public async Task<IActionResult> Read(string id)
