@@ -213,13 +213,19 @@ public class CashierController(
         return View(resultOfInspection);
     }
 
-    public async Task<IActionResult> ScaleGraphs(int id, string color, int slider)
+    public async Task<IActionResult> ScaleGraphs(
+        int id,
+        string color,
+        string backgroundColor,
+        int slider
+    )
     {
         await moneyLaunderingService.InspectAccount(
             id,
             VisualizationModes.Web,
             true,
             color,
+            backgroundColor,
             slider
         );
 
