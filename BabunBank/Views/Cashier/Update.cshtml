@@ -4,119 +4,117 @@
     Layout = "_Layout";
 }
 
+<div id="cashier-create-bg">
+    <img src="~/images/office-test.webp" id="TODO" alt="TODO">
+    <div class="container create-customer">
+        @* <h2 id="update-customer-header">Edit the customer @Model.GivenName @Model.SurName</h2> *@
+        <form method="post" class="create-customer-form">
+            @* id="cashier-update-form" *@
+            <div asp-validation-summary="ModelOnly"></div>
 
-<div class="cashier-update container">
-    <h2 id="update-customer-header">Edit the customer @Model.GivenName @Model.SurName</h2>
-    <form method="post" class="create-customer-form" id="cashier-update-form">
-        <div asp-validation-summary="ModelOnly"></div>
+            <input asp-for="CustomerId" type="hidden">
+            <input asp-for="NationalId" type="hidden">
+            <input asp-for="Birthday" type="hidden">
+            <input asp-for="CountryCode" type="hidden">
 
-        <input asp-for="CustomerId" type="hidden">
-        <input asp-for="NationalId" type="hidden">
-        <input asp-for="Birthday" type="hidden">
-        <input asp-for="CountryCode" type="hidden">
-        
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <label asp-for="GivenName"></label>
-                <input asp-for="GivenName" type="text">
-                <span asp-validation-for="GivenName" class="text-danger"></span>
-            </span>
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="GivenName"></label>
+                    <input asp-for="GivenName" type="text">
+                    <span asp-validation-for="GivenName" class="text-danger"></span>
+                </span>
 
-            <span class="Test">
-                <label asp-for="SurName"></label>
-                <input asp-for="SurName" type="text">
-                <span asp-validation-for="SurName" class="text-danger"></span>
-            </span>
-        </div>
-        
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <label asp-for="GenderRole"></label>
-                <select asp-for="GenderRole" name="GenderRole" id="GenderRole" class="enum-dropdown">
-                    @foreach (var gender in @ViewBag.AvailableGenders as List<SelectListItem>)
-                    {
-                        <option value="@gender.Value">@gender.Text</option>
-                    }
-                </select>
-                <span asp-validation-for="GenderRole" class="text-danger"></span>
-            </span>
-        
-            <span class="Test">
-                <label asp-for="StreetAddress"></label>
-                <input asp-for="StreetAddress" type="text">
-                <span asp-validation-for="StreetAddress" class="text-danger"></span>
-            </span>
-        </div>
+                <span class="Test">
+                    <label asp-for="SurName"></label>
+                    <input asp-for="SurName" type="text">
+                    <span asp-validation-for="SurName" class="text-danger"></span>
+                </span>
+            </div>
 
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <label asp-for="City"></label>
-                <input asp-for="City" type="text">
-                <span asp-validation-for="City" class="text-danger"></span>
-            </span>
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="GenderRole"></label>
+                    <select asp-for="GenderRole" name="GenderRole" id="GenderRole" class="enum-dropdown">
+                        @foreach (var gender in @ViewBag.AvailableGenders as List<SelectListItem>)
+                        {
+                            <option value="@gender.Value">@gender.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="GenderRole" class="text-danger"></span>
+                </span>
 
-            <span class="Test">
-                @* <label asp-for="Country"></label> *@
-                @* <input asp-for="Country" type="text"> *@
-                @* <span asp-validation-for="Country"></span> *@
-                
-                <label asp-for="CountryValue">Country</label>
-                <select asp-for="CountryValue" name="CountryValue" class="enum-dropdown">
-                    @foreach (var country in @ViewBag.AvailableCountries as List<SelectListItem>)
-                    {
-                        <option value="@country.Value">@country.Text</option>
-                    }
-                </select>
-                <span asp-validation-for="CountryValue" class="text-danger"></span>
-            </span>
-        </div>
+                <span class="Test">
+                    <label asp-for="StreetAddress"></label>
+                    <input asp-for="StreetAddress" type="text">
+                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                </span>
+            </div>
 
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <label asp-for="Zipcode"></label>
-                <input asp-for="Zipcode" type="text">
-                <span asp-validation-for="Zipcode" class="text-danger"></span>
-            </span>
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="City"></label>
+                    <input asp-for="City" type="text">
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </span>
 
-            <span class="Test">
-                <label asp-for="TelephoneCountryCode"></label>
-                <input asp-for="TelephoneCountryCode" type="text">
-                <span asp-validation-for="TelephoneCountryCode" class="text-danger"></span>
-            </span>
-        </div>
+                <span class="Test">
+                    @* <label asp-for="Country"></label> *@
+                    @* <input asp-for="Country" type="text"> *@
+                    @* <span asp-validation-for="Country"></span> *@
 
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <label asp-for="TelephoneNumber"></label>
-                <input asp-for="TelephoneNumber" type="text">
-                <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
-            </span>
+                    <label asp-for="CountryValue">Country</label>
+                    <select asp-for="CountryValue" name="CountryValue" class="enum-dropdown">
+                        @foreach (var country in @ViewBag.AvailableCountries as List<SelectListItem>)
+                        {
+                            <option value="@country.Value">@country.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CountryValue" class="text-danger"></span>
+                </span>
+            </div>
 
-            <span class="Test">
-                <label asp-for="EmailAddress"></label>
-                <input asp-for="EmailAddress" type="email">
-                <span asp-validation-for="EmailAddress" class="text-danger"></span>
-            </span>
-        </div>
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="Zipcode"></label>
+                    <input asp-for="Zipcode" type="text">
+                    <span asp-validation-for="Zipcode" class="text-danger"></span>
+                </span>
+
+                <span class="Test">
+                    <label asp-for="TelephoneCountryCode"></label>
+                    <input asp-for="TelephoneCountryCode" type="text">
+                    <span asp-validation-for="TelephoneCountryCode" class="text-danger"></span>
+                </span>
+            </div>
+
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="TelephoneNumber"></label>
+                    <input asp-for="TelephoneNumber" type="text">
+                    <span asp-validation-for="TelephoneNumber" class="text-danger"></span>
+                </span>
+
+                <span class="Test">
+                    <label asp-for="EmailAddress"></label>
+                    <input asp-for="EmailAddress" type="email">
+                    <span asp-validation-for="EmailAddress" class="text-danger"></span>
+                </span>
+            </div>
 
 
-        <div class="create-customer-form-row">
-            <span class="Test" id="cashier-submit">
-                <button type="submit" class="create-customer-form-btn" id="cashier-submit-button">
-                    Save changes
-                    <i class="material-symbols-outlined">
-                        save
-                    </i>
-                </button>
-            </span>
-            
-            <span class="Test" id="cashier-return">
-                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn" id="cashier-return-button">
-                    Return to overview<i class="material-symbols-outlined">
-                        keyboard_return
-                    </i>
-                </a>
-            </span>
-        </div>
-    </form>
+            <div class="create-customer-form-row">
+                <span class="Test" id="cashier-submit">
+                    <button type="submit" class="create-customer-form-btn" id="create-customer-btn">
+                        Save changes
+                    </button>
+                </span>
+
+                <span class="Test" id="cashier-return">
+                    <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn" id="return-cashier-btn">
+                        Return
+                    </a>
+                </span>
+            </div>
+        </form>
+    </div>
 </div>
