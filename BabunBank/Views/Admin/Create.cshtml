@@ -5,54 +5,73 @@
     Layout = "_Layout";
 }
 
-<h2>Create a new user</h2>
-<div>
-    @if (@TempData["SuccessMessage"] != null)
-    {
-        <h2>@TempData["SuccessMessage"]</h2>
-    }
+<div id="cashier-create-bg">
+    <img src="~/images/office-admin-test.webp" id="TODO" alt="TODO">
+    <div class="container create-user">
+        <form method="post" asp-controller="Admin" asp-action="Create" class="create-user-form">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="Email">Email</label>
+                    <input asp-for="Email" type="text" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </span>
+            </div>
+
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="ConfirmEmail">Confirm Email</label>
+                    <input asp-for="ConfirmEmail" type="text" placeholder="Email">
+                    <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+                </span>
+            </div>
+
+            <div class="create-customer-form-row">
+                
+                <span class="Test">
+                    <label asp-for="Password">Password</label>
+                    <input asp-for="Password" type="password" placeholder="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </span>
+                
+            </div>
+
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" type="password" placeholder="Password">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </span>
+            </div>
+
+            <div class="create-customer-form-row">
+                
+                <span class="Test">
+                    <label asp-for="UserRole">User role</label>
+                    <select asp-for="UserRole" name="UserRole" id="UserRole" class="enum-dropdown">
+                        @foreach (var role in @ViewBag.AvailableRoles as List<SelectListItem>)
+                        {
+                        <option value="@role.Value">@role.Text</option>
+                        }
+                        <span asp-validation-for="UserRole" class="text-danger"></span>
+                    </select>
+                </span>
+
+            </div>
+        
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <button type="submit" class="create-customer-form-btn" id="create-customer-btn">Create a new User</button>
+                </span>
+                <span class="Test">
+                    <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn" id="return-cashier-btn">Return</a>
+                </span>
+            </div>
+        </form>
+    </div>
 </div>
 
-
-<form method="post" asp-controller="Admin" asp-action="Create" class="container create-customer-form">
-    
-    <div asp-validation-summary="ModelOnly"></div>
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="UserName">Username</label>
-            <input asp-for="UserName" type="text" placeholder="Username">
-            <span asp-validation-for="UserName"></span>
-        </span>
-        <span class="Test">
-            <label asp-for="Email">Email</label>
-            <input asp-for="Email" type="text" placeholder="Email">
-            <span asp-validation-for="Email"></span>
-        </span>
-    </div>
-
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <label asp-for="UserRole">User role</label>
-            <select asp-for="UserRole" name="UserRole" id="UserRole" class="enum-dropdown">
-                @foreach (var role in @ViewBag.AvailableRoles as List<SelectListItem>)
-                {
-                    <option value="@role.Value">@role.Text</option>
-                }
-                <span asp-validation-for="UserRole"></span>
-            </select>
-        </span>
-        <span class="Test">
-            <label asp-for="Password">Password</label>
-            <input asp-for="Password" type="password" placeholder="Password">
-            <span asp-validation-for="Password"></span>
-        </span>
-    </div>
-    <div class="create-customer-form-row">
-        <span class="Test">
-            <button type="submit" class="create-customer-form-btn">Create a new User</button>
-        </span>
-        <span class="Test">
-            <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn">Go back</a>
-        </span>
-    </div>
-</form>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
