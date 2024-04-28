@@ -168,7 +168,8 @@ public static class DataVisualizationService
     private static void CreatePieChart(
         double percentageOfSuspiciousTransactions,
         string customerName,
-        VisualizationModes mode
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
     )
     {
         Plot myPlot = new();
@@ -183,6 +184,7 @@ public static class DataVisualizationService
             $"Suspicious Transactions {percentageOfSuspiciousTransactions:P2}",
             $"Normal Transactions {1 - percentageOfSuspiciousTransactions:P2}"
         ];
+        var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
         var piePlot = myPlot.AddPie(pieSlices);
         piePlot.SliceLabels = labels;
         piePlot.Explode = true;
@@ -190,11 +192,18 @@ public static class DataVisualizationService
         piePlot.SliceFillColors = colors;
         myPlot.Legend(true, Alignment.LowerRight);
         myPlot.Grid(true);
-        myPlot.Title($"Percentage overview of transactions for the customer {customerName}");
+        myPlot.Title(
+            $"Percentage overview of transactions for the customer {customerName}",
+            size: fontSize
+        );
 
         var filePath = GetFilePath(mode, PlotNames.PieChart.ToString());
 
-        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+        myPlot.SaveFig(
+            filePath,
+            (int)(DefaultImageWidth * scalingModel.WidthScaleFactor),
+            (int)(DefaultImageHeight * scalingModel.HeightScaleFactor)
+        );
     }
 
     public static void CreatePlotForAllTransactions(
