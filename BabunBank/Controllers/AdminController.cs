@@ -80,15 +80,10 @@ public class AdminController(
     [HttpPost]
     public async Task<IActionResult> DeleteConfirmed(string id, string username)
     {
-        TempData["SuccessMessage"] =
-            $"User with username \"{@username}\" has been deleted successfully.";
-
-        var result = await identityUserService.DeleteAsync(id);
-        if (!(result ?? false))
+        //TODO Fix confirmation when deleting user
+        var deleteConfirmation = await identityUserService.DeleteAsync(id);
+        if (!(deleteConfirmation ?? false))
             return RedirectToAction("Index");
-        TempData["SuccessMessage"] = "Something went wrong.";
         return RedirectToAction("Index", "Error");
-
-        // return View(user);
     }
 }
