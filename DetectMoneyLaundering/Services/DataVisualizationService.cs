@@ -3,6 +3,7 @@ using System.Reflection.Emit;
 using DataAccessLibrary.Data;
 using DetectMoneyLaundering.Models;
 using ScottPlot;
+using ScottPlot.Plottable;
 
 namespace DetectMoneyLaundering.Services;
 
@@ -19,7 +20,11 @@ public static class DataVisualizationService
     private const int DefaultFontSize = 12;
     private static int MarkerSize => 8;
 
-    public static void CreateIndividualPlot(InspectAccountModel model, VisualizationModes mode)
+    public static void CreateIndividualPlot(
+        InspectAccountModel model,
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
+    )
     {
         var transactionsOverLimit = model
             .TransactionsOverLimit.Where(x => Math.Abs(x.Amount) > SuspiciousTransactionThreshold)
@@ -37,7 +42,8 @@ public static class DataVisualizationService
                 transactionsOverLimit,
                 length,
                 model.CustomerName,
-                mode
+                mode,
+                scalingModel
             );
         }
         CreateNormalTransactionsPlot(normalTransactions, length2, model.CustomerName, mode);
