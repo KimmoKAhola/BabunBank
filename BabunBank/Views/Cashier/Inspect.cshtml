@@ -8,7 +8,8 @@
 
     var colorProperties = typeof(System.Drawing.Color)
         .GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
-        .Where(x => x.PropertyType == typeof(System.Drawing.Color));
+        .Where(x => x.PropertyType == typeof(System.Drawing.Color)
+            && x.Name != "Transparent");
  
     var colors = new SelectList(colorProperties.Select(x => new { Value = x.Name, Text = x.Name }), "Value", "Text");
 }
@@ -18,13 +19,16 @@
 @if (Model.NormalTransactions.Count > 0 && Model.TransactionsOverLimit.Count > 0)
 {
     <div class="container">
-        <form action="">
+        <form asp-controller="Cashier" 
+              asp-action="ScaleGraphs" 
+              asp-route-id="@Model.CustomerId">
             <h2>Inspecting customer @Model.CustomerName</h2>
             <h3>Here are the suspicious transactions for this customer</h3>
             <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
             <p>Do you wish to change the image settings? Adjust the plots here:</p>
-            <input type="range" min="10" max="100" value="50" oninput="rangeValue.innerText = this.value">
-            <p id="rangeValue"></p>
+            <p>The slider determines the scaling factor. 10 is the default size (100 %) and each point makes the image 10 % smaller/larger. 30 means that the image will be 3 times larger.</p>
+            <input type="range" min="1" max="30" value="10" name="slider" oninput="rangeValue.innerText = this.value">
+            <p id="rangeValue">10</p>
             @Html.DropDownList("Color", colors)
             <button type="submit">Apply filters</button>
         </form>
