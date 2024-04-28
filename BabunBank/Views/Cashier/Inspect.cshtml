@@ -5,16 +5,29 @@
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
+
+    var colorProperties = typeof(System.Drawing.Color)
+        .GetProperties(System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public)
+        .Where(x => x.PropertyType == typeof(System.Drawing.Color));
+ 
+    var colors = new SelectList(colorProperties.Select(x => new { Value = x.Name, Text = x.Name }), "Value", "Text");
 }
+
+
+
 @if (Model.NormalTransactions.Count > 0 && Model.TransactionsOverLimit.Count > 0)
 {
     <div class="container">
-        <h2>Inspecting customer @Model.CustomerName</h2>
-        <h3>Here are the suspicious transactions for this customer</h3>
-        <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
-        <p>Do you wish to change the image settings? Adjust the plots here:</p>
-        <input type="range" min="0" max="100" value="50" oninput="rangeValue.innerText = this.value">
-        <p id="rangeValue">100</p>
+        <form action="">
+            <h2>Inspecting customer @Model.CustomerName</h2>
+            <h3>Here are the suspicious transactions for this customer</h3>
+            <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
+            <p>Do you wish to change the image settings? Adjust the plots here:</p>
+            <input type="range" min="10" max="100" value="50" oninput="rangeValue.innerText = this.value">
+            <p id="rangeValue"></p>
+            @Html.DropDownList("Color", colors)
+            <button type="submit">Apply filters</button>
+        </form>
     </div>
     <div class="container inspect">
         @* <div> *@
