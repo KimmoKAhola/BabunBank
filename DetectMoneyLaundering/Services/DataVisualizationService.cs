@@ -123,33 +123,46 @@ public static class DataVisualizationService
         Transaction[] transactions,
         int length,
         string customerName,
-        VisualizationModes mode
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
     )
     {
         Plot myPlot = new();
         var xs = new double[length];
         var labels = new string[length];
         var ys = transactions.Select(x => (double)x.Amount).ToArray();
-        int transactionCounter = 0;
+        var transactionCounter = 0;
 
         foreach (var dateForTransaction in transactions)
         {
-            if (transactionCounter % Granularity == 0)
+            if (transactionCounter % DefaultGranularityValue == 0)
                 labels[transactionCounter] = dateForTransaction.Date.ToString();
             xs[transactionCounter] = transactionCounter;
             transactionCounter++;
         }
 
-        var scatter = myPlot.AddScatter(xs, ys, GoodColor, 0, 8);
+        var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
+        var scatter = myPlot.AddScatter(
+            xs,
+            ys,
+            GoodColor,
+            0,
+            (int)(8 * scalingModel.FontScaleFactor)
+        );
         myPlot.Add(scatter);
-        myPlot.Title($"All normal transactions for the customer {customerName}");
-        myPlot.XLabel(XLabel);
-        myPlot.YLabel(YLabel);
+        myPlot.Title($"All normal transactions for the customer {customerName}", size: fontSize);
+        myPlot.XAxis.Label(XLabel, size: fontSize);
+        myPlot.YAxis.Label(YLabel, size: fontSize);
         myPlot.XTicks(labels);
-        myPlot.XAxis.TickLabelStyle(rotation: 90);
+        myPlot.XAxis.TickLabelStyle(fontSize: fontSize, rotation: 90);
+        myPlot.YAxis.TickLabelStyle(fontSize: fontSize);
 
         var filePath = GetFilePath(mode, PlotNames.NormalTransactions.ToString());
-        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+        myPlot.SaveFig(
+            filePath,
+            (int)(DefaultImageWidth * scalingModel.WidthScaleFactor),
+            (int)(DefaultImageHeight * scalingModel.HeightScaleFactor)
+        );
     }
 
     private static void CreatePieChart(
