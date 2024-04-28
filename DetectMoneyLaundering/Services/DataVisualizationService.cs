@@ -35,7 +35,7 @@ public static class DataVisualizationService
 
         if (length2 == 0)
             length2 = 1;
-        // Plot Creation
+
         if (length > 0)
         {
             CreateSuspiciousTransactionsPlot(
@@ -81,11 +81,16 @@ public static class DataVisualizationService
             transactionCounter++;
         }
 
+        if (scalingModel.Color.IsEmpty)
+        {
+            scalingModel.Color = BadColor;
+        }
+
         var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
         var scatter = myPlot.AddScatter(
             xs,
             ys,
-            BadColor,
+            scalingModel.Color,
             0,
             (int)(MarkerSize * scalingModel.FontScaleFactor)
         );
@@ -141,11 +146,16 @@ public static class DataVisualizationService
             transactionCounter++;
         }
 
+        if (scalingModel.Color.IsEmpty)
+        {
+            scalingModel.Color = GoodColor;
+        }
+
         var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
         var scatter = myPlot.AddScatter(
             xs,
             ys,
-            GoodColor,
+            scalingModel.Color,
             0,
             (int)(8 * scalingModel.FontScaleFactor)
         );
