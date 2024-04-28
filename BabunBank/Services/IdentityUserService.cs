@@ -2,7 +2,6 @@
 using BabunBank.Models.ViewModels.Admin;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace BabunBank.Services;
 
@@ -38,6 +37,7 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
         return users;
     }
 
+    //TODO can be deleted?
     public async Task<bool> CreateAsync(IdentityUser model)
     {
         return await dataIdentityUserService.CreateAsync(model);
@@ -48,10 +48,11 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
         return await dataIdentityUserService.DeleteAsync(id);
     }
 
-    public async Task<bool> CheckIfExistsByUsernameAsync(string username)
-    {
-        return await dataIdentityUserService.CheckUserExistsByUserName(username);
-    }
+    //TODO Can be deleted?
+    // public async Task<bool> CheckIfExistsByUsernameAsync(string username)
+    // {
+    //     return await dataIdentityUserService.CheckUserExistsByUserName(username);
+    // }
 
     public async Task<bool> CheckIfExistsByEmailAsync(string email)
     {
