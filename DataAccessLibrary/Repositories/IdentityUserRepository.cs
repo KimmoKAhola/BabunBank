@@ -5,7 +5,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLibrary.Repositories;
 
-public class IdentityUserRepository(BankAppDataContext dbContext)
+public class IdentityUserRepository(
+    BankAppDataContext dbContext,
+    UserManager<IdentityUser> userManager
+)
 {
     public virtual async Task<IdentityUser?> CreateAsync(IdentityUser entity)
     {
@@ -127,12 +130,29 @@ public class IdentityUserRepository(BankAppDataContext dbContext)
         }
     }
 
-    public virtual async Task<bool> ExistsAsync(Expression<Func<IdentityUser, bool>> expression)
+    public virtual async Task<bool> ExistsByUserNameAsync(string username)
     {
         try
         {
-            var result = await dbContext.Set<IdentityUser>().AnyAsync(expression);
-            return result;
+            var result = await userManager.FindByNameAsync(username);
+            return result == null;
+            // var result = await dbContext.Set<IdentityUser>().AnyAsync(expression);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+        }
+
+        return false;
+    }
+
+    public virtual async Task<bool> ExistsByEmailAsync(string email)
+    {
+        try
+        {
+            var result = await userManager.FindByEmailAsync(email);
+            return result == null;
+            // var result = await dbContext.Set<IdentityUser>().AnyAsync(expression);
         }
         catch (Exception e)
         {
