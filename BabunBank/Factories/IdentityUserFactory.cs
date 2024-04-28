@@ -18,9 +18,9 @@ public static class IdentityUserFactory
         {
             var user = new IdentityUser
             {
-                UserName = userModel.UserName,
+                UserName = userModel.Email,
                 Email = userModel.Email,
-                EmailConfirmed = userModel.EmailConfirmed,
+                EmailConfirmed = userModel.EmailConfirmed
             };
             await userManager.CreateAsync(user, userModel.Password);
             await userManager.AddToRolesAsync(user, new[] { userModel.UserRole.ToString() });
