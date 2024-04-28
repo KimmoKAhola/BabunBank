@@ -24,7 +24,7 @@
             <td>@Model.Email</td>
             <td>@Model.RoleName</td>
             <td>
-                <a asp-controller="Admin" asp-action="Read" asp-route-id="@Model.UserId" class="create-customer-form-btn">View</a>
+                <a asp-controller="Admin" asp-action="Details" asp-route-id="@Model.UserId" class="create-customer-form-btn">View</a>
                 <a asp-controller="Admin" asp-action="Update" asp-route-id="@Model.UserId" class="create-customer-form-btn">Update</a>
                 @if (User?.Identity?.Name != Model.Username)
                 {
