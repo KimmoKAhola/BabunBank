@@ -198,9 +198,11 @@ public class CashierController(
 
     public async Task<IActionResult> Inspect(int id)
     {
+        bool drawGraphs = TempData["Redraw"] == null;
         var resultOfInspection = await moneyLaunderingService.InspectAccount(
             id,
-            VisualizationModes.Web
+            VisualizationModes.Web,
+            drawGraphs
         );
 
         if (resultOfInspection.TransactionsOverLimit.Count == 0)
@@ -208,5 +210,20 @@ public class CashierController(
                 "There are too few transactions made on this account. No data to show.";
 
         return View(resultOfInspection);
+    }
+
+    public async Task<IActionResult> ScaleGraphs(int id, string color, int slider)
+    {
+        await moneyLaunderingService.InspectAccount(
+            id,
+            VisualizationModes.Web,
+            true,
+            color,
+            slider
+        );
+
+        TempData["Redraw"] = true;
+
+        return RedirectToAction("Inspect", new { id });
     }
 }
