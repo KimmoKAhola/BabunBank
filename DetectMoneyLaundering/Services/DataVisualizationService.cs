@@ -208,11 +208,12 @@ public static class DataVisualizationService
 
     public static void CreatePlotForAllTransactions(
         List<InspectAccountModel> accountsToInspect,
-        VisualizationModes mode
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
     )
     {
         var maxValue = accountsToInspect.Max(x => x.TransactionsOverLimit.Count);
-        const int numberOfBins = 80;
+        var numberOfBins = (int)(10 * scalingModel.HeightScaleFactor);
 
         var barPlotValues = new double[numberOfBins][];
         var increment = maxValue / (double)numberOfBins;
@@ -244,13 +245,59 @@ public static class DataVisualizationService
             labels[i] = $"{(int)(barPlotValues[i][0] - increment)} - {(int)barPlotValues[i][0]}";
         }
 
+        var fontSize = (int)(scalingModel.FontScaleFactor * DefaultFontSize);
         myPlot.SetAxisLimits(xMin: 0, yMin: 0);
-        myPlot.Title("Aggregate bar plot of suspicious transactions for all customers");
-        myPlot.YLabel("Number of suspicious transactions per span");
-        myPlot.XLabel("Transaction span");
+        myPlot.Title(
+            "Aggregate bar plot of suspicious transactions for all customers",
+            size: fontSize
+        );
         myPlot.XTicks(positions, labels);
-        myPlot.XAxis.TickLabelStyle(rotation: 90);
+        myPlot.XAxis.TickLabelStyle(fontSize: fontSize, rotation: 90);
+        myPlot.YAxis.TickLabelStyle(fontSize: fontSize);
+        myPlot.YAxis.Label("Number of suspicious transactions per span", size: fontSize);
+        myPlot.XAxis.Label("Transaction span", size: fontSize);
         var filePath = GetFilePath(mode, PlotNames.Aggregate.ToString());
-        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+        myPlot.SaveFig(
+            filePath,
+            (int)(DefaultImageWidth * scalingModel.WidthScaleFactor),
+            (int)(DefaultImageHeight * scalingModel.HeightScaleFactor)
+        );
+    }
+
+    public static void CreateHistogram(
+        List<InspectAccountModel> accountsToInspect,
+        VisualizationModes mode
+    )
+    {
+        var plt = new Plot();
+        var min = accountsToInspect.Min(x => x.NormalTransactions.Min(t => t.Amount));
+        var max = accountsToInspect.Max(x => x.TransactionsOverLimit.Max(t => t.Amount));
+        var binCount = accountsToInspect.Count;
+
+        List<double> allTransactions = [];
+        var binWidth = 50;
+        foreach (var account in accountsToInspect)
+        {
+            allTransactions.AddRange(
+                account.TransactionsOverLimit.Select(transaction =>
+                    Math.Round((double)transaction.Amount / binWidth) * binWidth
+                )
+            );
+            allTransactions.AddRange(
+                account.NormalTransactions.Select(transaction =>
+                    Math.Round((double)transaction.Amount / binWidth) * binWidth
+                )
+            );
+        }
+
+        var histogramHeights = allTransactions.ToArray();
+
+        ScottPlot.Statistics.Histogram hist =
+            new(min: (double)min, max: (double)max, binCount: binCount);
+        hist.AddRange(histogramHeights);
+
+        plt.AddBar(values: hist.Counts, positions: hist.Bins);
+        var filePath = GetFilePath(mode, PlotNames.Histogram.ToString());
+        plt.SaveFig(filePath, DefaultImageWidth, DefaultImageHeight);
     }
 }
