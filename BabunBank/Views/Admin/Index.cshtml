@@ -6,52 +6,40 @@
     Layout = "_Layout";
 }
 
-@if (TempData["SuccessMessage"] != null)
-{
-    <div>
-        @TempData["SuccessMessage"]
-    </div>
-}
-
-<h2>All users in our system</h2>
 <div class="container">
-<table class="data-table">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Username</th>
-        <th>Email</th>
-        <th>User role</th>
-        <th></th>
-    </tr>
-    </thead>   
-    <tbody>
-    @foreach (var systemUser in @Model)
-    {
+    <table class="data-table">
+        <thead>
         <tr>
-            <th>@systemUser.UserId</th>
-            <th>@systemUser.Username</th>
-            <th>@systemUser.Email</th>
-            <th>@systemUser.RoleName</th>
-            <th>
-                @* TODO Is read and update needed? This can probably be improved a lot *@
-                <a asp-controller="Admin" asp-action="Read" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">View</a>
-                <a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">Update</a>
-                @if (User?.Identity?.Name != systemUser.Username)
-                {
-                    <button class="btn-danger">
-                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@systemUser.UserId">Delete</a>
-                    </button>
-                }
-            </th>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>User role</th>
+            <th></th>
         </tr>
-    }
-    <tr>
-        <th><a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Go back</a></th>
-        <th></th>
-        <th></th>
-        <th><a asp-controller="Admin" asp-action="Create" class="create-customer-form-btn">Create a new user</a></th>
-    </tr>
-    </tbody>
-</table>
+        </thead>   
+        <tbody>
+        @foreach (var systemUser in @Model)
+        {
+            <tr>
+                <th>@systemUser.UserId</th>
+                <th>@systemUser.Username</th>
+                <th>@systemUser.Email</th>
+                <th>@systemUser.RoleName</th>
+                <th>
+                    @* TODO Is read and update needed? This can probably be improved a lot *@
+                    <a asp-controller="Admin" asp-action="Details" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">View</a>
+                    <a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">Update</a>
+                    @if (User?.Identity?.Name != systemUser.Username)
+                    {
+                        <button class="btn-danger">
+                            <a asp-controller="Admin" asp-action="Delete" asp-route-id="@systemUser.UserId">Delete</a>
+                        </button>
+                    }
+                </th>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Go back</a>
+    <a asp-controller="Admin" asp-action="Create" class="create-customer-form-btn">Create a new user</a>
 </div>
