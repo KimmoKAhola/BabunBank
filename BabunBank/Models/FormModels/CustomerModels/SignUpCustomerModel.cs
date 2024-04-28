@@ -71,5 +71,11 @@ public class SignUpCustomerModel
         RegularExpression(@"^[a-öA-Ö0-9_.-]{2,}@[a-zA-Z]{2,}\.[a-zA-Z]{2,}$")
     ]
     [DisplayName("Email Address")]
+    [EmailAddress]
     public string? EmailAddress { get; init; }
+
+    [DisplayName("Confirm Email")]
+    [EmailAddress]
+    [Compare("EmailAddress", ErrorMessage = "Email and confirm email must match.")]
+    public string? ConfirmEmail { get; init; }
 }

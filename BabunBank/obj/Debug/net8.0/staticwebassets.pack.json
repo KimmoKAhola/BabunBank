@@ -149,6 +149,10 @@
       "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-test.jpg",
+      "PackagePath": "staticwebassets\\images\\office-test.jpg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-3727464.jpeg",
       "PackagePath": "staticwebassets\\images\\pexels-photo-3727464.jpeg"
     },
