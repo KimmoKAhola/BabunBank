@@ -38,11 +38,11 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
         return await identityUserRepository.DeleteAsync(x => x.Id == id);
     }
 
-    public async Task<bool> CheckUserExists(string id)
+    public async Task<bool> CheckUserExists(string username)
     {
         try
         {
-            return await identityUserRepository.ExistsAsync(x => x.Id == id);
+            return await identityUserRepository.ExistsByUserNameAsync(username);
         }
         catch (Exception e)
         {
@@ -55,7 +55,7 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
     {
         try
         {
-            return await identityUserRepository.ExistsAsync(x => x.Id == username);
+            return await identityUserRepository.ExistsByUserNameAsync(username);
         }
         catch (Exception e)
         {
@@ -69,7 +69,7 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
     {
         try
         {
-            return await identityUserRepository.ExistsAsync(x => x.Email == email);
+            return await identityUserRepository.ExistsByEmailAsync(email);
         }
         catch (Exception e)
         {
