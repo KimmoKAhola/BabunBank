@@ -82,6 +82,7 @@ public static class DataVisualizationService
         if (scalingModel.Color.IsEmpty)
         {
             scalingModel.Color = BadColor;
+            scalingModel.BackgroundColor = Color.White;
         }
 
         var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
@@ -97,6 +98,7 @@ public static class DataVisualizationService
             $"All suspicious transactions for the customer {customerName}",
             size: fontSize
         );
+        myPlot.Style(dataBackground: scalingModel.BackgroundColor);
         myPlot.XAxis.Label(XLabel, size: fontSize);
         myPlot.YAxis.Label(YLabel, size: fontSize);
         myPlot.XTicks(labels);
@@ -147,6 +149,7 @@ public static class DataVisualizationService
         if (scalingModel.Color.IsEmpty)
         {
             scalingModel.Color = GoodColor;
+            scalingModel.BackgroundColor = Color.White;
         }
 
         var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
@@ -158,6 +161,7 @@ public static class DataVisualizationService
             (int)(8 * scalingModel.FontScaleFactor)
         );
         myPlot.Add(scatter);
+        myPlot.Style(dataBackground: scalingModel.BackgroundColor);
         myPlot.Title($"All normal transactions for the customer {customerName}", size: fontSize);
         myPlot.XAxis.Label(XLabel, size: fontSize);
         myPlot.YAxis.Label(YLabel, size: fontSize);
