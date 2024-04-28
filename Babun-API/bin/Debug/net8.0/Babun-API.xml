@@ -187,12 +187,12 @@
             If the login is successful, a token is returned as a simple string.
             </returns>
         </member>
-        <member name="T:Babun_API.MappingProfile">
+        <member name="T:Babun_API.Infrastructure.Configurations.MappingProfile">
             <summary>
             Represents a mapping profile for AutoMapper.
             </summary>
         </member>
-        <member name="M:Babun_API.MappingProfile.#ctor">
+        <member name="M:Babun_API.Infrastructure.Configurations.MappingProfile.#ctor">
             <summary>
             Represents a mapping profile for AutoMapper.
             </summary>

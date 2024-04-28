@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Reflection.Emit;
 using DataAccessLibrary.Data;
 using DetectMoneyLaundering.Models;
 using ScottPlot;
@@ -11,13 +10,19 @@ public static class DataVisualizationService
     private static readonly Color BadColor = Color.FromArgb(239, 68, 68);
     private static readonly Color GoodColor = Color.FromArgb(22, 157, 233);
     private const decimal SuspiciousTransactionThreshold = 15000M;
-    private const int ImageHeight = 800;
-    private const int ImageWidth = 1400;
+    private const int DefaultImageHeight = 800;
+    private const int DefaultImageWidth = 1400;
     private const string YLabel = "Normalized transaction amount in SEK";
     private const string XLabel = "Date";
-    private const int Granularity = 10;
+    private const int DefaultGranularityValue = 10;
+    private const int DefaultFontSize = 12;
+    private static int MarkerSize => 8;
 
-    public static void CreateIndividualPlot(InspectAccountModel model, VisualizationModes mode)
+    public static void CreateIndividualPlot(
+        InspectAccountModel model,
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
+    )
     {
         var transactionsOverLimit = model
             .TransactionsOverLimit.Where(x => Math.Abs(x.Amount) > SuspiciousTransactionThreshold)
@@ -28,29 +33,37 @@ public static class DataVisualizationService
 
         if (length2 == 0)
             length2 = 1;
-        // Plot Creation
+
         if (length > 0)
         {
             CreateSuspiciousTransactionsPlot(
                 transactionsOverLimit,
                 length,
                 model.CustomerName,
-                mode
+                mode,
+                scalingModel
             );
         }
-        CreateNormalTransactionsPlot(normalTransactions, length2, model.CustomerName, mode);
+        CreateNormalTransactionsPlot(
+            normalTransactions,
+            length2,
+            model.CustomerName,
+            mode,
+            scalingModel
+        );
 
         var percentageOfSuspiciousTransactions = length / (length + (double)length2);
 
         // Pie chart
-        CreatePieChart(percentageOfSuspiciousTransactions, model.CustomerName, mode);
+        CreatePieChart(percentageOfSuspiciousTransactions, model.CustomerName, mode, scalingModel);
     }
 
     private static void CreateSuspiciousTransactionsPlot(
         Transaction[] transactions,
         int length,
         string customerName,
-        VisualizationModes mode
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
     )
     {
         Plot myPlot = new();
@@ -65,16 +78,38 @@ public static class DataVisualizationService
             xs[transactionCounter] = transactionCounter;
             transactionCounter++;
         }
-        var scatter = myPlot.AddScatter(xs, ys, BadColor, 0, 8);
-        myPlot.Add(scatter);
-        myPlot.Title($"All suspicious transactions for the customer {customerName}");
-        myPlot.XLabel(XLabel);
-        myPlot.YLabel(YLabel);
-        myPlot.XTicks(labels);
-        myPlot.XAxis.TickLabelStyle(rotation: 90);
 
+        if (scalingModel.Color.IsEmpty)
+        {
+            scalingModel.Color = BadColor;
+            scalingModel.BackgroundColor = Color.White;
+        }
+
+        var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
+        var scatter = myPlot.AddScatter(
+            xs,
+            ys,
+            scalingModel.Color,
+            0,
+            (int)(MarkerSize * scalingModel.FontScaleFactor)
+        );
+        myPlot.Add(scatter);
+        myPlot.Title(
+            $"All suspicious transactions for the customer {customerName}",
+            size: fontSize
+        );
+        myPlot.Style(dataBackground: scalingModel.BackgroundColor);
+        myPlot.XAxis.Label(XLabel, size: fontSize);
+        myPlot.YAxis.Label(YLabel, size: fontSize);
+        myPlot.XTicks(labels);
+        myPlot.XAxis.TickLabelStyle(fontSize: fontSize, rotation: 90);
+        myPlot.YAxis.TickLabelStyle(fontSize: fontSize);
         var filePath = GetFilePath(mode, PlotNames.SuspiciousTransactions.ToString());
-        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+        myPlot.SaveFig(
+            filePath,
+            (int)(DefaultImageWidth * scalingModel.WidthScaleFactor),
+            (int)(DefaultImageHeight * scalingModel.HeightScaleFactor)
+        );
     }
 
     private static string GetFilePath(VisualizationModes mode, string fileEnding)
@@ -93,39 +128,60 @@ public static class DataVisualizationService
         Transaction[] transactions,
         int length,
         string customerName,
-        VisualizationModes mode
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
     )
     {
         Plot myPlot = new();
         var xs = new double[length];
         var labels = new string[length];
         var ys = transactions.Select(x => (double)x.Amount).ToArray();
-        int transactionCounter = 0;
+        var transactionCounter = 0;
 
         foreach (var dateForTransaction in transactions)
         {
-            if (transactionCounter % Granularity == 0)
+            if (transactionCounter % DefaultGranularityValue == 0)
                 labels[transactionCounter] = dateForTransaction.Date.ToString();
             xs[transactionCounter] = transactionCounter;
             transactionCounter++;
         }
 
-        var scatter = myPlot.AddScatter(xs, ys, GoodColor, 0, 8);
+        if (scalingModel.Color.IsEmpty)
+        {
+            scalingModel.Color = GoodColor;
+            scalingModel.BackgroundColor = Color.White;
+        }
+
+        var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
+        var scatter = myPlot.AddScatter(
+            xs,
+            ys,
+            scalingModel.Color,
+            0,
+            (int)(8 * scalingModel.FontScaleFactor)
+        );
         myPlot.Add(scatter);
-        myPlot.Title($"All normal transactions for the customer {customerName}");
-        myPlot.XLabel(XLabel);
-        myPlot.YLabel(YLabel);
+        myPlot.Style(dataBackground: scalingModel.BackgroundColor);
+        myPlot.Title($"All normal transactions for the customer {customerName}", size: fontSize);
+        myPlot.XAxis.Label(XLabel, size: fontSize);
+        myPlot.YAxis.Label(YLabel, size: fontSize);
         myPlot.XTicks(labels);
-        myPlot.XAxis.TickLabelStyle(rotation: 90);
+        myPlot.XAxis.TickLabelStyle(fontSize: fontSize, rotation: 90);
+        myPlot.YAxis.TickLabelStyle(fontSize: fontSize);
 
         var filePath = GetFilePath(mode, PlotNames.NormalTransactions.ToString());
-        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+        myPlot.SaveFig(
+            filePath,
+            (int)(DefaultImageWidth * scalingModel.WidthScaleFactor),
+            (int)(DefaultImageHeight * scalingModel.HeightScaleFactor)
+        );
     }
 
     private static void CreatePieChart(
         double percentageOfSuspiciousTransactions,
         string customerName,
-        VisualizationModes mode
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
     )
     {
         Plot myPlot = new();
@@ -140,6 +196,7 @@ public static class DataVisualizationService
             $"Suspicious Transactions {percentageOfSuspiciousTransactions:P2}",
             $"Normal Transactions {1 - percentageOfSuspiciousTransactions:P2}"
         ];
+        var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
         var piePlot = myPlot.AddPie(pieSlices);
         piePlot.SliceLabels = labels;
         piePlot.Explode = true;
@@ -147,20 +204,28 @@ public static class DataVisualizationService
         piePlot.SliceFillColors = colors;
         myPlot.Legend(true, Alignment.LowerRight);
         myPlot.Grid(true);
-        myPlot.Title($"Percentage overview of transactions for the customer {customerName}");
+        myPlot.Title(
+            $"Percentage overview of transactions for the customer {customerName}",
+            size: fontSize
+        );
 
         var filePath = GetFilePath(mode, PlotNames.PieChart.ToString());
 
-        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+        myPlot.SaveFig(
+            filePath,
+            (int)(DefaultImageWidth * scalingModel.WidthScaleFactor),
+            (int)(DefaultImageHeight * scalingModel.HeightScaleFactor)
+        );
     }
 
     public static void CreatePlotForAllTransactions(
         List<InspectAccountModel> accountsToInspect,
-        VisualizationModes mode
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
     )
     {
         var maxValue = accountsToInspect.Max(x => x.TransactionsOverLimit.Count);
-        const int numberOfBins = 80;
+        var numberOfBins = (int)(10 * scalingModel.HeightScaleFactor);
 
         var barPlotValues = new double[numberOfBins][];
         var increment = maxValue / (double)numberOfBins;
@@ -192,13 +257,59 @@ public static class DataVisualizationService
             labels[i] = $"{(int)(barPlotValues[i][0] - increment)} - {(int)barPlotValues[i][0]}";
         }
 
+        var fontSize = (int)(scalingModel.FontScaleFactor * DefaultFontSize);
         myPlot.SetAxisLimits(xMin: 0, yMin: 0);
-        myPlot.Title("Aggregate bar plot of suspicious transactions for all customers");
-        myPlot.YLabel("Number of suspicious transactions per span");
-        myPlot.XLabel("Transaction span");
+        myPlot.Title(
+            "Aggregate bar plot of suspicious transactions for all customers",
+            size: fontSize
+        );
         myPlot.XTicks(positions, labels);
-        myPlot.XAxis.TickLabelStyle(rotation: 90);
+        myPlot.XAxis.TickLabelStyle(fontSize: fontSize, rotation: 90);
+        myPlot.YAxis.TickLabelStyle(fontSize: fontSize);
+        myPlot.YAxis.Label("Number of suspicious transactions per span", size: fontSize);
+        myPlot.XAxis.Label("Transaction span", size: fontSize);
         var filePath = GetFilePath(mode, PlotNames.Aggregate.ToString());
-        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+        myPlot.SaveFig(
+            filePath,
+            (int)(DefaultImageWidth * scalingModel.WidthScaleFactor),
+            (int)(DefaultImageHeight * scalingModel.HeightScaleFactor)
+        );
+    }
+
+    public static void CreateHistogram(
+        List<InspectAccountModel> accountsToInspect,
+        VisualizationModes mode
+    )
+    {
+        var plt = new Plot();
+        var min = accountsToInspect.Min(x => x.NormalTransactions.Min(t => t.Amount));
+        var max = accountsToInspect.Max(x => x.TransactionsOverLimit.Max(t => t.Amount));
+        var binCount = accountsToInspect.Count;
+
+        List<double> allTransactions = [];
+        var binWidth = 50;
+        foreach (var account in accountsToInspect)
+        {
+            allTransactions.AddRange(
+                account.TransactionsOverLimit.Select(transaction =>
+                    Math.Round((double)transaction.Amount / binWidth) * binWidth
+                )
+            );
+            allTransactions.AddRange(
+                account.NormalTransactions.Select(transaction =>
+                    Math.Round((double)transaction.Amount / binWidth) * binWidth
+                )
+            );
+        }
+
+        var histogramHeights = allTransactions.ToArray();
+
+        ScottPlot.Statistics.Histogram hist =
+            new(min: (double)min, max: (double)max, binCount: binCount);
+        hist.AddRange(histogramHeights);
+
+        plt.AddBar(values: hist.Counts, positions: hist.Bins);
+        var filePath = GetFilePath(mode, PlotNames.Histogram.ToString());
+        plt.SaveFig(filePath, DefaultImageWidth, DefaultImageHeight);
     }
 }

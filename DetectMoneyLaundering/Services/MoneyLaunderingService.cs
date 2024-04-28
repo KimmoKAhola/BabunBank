@@ -1,4 +1,5 @@
-﻿using DataAccessLibrary.Data;
+﻿using System.Drawing;
+using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using DetectMoneyLaundering.Models;
 using Microsoft.EntityFrameworkCore;
@@ -8,6 +9,10 @@ namespace DetectMoneyLaundering.Services;
 //TODO Rename me to something better
 public class MoneyLaunderingService(DataAccountService dataAccountService)
 {
+    private const int ScalingDefault = 10;
+    private const int ScalingDivider = 10; //
+    private const decimal TransferLimit = 15_000m;
+
     public async Task<Account?> GetAccount(int id)
     {
         return await dataAccountService.GetAsync(id);
@@ -18,7 +23,14 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         return await dataAccountService.GetAllAsync().ToListAsync();
     }
 
-    public async Task<InspectAccountModel> InspectAccount(int id, VisualizationModes mode)
+    public async Task<InspectAccountModel> InspectAccount(
+        int id,
+        VisualizationModes mode,
+        bool draw = true,
+        string color = "",
+        string backgroundColor = "",
+        int slider = ScalingDefault
+    )
     {
         var result = new InspectAccountModel();
         var account = await GetAccount(id);
@@ -28,8 +40,8 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
 
         foreach (var transaction in account.Transactions)
         {
-            transaction.Amount = Math.Abs(transaction.Amount);
-            if (transaction.Amount > 15000)
+            // transaction.Amount = Math.Abs(transaction.Amount);
+            if (Math.Abs(transaction.Amount) > TransferLimit)
             {
                 result.TransactionsOverLimit.Add(transaction);
             }
@@ -47,7 +59,24 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         result.CustomerId = account.Dispositions.First(x => x.Type.ToLower() == "owner").CustomerId;
         if (result.NormalTransactions.Count <= 0 || result.TransactionsOverLimit.Count <= 0)
             return result;
-        DataVisualizationService.CreateIndividualPlot(result, mode);
+
+        if (!draw)
+            return result;
+
+        Color chosenColor = string.IsNullOrEmpty(color) ? Color.Empty : Color.FromName(color);
+        Color chosenBackgroundColor = string.IsNullOrEmpty(backgroundColor)
+            ? Color.Empty
+            : Color.FromName(backgroundColor);
+        var scaling = new PlotScalingModel
+        {
+            HeightScaleFactor = (double)slider / ScalingDivider,
+            WidthScaleFactor = (double)slider / ScalingDivider,
+            FontScaleFactor = (double)slider / ScalingDivider,
+            Color = chosenColor,
+            BackgroundColor = chosenBackgroundColor
+        };
+
+        DataVisualizationService.CreateIndividualPlot(result, mode, scaling);
         return result;
     }
 
@@ -62,8 +91,8 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
             accountsToInspect.Add(temp);
             foreach (var transaction in account.Transactions)
             {
-                transaction.Amount = Math.Abs(transaction.Amount);
-                if (transaction.Amount > 15000M)
+                // transaction.Amount = Math.Abs(transaction.Amount);
+                if (Math.Abs(transaction.Amount) > TransferLimit)
                 {
                     temp.TransactionsOverLimit.Add(transaction);
                 }

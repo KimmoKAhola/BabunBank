@@ -5,5 +5,6 @@ public enum PlotNames
     SuspiciousTransactions,
     NormalTransactions,
     PieChart,
-    Aggregate
+    Aggregate,
+    Histogram
 }

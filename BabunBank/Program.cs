@@ -1,3 +1,4 @@
+using System.Reflection;
 using BabunBank.Configurations.AutoMapperConfiguration;
 using BabunBank.Configurations.DependencyConfiguration;
 using DataAccessLibrary.Data;
@@ -31,9 +32,6 @@ namespace BabunBank
                 .AddEntityFrameworkStores<BankAppDataContext>();
             builder.Services.AddControllersWithViews();
 
-            //Optional formhelper configs
-
-
             RepositoryConfiguration.Configure(builder.Services);
             ServiceConfiguration.Configure(builder.Services);
 
@@ -54,7 +52,7 @@ namespace BabunBank
             //Create this seeding async. Use Task.Run and Wait() So that the main method does not have to be async
 
             await using var scope = app.Services.CreateAsyncScope();
-            await scope.ServiceProvider.GetService<DataInitializer>().SeedData();
+            await scope.ServiceProvider.GetService<DataInitializer>()!.SeedData();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
