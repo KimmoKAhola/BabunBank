@@ -64,7 +64,8 @@ public static class DataVisualizationService
         Transaction[] transactions,
         int length,
         string customerName,
-        VisualizationModes mode
+        VisualizationModes mode,
+        PlotScalingModel scalingModel
     )
     {
         Plot myPlot = new();
@@ -79,16 +80,31 @@ public static class DataVisualizationService
             xs[transactionCounter] = transactionCounter;
             transactionCounter++;
         }
-        var scatter = myPlot.AddScatter(xs, ys, BadColor, 0, 8);
-        myPlot.Add(scatter);
-        myPlot.Title($"All suspicious transactions for the customer {customerName}");
-        myPlot.XLabel(XLabel);
-        myPlot.YLabel(YLabel);
-        myPlot.XTicks(labels);
-        myPlot.XAxis.TickLabelStyle(rotation: 90);
 
+        var fontSize = (int)(DefaultFontSize * scalingModel.FontScaleFactor);
+        var scatter = myPlot.AddScatter(
+            xs,
+            ys,
+            BadColor,
+            0,
+            (int)(MarkerSize * scalingModel.FontScaleFactor)
+        );
+        myPlot.Add(scatter);
+        myPlot.Title(
+            $"All suspicious transactions for the customer {customerName}",
+            size: fontSize
+        );
+        myPlot.XAxis.Label(XLabel, size: fontSize);
+        myPlot.YAxis.Label(YLabel, size: fontSize);
+        myPlot.XTicks(labels);
+        myPlot.XAxis.TickLabelStyle(fontSize: fontSize, rotation: 90);
+        myPlot.YAxis.TickLabelStyle(fontSize: fontSize);
         var filePath = GetFilePath(mode, PlotNames.SuspiciousTransactions.ToString());
-        myPlot.SaveFig(filePath, ImageWidth, ImageHeight);
+        myPlot.SaveFig(
+            filePath,
+            (int)(DefaultImageWidth * scalingModel.WidthScaleFactor),
+            (int)(DefaultImageHeight * scalingModel.HeightScaleFactor)
+        );
     }
 
     private static string GetFilePath(VisualizationModes mode, string fileEnding)
