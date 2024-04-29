@@ -4,6 +4,7 @@ using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using DataAccessLibrary.Repositories;
 using DetectMoneyLaundering;
+using DetectMoneyLaundering.Interfaces;
 using DetectMoneyLaundering.Models;
 using DetectMoneyLaundering.Services;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +17,7 @@ builder.ConfigureServices(services =>
     services.AddDbContext<BankAppDataContext>();
     services.AddScoped<AccountRepository>();
     services.AddScoped<DataAccountService>();
-    services.AddScoped<MoneyLaunderingService>();
+    services.AddScoped<IMoneyLaunderingService, MoneyLaunderingService>();
 });
 
 var serviceProvider = builder.Build().Services;
