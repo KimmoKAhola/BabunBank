@@ -53,7 +53,7 @@ public class AdminController(
             return View(userModel);
         }
 
-        var createdUser = await IdentityUserFactory.CreateUser(userModel, userManager);
+        var createdUser = await IdentityUserFactory.Create(userModel, userManager);
         // var result = mapper.Map<SignUpModel>(user); //TODO Needed?
         return RedirectToAction("Details", new { id = createdUser.Id });
     }
