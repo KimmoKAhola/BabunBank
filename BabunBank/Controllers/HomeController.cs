@@ -2,14 +2,13 @@ using System.Diagnostics;
 using BabunBank.Models.CustomValidators;
 using BabunBank.Models.FormModels.ContactModels;
 using BabunBank.Models.ViewModels.Error;
-using BabunBank.Models.ViewModels.LandingPage;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers
 {
     public class HomeController(
-        LandingPageService landingPageService,
+        ILandingPageService landingPageService,
         ContactUsValidator contactUsValidator
     ) : Controller
     {

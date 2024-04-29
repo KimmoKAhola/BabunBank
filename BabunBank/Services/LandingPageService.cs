@@ -7,7 +7,7 @@ namespace BabunBank.Services;
 ///     Du ska se antal kunder, antal konton, summan av saldot på alla konton.
 /// </summary>
 /// <param name="landingPageService"></param>
-public class LandingPageService(DataLandingPageService landingPageService)
+public class LandingPageService(DataLandingPageService landingPageService) : ILandingPageService
 {
     public async Task<IEnumerable<LandingPageViewModel>> GetLandingPageInfo()
     {
