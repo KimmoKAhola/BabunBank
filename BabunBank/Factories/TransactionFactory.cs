@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
+using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.FormModels.TransferModels;
 using BabunBank.Models.ViewModels.Account;
 using DataAccessLibrary.Data;
 
 namespace BabunBank.Factories;
 
-public static class TransactionFactory
+public class TransactionFactory : ITransactionFactory
 {
     public static Transaction CreateDeposit(CreateDepositModel model)
     {
