@@ -25,29 +25,7 @@ public class NewsService
 
     public async Task<bool> Update(int id, EditAdModel model)
     {
-        try
-        {
-            var token = await ValidateUser("richard.chalk@systementor.se", "Hejsan123#");
-
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
-                "Bearer",
-                token
-            );
-
-            var jsonModel = JsonSerializer.Serialize(model);
-            var modelContent = new StringContent(jsonModel, Encoding.UTF8, "application/json");
-
-            var response = await _httpClient.PutAsync($"/api/v2/Ad/{id}", modelContent);
-
-            response.EnsureSuccessStatusCode();
-
-            return true;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return false;
-        }
+        return await _newsHttpClient.Update(id, model);
     }
 
     public async Task<bool> Delete(int id)
