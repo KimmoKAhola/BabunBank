@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BabunBank.Configurations.Interfaces;
 using BabunBank.Models.ViewModels.Admin;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Identity;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 namespace BabunBank.Services;
 
 public class IdentityUserService(DataIdentityUserService dataIdentityUserService)
+    : IIdentityUserService
 {
     public async Task<IdentityUserViewModel> GetSingleAsync(string id)
     {
@@ -14,9 +16,9 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
         var user = new IdentityUserViewModel
         {
             UserId = result.User.Id,
-            Username = result.User.UserName,
-            Email = result.User.Email,
-            RoleName = result.Role.Name
+            Username = result.User.UserName!,
+            Email = result.User.Email!,
+            RoleName = result.Role.Name!
         };
 
         return user;
@@ -29,9 +31,9 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
         var users = result.Select(x => new IdentityUserViewModel
         {
             UserId = x.User.Id,
-            Username = x.User.UserName,
-            Email = x.User.Email,
-            RoleName = x.Role.Name
+            Username = x.User.UserName!,
+            Email = x.User.Email!,
+            RoleName = x.Role.Name!
         });
 
         return users;
