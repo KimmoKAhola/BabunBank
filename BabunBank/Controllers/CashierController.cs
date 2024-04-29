@@ -1,33 +1,23 @@
 ﻿using AutoMapper;
 using BabunBank.Configurations.Enums;
+using BabunBank.Configurations.Interfaces;
 using BabunBank.Factories;
 using BabunBank.Models.CustomValidators;
 using BabunBank.Models.FormModels.Customer;
 using BabunBank.Models.FormModels.CustomerModels;
-using BabunBank.Services;
 using DataAccessLibrary.DataServices;
 using DetectMoneyLaundering;
-using DetectMoneyLaundering.Services;
+using DetectMoneyLaundering.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace BabunBank.Controllers;
 
-public enum CustomerDropdownMenu
-{
-    Twenty = 20,
-    TwentyFive = 25,
-    Fifty = 50,
-    SeventyFive = 75,
-    Hundred = 100
-}
-
 [Authorize(Roles = $"{UserRoleNames.Cashier}, {UserRoleNames.Admin}")] //TODO add these to relevant pages
 public class CashierController(
-    CustomerService customerService,
-    MoneyLaunderingService moneyLaunderingService,
-    DropDownService dropDownService,
+    ICustomerService customerService,
+    IMoneyLaunderingService moneyLaunderingService,
     IMapper mapper,
     EditCustomerValidation customerValidation
 ) : Controller
@@ -116,16 +106,16 @@ public class CashierController(
 
     public IActionResult Create()
     {
-        ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
-        ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
+        ViewBag.AvailableGenders = DropDownService.GetGenderOptions();
+        ViewBag.AvailableCountries = DropDownService.GetCountryOptions();
         return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(SignUpCustomerModel model)
     {
-        ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
-        ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
+        ViewBag.AvailableGenders = DropDownService.GetGenderOptions();
+        ViewBag.AvailableCountries = DropDownService.GetCountryOptions();
 
         if (!ModelState.IsValid)
             return View(model);
@@ -151,8 +141,8 @@ public class CashierController(
 
     public async Task<IActionResult> Update(int id)
     {
-        ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
-        ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
+        ViewBag.AvailableGenders = DropDownService.GetGenderOptions();
+        ViewBag.AvailableCountries = DropDownService.GetCountryOptions();
 
         var model = await customerService.GetEditCustomerViewModelAsync(id);
         if (model == null)
@@ -171,8 +161,8 @@ public class CashierController(
             EditCustomerModel model
     )
     {
-        ViewBag.AvailableGenders = dropDownService.GetGenderOptions();
-        ViewBag.AvailableCountries = dropDownService.GetCountryOptions();
+        ViewBag.AvailableGenders = DropDownService.GetGenderOptions();
+        ViewBag.AvailableCountries = DropDownService.GetCountryOptions();
 
         var validation = await customerValidation.ValidateAsync(model);
         if (!validation.IsValid)
