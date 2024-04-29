@@ -1,8 +1,8 @@
 ﻿using BabunBank.Configurations.Enums;
+using BabunBank.Configurations.Interfaces;
 using BabunBank.Factories;
 using BabunBank.Models.CustomValidators;
 using BabunBank.Models.FormModels.User;
-using BabunBank.Services;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -12,16 +12,15 @@ namespace BabunBank.Controllers;
 
 [Authorize(Roles = UserRoleNames.Admin)]
 public class AdminController(
-    IdentityUserService identityUserService,
+    IIdentityUserService identityUserService,
     UserManager<IdentityUser> userManager,
-    DropDownService dropDownService,
     UserValidator userValidator
 ) : Controller
 {
     // GET
     public async Task<IActionResult> Index()
     {
-        var roles = dropDownService.GetRoles();
+        var roles = DropDownService.GetRoles();
 
         ViewBag.AvailableRoles = roles;
 
@@ -31,7 +30,7 @@ public class AdminController(
 
     public IActionResult Create()
     {
-        var roles = dropDownService.GetRoles();
+        var roles = DropDownService.GetRoles();
 
         ViewBag.AvailableRoles = roles;
         return View();
@@ -40,7 +39,7 @@ public class AdminController(
     [HttpPost]
     public async Task<IActionResult> Create(SignUpUserModel userModel)
     {
-        var roles = dropDownService.GetRoles();
+        var roles = DropDownService.GetRoles();
 
         ViewBag.AvailableRoles = roles;
         var validationResult = await userValidator.ValidateAsync(userModel);

@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace DataAccessLibrary.DataServices;
 
-public class DropDownService
+public static class DropDownService
 {
-    public List<SelectListItem> GetRoles()
+    public static List<SelectListItem> GetRoles()
     {
         var roles = Enum.GetValues(typeof(UserRole))
             .Cast<UserRole>()
@@ -16,7 +16,7 @@ public class DropDownService
         return roles;
     }
 
-    public IEnumerable<SelectListItem> GetGenderOptions()
+    public static IEnumerable<SelectListItem> GetGenderOptions()
     {
         var genders = Enum.GetValues(typeof(GenderOptions))
             .Cast<GenderOptions>()
@@ -26,7 +26,7 @@ public class DropDownService
         return genders;
     }
 
-    public IEnumerable<SelectListItem> GetCountryOptions()
+    public static IEnumerable<SelectListItem> GetCountryOptions()
     {
         var countries = Enum.GetValues(typeof(CountryOptions))
             .Cast<CountryOptions>()
