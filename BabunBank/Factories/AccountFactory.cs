@@ -4,15 +4,13 @@ namespace BabunBank.Factories;
 
 public static class AccountFactory
 {
-    public static Account CreateNewAccount()
+    public static Account Create()
     {
-        var account = new Account
+        return new Account
         {
             Frequency = "AfterTransaction",
             Created = DateOnly.FromDateTime(DateTime.Now),
             Balance = 0m
         };
-
-        return account;
     }
 }
