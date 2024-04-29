@@ -1,4 +1,5 @@
-﻿using BabunBank.Infrastructure.Configurations.CustomValidators;
+﻿using BabunBank.Factories;
+using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Services;
 using DataAccessLibrary.DataServices;
@@ -25,6 +26,9 @@ public static class ServiceConfiguration
         services.AddScoped<ILandingPageService, LandingPageService>();
         services.AddScoped<IIdentityUserService, IdentityUserService>();
         services.AddScoped<NewsService>();
+
+        //Factories
+        services.AddScoped<ITransactionFactory, TransactionFactory>();
 
         //Laundering Services
         services.AddScoped<IMoneyLaunderingService, MoneyLaunderingService>();
