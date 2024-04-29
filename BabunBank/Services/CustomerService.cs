@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BabunBank.Configurations.Interfaces;
 using BabunBank.Factories;
 using BabunBank.Models.FormModels.CustomerModels;
 using BabunBank.Models.ViewModels.Customer;
@@ -10,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 namespace BabunBank.Services;
 
 public class CustomerService(DataCustomerService dataCustomerService, IMapper mapper)
+    : ICustomerService
 {
     public async Task<CustomerViewModel?> GetCustomerViewModelAsync(int id)
     {
@@ -122,15 +124,5 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
     {
         var customer = await dataCustomerService.GetAsync(id);
         return await dataCustomerService.DeleteAsync(customer);
-    }
-
-    public async Task<bool> CheckExistsByEmailAsync(string email)
-    {
-        return await dataCustomerService.ExistsAsync(x => x.Emailaddress == email);
-    }
-
-    public async Task<bool> CheckExistsByTelephoneNumber(string number)
-    {
-        return await dataCustomerService.ExistsAsync(x => x.Telephonenumber == number);
     }
 }
