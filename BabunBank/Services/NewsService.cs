@@ -1,4 +1,4 @@
-﻿using BabunBank.Configurations.HttpClients;
+﻿using BabunBank.Configurations.Interfaces;
 using BabunBank.Models.FormModels.AdModels;
 using BabunBank.Models.ViewModels.ApiBlog;
 
