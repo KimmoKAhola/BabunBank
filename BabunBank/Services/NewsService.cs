@@ -15,25 +15,7 @@ public class NewsService
 
     public async Task<BlogPost?> Get(int id)
     {
-        var response = await _httpClient.GetAsync($"/Ads/<id>?id={id}");
-
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return null;
-        }
-
-        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
-        var jsonContent = await response.Content.ReadAsStringAsync();
-
-        var blogPost = JsonSerializer.Deserialize<BlogPost>(jsonContent, options);
-
-        return blogPost;
+        return await _newsHttpClient.Get(id);
     }
 
     public async Task<(IEnumerable<BlogPost>?, int?)> GetAll(int pageNumber, int pageSize)
