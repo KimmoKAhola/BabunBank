@@ -1,7 +1,7 @@
-﻿using BabunBank.Configurations.Enums;
-using BabunBank.Configurations.Interfaces;
-using BabunBank.Factories;
-using BabunBank.Models.CustomValidators;
+﻿using BabunBank.Factories;
+using BabunBank.Infrastructure.Configurations.CustomValidators;
+using BabunBank.Infrastructure.Enums;
+using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.FormModels.User;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Authorization;

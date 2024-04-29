@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using BabunBank.Models.CustomAnnotations;
+using BabunBank.Infrastructure.Configurations.CustomAnnotations;
 
 namespace BabunBank.Models.FormModels.TransferModels;
 

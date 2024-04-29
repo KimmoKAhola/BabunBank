@@ -78,6 +78,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructure\Configurations\" />
     <Folder Include="Models\UIStateModels\" />
     <Folder Include="wwwroot\images\moneylaundering\" />
   </ItemGroup>

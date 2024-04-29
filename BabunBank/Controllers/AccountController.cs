@@ -1,6 +1,6 @@
-﻿using BabunBank.Configurations.Enums;
-using BabunBank.Configurations.Interfaces;
-using BabunBank.Factories;
+﻿using BabunBank.Factories;
+using BabunBank.Infrastructure.Enums;
+using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.FormModels.TransferModels;
 using BabunBank.Models.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;

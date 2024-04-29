@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BabunBank.Configurations.Enums;
 using BabunBank.Models;
 using BabunBank.Models.FormModels.User;
 using DataAccessLibrary.Data;

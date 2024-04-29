@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
-using BabunBank.Configurations.Enums;
 using BabunBank.Factories;
-using BabunBank.Models.CustomValidators;
+using BabunBank.Infrastructure.Configurations.CustomValidators;
+using BabunBank.Infrastructure.Enums;
 using BabunBank.Models.FormModels.AdModels;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Mvc;

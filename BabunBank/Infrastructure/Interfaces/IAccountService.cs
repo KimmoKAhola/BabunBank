@@ -1,7 +1,7 @@
 ﻿using BabunBank.Models.ViewModels.Account;
 using DataAccessLibrary.Data;
 
-namespace BabunBank.Configurations.Interfaces;
+namespace BabunBank.Infrastructure.Interfaces;
 
 public interface IAccountService
 {

@@ -1,7 +1,7 @@
 ﻿using BabunBank.Models.FormModels.CustomerModels;
 using FluentValidation;
 
-namespace BabunBank.Models.CustomValidators;
+namespace BabunBank.Infrastructure.Configurations.CustomValidators;
 
 public class EditCustomerValidation : AbstractValidator<EditCustomerModel>
 {

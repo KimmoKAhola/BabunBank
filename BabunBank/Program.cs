@@ -1,7 +1,7 @@
-using BabunBank.Configurations.AutoMapperConfiguration;
-using BabunBank.Configurations.DependencyConfiguration;
-using BabunBank.Configurations.HttpClients;
-using BabunBank.Configurations.Interfaces;
+using BabunBank.Infrastructure.Configurations.AutoMapper;
+using BabunBank.Infrastructure.Configurations.Dependencies;
+using BabunBank.Infrastructure.Configurations.HttpClients;
+using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.ViewModels.ApiBlog;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Identity;

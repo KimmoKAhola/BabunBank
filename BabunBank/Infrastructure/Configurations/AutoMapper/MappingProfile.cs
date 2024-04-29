@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BabunBank.Models;
 using BabunBank.Models.FormModels.Customer;
 using BabunBank.Models.FormModels.CustomerModels;
 using BabunBank.Models.FormModels.User;
@@ -7,11 +6,9 @@ using BabunBank.Models.ViewModels.Account;
 using BabunBank.Models.ViewModels.Customer;
 using BabunBank.Models.ViewModels.Transaction;
 using DataAccessLibrary.Data;
-using DataAccessLibrary.DataServices.Enums;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace BabunBank.Configurations.AutoMapperConfiguration;
+namespace BabunBank.Infrastructure.Configurations.AutoMapper;
 
 public class MappingProfile : Profile
 {

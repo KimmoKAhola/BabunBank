@@ -1,6 +1,6 @@
 ﻿using DataAccessLibrary.Data;
 
-namespace BabunBank.Configurations.Enums;
+namespace BabunBank.Infrastructure.Enums;
 
 public static class UserRoleNames
 {

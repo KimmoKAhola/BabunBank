@@ -1,4 +1,4 @@
-﻿namespace BabunBank.Configurations.Enums;
+﻿namespace BabunBank.Infrastructure.Enums;
 
 public enum CustomerDropdownMenu
 {

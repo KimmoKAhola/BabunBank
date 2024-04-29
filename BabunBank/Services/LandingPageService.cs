@@ -1,4 +1,5 @@
-﻿using BabunBank.Models.ViewModels.LandingPage;
+﻿using BabunBank.Infrastructure.Interfaces;
+using BabunBank.Models.ViewModels.LandingPage;
 using DataAccessLibrary.DataServices;
 
 namespace BabunBank.Services;

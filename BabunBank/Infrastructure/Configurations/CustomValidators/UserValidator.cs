@@ -1,8 +1,8 @@
-﻿using BabunBank.Configurations.Interfaces;
+﻿using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.FormModels.User;
 using FluentValidation;
 
-namespace BabunBank.Models.CustomValidators;
+namespace BabunBank.Infrastructure.Configurations.CustomValidators;
 
 public class UserValidator : AbstractValidator<SignUpUserModel>
 {

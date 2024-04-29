@@ -1,7 +1,7 @@
 ﻿using FluentValidation.Results;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-namespace BabunBank.Models.CustomValidators;
+namespace BabunBank.Infrastructure.Configurations.CustomValidators;
 
 public static class Extensions
 {

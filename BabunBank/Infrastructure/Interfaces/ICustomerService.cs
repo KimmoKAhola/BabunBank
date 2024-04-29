@@ -2,7 +2,7 @@
 using BabunBank.Models.ViewModels.Customer;
 using DataAccessLibrary.Data;
 
-namespace BabunBank.Configurations.Interfaces;
+namespace BabunBank.Infrastructure.Interfaces;
 
 public interface ICustomerService
 {

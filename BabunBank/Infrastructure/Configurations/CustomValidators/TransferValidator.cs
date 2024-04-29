@@ -1,8 +1,7 @@
-﻿using System.Data;
-using BabunBank.Models.FormModels.TransferModels;
+﻿using BabunBank.Models.FormModels.TransferModels;
 using FluentValidation;
 
-namespace BabunBank.Models.CustomValidators;
+namespace BabunBank.Infrastructure.Configurations.CustomValidators;
 
 public class TransferValidator : AbstractValidator<CreateDepositModel>
 {

@@ -1,4 +1,4 @@
-﻿namespace BabunBank.Configurations.HttpClients;
+﻿namespace BabunBank.Infrastructure.Configurations.HttpClients;
 
 public record NewsHttpClientEndPoints
 {

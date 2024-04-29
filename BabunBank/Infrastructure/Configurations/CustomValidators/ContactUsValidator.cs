@@ -1,7 +1,7 @@
 ﻿using BabunBank.Models.FormModels.ContactModels;
 using FluentValidation;
 
-namespace BabunBank.Models.CustomValidators;
+namespace BabunBank.Infrastructure.Configurations.CustomValidators;
 
 public class ContactUsValidator : AbstractValidator<ContactUsModel>
 {

@@ -1,7 +1,7 @@
 ﻿using BabunBank.Models.FormModels.AdModels;
 using FluentValidation;
 
-namespace BabunBank.Models.CustomValidators;
+namespace BabunBank.Infrastructure.Configurations.CustomValidators;
 
 public class AdValidator : AbstractValidator<EditAdModel>
 {

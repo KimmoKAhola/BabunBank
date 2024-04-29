@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BabunBank.Configurations.Interfaces;
+using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.FormModels.TransferModels;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;

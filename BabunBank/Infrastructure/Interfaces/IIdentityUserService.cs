@@ -1,7 +1,7 @@
 ﻿using BabunBank.Models.ViewModels.Admin;
 using Microsoft.AspNetCore.Identity;
 
-namespace BabunBank.Configurations.Interfaces;
+namespace BabunBank.Infrastructure.Interfaces;
 
 public interface IIdentityUserService
 {

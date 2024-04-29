@@ -1,11 +1,11 @@
-﻿using BabunBank.Configurations.Interfaces;
-using BabunBank.Models.CustomValidators;
+﻿using BabunBank.Infrastructure.Configurations.CustomValidators;
+using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Services;
 using DataAccessLibrary.DataServices;
 using DetectMoneyLaundering.Interfaces;
 using DetectMoneyLaundering.Services;
 
-namespace BabunBank.Configurations.DependencyConfiguration;
+namespace BabunBank.Infrastructure.Configurations.Dependencies;
 
 public static class ServiceConfiguration
 {

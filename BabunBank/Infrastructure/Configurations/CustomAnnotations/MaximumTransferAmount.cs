@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace BabunBank.Models.CustomAnnotations;
+namespace BabunBank.Infrastructure.Configurations.CustomAnnotations;
 
 public class MaximumTransferAmount(string comparisonProperty) : ValidationAttribute
 {

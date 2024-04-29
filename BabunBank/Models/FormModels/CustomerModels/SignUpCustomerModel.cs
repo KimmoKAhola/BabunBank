@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using BabunBank.Models.CustomAnnotations;
+using BabunBank.Infrastructure.Configurations.CustomAnnotations;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Mvc;
 

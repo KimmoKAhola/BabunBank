@@ -1,6 +1,6 @@
 ﻿using DataAccessLibrary.Repositories;
 
-namespace BabunBank.Configurations.DependencyConfiguration;
+namespace BabunBank.Infrastructure.Configurations.Dependencies;
 
 public static class RepositoryConfiguration
 {

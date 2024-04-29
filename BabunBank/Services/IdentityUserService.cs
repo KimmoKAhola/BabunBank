@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BabunBank.Configurations.Interfaces;
+using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.ViewModels.Admin;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Identity;
