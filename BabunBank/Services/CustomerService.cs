@@ -75,7 +75,7 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
     public async Task<bool?> CreateCustomerAsync(Customer customer)
     {
         customer.Dispositions = new List<Disposition>();
-        var account = AccountFactory.CreateNewAccount();
+        var account = AccountFactory.Create();
         customer.Dispositions.Add(
             new Disposition
             {
