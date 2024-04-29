@@ -1,12 +1,14 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using BabunBank.Configurations.Interfaces;
 using BabunBank.Models.FormModels.AdModels;
 using BabunBank.Models.ViewModels.ApiBlog;
 using Microsoft.Extensions.Options;
 
 namespace BabunBank.Configurations.HttpClients;
 
+//TODO check if this fits better as NewsService instead
 public class NewsHttpClient : INewsHttpClient<BlogPost>
 {
     private readonly HttpClient _httpClient;

@@ -1,6 +1,6 @@
 ﻿using BabunBank.Models.FormModels.AdModels;
 
-namespace BabunBank.Configurations.HttpClients;
+namespace BabunBank.Configurations.Interfaces;
 
 public interface INewsHttpClient<T>
     where T : class
