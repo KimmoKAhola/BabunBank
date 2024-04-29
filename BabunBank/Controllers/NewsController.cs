@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using BabunBank.Configurations.Enums;
+using BabunBank.Factories;
 using BabunBank.Models.CustomValidators;
 using BabunBank.Models.FormModels.AdModels;
-using BabunBank.Models.FormModels.User;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Mvc;
 using Controller = Microsoft.AspNetCore.Mvc.Controller;
@@ -11,6 +11,8 @@ namespace BabunBank.Controllers;
 
 public class NewsController(NewsService newsService, AdValidator adValidator) : Controller
 {
+    private const int StandardPageSize = 9;
+
     public async Task<IActionResult> Index(int pageNumber, int pageSize)
     {
         if (pageNumber == 0)
@@ -20,7 +22,7 @@ public class NewsController(NewsService newsService, AdValidator adValidator) : 
 
         if (pageSize == 0)
         {
-            pageSize = 9;
+            pageSize = StandardPageSize;
         }
 
         var (result, totalPageCount) = await newsService.GetAll(pageNumber, pageSize);
@@ -49,16 +51,9 @@ public class NewsController(NewsService newsService, AdValidator adValidator) : 
 
     public async Task<IActionResult> Update(int id)
     {
-        var result = await newsService.Get(id);
+        var blogPost = await newsService.Get(id);
 
-        var model = new EditAdModel
-        {
-            Title = result!.Title,
-            Author = result.Author,
-            Content = result.Content,
-            Description = result.Description,
-            IsDeleted = false
-        };
+        var model = AdModelFactory.Create(blogPost!); //TODO add null check or not?
 
         return View(model);
     }
@@ -70,6 +65,7 @@ public class NewsController(NewsService newsService, AdValidator adValidator) : 
     public async Task<IActionResult> Update(int id, EditAdModel model)
     {
         var validation = await adValidator.ValidateAsync(model);
+
         if (!validation.IsValid)
         {
             validation.AddToModelState(ModelState);
@@ -85,25 +81,11 @@ public class NewsController(NewsService newsService, AdValidator adValidator) : 
     [Microsoft.AspNetCore.Mvc.HttpDelete]
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await newsService.Delete(id);
+        var resultOfDeletion = await newsService.Delete(id);
 
-        if (result == false)
+        if (!resultOfDeletion)
             return RedirectToAction("Index", "Error");
 
         return View();
-    }
-
-    // public async Task<IActionResult> Authenticate()
-    // {
-    //     return View();
-    // }
-
-    public async Task<IActionResult> Authenticate(User user)
-    {
-        var user2 = new User { UserName = "richard.erdos.chalk@gmail.se", Password = "Hejsan123#" };
-
-        var result = await newsService.Test(user2);
-        ViewBag.Test = result;
-        return RedirectToAction("Index", "News");
     }
 }
