@@ -1,15 +1,14 @@
-﻿using BabunBank.Models.FormModels.User;
-using BabunBank.Services;
-using DataAccessLibrary.Data;
+﻿using BabunBank.Configurations.Interfaces;
+using BabunBank.Models.FormModels.User;
 using FluentValidation;
 
 namespace BabunBank.Models.CustomValidators;
 
 public class UserValidator : AbstractValidator<SignUpUserModel>
 {
-    private readonly IdentityUserService _identityUserService;
+    private readonly IIdentityUserService _identityUserService;
 
-    public UserValidator(IdentityUserService identityUserService)
+    public UserValidator(IIdentityUserService identityUserService)
     {
         _identityUserService = identityUserService;
 
