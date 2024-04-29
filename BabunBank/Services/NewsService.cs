@@ -1,34 +1,16 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Net.Http.Headers;
-using System.Security.Claims;
-using System.Text;
-using System.Text.Json;
+﻿using BabunBank.Configurations.HttpClients;
 using BabunBank.Models.FormModels.AdModels;
-using BabunBank.Models.FormModels.User;
 using BabunBank.Models.ViewModels.ApiBlog;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
-using Newtonsoft.Json;
-using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace BabunBank.Services;
 
 public class NewsService
 {
-    private readonly HttpClient _httpClient;
-    private readonly SignInManager<IdentityUser> _signInManager;
-    private readonly UserManager<IdentityUser> _userManager;
+    private readonly INewsHttpClient<BlogPost> _newsHttpClient;
 
-    public NewsService(
-        IHttpClientFactory httpClientFactory,
-        SignInManager<IdentityUser> signInManager,
-        UserManager<IdentityUser> userManager
-    )
+    public NewsService(INewsHttpClient<BlogPost> newsHttpClient)
     {
-        _httpClient = httpClientFactory.CreateClient();
-        _httpClient.BaseAddress = new Uri("https://babun-api.azurewebsites.net/");
-        _signInManager = signInManager;
-        _userManager = userManager;
+        _newsHttpClient = newsHttpClient;
     }
 
     public async Task<BlogPost?> Get(int id)
