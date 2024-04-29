@@ -30,19 +30,6 @@ public class NewsService
 
     public async Task<bool> Delete(int id)
     {
-        var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-
-        var response = await _httpClient.DeleteAsync($"/Ads/{id}");
-
-        try
-        {
-            response.EnsureSuccessStatusCode();
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return false;
-        }
-        return true;
+        return await _newsHttpClient.Delete(id);
     }
 }
