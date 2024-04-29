@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DetectMoneyLaundering")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6fe7f2c925a421a866dcabfa345f931173014c96")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+130890578adf04b9974cdd462569f9e8f3468e53")]
 [assembly: System.Reflection.AssemblyProductAttribute("DetectMoneyLaundering")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DetectMoneyLaundering")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
