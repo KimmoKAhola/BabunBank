@@ -29,7 +29,7 @@ public class TransactionFactory : ITransactionFactory
         }
     }
 
-    public static Transaction CreateWithdrawal(CreateWithdrawalModel model)
+    public Transaction CreateWithdrawal(CreateWithdrawalModel model)
     {
         try
         {
@@ -43,14 +43,11 @@ public class TransactionFactory : ITransactionFactory
         }
     }
 
-    public static CreateTransferModel CreateTransfer(
-        CreateTransferModel model,
-        AccountViewModel receiver
-    )
+    public CreateTransferModel CreateTransfer(CreateTransferModel model, AccountViewModel receiver)
     {
         try
         {
-            var transfer = new CreateTransferModel
+            return new CreateTransferModel
             {
                 FromAccountId = model.FromAccountId,
                 ToAccountId = model.ToAccountId,
@@ -62,8 +59,6 @@ public class TransactionFactory : ITransactionFactory
                 Bank = model.Symbol,
                 Account = model.Account
             };
-
-            return transfer;
         }
         catch (Exception e)
         {
