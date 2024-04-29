@@ -3,7 +3,7 @@ using DataAccessLibrary.Data;
 
 namespace BabunBank.Models.FormModels.User;
 
-public class SignUpUserModel
+public class SignUpIdentityUserModel
 {
     public string Email { get; init; } = null!;
 

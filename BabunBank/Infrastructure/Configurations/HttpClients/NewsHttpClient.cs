@@ -2,7 +2,7 @@
 using System.Text;
 using System.Text.Json;
 using BabunBank.Infrastructure.Interfaces;
-using BabunBank.Models.FormModels.AdModels;
+using BabunBank.Models.FormModels.Ad;
 using BabunBank.Models.ViewModels.ApiBlog;
 using Microsoft.Extensions.Options;
 

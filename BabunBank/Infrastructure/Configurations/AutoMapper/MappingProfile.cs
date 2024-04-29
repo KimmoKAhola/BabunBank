@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using BabunBank.Models.FormModels.Customer;
-using BabunBank.Models.FormModels.CustomerModels;
 using BabunBank.Models.FormModels.TransferModels;
 using BabunBank.Models.FormModels.User;
 using BabunBank.Models.ViewModels.Account;
@@ -8,6 +7,7 @@ using BabunBank.Models.ViewModels.Customer;
 using BabunBank.Models.ViewModels.Transaction;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Identity;
+using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 
 namespace BabunBank.Infrastructure.Configurations.AutoMapper;
 
@@ -35,7 +35,7 @@ public class MappingProfile : Profile
 
     private void ConfigureIdentityUserMaps()
     {
-        CreateMap<IdentityUser, SignUpUserModel>();
+        CreateMap<IdentityUser, SignUpIdentityUserModel>();
     }
 
     private void ConfigureCustomerMaps()

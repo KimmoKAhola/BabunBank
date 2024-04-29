@@ -2,11 +2,13 @@
 using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Enums;
 using BabunBank.Infrastructure.Interfaces;
+using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.User;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 
 namespace BabunBank.Controllers;
 
@@ -37,12 +39,12 @@ public class AdminController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> Create(SignUpUserModel userModel)
+    public async Task<IActionResult> Create(SignUpIdentityUserModel identityUserModel)
     {
         var roles = DropDownService.GetRoles();
 
         ViewBag.AvailableRoles = roles;
-        var validationResult = await userValidator.ValidateAsync(userModel);
+        var validationResult = await userValidator.ValidateAsync(identityUserModel);
 
         if (!validationResult.IsValid)
         {
@@ -50,10 +52,10 @@ public class AdminController(
             {
                 ModelState.AddModelError(errorMessage.PropertyName, errorMessage.ErrorMessage);
             }
-            return View(userModel);
+            return View(identityUserModel);
         }
 
-        var createdUser = await IdentityUserFactory.Create(userModel, userManager);
+        var createdUser = await IdentityUserFactory.Create(identityUserModel, userManager);
         // var result = mapper.Map<SignUpModel>(user); //TODO Needed?
         return RedirectToAction("Details", new { id = createdUser.Id });
     }

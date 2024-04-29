@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.ContactModels;
+﻿using BabunBank.Models.FormModels.Contact;
 using FluentValidation;
 
 namespace BabunBank.Infrastructure.Configurations.CustomValidators;

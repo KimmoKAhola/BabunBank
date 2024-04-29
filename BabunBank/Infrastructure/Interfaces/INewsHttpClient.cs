@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.AdModels;
+﻿using BabunBank.Models.FormModels.Ad;
 
 namespace BabunBank.Infrastructure.Interfaces;
 

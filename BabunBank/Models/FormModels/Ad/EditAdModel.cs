@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using Newtonsoft.Json;
 
-namespace BabunBank.Models.FormModels.AdModels;
+namespace BabunBank.Models.FormModels.Ad;
 
 public class EditAdModel
 {

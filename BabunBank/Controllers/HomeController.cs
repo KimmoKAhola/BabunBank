@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Interfaces;
-using BabunBank.Models.FormModels.ContactModels;
+using BabunBank.Models.FormModels.Contact;
 using BabunBank.Models.ViewModels.Error;
 using BabunBank.Services;
 using Microsoft.AspNetCore.Mvc;

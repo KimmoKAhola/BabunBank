@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.AdModels;
+﻿using BabunBank.Models.FormModels.Ad;
 using BabunBank.Models.ViewModels.ApiBlog;
 
 namespace BabunBank.Factories;

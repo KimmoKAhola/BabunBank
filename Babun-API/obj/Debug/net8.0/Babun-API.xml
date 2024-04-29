@@ -60,7 +60,7 @@
              <returns>Ok(object), return BadRequest if limit is reached, returns status code 500 if the save to database fails.</returns>
             
         </member>
-        <member name="M:Babun_API.Controllers.AdController.Update(System.Int32,BabunBank.Models.FormModels.AdModels.EditAdModel)">
+        <member name="M:Babun_API.Controllers.AdController.Update(System.Int32,BabunBank.Models.FormModels.Ad.EditAdModel)">
             <summary>
             Update a database object to something else.
             Authorization required with a JWT token.
@@ -70,7 +70,7 @@
             <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
             NotFound if the item does not exist. Status code 500 if the database fails.</returns>
         </member>
-        <member name="M:Babun_API.Controllers.AdController.Patch(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.AdModels.EditAdModel})">
+        <member name="M:Babun_API.Controllers.AdController.Patch(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.Ad.EditAdModel})">
             <summary>
             Updates a singular ad specified by its ID with the provided patch document.
             </summary>
@@ -128,7 +128,7 @@
              <returns>Ok(object), return BadRequest if limit is reached, returns status code 500 if the save to database fails.</returns>
             
         </member>
-        <member name="M:Babun_API.Controllers.AdsController.Update(System.Int32,BabunBank.Models.FormModels.AdModels.EditAdModel)">
+        <member name="M:Babun_API.Controllers.AdsController.Update(System.Int32,BabunBank.Models.FormModels.Ad.EditAdModel)">
             <summary>
             Update a database object to something else.
             Authorization required with a JWT token.
@@ -138,7 +138,7 @@
             <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
             NotFound if the item does not exist. Status code 500 if the database fails.</returns>
         </member>
-        <member name="M:Babun_API.Controllers.AdsController.UpdateAdPartial(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.AdModels.EditAdModel})">
+        <member name="M:Babun_API.Controllers.AdsController.UpdateAdPartial(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.Ad.EditAdModel})">
             <summary>
             Updates a partial ad by its ID with the specified patch document.
             </summary>

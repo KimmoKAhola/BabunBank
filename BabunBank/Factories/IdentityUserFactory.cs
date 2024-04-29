@@ -1,12 +1,13 @@
 ﻿using BabunBank.Models.FormModels.User;
 using Microsoft.AspNetCore.Identity;
+using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 
 namespace BabunBank.Factories;
 
 public static class IdentityUserFactory
 {
     public static async Task<IdentityUser> Create(
-        SignUpUserModel userModel,
+        SignUpIdentityUserModel identityUserModel,
         UserManager<IdentityUser> userManager
     )
     {
@@ -14,12 +15,15 @@ public static class IdentityUserFactory
         {
             var user = new IdentityUser
             {
-                UserName = userModel.Email,
-                Email = userModel.Email,
-                EmailConfirmed = userModel.EmailConfirmed
+                UserName = identityUserModel.Email,
+                Email = identityUserModel.Email,
+                EmailConfirmed = identityUserModel.EmailConfirmed
             };
-            await userManager.CreateAsync(user, userModel.Password);
-            await userManager.AddToRolesAsync(user, new[] { userModel.UserRole.ToString() });
+            await userManager.CreateAsync(user, identityUserModel.Password);
+            await userManager.AddToRolesAsync(
+                user,
+                new[] { identityUserModel.UserRole.ToString() }
+            );
             return user;
         }
         catch (Exception e)

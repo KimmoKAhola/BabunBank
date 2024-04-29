@@ -1,6 +1,6 @@
 using Asp.Versioning;
 using AutoMapper;
-using BabunBank.Models.FormModels.AdModels;
+using BabunBank.Models.FormModels.Ad;
 using Babun_API.Data;
 using Babun_API.Infrastructure.Configurations;
 using Babun_API.Models;

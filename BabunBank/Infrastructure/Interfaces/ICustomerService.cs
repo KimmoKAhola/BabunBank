@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.CustomerModels;
+﻿using BabunBank.Models.FormModels.Customer;
 using BabunBank.Models.ViewModels.Customer;
 using DataAccessLibrary.Data;
 

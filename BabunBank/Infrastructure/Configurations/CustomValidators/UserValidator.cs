@@ -4,7 +4,7 @@ using FluentValidation;
 
 namespace BabunBank.Infrastructure.Configurations.CustomValidators;
 
-public class UserValidator : AbstractValidator<SignUpUserModel>
+public class UserValidator : AbstractValidator<SignUpIdentityUserModel>
 {
     private readonly IIdentityUserService _identityUserService;
 

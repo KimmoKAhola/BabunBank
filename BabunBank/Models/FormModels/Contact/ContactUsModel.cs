@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace BabunBank.Models.FormModels.ContactModels;
+namespace BabunBank.Models.FormModels.Contact;
 
 public record ContactUsModel
 {

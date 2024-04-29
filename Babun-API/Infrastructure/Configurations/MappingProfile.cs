@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using BabunBank.Models.FormModels.AdModels;
+using BabunBank.Models.FormModels.Ad;
 using Babun_API.Models;
 
 namespace Babun_API.Infrastructure.Configurations;

@@ -2,8 +2,11 @@
 
 @{
     ViewBag.Title = "title";
-    Layout = "_Layout";
+    Layout = "_ErrorLayout";
 }
 
-<h1>@TempData["ErrorMessage"]</h1>
-<a asp-controller="Home" asp-action="Index" class="btn-primary">Return to home</a>
+<div class="error">
+    <img id="error-bg" src="~/images/error.webp" alt="TODO">
+    @* <h1 id="error-title">Something went terribly wrong</h1> *@
+    <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn" id="error-return-btn">Return to home</a>
+</div>

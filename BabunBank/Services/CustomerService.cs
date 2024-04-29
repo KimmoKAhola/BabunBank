@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BabunBank.Factories;
 using BabunBank.Infrastructure.Interfaces;
-using BabunBank.Models.FormModels.CustomerModels;
+using BabunBank.Models.FormModels.Customer;
 using BabunBank.Models.ViewModels.Customer;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
@@ -61,15 +61,23 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
             customers = customers.Where(x => x.Givenname.Contains(q) || x.Surname.Contains(q));
         }
 
-        var result = await customers
-            .Where(x => !x.IsDeleted)
-            .Skip((pageNumber - 1) * pageSize)
-            .Take(pageSize)
-            .ToListAsync();
+        try
+        {
+            var result = await customers
+                .Where(x => !x.IsDeleted)
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
 
-        var customerViewModel = mapper.Map<IEnumerable<CustomerViewModel>>(result);
+            var customerViewModel = mapper.Map<IEnumerable<CustomerViewModel>>(result);
 
-        return (customerViewModel, customers.Count(x => !x.IsDeleted));
+            return (customerViewModel, customers.Count(x => !x.IsDeleted));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return (new List<CustomerViewModel>(), 0);
+        }
     }
 
     public async Task<bool?> CreateCustomerAsync(Customer customer)

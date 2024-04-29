@@ -65,6 +65,14 @@
       "PackagePath": "staticwebassets\\images\\chalk-profile.jpg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\error.jpg",
+      "PackagePath": "staticwebassets\\images\\error.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\error.webp",
+      "PackagePath": "staticwebassets\\images\\error.webp"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.svg",
       "PackagePath": "staticwebassets\\images\\flag-of-denmark.svg"
     },
