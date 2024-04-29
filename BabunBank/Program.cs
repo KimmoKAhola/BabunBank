@@ -35,15 +35,8 @@ namespace BabunBank
 
             RepositoryConfiguration.Configure(builder.Services);
             ServiceConfiguration.Configure(builder.Services);
+            HttpConfiguration.Configuration(builder.Services, builder.Configuration);
 
-            builder.Services.AddSingleton<NewsHttpClientEndPoints>();
-            builder.Services.AddHttpClient<INewsHttpClient<BlogPost>, NewsHttpClient>(options =>
-            {
-                options.BaseAddress = new Uri("https://babun-api.azurewebsites.net/");
-            });
-            builder.Services.Configure<NewsHttpClientEndPoints>(
-                builder.Configuration.GetSection("ServiceEndPoints")
-            );
             //Seeding
             builder.Services.AddTransient<DataInitializer>();
             //Automapper

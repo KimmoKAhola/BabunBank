@@ -15,24 +15,15 @@ public class MappingProfile : Profile
 {
     public MappingProfile()
     {
+        ConfigureIdentityUserMaps();
+        ConfigureCustomerMaps();
+        ConfigureAccountMaps();
+        ConfigureTransactionMaps();
+    }
+
+    private void ConfigureAccountMaps()
+    {
         CreateMap<Account, AccountViewModel>().ReverseMap();
-        CreateMap<Customer, CustomerViewModel>();
-        CreateMap<Transaction, TransactionViewModel>();
-        CreateMap<SignUpCustomerModel, Customer>();
-        CreateMap<IdentityUser, SignUpUserModel>();
-        CreateMap<EditCustomerModel, CustomerViewModel>();
-        CreateMap<CustomerViewModel, EditCustomerModel>();
-
-        CreateMap<EditCustomerModel, Customer>();
-        CreateMap<Customer, EditCustomerModel>();
-
-        //TODO practice these
-        CreateMap<Customer, CustomerViewModel>()
-            .ForMember(
-                x => x.CustomerAccounts,
-                x => x.MapFrom(c => c.Dispositions.Select(d => d.Account))
-            );
-
         CreateMap<Account, AccountViewModel>()
             .ForMember(
                 dest => dest.Balance,
@@ -40,7 +31,31 @@ public class MappingProfile : Profile
             )
             .ForMember(dest => dest.Transactions, opt => opt.MapFrom(src => src.Transactions))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Dispositions.First().Type));
+    }
 
+    private void ConfigureIdentityUserMaps()
+    {
+        CreateMap<IdentityUser, SignUpUserModel>();
+    }
+
+    private void ConfigureCustomerMaps()
+    {
+        CreateMap<SignUpCustomerModel, Customer>();
+        CreateMap<Customer, CustomerViewModel>();
+        CreateMap<EditCustomerModel, CustomerViewModel>().ReverseMap();
+        CreateMap<EditCustomerModel, Customer>().ReverseMap();
+
+        //TODO practice these
+        CreateMap<Customer, CustomerViewModel>()
+            .ForMember(
+                x => x.CustomerAccounts,
+                x => x.MapFrom(c => c.Dispositions.Select(d => d.Account))
+            );
+    }
+
+    private void ConfigureTransactionMaps()
+    {
+        CreateMap<Transaction, TransactionViewModel>();
         CreateMap<CreateDepositModel, Transaction>().ReverseMap();
         CreateMap<CreateWithdrawalModel, Transaction>()
             .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount * -1))
