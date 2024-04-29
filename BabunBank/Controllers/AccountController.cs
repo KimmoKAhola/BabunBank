@@ -11,7 +11,8 @@ namespace BabunBank.Controllers;
 [Authorize(Roles = $"{UserRoleNames.Admin}, {UserRoleNames.Cashier}")]
 public class AccountController(
     IAccountService accountService,
-    ITransactionService transactionService
+    ITransactionService transactionService,
+    ITransactionFactory transactionFactory
 ) : Controller
 {
     private const int StartingPage = 1;
@@ -64,7 +65,7 @@ public class AccountController(
         if (IsInvalidAccountViewModel(accountViewModel))
             return RedirectToAction("Index", "Error");
 
-        var transaction = TransactionFactory.CreateDeposit(depositModel); //Har skapat en transaction
+        var transaction = transactionFactory.CreateDeposit(depositModel); //Har skapat en transaction
         if (await transactionService.CreateDepositAsync(transaction) == null)
             return RedirectToAction("Index", "Error"); //Something went wrong
 
@@ -98,7 +99,7 @@ public class AccountController(
         if (withdrawAccountViewModel == null)
             return RedirectToAction("Index", "Error");
 
-        var withdrawal = TransactionFactory.CreateWithdrawal(withdrawalModel);
+        var withdrawal = transactionFactory.CreateWithdrawal(withdrawalModel);
 
         if (await transactionService.CreateWithdrawalAsync(withdrawal) == null)
             return RedirectToAction("Index", "Error");
@@ -158,7 +159,7 @@ public class AccountController(
         if (IsInvalidAccountViewModel(receivingAccountViewModel))
             return View(transferModel);
 
-        var moneyTransfer = TransactionFactory.CreateTransfer(
+        var moneyTransfer = transactionFactory.CreateTransfer(
             transferModel,
             receivingAccountViewModel
         );
