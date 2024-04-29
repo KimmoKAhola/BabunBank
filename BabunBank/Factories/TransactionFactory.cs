@@ -8,24 +8,19 @@ namespace BabunBank.Factories;
 
 public class TransactionFactory : ITransactionFactory
 {
-    public static Transaction CreateDeposit(CreateDepositModel model)
+    private readonly IMapper _mapper;
+
+    public TransactionFactory(IMapper mapper)
+    {
+        _mapper = mapper;
+    }
+
+    public Transaction CreateDeposit(CreateDepositModel model)
     {
         try
         {
-            var transaction = new Transaction
-            {
-                AccountId = model.AccountId,
-                Date = model.Date,
-                Type = model.Type,
-                Operation = model.Operation,
-                Amount = model.Amount,
-                Balance = model.Balance,
-                Symbol = model.Symbol,
-                Bank = model.Bank,
-                Account = model.Account
-            };
-
-            return transaction;
+            var transaction = new Transaction();
+            return _mapper.Map(model, transaction);
         }
         catch (Exception e)
         {
@@ -38,20 +33,8 @@ public class TransactionFactory : ITransactionFactory
     {
         try
         {
-            var transaction = new Transaction
-            {
-                AccountId = model.AccountId,
-                Date = model.Date,
-                Type = model.Type,
-                Operation = model.Operation,
-                Amount = (model.Amount * -1),
-                Balance = model.Balance,
-                Symbol = model.Symbol,
-                Bank = model.Bank,
-                Account = model.Account
-            };
-
-            return transaction;
+            var transaction = new Transaction();
+            return _mapper.Map(model, transaction);
         }
         catch (Exception e)
         {
