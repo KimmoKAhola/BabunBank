@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BabunBank.Models.FormModels.Customer;
 using BabunBank.Models.FormModels.CustomerModels;
+using BabunBank.Models.FormModels.TransferModels;
 using BabunBank.Models.FormModels.User;
 using BabunBank.Models.ViewModels.Account;
 using BabunBank.Models.ViewModels.Customer;
@@ -39,5 +40,10 @@ public class MappingProfile : Profile
             )
             .ForMember(dest => dest.Transactions, opt => opt.MapFrom(src => src.Transactions))
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Dispositions.First().Type));
+
+        CreateMap<CreateDepositModel, Transaction>().ReverseMap();
+        CreateMap<CreateWithdrawalModel, Transaction>()
+            .ForMember(dest => dest.Amount, opt => opt.MapFrom(src => src.Amount * -1))
+            .ReverseMap();
     }
 }
