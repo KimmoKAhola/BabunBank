@@ -1,16 +1,18 @@
 ﻿using BabunBank.Configurations.Enums;
+using BabunBank.Configurations.Interfaces;
 using BabunBank.Factories;
 using BabunBank.Models.FormModels.TransferModels;
 using BabunBank.Models.ViewModels.Account;
-using BabunBank.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BabunBank.Controllers;
 
 [Authorize(Roles = $"{UserRoleNames.Admin}, {UserRoleNames.Cashier}")]
-public class AccountController(AccountService accountService, TransactionService transactionService)
-    : Controller
+public class AccountController(
+    IAccountService accountService,
+    ITransactionService transactionService
+) : Controller
 {
     private const int StartingPage = 1;
     private const int DefaultPageSize = 50;
