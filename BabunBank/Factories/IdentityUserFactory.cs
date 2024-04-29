@@ -1,14 +1,11 @@
-﻿using AutoMapper;
-using BabunBank.Models;
-using BabunBank.Models.FormModels.User;
-using DataAccessLibrary.Data;
+﻿using BabunBank.Models.FormModels.User;
 using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Factories;
 
 public static class IdentityUserFactory
 {
-    public static async Task<IdentityUser> CreateUser(
+    public static async Task<IdentityUser> Create(
         SignUpUserModel userModel,
         UserManager<IdentityUser> userManager
     )
