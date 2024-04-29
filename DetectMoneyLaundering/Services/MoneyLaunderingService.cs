@@ -1,18 +1,15 @@
 ﻿using System.Drawing;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
+using DetectMoneyLaundering.Interfaces;
 using DetectMoneyLaundering.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DetectMoneyLaundering.Services;
 
 //TODO Rename me to something better
-public class MoneyLaunderingService(DataAccountService dataAccountService)
+public class MoneyLaunderingService(DataAccountService dataAccountService) : IMoneyLaunderingService
 {
-    private const int ScalingDefault = 10;
-    private const int ScalingDivider = 10; //
-    private const decimal TransferLimit = 15_000m;
-
     public async Task<Account?> GetAccount(int id)
     {
         return await dataAccountService.GetAsync(id);
@@ -29,7 +26,7 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         bool draw = true,
         string color = "",
         string backgroundColor = "",
-        int slider = ScalingDefault
+        int slider = Parameters.ScalingDefault
     )
     {
         var result = new InspectAccountModel();
@@ -41,7 +38,7 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
         foreach (var transaction in account.Transactions)
         {
             // transaction.Amount = Math.Abs(transaction.Amount);
-            if (Math.Abs(transaction.Amount) > TransferLimit)
+            if (Math.Abs(transaction.Amount) > Parameters.TransferLimit)
             {
                 result.TransactionsOverLimit.Add(transaction);
             }
@@ -69,9 +66,9 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
             : Color.FromName(backgroundColor);
         var scaling = new PlotScalingModel
         {
-            HeightScaleFactor = (double)slider / ScalingDivider,
-            WidthScaleFactor = (double)slider / ScalingDivider,
-            FontScaleFactor = (double)slider / ScalingDivider,
+            HeightScaleFactor = (double)slider / Parameters.ScalingDivider,
+            WidthScaleFactor = (double)slider / Parameters.ScalingDivider,
+            FontScaleFactor = (double)slider / Parameters.ScalingDivider,
             Color = chosenColor,
             BackgroundColor = chosenBackgroundColor
         };
@@ -92,7 +89,7 @@ public class MoneyLaunderingService(DataAccountService dataAccountService)
             foreach (var transaction in account.Transactions)
             {
                 // transaction.Amount = Math.Abs(transaction.Amount);
-                if (Math.Abs(transaction.Amount) > TransferLimit)
+                if (Math.Abs(transaction.Amount) > Parameters.TransferLimit)
                 {
                     temp.TransactionsOverLimit.Add(transaction);
                 }
