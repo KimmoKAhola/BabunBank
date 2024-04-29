@@ -2,7 +2,6 @@
 using BabunBank.Services;
 using DataAccessLibrary.DataServices;
 using DetectMoneyLaundering.Services;
-using Microsoft.AspNetCore.Identity;
 
 namespace BabunBank.Configurations.DependencyConfiguration;
 
@@ -34,7 +33,5 @@ public static class ServiceConfiguration
         services.AddScoped<ContactUsValidator>();
         services.AddScoped<EditCustomerValidation>();
         services.AddScoped<AdValidator>();
-
-        services.AddHttpClient();
     }
 }
