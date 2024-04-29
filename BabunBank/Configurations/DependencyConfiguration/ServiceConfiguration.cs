@@ -1,6 +1,8 @@
-﻿using BabunBank.Models.CustomValidators;
+﻿using BabunBank.Configurations.Interfaces;
+using BabunBank.Models.CustomValidators;
 using BabunBank.Services;
 using DataAccessLibrary.DataServices;
+using DetectMoneyLaundering.Interfaces;
 using DetectMoneyLaundering.Services;
 
 namespace BabunBank.Configurations.DependencyConfiguration;
@@ -17,16 +19,15 @@ public static class ServiceConfiguration
         services.AddScoped<DataTransactionService>();
 
         //Services
-        services.AddScoped<CustomerService>();
-        services.AddScoped<AccountService>();
-        services.AddScoped<TransactionService>();
-        services.AddScoped<LandingPageService>();
-        services.AddScoped<IdentityUserService>();
-        services.AddScoped<DropDownService>();
+        services.AddScoped<ICustomerService, CustomerService>();
+        services.AddScoped<IAccountService, AccountService>();
+        services.AddScoped<ITransactionService, TransactionService>();
+        services.AddScoped<ILandingPageService, LandingPageService>();
+        services.AddScoped<IIdentityUserService, IdentityUserService>();
         services.AddScoped<NewsService>();
 
         //Laundering Services
-        services.AddScoped<MoneyLaunderingService>();
+        services.AddScoped<IMoneyLaunderingService, MoneyLaunderingService>();
 
         //Fluent Validators
         services.AddScoped<UserValidator>();
