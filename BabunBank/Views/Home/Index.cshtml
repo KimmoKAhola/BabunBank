@@ -1,9 +1,7 @@
-﻿@using System.Security.Cryptography
+﻿@using System.Globalization
 @model IEnumerable<BabunBank.Models.ViewModels.LandingPage.LandingPageViewModel>
 @{
-    ViewData["Title"] = "Home Page";
 }
-@* Banking image *@
 <div id="landing-page-bg">
     <img src="~/images/pexels-photo-right-aligned.webp" alt="background">
     <div class="banner">
@@ -17,27 +15,27 @@
 </div>
 
 @* Brands here *@
-<div class="brand-section">
-    <div id="brand-section-left">
-        <h2>Let's talk business!</h2>
-    </div>
-    <div id="brand-section-right">
-        <div>
-            <h3>
-                Over 5000 clients
-            </h3>
-            <h4>
-                from the nordic countries
-            </h4>
-        </div>
-        <div id="brand-section-right-images">
-            @* <img src="~/images/logoipsum-255.svg" alt="TODO"> *@
-            <img src="~/images/logoipsum-264.svg" alt="TODO">
-            <img src="~/images/logoipsum-299.svg" alt="TODO">
-            <img src="~/images/logoipsum-321.svg" alt="TODO">
-        </div>
-    </div>
-</div>
+@* <div class="brand-section"> *@
+@*     <div id="brand-section-left"> *@
+@*         <h2>Let's talk business!</h2> *@
+@*     </div> *@
+@*     <div id="brand-section-right"> *@
+@*         <div> *@
+@*             <h3> *@
+@*                 Over 5000 clients *@
+@*             </h3> *@
+@*             <h4> *@
+@*                 from the nordic countries *@
+@*             </h4> *@
+@*         </div> *@
+@*         <div id="brand-section-right-images"> *@
+@*             $1$ <img src="~/images/logoipsum-255.svg" alt="TODO"> #1# *@
+@*             <img src="~/images/logoipsum-264.svg" alt="TODO"> *@
+@*             <img src="~/images/logoipsum-299.svg" alt="TODO"> *@
+@*             <img src="~/images/logoipsum-321.svg" alt="TODO"> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
 
 
 <div id="country-page-bg">
