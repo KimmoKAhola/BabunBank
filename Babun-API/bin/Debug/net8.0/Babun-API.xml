@@ -9,17 +9,26 @@
             AccountController class handles API endpoints related to account operations.
             </summary>
         </member>
-        <member name="M:Babun_API.Controllers.AccountController.#ctor(DataAccessLibrary.DataServices.DataAccountService)">
+        <member name="M:Babun_API.Controllers.AccountController.#ctor(DataAccessLibrary.DataServices.DataAccountService,AutoMapper.IMapper)">
             <summary>
             AccountController class handles API endpoints related to account operations.
             </summary>
         </member>
-        <member name="M:Babun_API.Controllers.AccountController.Get(System.Int32)">
+        <member name="M:Babun_API.Controllers.AccountController.Me(System.Int32)">
             <summary>
             Retrieves an account by its ID.
             </summary>
             <param name="id">The ID of the account to retrieve.</param>
             <returns>The account with the specified ID.</returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AccountController.Account(System.Int32,System.Int32,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            Retrieves account transactions by account ID, limit, offset, and sort order.
+            </summary>
+            <param name="id">The ID of the account to retrieve transactions for.</param>
+            <param name="limit">The maximum number of transactions to retrieve.</param>
+            <param name="offset">The offset used for pagination.</param>
+            <returns>A list of transactions for the specified account ID, limit, and offset.</returns>
         </member>
         <member name="T:Babun_API.Controllers.AdController">
             <summary>
