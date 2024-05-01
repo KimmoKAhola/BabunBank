@@ -1,0 +1,68 @@
+﻿@using BabunBank.Infrastructure.Parameters
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+<div class="navbar">
+    <div class="container">
+        <div class="navbar-navigation">
+            <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo.svg" alt="bank logotype"/></a>
+            <nav class="navbar-links">
+                <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                <a asp-controller="News" asp-action="Index" class="navbar-link">News</a>
+                @if (!SignInManager.IsSignedIn(User))
+                {
+                <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
+                <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy & API usage</a>
+                }
+                @if (User.IsInRole(UserRoleNames.Cashier))
+                {
+                <a class="navbar-link" asp-area="" asp-controller="Cashier" asp-action="Index">View Customers & Accounts</a>
+                }
+                @if (User.IsInRole(UserRoleNames.Admin))
+                {
+                <a class="navbar-link" asp-area="" asp-controller="Admin" asp-action="Index">Users</a>
+                }
+            </nav>
+        </div>
+        <div class="navbar-site-settings">
+            @if (SignInManager.IsSignedIn(User))
+            {
+            <div id="logged-in">
+                @if (User.Identity.Name.Contains("richard") && User.Identity.Name.Contains("chalk"))
+                {
+                <img src="~/images/chalk-profile.jpg" alt="richard TODO">
+                }
+                else
+                {
+                <img src="https://avatar.iran.liara.run/public" alt="richard TODO">
+                }
+
+                <p>Hello @User.Identity?.Name</p>
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <div class="login">
+                        <button class="btn-login">Log out</button>
+                        <button class="btn-arrow">
+                            <i class="material-symbols-outlined">
+                                arrow_forward
+                            </i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            }
+            else
+            {
+            <a asp-area="Identity" asp-page="/Account/Login" title="Manage">
+                <div class="login">
+                    <button class="btn-login">Log in</button>
+                    <button class="btn-arrow">
+                        <i class="material-symbols-outlined">
+                            arrow_forward
+                        </i>
+                    </button>
+                </div>
+            </a>
+            }
+        </div>
+    </div>
+</div>
+
