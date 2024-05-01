@@ -1,9 +1,7 @@
-﻿@using System.Security.Cryptography
+﻿@using System.Globalization
 @model IEnumerable<BabunBank.Models.ViewModels.LandingPage.LandingPageViewModel>
 @{
-    ViewData["Title"] = "Home Page";
 }
-@* Banking image *@
 <div id="landing-page-bg">
     <img src="~/images/pexels-photo-right-aligned.webp" alt="background">
     <div class="banner">
@@ -17,82 +15,82 @@
 </div>
 
 @* Brands here *@
-<div class="brand-section">
-    <div id="brand-section-left">
-        <h2>Let's talk business!</h2>
-    </div>
-    <div id="brand-section-right">
-        <div>
-            <h3>
-                Over 5000 clients
-            </h3>
-            <h4>
-                from the nordic countries
-            </h4>
-        </div>
-        <div id="brand-section-right-images">
-            @* <img src="~/images/logoipsum-255.svg" alt="TODO"> *@
-            <img src="~/images/logoipsum-264.svg" alt="TODO">
-            <img src="~/images/logoipsum-299.svg" alt="TODO">
-            <img src="~/images/logoipsum-321.svg" alt="TODO">
-        </div>
-    </div>
-</div>
+@* <div class="brand-section"> *@
+@*     <div id="brand-section-left"> *@
+@*         <h2>Let's talk business!</h2> *@
+@*     </div> *@
+@*     <div id="brand-section-right"> *@
+@*         <div> *@
+@*             <h3> *@
+@*                 Over 5000 clients *@
+@*             </h3> *@
+@*             <h4> *@
+@*                 from the nordic countries *@
+@*             </h4> *@
+@*         </div> *@
+@*         <div id="brand-section-right-images"> *@
+@*             $1$ <img src="~/images/logoipsum-255.svg" alt="TODO"> #1# *@
+@*             <img src="~/images/logoipsum-264.svg" alt="TODO"> *@
+@*             <img src="~/images/logoipsum-299.svg" alt="TODO"> *@
+@*             <img src="~/images/logoipsum-321.svg" alt="TODO"> *@
+@*         </div> *@
+@*     </div> *@
+@* </div> *@
 
 
 <div id="country-page-bg">
-    <div id="landing-page-body">
-        <div id="header">
-            <h2>Providing quality services since 2013</h2>
-            @* <a href="#">TODO <i class="material-symbols-outlined"> *@
-            @*     arrow_right_alt *@
-            @* </i></a> *@
+    <div class="container">
+        <div id="landing-page-body">
+            <div id="header">
+                <h2>Providing quality services since 2013</h2>
+                <p>We have...</p>
+            </div>
+            <div class="landing-page-info">
+                <div class="landing-page-summary">
+                    <div>
+                        <img class="landing-page-icon" src="~/images/landing-page-icon-accounts.svg" alt="TODO">
+                        <h3>
+                            @Model.Sum(x => x.NumberOfCustomers) accounts
+                        </h3>
+                        <p>From the nordic countries</p>
+                    </div>
+                </div>
+                
+                <div class="landing-page-summary">
+                    <img class="arrow" src="~/images/landing-page-arrow.svg" alt="TODO">
+                </div>
+
+                <div class="landing-page-summary">
+                    <div>
+                        <img class="landing-page-icon" src="~/images/landing-page-icon-customer.svg" alt="TODO">
+                        <h3>
+                            @Model.Sum(x => x.NumberOfCustomers) customers
+                        </h3>
+                        <p>Satisfied with our services</p>
+                    </div>
+                </div>
+                
+                <div class="landing-page-summary">
+                    <img class="arrow" src="~/images/landing-page-arrow-test.svg" alt="TODO">
+                </div>
+
+                <div class="landing-page-summary">
+                    <div>
+                        <img class="landing-page-icon" src="~/images/landing-page-icon-dollar.svg" alt="TODO">
+                        <h3>
+                            @Model.Sum(x => x.TotalBalancePerCountry).ToString("C2", new CultureInfo("sv-SE"))
+                        </h3>
+                        <p>Under our management</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="landing-page-info">
-            <div class="landing-page-summary">
-                <div>
-                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
-                    <h3>
-                        
-                    </h3>
-                    <p>From the nordic countries</p>
-                </div>
-                <div class="landing-page-arrow">
-                    <img src="~/images/landing-page-arrow.svg" alt="TODO">
-                </div>
-            </div>
 
-            <div class="landing-page-summary">
-                <div>
-                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
-                    <h3>
-                         customers
-                    </h3>
-                    <p>We have more than 5000 satisfied customers in the nordic countries</p>
-                </div>
-                <div class="landing-page-arrow">
-                    <img src="~/images/landing-page-arrow.svg" alt="TODO">
-                </div>
-            </div>
-
-            <div class="landing-page-summary last">
-                <div>
-                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
-                    <h3>
-                        
-                    </h3>
-                    <p>From the nordic countries</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div id="card-section">
-        @foreach (var country in Model)
-        {
-            <div class="country-card">
+        <div id="card-section">
+            @foreach (var country in Model)
+            {
                 <partial name="_CountryBoxPartial" model="country"/>
-            </div>
-        }
+            }
+        </div>
     </div>
 </div>
