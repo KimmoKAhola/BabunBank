@@ -12,7 +12,7 @@ namespace Babun_API.Controllers;
 /// </summary>
 [ApiVersion("1.0")]
 [ApiExplorerSettings(GroupName = "v1")]
-[Route("api/[controller]")]
+[Route("api")]
 [ApiController]
 public class AccountController(DataAccountService dataAccountService, IMapper mapper)
     : ControllerBase
@@ -22,8 +22,8 @@ public class AccountController(DataAccountService dataAccountService, IMapper ma
     /// </summary>
     /// <param name="id">The ID of the account to retrieve.</param>
     /// <returns>The account with the specified ID.</returns>
-    [HttpGet]
-    public async Task<IActionResult> Get(int id)
+    [HttpGet("/me/{id:int}")]
+    public async Task<IActionResult> Me(int id)
     {
         try
         {
