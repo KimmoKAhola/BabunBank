@@ -1,4 +1,7 @@
 using Asp.Versioning;
+using AutoMapper;
+using BabunBank.Models.ViewModels.Account;
+using BabunBank.Models.ViewModels.Transaction;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,7 +32,9 @@ public class AccountController(DataAccountService dataAccountService) : Controll
                 return NotFound($"Account with ID {id} not found");
             }
 
-            return Ok(account.AccountId);
+            var accountViewModel = mapper.Map<AccountViewModel>(account);
+
+            return Ok(accountViewModel);
         }
         catch (Exception ex)
         {
