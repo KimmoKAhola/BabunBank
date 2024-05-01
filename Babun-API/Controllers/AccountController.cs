@@ -14,7 +14,8 @@ namespace Babun_API.Controllers;
 [ApiExplorerSettings(GroupName = "v1")]
 [Route("api/[controller]")]
 [ApiController]
-public class AccountController(DataAccountService dataAccountService) : ControllerBase
+public class AccountController(DataAccountService dataAccountService, IMapper mapper)
+    : ControllerBase
 {
     /// <summary>
     /// Retrieves an account by its ID.
