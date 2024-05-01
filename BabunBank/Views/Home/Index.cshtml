@@ -86,12 +86,11 @@
             </div>
         </div>
 
-    <div id="card-section">
-        @foreach (var country in Model)
-        {
-            <div class="country-card">
+        <div id="card-section">
+            @foreach (var country in Model)
+            {
                 <partial name="_CountryBoxPartial" model="country"/>
-            </div>
-        }
+            }
+        </div>
     </div>
 </div>
