@@ -39,51 +39,52 @@
 
 
 <div id="country-page-bg">
-    <div id="landing-page-body">
-        <div id="header">
-            <h2>Providing quality services since 2013</h2>
-            @* <a href="#">TODO <i class="material-symbols-outlined"> *@
-            @*     arrow_right_alt *@
-            @* </i></a> *@
-        </div>
-        <div class="landing-page-info">
-            <div class="landing-page-summary">
-                <div>
-                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
-                    <h3>
-                        
-                    </h3>
-                    <p>From the nordic countries</p>
-                </div>
-                <div class="landing-page-arrow">
-                    <img src="~/images/landing-page-arrow.svg" alt="TODO">
-                </div>
+    <div class="container">
+        <div id="landing-page-body">
+            <div id="header">
+                <h2>Providing quality services since 2013</h2>
+                <p>We have...</p>
             </div>
+            <div class="landing-page-info">
+                <div class="landing-page-summary">
+                    <div>
+                        <img class="landing-page-icon" src="~/images/landing-page-icon-accounts.svg" alt="TODO">
+                        <h3>
+                            @Model.Sum(x => x.NumberOfCustomers) accounts
+                        </h3>
+                        <p>From the nordic countries</p>
+                    </div>
+                </div>
+                
+                <div class="landing-page-summary">
+                    <img class="arrow" src="~/images/landing-page-arrow.svg" alt="TODO">
+                </div>
 
-            <div class="landing-page-summary">
-                <div>
-                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
-                    <h3>
-                         customers
-                    </h3>
-                    <p>We have more than 5000 satisfied customers in the nordic countries</p>
+                <div class="landing-page-summary">
+                    <div>
+                        <img class="landing-page-icon" src="~/images/landing-page-icon-customer.svg" alt="TODO">
+                        <h3>
+                            @Model.Sum(x => x.NumberOfCustomers) customers
+                        </h3>
+                        <p>Satisfied with our services</p>
+                    </div>
                 </div>
-                <div class="landing-page-arrow">
-                    <img src="~/images/landing-page-arrow.svg" alt="TODO">
+                
+                <div class="landing-page-summary">
+                    <img class="arrow" src="~/images/landing-page-arrow-test.svg" alt="TODO">
                 </div>
-            </div>
 
-            <div class="landing-page-summary last">
-                <div>
-                    <img class="landing-page-icon" src="~/images/landing-page-icon.svg" alt="TODO">
-                    <h3>
-                        
-                    </h3>
-                    <p>From the nordic countries</p>
+                <div class="landing-page-summary">
+                    <div>
+                        <img class="landing-page-icon" src="~/images/landing-page-icon-dollar.svg" alt="TODO">
+                        <h3>
+                            @Model.Sum(x => x.TotalBalancePerCountry).ToString("C2", new CultureInfo("sv-SE"))
+                        </h3>
+                        <p>Under our management</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <div id="card-section">
         @foreach (var country in Model)
