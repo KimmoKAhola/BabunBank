@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "wqTByWLbic/OdLzzBN0JjgifXU/BTdDZ+M5J9NxtpAw=",
+  "Hash": "b5trEMohgS81DFktnPbfLaO9D5PBrFQs3X79uTUnHy8=",
   "Source": "Babun-API",
   "BasePath": "_content/Babun-API",
   "Mode": "Default",
@@ -1473,6 +1473,25 @@
       "OriginalItemSpec": "wwwroot\\images\\error.webp"
     },
     {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.png",
+      "SourceId": "BabunBank",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/flag-of-denmark.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\flag-of-denmark.png"
+    },
+    {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.svg",
       "SourceId": "BabunBank",
       "SourceType": "Project",
@@ -1490,6 +1509,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\flag-of-denmark.svg"
+    },
+    {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.png",
+      "SourceId": "BabunBank",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/flag-of-finland.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\flag-of-finland.png"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.svg",
@@ -1511,6 +1549,25 @@
       "OriginalItemSpec": "wwwroot\\images\\flag-of-finland.svg"
     },
     {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-norway.png",
+      "SourceId": "BabunBank",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/flag-of-norway.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\flag-of-norway.png"
+    },
+    {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-norway.svg",
       "SourceId": "BabunBank",
       "SourceType": "Project",
@@ -1528,6 +1585,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\flag-of-norway.svg"
+    },
+    {
+      "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-sweden.png",
+      "SourceId": "BabunBank",
+      "SourceType": "Project",
+      "ContentRoot": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\",
+      "BasePath": "_content/BabunBank",
+      "RelativePath": "images/flag-of-sweden.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\flag-of-sweden.png"
     },
     {
       "Identity": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-sweden.svg",
