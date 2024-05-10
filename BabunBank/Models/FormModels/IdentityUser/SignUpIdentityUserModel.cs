@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using DataAccessLibrary.Data;
 
-namespace BabunBank.Models.FormModels.User;
+namespace BabunBank.Models.FormModels.IdentityUser;
 
 public class SignUpIdentityUserModel
 {
