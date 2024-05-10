@@ -5,5 +5,34 @@
     Layout = "_Layout";
 }
 
-<h2>Admin update</h2>
-<a asp-controller="Admin" asp-action="Index">Go back</a>
+<div class="container create-customer">
+        <form method="post" class="update-user-form">
+            <div asp-validation-summary="ModelOnly"></div>
+
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" type="text">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </span>
+
+                <span class="Test">
+                    <label asp-for="ConfirmEmail">Confirm Email</label>
+                    <input asp-for="ConfirmEmail" type="text">
+                    <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+                </span>
+            </div>
+
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" type="text">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </span>
+
+                <span class="Test">
+                    <label asp-for="ConfirmPassword">Confirm Password</label>
+                    <input asp-for="ConfirmPassword" type="text">
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </span>
+            </div>
