@@ -46,8 +46,12 @@
                     {
                         <td style="display: flex; align-items: center; gap: 12px">
                             Account Id: @account.AccountId (@account.Type)
-                            <a asp-controller="Account" asp-action="Details" asp-route-id="@account.AccountId" class="inspect-account-button">
-                                <i class="material-symbols-outlined">search</i>
+                            <a asp-controller="Cashier" asp-action="Inspect" asp-route-id="@account.AccountId" class="inspect-account-button"><i class="material-symbols-outlined">search</i></a>
+                            
+                            <a asp-controller="Account" asp-action="Deposit" asp-route-id="@account.AccountId" class="inspect-account-button">
+                                <i class="material-symbols-outlined">
+                                    add_circle
+                                </i>
                             </a>
                         </td>
                     }
