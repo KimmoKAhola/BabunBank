@@ -17,24 +17,25 @@
         </tr>
         </thead>   
         <tbody>
-        @foreach (var systemUser in @Model)
+        @foreach (var systemUser in Model)
         {
-            <tr>
-                <th>@systemUser.UserId</th>
-                <th>@systemUser.Username</th>
-                <th>@systemUser.Email</th>
-                <th>@systemUser.RoleName</th>
-                <th>
-                    @* TODO Is read and update needed? This can probably be improved a lot *@
-                    <a asp-controller="Admin" asp-action="Details" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">View</a>
-                    <a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">Update</a>
-                    @if (User?.Identity?.Name != systemUser.Username)
-                    {
-                        <button class="btn-danger">
-                            <a asp-controller="Admin" asp-action="Delete" asp-route-id="@systemUser.UserId">Delete</a>
-                        </button>
-                    }
-                </th>
+            <tr class="admin-table-row">
+                <td>@systemUser.Username</td>
+                <td>@systemUser.Email</td>
+                <td>@systemUser.RoleName</td>
+                <td>
+                    <span>
+                        <a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">Update</a>
+                        @if (User?.Identity?.Name != systemUser.Username)
+                        {
+                            <a asp-controller="Admin" asp-action="Delete" asp-route-id="@systemUser.UserId" class="btn-danger" style="border-radius: 0.25rem">Delete</a>
+                        }
+                        else
+                        {
+                            <p style="display:flex; align-items:center; text-align: center">You can not delete your own account</p>
+                        }
+                    </span>
+                </td>
             </tr>
         }
         </tbody>
