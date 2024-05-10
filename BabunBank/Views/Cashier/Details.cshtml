@@ -53,6 +53,17 @@
                                     add_circle
                                 </i>
                             </a>
+                            <a asp-controller="Account" asp-action="Withdraw" asp-route-id="@account.AccountId" class="inspect-account-button">
+                                <i class="material-symbols-outlined">
+                                    remove
+                                </i>
+                            </a>
+                            <a asp-controller="Account" asp-action="Transfer" asp-route-id="@account.AccountId" class="inspect-account-button">
+                                <i class="material-symbols-outlined">
+                                    input
+                                </i>
+                            </a>
+                            
                         </td>
                     }
                     </tbody>
