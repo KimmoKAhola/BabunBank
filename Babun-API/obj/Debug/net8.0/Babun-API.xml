@@ -28,6 +28,7 @@
             <param name="id">The ID of the account to retrieve transactions for.</param>
             <param name="limit">The maximum number of transactions to retrieve.</param>
             <param name="offset">The offset used for pagination.</param>
+            <param name="desc">The sorting order. Default value of true.</param>
             <returns>A list of transactions for the specified account ID, limit, and offset.</returns>
         </member>
         <member name="T:Babun_API.Controllers.AdController">
