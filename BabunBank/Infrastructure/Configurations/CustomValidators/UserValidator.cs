@@ -1,5 +1,5 @@
 ﻿using BabunBank.Infrastructure.Interfaces;
-using BabunBank.Models.FormModels.User;
+using BabunBank.Models.FormModels.IdentityUser;
 using FluentValidation;
 
 namespace BabunBank.Infrastructure.Configurations.CustomValidators;
@@ -21,7 +21,7 @@ public class UserValidator : AbstractValidator<SignUpIdentityUserModel>
             .WithMessage("Email has to be at least 6 characters")
             .MustAsync(BeUniqueEmail)
             .WithMessage("A user with that email already exists.")
-            .Equal("Email")
+            .Equal(u => u.Email)
             .WithMessage("The email addresses has to match.");
 
         RuleFor(user => user.Password).NotNull().NotEmpty();
