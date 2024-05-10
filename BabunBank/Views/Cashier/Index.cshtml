@@ -1,5 +1,4 @@
-﻿@using BabunBank.Controllers
-@using BabunBank.Infrastructure.Enums
+﻿@using BabunBank.Infrastructure.Enums
 @using Microsoft.AspNetCore.Mvc.TagHelpers
 @model IEnumerable<BabunBank.Models.ViewModels.Customer.CustomerViewModel>
 
@@ -9,8 +8,6 @@
 }
 <div id="customer-bg">
     <div class="customer-container">
-        @* TODO Remove this later, or style it better*@
-        <h1 id="customer-index-header">Customer index page</h1>
         <form class="customer-filter-form" method="get" action="@Url.Action("Index", "Cashier")">
             <div class="form-group" id="cashier-search-bar">
                 <input name="q" value="@ViewBag.Q" placeholder="Search here....">
