@@ -14,18 +14,18 @@ namespace BabunBank.Models.ViewModels.Customer;
 /// </summary>
 public class CustomerViewModel
 {
-    public int CustomerId { get; set; }
-    public string Gender { get; set; }
-    public string GivenName { get; set; }
-    public string Surname { get; set; }
-    public string Streetaddress { get; set; }
-    public string City { get; set; }
-    public string Zipcode { get; set; }
-    public string Country { get; set; }
+    public int CustomerId { get; init; }
+    public string? Gender { get; init; }
+    public string? GivenName { get; init; }
+    public string? Surname { get; init; }
+    public string? Streetaddress { get; init; }
+    public string? City { get; init; }
+    public string? Zipcode { get; init; }
+    public string? Country { get; init; }
 
-    public DateOnly? BirthDay { get; set; }
-    public string? NationalId { get; set; }
+    public DateOnly? BirthDay { get; init; }
+    public string? NationalId { get; init; }
 
-    public bool IsDeleted { get; set; } //TODO is this needed? Only used for soft deletion
-    public List<AccountViewModel> CustomerAccounts { get; set; }
+    public bool IsDeleted { get; init; } //TODO is this needed? Only used for soft deletion
+    public List<AccountViewModel>? CustomerAccounts { get; init; }
 }
