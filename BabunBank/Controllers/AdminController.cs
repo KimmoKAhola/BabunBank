@@ -79,12 +79,19 @@ public class AdminController(
     }
 
     [HttpPost]
-    public async Task<IActionResult> DeleteConfirmed(string id, string username)
+    public async Task<IActionResult> Delete(DeleteIdentityUserModel model)
     {
-        //TODO Fix confirmation when deleting user
-        var deleteConfirmation = await identityUserService.DeleteAsync(id);
-        if (!(deleteConfirmation ?? false))
-            return RedirectToAction("Index");
-        return RedirectToAction("Index", "Error");
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+            //TODO smth here
+        }
+        var deleteConfirmation = await identityUserService.DeleteAsync(model.UserId);
+        if (!deleteConfirmation)
+        {
+            return RedirectToAction("Index", "Error");
+        }
+
+        return RedirectToAction("Index");
     }
 }
