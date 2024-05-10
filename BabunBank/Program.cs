@@ -51,20 +51,11 @@ namespace BabunBank
 
             var app = builder.Build();
 
-            await using var scope = app.Services.CreateAsyncScope();
-            await scope.ServiceProvider.GetService<DataInitializer>()!.SeedData();
+            app.UseMigrationsEndPoint();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseMigrationsEndPoint();
-            }
-            else
-            {
-                app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            app.UseExceptionHandler("/Error");
+            // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            app.UseHsts();
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
@@ -80,6 +71,8 @@ namespace BabunBank
 
             app.MapRazorPages();
 
+            await using var scope = app.Services.CreateAsyncScope();
+            await scope.ServiceProvider.GetService<DataInitializer>()!.SeedData();
             await app.RunAsync();
         }
     }
