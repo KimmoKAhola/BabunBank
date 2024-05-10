@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.User;
+﻿using BabunBank.Models.FormModels.IdentityUser;
 using Microsoft.AspNetCore.Identity;
 using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 

@@ -111,13 +111,13 @@ public class IdentityUserRepository(
         return null!;
     }
 
-    public virtual async Task<bool?> DeleteAsync(Expression<Func<IdentityUser, bool>> expression)
+    public virtual async Task<bool> DeleteAsync(Expression<Func<IdentityUser, bool>> expression)
     {
         try
         {
             var result = await dbContext.Set<IdentityUser>().FirstOrDefaultAsync(expression);
             if (result == null)
-                return null;
+                return false;
 
             dbContext.Set<IdentityUser>().Remove(result);
             await dbContext.SaveChangesAsync();
@@ -136,7 +136,6 @@ public class IdentityUserRepository(
         {
             var result = await userManager.FindByNameAsync(username);
             return result == null;
-            // var result = await dbContext.Set<IdentityUser>().AnyAsync(expression);
         }
         catch (Exception e)
         {
@@ -152,7 +151,6 @@ public class IdentityUserRepository(
         {
             var result = await userManager.FindByEmailAsync(email);
             return result == null;
-            // var result = await dbContext.Set<IdentityUser>().AnyAsync(expression);
         }
         catch (Exception e)
         {
