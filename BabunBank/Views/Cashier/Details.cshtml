@@ -164,7 +164,7 @@
                             <td>${formatDate(transaction.date)}</td>
                             <td>${formatCurrency(transaction.amount)}</td>
                             <td>${formatCurrency(transaction.balance)}</td>
-                            <td>${transaction.type}</td>
+                            <td>${transaction.operation ? transaction.operation : 'N/A'}</td>
                     </tr>`;
             table.insertAdjacentHTML('beforeend', row);
         }
@@ -188,7 +188,32 @@
 </script>
 <script>
     function goToTop(){
-        document.body.scrollTop = 0; // For Safari
+        document.body.scrollTop = 0; 
         document.documentElement.scrollTop = 0;
     }
+</script>
+
+<script>
+    $(document).ready(function () {
+    
+        toastr.options = {
+            "positionClass" : "toast-bottom-center",
+            "showDuration": "300", 
+            "hideDuration": "1000",
+            "timeOut": "5000", 
+            "extendedTimeOut": "1000", 
+            "hideEasing": "swing", 
+            "showEasing": "swing", 
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+            "toastClass" : "custom-toast-class"
+        };
+        
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <text>
+            toastr.success('@ViewBag.Message');
+            </text>
+        }
+    });
 </script>
