@@ -1,9 +1,8 @@
 ﻿using BabunBank.Factories;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
-using BabunBank.Infrastructure.Enums;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
-using BabunBank.Models.FormModels.User;
+using BabunBank.Models.FormModels.IdentityUser;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -19,7 +18,6 @@ public class AdminController(
     UserValidator userValidator
 ) : Controller
 {
-    // GET
     public async Task<IActionResult> Index()
     {
         var roles = DropDownService.GetRoles();
