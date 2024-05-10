@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using BabunBank.Factories;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
-using BabunBank.Infrastructure.Enums;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.Customer;
@@ -186,12 +185,35 @@ public class CashierController(
 
     public async Task<IActionResult> Delete(int id)
     {
-        var result = await customerService.DeleteCustomerAsync(id);
-        if (result ?? false)
+        var customer = await customerService.GetCustomerViewModelAsync(id);
+        if (customer == null)
         {
             return RedirectToAction("Index", "Error");
         }
-        return RedirectToAction("Delete");
+        var model = new DeleteCustomerModel
+        {
+            FirstName = customer.GivenName,
+            Surname = customer.Surname,
+            Id = customer.CustomerId
+        };
+
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(DeleteCustomerModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+        var result = await customerService.DeleteCustomerAsync(model.Id);
+        if (result is false or null)
+        {
+            return RedirectToAction("Index", "Error");
+        }
+
+        return RedirectToAction("Index", "Cashier");
     }
 
     public async Task<IActionResult> Inspect(int id)
