@@ -1,0 +1,49 @@
+﻿@model BabunBank.Models.FormModels.Customer.DeleteCustomerModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="container" style="display: flex; justify-content: center; align-items: center">
+    <form method="post" asp-controller="Cashier" asp-action="Delete">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="Id" value="@Model.Id">
+        <input type="hidden" asp-for="FirstName" value="@Model.FirstName">
+        <input type="hidden" asp-for="Surname" value="@Model.Surname">
+
+        <span style="text-align: center; margin-bottom: 72px;">
+            <h2>You are about to deactivate the user @Model.FirstName @Model.Surname.</h2>
+            <h2>The customer's account will become unavailable for future use.</h2>
+            <h2>This is a destructive action that can only be reversed by a database administrator.</h2>
+            <h2>Please enter the user's id (@Model.Id) and full name to confirm deletion.</h2>
+        </span>
+        
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="ConfirmId">Confirm Customer Id</label>
+                <input asp-for="ConfirmId" type="text">
+                <span asp-validation-for="ConfirmId" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="ConfirmFullName">Confirm Customer's Full Name (case-sensitive)</label>
+                <input asp-for="ConfirmFullName" type="text">
+                <span asp-validation-for="ConfirmFullName" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="button-row">
+                <button type="submit" class="btn-danger">Delete</button>
+                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.Id" class="create-customer-form-btn">Cancel</a>
+            </span>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
