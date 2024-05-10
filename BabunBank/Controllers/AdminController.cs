@@ -68,7 +68,14 @@ public class AdminController(
     public async Task<IActionResult> Delete(string id)
     {
         var identityUserViewModel = await identityUserService.GetSingleAsync(id);
-        return View(identityUserViewModel);
+
+        var model = new DeleteIdentityUserModel
+        {
+            UserId = identityUserViewModel.UserId,
+            Username = identityUserViewModel.Username
+        };
+
+        return View(model);
     }
 
     [HttpPost]
