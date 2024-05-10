@@ -19,21 +19,6 @@ public class AccountController(
     private const int StartingPage = 1;
     private const int DefaultPageSize = 50;
 
-    /// <summary>
-    /// Presents the details for a single customer and the customers account.
-    /// </summary>
-    /// <param name="id">The accound Id</param>
-    /// <returns>A view with an account view model</returns>
-    public async Task<IActionResult> Details(int id)
-    {
-        var accountViewModel = await accountService.GetAccountViewModelAsync(id);
-
-        if (IsInvalidAccountViewModel(accountViewModel))
-            return RedirectToAction("Index", "Error");
-
-        return View(accountViewModel);
-    }
-
     public async Task<IActionResult> Deposit(int id)
     {
         var accountViewModel = await accountService.GetAccountViewModelAsync(id);
