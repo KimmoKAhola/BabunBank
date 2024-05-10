@@ -205,6 +205,11 @@
                    asp-route-pageSize="@ViewBag.PageSize">
                     Last
                 </a>
+            <button id="goToTop-button" onclick="goToTop()">
+                <i class="material-symbols-outlined">
+                    arrow_upward
+                </i>
+            </button>
             </div>
         }
         else
@@ -213,3 +218,10 @@
         }
     </div>
 </div>
+
+<script>
+    function goToTop(){
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0;
+    }
+</script>
