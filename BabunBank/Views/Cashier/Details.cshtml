@@ -4,16 +4,25 @@
     ViewBag.Title = "Customer Details";
     Layout = "_Layout";
 }
+
 <div id="customer-details-bg">
     <div class="container customer">
-        @* <h1 class="success">@TempData["CreatedUser"]</h1> *@
         <div class="customer-card-container">
             <div class="customer-card-left">
                 <h2>@TempData["CreatedUser"]</h2>
                 <table class="data-table">
                     <thead>
                     <tr>
-                        <th>Customer Overview</th>
+                        <th>
+                            <span style="display: flex; gap: 24px">
+                                Customer Overview
+                                <a asp-action="Update" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="inspect-account-button">
+                                    <i class="material-symbols-outlined">
+                                        edit
+                                    </i>
+                                </a>
+                            </span>
+                        </th>
                     </tr>
                     </thead>
                     <tbody>
