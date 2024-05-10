@@ -53,19 +53,14 @@ public class AdminController(
             return View(identityUserModel);
         }
 
-        var createdUser = await IdentityUserFactory.Create(identityUserModel, userManager);
-        // var result = mapper.Map<SignUpModel>(user); //TODO Needed?
-        return RedirectToAction("Details", new { id = createdUser.Id });
+        await IdentityUserFactory.Create(identityUserModel, userManager);
+        return RedirectToAction("Index");
     }
 
-    public async Task<IActionResult> Details(string id)
+    public IActionResult Update(string id)
     {
-        var identityUserViewModel = await identityUserService.GetSingleAsync(id);
-        return View(identityUserViewModel);
-    }
-
-    public IActionResult Update()
-    {
+        var roles = DropDownService.GetRoles();
+        ViewBag.AvailableRoles = roles;
         return View();
     }
 
