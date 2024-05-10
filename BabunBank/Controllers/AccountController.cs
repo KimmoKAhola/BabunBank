@@ -55,7 +55,8 @@ public class AccountController(
         if (await transactionService.CreateDepositAsync(transaction) == null)
             return RedirectToAction("Index", "Error"); //Something went wrong
 
-        return RedirectToAction("Details", new { id = accountViewModel.AccountId });
+        TempData["Message"] = "Deposit Successful!";
+        return RedirectToAction("Details", "Cashier", new { id = accountViewModel.AccountId });
     }
 
     public async Task<IActionResult> Withdraw(int id)
@@ -90,7 +91,12 @@ public class AccountController(
         if (await transactionService.CreateWithdrawalAsync(withdrawal) == null)
             return RedirectToAction("Index", "Error");
 
-        return RedirectToAction("Details", new { id = withdrawAccountViewModel.AccountId });
+        TempData["Message"] = "Withdrawal Successful!";
+        return RedirectToAction(
+            "Details",
+            "Cashier",
+            new { id = withdrawAccountViewModel.AccountId }
+        );
     }
 
     public async Task<IActionResult> Transfer(
@@ -155,7 +161,8 @@ public class AccountController(
         if (resultOfTransfer is null or false)
             return View(transferModel); //TODO return error smth went wrong
 
-        return RedirectToAction("Details", new { id = transferModel.FromAccountId });
+        TempData["Message"] = "Transfer Successful!";
+        return RedirectToAction("Details", "Cashier", new { id = transferModel.FromAccountId });
     }
 
     private async Task GetListOfCustomers(
