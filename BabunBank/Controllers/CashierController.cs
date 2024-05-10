@@ -79,10 +79,15 @@ public class CashierController(
 
     public async Task<IActionResult> Details(int id)
     {
+        var message = TempData["Message"] as string;
+        if (!string.IsNullOrEmpty(message))
+        {
+            ViewBag.Message = message;
+        }
         var result = await customerService.GetCustomerViewModelAsync(id);
         if (result != null)
             return View(result);
-        TempData["ErrorMessage"] = "A CATASTROPHIC ERROR OCCURED!";
+
         return RedirectToAction("Index", "Error");
     }
 
@@ -137,8 +142,7 @@ public class CashierController(
             return RedirectToAction("Index", "Error");
         }
 
-        @TempData["CreatedUser"] =
-            $"Your user {customer.CustomerId} {customer.Givenname} has been created and can be seen below.";
+        TempData["Message"] = "Customer successfully created!";
         return RedirectToAction(nameof(Details), new { id = customer.CustomerId });
     }
 
