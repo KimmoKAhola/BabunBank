@@ -123,20 +123,21 @@ table {
 
 .table-test {
   background-color: #edf2ee;
-  padding: 10px;
   margin: 150px;
 }
 
 .data-table {
   min-width: 50%;
-  margin: 50px 0;
-  padding: 50px;
+  padding: 72px;
+  box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.10);
 }
 
+
 .data-table th, .data-table td {
-  border-bottom: 1px solid rgba(53, 77, 64, 0.5);
+  /*border-bottom: 1px solid rgba(53, 77, 64, 0.5); TODO remove?*/
   text-align: left;
-  padding: 8px;
+  height: 50px;
+  padding: 24px;
   border-left: none;
   border-right: none;
   border-top: none;
@@ -152,11 +153,11 @@ table {
 }
 
 .data-table tbody tr:nth-child(even) {
-  background-color: #fbf3dc;
+  background-color: var(--off-white);
 }
 
 .data-table tbody tr:nth-child(odd) {
-  background-color: #f9eece;
+  background-color: #f8f8f8;
 }
 
 .data-table{
@@ -167,21 +168,13 @@ tbody.body{
   border-bottom: none;
 }
 
-/*.data-table tbody tr:last-child, .data-table tbody{*/
-/*  border-bottom: none;*/
-/*  background-color: transparent;*/
-/*}*/
-
-/*.data-table tbody tr:last-child:hover {*/
-/*  background-color: transparent;*/
-/*}*/
 
 .data-table tbody tr:hover {
-  background-color: #c7c1af;
+  background-color: #f0f0f0;
 }
 
 .data-table tbody tr {
-  margin-bottom: 10px;
+  /*margin-bottom: 10px;*/
 }
 
 .data-table-header {
@@ -525,7 +518,7 @@ a:hover {
 #country-page-bg{
   background-color: rgba(26, 65, 55);
   /*background-color: #edf1ee;*/
-  min-height: 100vh;
+  min-height: 100vh; 
   padding: 72px 0;
   margin-bottom: 72px;
 }
@@ -1083,6 +1076,10 @@ button:hover{
   min-height: 85%;
 }
 
+.update-user-form{
+  min-height: 75%;
+}
+
 .create-user-form{
   min-height: 75%;
 }
@@ -1255,10 +1252,9 @@ a.create-customer-form-btn{
 .customer-filter-form{
   display: flex;
   max-width: 80%;
-  /*width: 100%;*/
-  /*justify-content: center;*/
+  margin-top: 2rem;
   justify-content: space-evenly;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
   gap: 24px;
 }
 
@@ -1523,6 +1519,8 @@ a.create-customer-form-btn{
 }
 
 .blogpost-pagination{
+  margin-top: 72px;
+  margin-bottom: 72px;
   display: flex;
   gap: 24px;
   justify-content: center;
@@ -1676,14 +1674,6 @@ a.create-customer-form-btn{
   transition: 0.2s ease-in;
 }
 
-/*.pagination-inactive-button:hover{*/
-/*  box-shadow: 0 0 3px rgba(0, 0, 0, 0.09);*/
-/*}*/
-
-/*.pagination-active-button:hover{*/
-/*  box-shadow: 0 0 3px rgba(0, 0, 0, 0.17);*/
-/*}*/
-
 #login-bg{
   background-color: var(--off-white);
 }
@@ -1713,6 +1703,41 @@ a.create-customer-form-btn{
   left: 50%;
   width: 250px;
   transform: translate(-50%);
-  /*box-shadow: ;*/
   box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.10);
+}
+
+.admin-table-row{
+  span{
+    display: flex;
+    gap: 5px;
+    > * {
+      flex: 1;
+    }
+  }
+}
+
+.btn-danger{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  height: 50px;
+  border-radius: 0.25rem;
+}
+
+.button-row{
+  display: flex;
+  flex: 1;
+  gap: 24px;
+  > * {
+    width: 100%;
+  }
+}
+
+.admin-table-row{
+ 
+}
+
+.lol{
+  padding: 24px;
 }
