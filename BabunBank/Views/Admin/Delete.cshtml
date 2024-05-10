@@ -1,15 +1,38 @@
-﻿@model BabunBank.Models.ViewModels.Admin.IdentityUserViewModel
+﻿@model BabunBank.Models.FormModels.IdentityUser.DeleteIdentityUserModel
 
 @{
     ViewBag.Title = "Delete";
     Layout = "_Layout";
 }
+<div class="container" style="display: flex; justify-content: center; align-items: center">
+    <form method="post" asp-controller="Admin" asp-action="Delete">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="UserId" value="@Model.UserId">
+        <input type="hidden" asp-for="Username" value="@Model.Username">
 
-<h2>Admin delete</h2>
-<h2>You are about to delete this user, are you sure?</h2>
-<form method="post" asp-controller="Admin" asp-action="DeleteConfirmed">
-    <input type="hidden" name="id" value="@Model.UserId">
-    <input type="hidden" name="username" value="@Model.Username">
-    <button type="submit">Yes</button>
-    <a asp-controller="Admin" asp-action="Index">Cancel</a>
-</form>
+        <span style="text-align: center; margin-bottom: 72px;">
+            <h2>You are about to delete the user @Model.Username. </h2>
+            <h2>This is a destructive action that <em style="text-decoration: underline">can not</em> be reversed.</h2>
+            <h2>Please enter the username @Model.Username to confirm.</h2>
+        </span>
+        
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="ConfirmUsername">Confirm Username</label>
+                <input asp-for="ConfirmUsername" type="text">
+                <span asp-validation-for="ConfirmUsername" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="button-row">
+                <button type="submit" class="btn-danger">Delete</button>
+                <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn">Cancel</a>
+            </span>
+        </div>
+    </form>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}
