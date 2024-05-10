@@ -77,13 +77,7 @@
                             visibility_off
                         </i>
                     </button>
-                    <a asp-action="Update" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">
-                        <span>Edit</span>
-                        <i class="material-symbols-outlined">
-                            edit
-                        </i>
-                    </a>
-
+                    
                     <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="create-customer-form-btn">
                         <span>Return</span>
                         <i class="material-symbols-outlined">
@@ -93,7 +87,7 @@
                 </div>
             </div>
             <div class="customer-card-right">
-                <a asp-action="Delete" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="btn-regret" id="customer-delete-button">
+                <a asp-controller="Cashier" asp-action="Delete" asp-route-id="@Model.CustomerId" class="btn-regret" id="customer-delete-button">
                     <span>
                         Delete
                     </span>
