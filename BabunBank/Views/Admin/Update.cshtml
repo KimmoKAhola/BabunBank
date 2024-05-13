@@ -10,7 +10,6 @@
         <div asp-validation-summary="ModelOnly"></div>
         <input type="hidden" asp-for="UserId">
             
-            
         <div class="create-customer-form-row">
             <span class="Test">
                 <label asp-for="Email"></label>
@@ -41,8 +40,8 @@
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="UserRole"></label>
-                <select asp-for="UserRole" name="GenderRole" id="GenderRole" class="enum-dropdown">
+                <label asp-for="UserRole">User Role</label>
+                <select asp-for="UserRole" name="UserRole" id="UserRole" class="enum-dropdown">
                     @foreach (var userRole in @ViewBag.AvailableRoles as List<SelectListItem>)
                     {
                         <option value="@userRole.Value">@userRole.Text</option>
@@ -52,16 +51,9 @@
             </span>
         </div>
             
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <button type="submit" class="create-customer-form-btn">
-                    Save changes
-                </button>
-            </span>
-
-            <span class="Test">
+        <div class="button-row">
+                <button type="submit" class="create-customer-form-btn">Save changes</button>
                 <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn">Go back</a>
-            </span>
         </div>
     </form>
 </div>
