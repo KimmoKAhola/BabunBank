@@ -1,14 +1,12 @@
-﻿@using Microsoft.AspNetCore.Identity
-@model IEnumerable<BabunBank.Models.ViewModels.Admin.IdentityUserViewModel>
-@inject SignInManager<IdentityUser> SignInManager
+﻿@model IEnumerable<BabunBank.Models.ViewModels.Admin.IdentityUserViewModel>
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
 <div class="container">
-    <table class="data-table" style="margin-bottom: 72px">
-        <thead>
+    <table class="data-table" style="margin: 72px 0">
+        <thead class="header">
         <tr>
             <th>Username</th>
             <th>Email</th>
@@ -41,7 +39,9 @@
         </tbody>
     </table>
     <div class="button-row" style="margin-bottom: 72px">
-        <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Go back</a>
+        <div></div>
         <a asp-controller="Admin" asp-action="Create" class="create-customer-form-btn">Create a new user</a>
+        <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Go back</a>
+        <div></div>
     </div>
 </div>
