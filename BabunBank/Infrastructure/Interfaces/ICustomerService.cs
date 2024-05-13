@@ -21,4 +21,6 @@ public interface ICustomerService
         Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary modelState
     );
     Task<bool?> DeleteCustomerAsync(int id);
+
+    Task<bool?> AddAccountToCustomerAsync(int id);
 }
