@@ -233,6 +233,14 @@ public class CashierController(
         return View(resultOfInspection);
     }
 
+    public async Task<IActionResult> CreateAccount(int id)
+    {
+        var createNewAccount = await customerService.AddAccountToCustomerAsync(id);
+        if (createNewAccount is false or null)
+            return RedirectToAction("Index", "Error");
+        return RedirectToAction("Details", "Cashier", new { id });
+    }
+
     public async Task<IActionResult> ScaleGraphs(
         int id,
         string color,
