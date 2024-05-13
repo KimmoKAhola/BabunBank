@@ -27,6 +27,7 @@
             </span>
         </div>
         <input type="hidden" asp-for="AccountId">
+        <input type="hidden" asp-for="CustomerId">
         <input type="hidden" asp-for="Type">
         <input type="hidden" asp-for="Operation">
         <input type="hidden" asp-for="Balance">
@@ -36,7 +37,7 @@
         
         <div class="button-row">
             <button type="submit" class="create-customer-form-btn">Create Withdrawal</button>
-            <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Return</a>
+            <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
         </div>
     </form>
 </div>
