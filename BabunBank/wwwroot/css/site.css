@@ -499,44 +499,45 @@ a:hover {
   gap: 12px;
 }
 
-
-.brand-section img:hover{
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+.landing-page{
+  display: grid;
+  grid-template-columns: 1fr auto;
 }
 
-/*Landing page view here*/
 #country-page-bg{
-  background-color: rgba(26, 65, 55);
-  /*background-color: #edf1ee;*/
+  background-color: #eaf3ee;
   min-height: 100vh; 
   padding: 72px 0;
   margin-bottom: 72px;
 }
 
 #landing-page-body{
+  display: flex;
+  flex-direction: column;
   margin-bottom: 72px;
 }
+
 
 #landing-page-body h2{
   font-size: 64px;
   font-style: normal;
   font-weight: 700;
-  line-height: 72px; /* 112.5% */
-  /*color: #0A4020;*/
-  color: #ffdb1e;
+  line-height: 72px;
+  color: #094020;
+  text-align: left;
 }
 
 #landing-page-body h3{
-  /*color: #19352D;*/
-  color: #FFDB1E;
+  color: rgba(0, 0, 0, 0.7);
   font-size: 24px;
   font-style: normal;
   font-weight: 400;
-  line-height: 38px; /* 158.333% */
+  line-height: 38px;
 }
 
 #landing-page-body p{
-  color: #FFFFFFB2;
+  color: rgba(0, 0, 0, 0.7);
+  text-align: left;
 }
 
 #landing-page-body #header{
@@ -546,21 +547,22 @@ a:hover {
 
 
 .landing-page-info{
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  margin-bottom: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 72px;
 }
 
 .landing-page-summary{
-  display: grid;
-  place-items: center;
+  display: flex;
+  align-items: center;
+  gap: 36px;
   div{
     display: grid;
     gap: 12px;
-    place-items: center;
+    place-items: start;
   }
   p{
-    text-align: center;
+    text-align: left;
   }
   .arrow{
     padding-bottom: 72px;
@@ -571,7 +573,7 @@ a:hover {
   display: grid;
   justify-content: center;
   grid-template-columns: repeat(2, minmax(300px,35%));
-  gap: 72px 160px;
+  gap: 36px 160px;
   min-height: 100vh;
   height: fit-content;
   margin-bottom: 48px;
@@ -581,11 +583,13 @@ a:hover {
   background-color: var(--off-white);
   padding: 24px;
   border-radius: 20px;
+  min-width: 500px;
   height: 400px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: 0.2s ease-in;
+  box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.10);
 }
 
 
