@@ -6,5 +6,10 @@ namespace BabunBank.Infrastructure.Interfaces;
 public interface IAccountService
 {
     Task<AccountViewModel?> GetAccountViewModelAsync(int id);
-    Task<IEnumerable<Account>> RenameMe(int id, int pageNumber, int pageSize, string q);
+    Task<(IEnumerable<Account>, int NumberOfAccounts)> RenameMe(
+        int id,
+        int pageNumber,
+        int pageSize,
+        string q
+    );
 }

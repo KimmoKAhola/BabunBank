@@ -27,7 +27,12 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
         return accountViewModel;
     }
 
-    public async Task<IEnumerable<Account>> RenameMe(int id, int pageNumber, int pageSize, string q)
+    public async Task<(IEnumerable<Account>, int NumberOfAccounts)> RenameMe(
+        int id,
+        int pageNumber,
+        int pageSize,
+        string q
+    )
     {
         var result = await dataAccountService.GetAllAccountsAndCustomersAsync(
             id,
