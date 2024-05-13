@@ -13,6 +13,7 @@
     <div class="transfer-filter">
         <form method="post" asp-controller="Account" asp-action="Filter">
             <input type="hidden" asp-for="FromAccountId">
+            <input type="hidden" asp-for="FromCustomerId">
             <input type="hidden" asp-for="Date">
             <input type="hidden" asp-for="OperationSender">
             <input type="hidden" asp-for="OperationReceiver">
@@ -69,6 +70,7 @@
         </div>
 
         <input type="hidden" asp-for="FromAccountId">
+        <input type="hidden" asp-for="FromCustomerId">
         <input type="hidden" asp-for="OperationSender">
         <input type="hidden" asp-for="OperationReceiver">
         <input type="hidden" asp-for="BalanceSender">
@@ -93,7 +95,7 @@
                         <tr>
                             <td id="transfer-radio"><input class="transfer-radio-button" type="radio" name="ToAccountId" asp-route-test="@account.AccountId" value="@account.AccountId"> @account.AccountId</td>
                             <td>@account.Dispositions.First().CustomerId</td>
-                            <td>@account.Dispositions.First().Customer.Givenname @account.Dispositions.First().Customer.Surname</td>
+                            <td>@account.Dispositions.First().Customer.Givenname @account.Dispositions.First().Customer.Surname @if(@Model.FromCustomerId == @account.Dispositions.First().CustomerId){<span>(your account)</span>}</td>
                             <td>@account.Balance.ToString("C2", new CultureInfo("sv-SE"))</td>
                         </tr>
 
