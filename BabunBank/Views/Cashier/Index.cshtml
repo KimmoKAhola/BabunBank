@@ -6,9 +6,9 @@
     ViewBag.Title = "Account title";
     Layout = "_Layout";
 }
-<div id="customer-bg">
+<div id="customer-bg" style="margin-bottom: 72px">
     <div class="customer-container">
-        <form class="customer-filter-form" method="get" action="@Url.Action("Index", "Cashier")">
+        <form style="margin-top: 72px" class="customer-filter-form" method="get" action="@Url.Action("Index", "Cashier")">
             <div class="form-group" id="cashier-search-bar">
                 <input name="q" value="@ViewBag.Q" placeholder="Search here....">
             </div>
@@ -39,7 +39,7 @@
         </span>
         @if (ViewBag.TotalPageCount > 0)
         {
-            <table class="data-table" id="data-table">
+            <table style="margin-top:36px" class="data-table" id="data-table">
                 <thead class="header">
                 <tr>
                     <th>
