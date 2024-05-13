@@ -1,8 +1,9 @@
 ﻿using AutoMapper;
 using BabunBank.Infrastructure.Interfaces;
+using BabunBank.Models.FormModels.IdentityUser;
 using BabunBank.Models.ViewModels.Admin;
 using DataAccessLibrary.DataServices;
-using Microsoft.AspNetCore.Identity;
+using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 
 namespace BabunBank.Services;
 
@@ -45,16 +46,19 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
         return await dataIdentityUserService.CreateAsync(model);
     }
 
+    public async Task<bool> UpdateAsync(UpdateIdentityUserModel model)
+    {
+        if (await dataIdentityUserService.CheckUserExistsByEmail(model.Email))
+        {
+            return false;
+        }
+        return await dataIdentityUserService.UpdateAsync(model.Email);
+    }
+
     public async Task<bool> DeleteAsync(string id)
     {
         return await dataIdentityUserService.DeleteAsync(id);
     }
-
-    //TODO Can be deleted?
-    // public async Task<bool> CheckIfExistsByUsernameAsync(string username)
-    // {
-    //     return await dataIdentityUserService.CheckUserExistsByUserName(username);
-    // }
 
     public async Task<bool> CheckIfExistsByEmailAsync(string email)
     {
