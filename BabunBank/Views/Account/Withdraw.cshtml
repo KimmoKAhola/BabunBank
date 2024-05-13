@@ -1,33 +1,42 @@
 ﻿@using System.Globalization
-@model BabunBank.Models.FormModels.TransferModels.CreateWithdrawalModel
+@model BabunBank.Models.FormModels.Transactions.CreateWithdrawalModel
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
 
-<h2>Cashier Withdraw</h2>
-<div class="container">
-    <h2>Cashier Deposit</h2>
-    <h2>Your current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
+<div class="container withdraw">
     <form method="post" asp-controller="Account" asp-action="Withdraw">
         <div asp-validation-summary="ModelOnly"></div>
+            
+        <div class="create-customer-form-row">
+            <h2>Your current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
+        </div>
         <div class="create-customer-form-row">
             <span class="Test">
                 <label asp-for="Amount">Deposit amount</label>
                 <input asp-for="Amount" type="number">
                 <span asp-validation-for="Amount"></span>
             </span>
+
+            <span class="Test">
+                <label asp-for="Date">Transaction Date</label>
+                <input asp-for="Date" type="date">
+                <span asp-validation-for="Date"></span>
+            </span>
         </div>
         <input type="hidden" asp-for="AccountId">
-        <input type="hidden" asp-for="Date">
         <input type="hidden" asp-for="Type">
         <input type="hidden" asp-for="Operation">
         <input type="hidden" asp-for="Balance">
         <input type="hidden" asp-for="Symbol">
         <input type="hidden" asp-for="Bank">
         <input type="hidden" asp-for="Account">
-        <button type="submit" class="create-customer-form-btn">Create Withdrawal</button>
+        
+        <div class="button-row">
+            <button type="submit" class="create-customer-form-btn">Create Withdrawal</button>
+            <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.AccountId" class="create-customer-form-btn">Return</a>
+        </div>
     </form>
-    <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.AccountId" class="btn-primary">Return</a>
 </div>
