@@ -143,23 +143,24 @@
                 </tbody>
             </table>
             <div class="blogpost-pagination" style="margin-bottom: 72px">
-                <a asp-controller="Cashier"
-                   asp-action="Index"
-                   asp-route-sortColumn="@ViewBag.SortColumn"
-                   asp-route-sortOrder="@ViewBag.SortOrder"
-                   asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-                   asp-route-q="@ViewBag.Q"
-                   asp-route-pageSize="@ViewBag.PageSize">
-                    First
-                </a>
-                <a asp-controller="Cashier"
-                   asp-action="Index"
-                   asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-                   asp-route-pageSize="@ViewBag.PageSize" class="create-customer-form-btn">
-                    Prev
-                </a>
                 @if (ViewBag.CurrentPage > 1)
                 {
+                    <a asp-controller="Cashier"
+                       asp-action="Index"
+                       asp-route-sortColumn="@ViewBag.SortColumn"
+                       asp-route-sortOrder="@ViewBag.SortOrder"
+                       asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+                       asp-route-q="@ViewBag.Q"
+                       asp-route-pageSize="@ViewBag.PageSize">
+                        First
+                    </a>
+                    <a asp-controller="Cashier"
+                       asp-action="Index"
+                       asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+                       asp-route-pageSize="@ViewBag.PageSize" class="create-customer-form-btn">
+                        Prev
+                    </a>
+                
                     <a class="pagination-inactive-button"
                        asp-controller="Cashier"
                        asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
@@ -189,27 +190,30 @@
                 {
                     <a></a>
                 }
-                <a asp-route-sortColumn="@ViewBag.SortColumn"
-                   asp-route-sortOrder="@ViewBag.SortOrder"
-                   asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
-                   asp-route-q="@ViewBag.Q"
-                   asp-route-pageSize="@ViewBag.PageSize"
-                   asp-controller="Cashier"
-                   asp-action="Index"
-                   class="create-customer-form-btn">
-                    Next
-                </a>
-                <a asp-controller="Cashier"
-                   asp-action="Index"
-                   asp-route-pageNumber="@ViewBag.TotalPageCount"
-                   asp-route-pageSize="@ViewBag.PageSize">
-                    Last
-                </a>
-            <button id="goToTop-button" onclick="goToTop()">
-                <i class="material-symbols-outlined">
-                    arrow_upward
-                </i>
-            </button>
+                @if (ViewBag.CurrentPage < ViewBag.TotalPageCount)
+                {
+                    <a asp-route-sortColumn="@ViewBag.SortColumn"
+                       asp-route-sortOrder="@ViewBag.SortOrder"
+                       asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
+                       asp-route-q="@ViewBag.Q"
+                       asp-route-pageSize="@ViewBag.PageSize"
+                       asp-controller="Cashier"
+                       asp-action="Index"
+                       class="create-customer-form-btn">
+                        Next
+                    </a>
+                    <a asp-controller="Cashier"
+                       asp-action="Index"
+                       asp-route-pageNumber="@ViewBag.TotalPageCount"
+                       asp-route-pageSize="@ViewBag.PageSize">
+                        Last
+                    </a>
+                }
+                <button id="goToTop-button" onclick="goToTop()">
+                    <i class="material-symbols-outlined">
+                        arrow_upward
+                    </i>
+                </button>
             </div>
         }
         else

@@ -14,18 +14,19 @@
         </div>
         
         <div class="blogpost-pagination">
-            <a asp-controller="News"
-               asp-route-pageNumber="1"
-               asp-route-pageSize="@ViewBag.PageSize">
-                First
-            </a>
-            <a asp-controller="News"
-               asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-               asp-route-pageSize="@ViewBag.PageSize" class="create-customer-form-btn">
-                Prev
-            </a>
             @if (ViewBag.CurrentPage > 1)
             {
+                <a asp-controller="News"
+                   asp-route-pageNumber="1"
+                   asp-route-pageSize="@ViewBag.PageSize">
+                    First
+                </a>
+                <a asp-controller="News"
+                   asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+                   asp-route-pageSize="@ViewBag.PageSize" class="create-customer-form-btn">
+                    Prev
+                </a>
+                
                 <a class="pagination-inactive-button" asp-controller="News"
                    asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
                    asp-route-pageSize="@ViewBag.PageSize">
@@ -52,17 +53,21 @@
             {
                 <a></a>
             }
-            <a asp-controller="News"
-               asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
-               asp-route-pageSize="@ViewBag.PageSize"
-               class="create-customer-form-btn">
-                Next
-            </a>
-            <a asp-controller="News"
-               asp-route-pageNumber="@ViewBag.TotalPageCount"
-               asp-route-pageSize="@ViewBag.PageSize">
-                Last
-            </a>
+
+            @if (ViewBag.CurrentPage < ViewBag.TotalPageCount)
+            {
+                <a asp-controller="News"
+                   asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
+                   asp-route-pageSize="@ViewBag.PageSize"
+                   class="create-customer-form-btn">
+                    Next
+                </a>
+                <a asp-controller="News"
+                   asp-route-pageNumber="@ViewBag.TotalPageCount"
+                   asp-route-pageSize="@ViewBag.PageSize">
+                    Last
+                </a>
+            }
         </div>
     </div>
 </div>
