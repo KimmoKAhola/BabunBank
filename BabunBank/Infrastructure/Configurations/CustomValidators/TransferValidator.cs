@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.TransferModels;
+﻿using BabunBank.Models.FormModels.Transactions;
 using FluentValidation;
 
 namespace BabunBank.Infrastructure.Configurations.CustomValidators;
