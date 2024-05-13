@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using BabunBank.Infrastructure.Configurations.CustomAnnotations;
 
-namespace BabunBank.Models.FormModels.TransferModels;
+namespace BabunBank.Models.FormModels.Transactions;
 
 public record CreateWithdrawalModel
 {
@@ -9,6 +9,7 @@ public record CreateWithdrawalModel
     public int AccountId { get; init; }
 
     [Required]
+    [DateTransactionCheck]
     public DateOnly Date { get; init; }
 
     [Required]

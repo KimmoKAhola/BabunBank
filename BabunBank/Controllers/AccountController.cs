@@ -1,7 +1,7 @@
 ﻿using BabunBank.Factories;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
-using BabunBank.Models.FormModels.TransferModels;
+using BabunBank.Models.FormModels.Transactions;
 using BabunBank.Models.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

@@ -3,6 +3,7 @@ using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.IdentityUser;
+using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -57,11 +58,35 @@ public class AdminController(
         return RedirectToAction("Index");
     }
 
-    public IActionResult Update(string id)
+    public async Task<IActionResult> Update(string id)
     {
         var roles = DropDownService.GetRoles();
         ViewBag.AvailableRoles = roles;
-        return View();
+        var identityUserViewModel = await identityUserService.GetSingleAsync(id);
+
+        var updateModel = new UpdateIdentityUserModel
+        {
+            UserId = identityUserViewModel.UserId,
+            Email = identityUserViewModel.Email,
+            UserRole = (UserRole)Enum.Parse(typeof(UserRole), identityUserViewModel.RoleName)
+        };
+
+        return View(updateModel);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Update(UpdateIdentityUserModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
+
+        var resultOfUpdate = await identityUserService.UpdateAsync(model);
+        if (resultOfUpdate)
+            return RedirectToAction("Index", "Admin");
+
+        return View(model);
     }
 
     [HttpGet]

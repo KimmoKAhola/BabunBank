@@ -1,4 +1,4 @@
-﻿using BabunBank.Models.FormModels.TransferModels;
+﻿using BabunBank.Models.FormModels.Transactions;
 using DataAccessLibrary.Data;
 
 namespace BabunBank.Infrastructure.Interfaces;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using BabunBank.Models.FormModels.Customer;
 using BabunBank.Models.FormModels.IdentityUser;
-using BabunBank.Models.FormModels.TransferModels;
+using BabunBank.Models.FormModels.Transactions;
 using BabunBank.Models.ViewModels.Account;
 using BabunBank.Models.ViewModels.Customer;
 using BabunBank.Models.ViewModels.Transaction;

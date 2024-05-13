@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using BabunBank.Infrastructure.Configurations.CustomAnnotations;
 
-namespace BabunBank.Models.FormModels.TransferModels;
+namespace BabunBank.Models.FormModels.Transactions;
 
 public record CreateTransferModel
 {
@@ -19,6 +19,7 @@ public record CreateTransferModel
     public decimal Amount { get; init; }
 
     [Required]
+    [DateTransactionCheck]
     public DateOnly Date { get; init; } = DateOnly.FromDateTime(DateTime.Now);
 
     [Required]
