@@ -406,6 +406,13 @@ a:hover {
   gap: 25px;
 }
 
+.footer-logo{
+  img{
+    height: 26px;
+    width: 26px;
+  }
+}
+
 /*Alternative footer ends here*/
 
 
