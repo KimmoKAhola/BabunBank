@@ -37,12 +37,11 @@ public class AccountController(DataAccountService dataAccountService, IMapper ma
 
             return Ok(accountViewModel);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            // Log the exception here
             return StatusCode(
                 StatusCodes.Status500InternalServerError,
-                $"Error retrieving data from the database"
+                "Error retrieving data from the database"
             );
         }
     }
@@ -87,7 +86,7 @@ public class AccountController(DataAccountService dataAccountService, IMapper ma
 
             return Ok(accountViewModel);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             return BadRequest("Wrong parameters provided");
         }
