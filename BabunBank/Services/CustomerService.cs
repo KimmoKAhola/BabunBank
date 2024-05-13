@@ -99,6 +99,8 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
     {
         var customer = await dataCustomerService.GetAsync(id);
         if (customer == null)
+            return null;
+        if (customer.Dispositions.Count >= MaximumNumberOfAccounts)
             return false;
         var newAccount = AccountFactory.Create();
         customer.Dispositions.Add(
@@ -112,6 +114,8 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
 
         return await dataCustomerService.UpdateAsync(customer);
     }
+
+    private const int MaximumNumberOfAccounts = 5;
 
     public async Task<bool?> UpdateCustomerAsync(
         EditCustomerModel customerModel,
