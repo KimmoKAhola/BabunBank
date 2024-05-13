@@ -1,4 +1,5 @@
-﻿@model BabunBank.Models.ViewModels.Customer.CustomerViewModel
+﻿@using System.Globalization
+@model BabunBank.Models.ViewModels.Customer.CustomerViewModel
 
 @{
     ViewBag.Title = "Customer Details";
@@ -7,10 +8,9 @@
 
 <div id="customer-details-bg">
     <div class="container customer">
-        <div class="customer-card-container">
+        <div style="margin-bottom: 72px" class="customer-card-container">
             <div class="customer-card-left">
-                <h2>@TempData["CreatedUser"]</h2>
-                <table class="data-table">
+                <table style="margin-bottom: 72px" class="customer-data-table">
                     <thead>
                     <tr>
                         <th>
@@ -42,30 +42,42 @@
                         <td>Country: @Model.Country</td>
                     </tr>
                     <tr>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>List of all customer accounts</td>
+                    </tr>
+                    <tr>
                     @foreach (var account in Model.CustomerAccounts)
                     {
-                        <td style="display: flex; align-items: center; gap: 12px">
-                            Account Id: @account.AccountId (@account.Type)
-                            <a asp-controller="Cashier" asp-action="Inspect" asp-route-id="@account.AccountId" class="inspect-account-button"><i class="material-symbols-outlined">search</i></a>
-                            
-                            <a asp-controller="Account" asp-action="Deposit" asp-route-id="@account.AccountId" class="inspect-account-button">
-                                <i class="material-symbols-outlined">
-                                    add_circle
-                                </i>
-                            </a>
-                            <a asp-controller="Account" asp-action="Withdraw" asp-route-id="@account.AccountId" class="inspect-account-button">
-                                <i class="material-symbols-outlined">
-                                    remove
-                                </i>
-                            </a>
-                            <a asp-controller="Account" asp-action="Transfer" asp-route-id="@account.AccountId" class="inspect-account-button">
-                                <i class="material-symbols-outlined">
-                                    input
-                                </i>
-                            </a>
-                            
+                        <td class="customer-data-table-accounts" style="display: flex; justify-content: space-between; align-items: center; gap: 24px">
+                            <div>
+                                @account.AccountId (@account.Type) - @account.Transactions.Sum(a => a.Amount).ToString("C2", new CultureInfo("sv-SE"))
+                            </div>
+                            <div style="display: flex; gap: 12px">
+                                <a asp-controller="Cashier" asp-action="Inspect" asp-route-id="@account.AccountId" class="inspect-account-button"><i class="material-symbols-outlined">search</i></a>
+
+                                <a asp-controller="Account" asp-action="Deposit" asp-route-id="@account.AccountId" class="inspect-account-button">
+                                    <i class="material-symbols-outlined">
+                                        add_circle
+                                    </i>
+                                </a>
+                                <a asp-controller="Account" asp-action="Withdraw" asp-route-id="@account.AccountId" class="inspect-account-button">
+                                    <i class="material-symbols-outlined">
+                                        remove
+                                    </i>
+                                </a>
+                                <a asp-controller="Account" asp-action="Transfer" asp-route-id="@account.AccountId" class="inspect-account-button">
+                                    <i class="material-symbols-outlined">
+                                        input
+                                    </i>
+                                </a>
+                            </div>
                         </td>
                     }
+                    <tr>
+                        <td>Sum of all accounts: @Model.CustomerAccounts.Sum(a => a.Balance).ToString("C2", new CultureInfo("sv-SE"))</td>
+                    </tr>
                     </tbody>
                 </table>
                 <div class="customer-card-crud">
@@ -79,16 +91,13 @@
                     </button>
                     
                     <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="create-customer-form-btn">
-                        <span>Return</span>
                         <i class="material-symbols-outlined">
                             keyboard_return
                         </i>
                     </a>
-@* TODO Add an icon for create account *@
                     <a asp-action="CreateAccount" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">
-                        <span>Return</span>
                         <i class="material-symbols-outlined">
-                            keyboard_return
+                            account_balance
                         </i>
                     </a>
                 </div>
@@ -110,13 +119,13 @@
                 {
                     <img src="https://avatar.iran.liara.run/public/girl" alt="TODO">
                 }
-                <h2 class="customer-card-profile-name">@Model.GivenName @Model.Surname</h2>
             </div>
         </div>
-        <table class="data-table" id="transactionTable">
+        <table style="margin-bottom: 72px" class="data-table" id="transactionTable">
             <thead>
             <tr>
                 <th>Transaction Id</th>
+                <th>Account Id</th>
                 <th>Transaction Date</th>
                 <th>Transaction Amount</th>
                 <th>Transaction Balance</th>
@@ -126,7 +135,7 @@
             <tbody>
             </tbody>
         </table>
-        <span style="display: flex; gap: 24px">
+        <span style="display: flex; justify-content: center; gap: 24px">
             <button id="loadMore-button" onclick="showMore()">Load More</button>
             <button id="goToTop-button" onclick="goToTop()">
                 <i class="material-symbols-outlined">
@@ -167,6 +176,7 @@
             let table = document.querySelector("#transactionTable tbody");
             let row = `<tr>
                             <td>${transaction.transactionId}</td>
+                            <td>${transaction.accountId}</td>
                             <td>${formatDate(transaction.date)}</td>
                             <td>${formatCurrency(transaction.amount)}</td>
                             <td>${formatCurrency(transaction.balance)}</td>
@@ -223,3 +233,32 @@
         }
     });
 </script>
+<script>
+    $(document).ready(function () {
+    toastr.options = {
+        "positionClass" : "toast-bottom-center",
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "hideEasing": "swing",
+        "showEasing": "swing",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut",
+        "toastClass" : "custom-toast-notification"
+    };
+    @if (!string.IsNullOrEmpty(ViewBag.Notification))
+    {
+    <text>
+    toastr.warning('@ViewBag.Notification');
+    </text>
+    }
+    });
+</script>
+<style>
+    .custom-toast-notification {
+        background-color: #ff6347; /* Change to your desired background color */
+        color: #ffffff; /* Change to your desired text color */
+    }
+</style>
+}
