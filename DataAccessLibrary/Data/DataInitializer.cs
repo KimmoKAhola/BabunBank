@@ -13,52 +13,52 @@ public enum UserRole
 
 public class DataInitializer(BankAppDataContext dbContext, UserManager<IdentityUser> userManager)
 {
-    public async Task SeedData()
+    public void SeedData()
     {
-        await dbContext.Database.MigrateAsync();
-        await SeedRoles();
-        await SeedUsers();
+        dbContext.Database.Migrate();
+        SeedRoles();
+        SeedUsers();
     }
 
     // Här finns möjlighet att uppdatera dina användares loginuppgifter
-    private async Task SeedUsers()
+    private void SeedUsers()
     {
-        await AddUserIfNotExists(
+        AddUserIfNotExists(
             "richard.chalk@systementor.se",
             "Hejsan123#",
             new UserRole[] { UserRole.Admin }
         );
-        await AddUserIfNotExists(
+        AddUserIfNotExists(
             "richard.chalk@customer.systementor.se",
             "Hejsan123#",
             new UserRole[] { UserRole.Customer }
         ); //TODO this should be removed later
-        await AddUserIfNotExists(
+        AddUserIfNotExists(
             "richard.erdos.chalk@gmail.se",
             "Hejsan123#",
             new UserRole[] { UserRole.Cashier }
         );
-        await AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", new UserRole[] { UserRole.Admin });
+        AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", new UserRole[] { UserRole.Admin });
     }
 
     // Här finns möjlighet att uppdatera dina användares roller
-    private async Task SeedRoles()
+    private void SeedRoles()
     {
-        await AddRoleIfNotExisting(UserRole.Admin.ToString());
-        await AddRoleIfNotExisting(UserRole.Cashier.ToString());
-        await AddRoleIfNotExisting(UserRole.Customer.ToString()); // TODO remove this role later
+        AddRoleIfNotExisting(UserRole.Admin.ToString());
+        AddRoleIfNotExisting(UserRole.Cashier.ToString());
+        AddRoleIfNotExisting(UserRole.Customer.ToString()); // TODO remove this role later
     }
 
-    private async Task AddRoleIfNotExisting(string roleName)
+    private void AddRoleIfNotExisting(string roleName)
     {
-        var role = await dbContext.Roles.FirstOrDefaultAsync(r => r.Name == roleName);
+        var role = dbContext.Roles.FirstOrDefault(r => r.Name == roleName);
         if (role != null)
             return;
         dbContext.Roles.Add(new IdentityRole { Name = roleName, NormalizedName = roleName });
-        await dbContext.SaveChangesAsync();
+        dbContext.SaveChanges();
     }
 
-    private async Task AddUserIfNotExists(string userName, string password, UserRole[] roles)
+    private void AddUserIfNotExists(string userName, string password, UserRole[] roles)
     {
         if (userManager.FindByEmailAsync(userName).Result != null)
             return;
@@ -70,10 +70,10 @@ public class DataInitializer(BankAppDataContext dbContext, UserManager<IdentityU
             EmailConfirmed = true
         };
 
-        await userManager.CreateAsync(user, password);
+        userManager.CreateAsync(user, password).Wait();
 
         string[] roleNames = roles.Select(role => role.ToString()).ToArray();
 
-        await userManager.AddToRolesAsync(user, roleNames);
+        userManager.AddToRolesAsync(user, roleNames).Wait();
     }
 }

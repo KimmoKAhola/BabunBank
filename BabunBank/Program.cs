@@ -1,17 +1,15 @@
 using BabunBank.Infrastructure.Configurations.AutoMapper;
 using BabunBank.Infrastructure.Configurations.Dependencies;
-using BabunBank.Infrastructure.Configurations.HttpClients;
-using BabunBank.Infrastructure.Interfaces;
-using BabunBank.Models.ViewModels.ApiBlog;
 using DataAccessLibrary.Data;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace BabunBank
 {
     public class Program
     {
-        public static async Task Main(string[] args)
+        public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -31,6 +29,22 @@ namespace BabunBank
                 )
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BankAppDataContext>();
+
+            builder.Services.AddResponseCaching();
+            builder.Services.AddControllers(options =>
+            {
+                options.CacheProfiles.Add(
+                    "Default30",
+                    new CacheProfile
+                    {
+                        Duration = 30,
+                        VaryByQueryKeys = ["country"],
+                        Location = ResponseCacheLocation.Any,
+                        NoStore = false
+                    }
+                );
+            });
+
             builder.Services.AddControllersWithViews();
 
             RepositoryConfiguration.Configure(builder.Services);
@@ -62,6 +76,9 @@ namespace BabunBank
 
             app.UseRouting();
 
+            app.UseCors();
+            app.UseResponseCaching();
+
             app.UseAuthorization();
 
             app.MapControllerRoute(
@@ -71,9 +88,9 @@ namespace BabunBank
 
             app.MapRazorPages();
 
-            await using var scope = app.Services.CreateAsyncScope();
-            await scope.ServiceProvider.GetService<DataInitializer>()!.SeedData();
-            await app.RunAsync();
+            using var scope = app.Services.CreateScope();
+            scope.ServiceProvider.GetService<DataInitializer>()!.SeedData();
+            app.Run();
         }
     }
 }
