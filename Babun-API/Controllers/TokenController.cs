@@ -6,7 +6,6 @@ using Babun_API.Infrastructure.Configurations;
 using Babun_API.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Babun_API.Controllers;
@@ -124,12 +123,5 @@ public class TokenController(
         {
             return Ok(e + "\n" + e.Message + "\n" + e.InnerException);
         }
-    }
-
-    [HttpGet]
-    public async Task<IActionResult> Test()
-    {
-        var res = await userManager.Users.ToListAsync();
-        return Ok(res);
     }
 }
