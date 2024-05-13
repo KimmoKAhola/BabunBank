@@ -13,7 +13,7 @@ using Controller = Microsoft.AspNetCore.Mvc.Controller;
 
 namespace BabunBank.Controllers;
 
-[Authorize(Roles = $"{UserRoleNames.Cashier}, {UserRoleNames.Admin}")] //TODO add these to relevant pages
+[Authorize(Roles = $"{UserRoleNames.Cashier}, {UserRoleNames.Admin}")]
 public class CashierController(
     ICustomerService customerService,
     IMoneyLaunderingService moneyLaunderingService,
