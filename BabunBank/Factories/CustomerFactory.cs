@@ -12,8 +12,8 @@ public static class CustomerFactory
         try
         {
             var customer = mapper.Map<SignUpCustomerModel, Customer>(model);
-            customer.Gender = Enum.GetName(typeof(GenderOptions), model.GenderRole);
-            customer.Country = Enum.GetName(typeof(CountryOptions), model.Country);
+            customer.Gender = Enum.GetName(typeof(GenderOptions), model.GenderRole)!;
+            customer.Country = Enum.GetName(typeof(CountryOptions), model.Country)!;
             return customer;
         }
         catch (Exception e)
