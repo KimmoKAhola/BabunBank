@@ -5,15 +5,40 @@
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
-
-<h2>Top 10 in @Model.First().Country</h2>
-<a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return to home</a>
 <div class="container">
-    @foreach (var customer in Model)
-    {
-        <hp>Customer Id: @customer.CustomerId</hp>
-        <hp>Account Id: @customer.AccountId</hp>
-        <hp>Name @customer.Name</hp>
-        <hp style="margin-bottom: 24px">Account sum: @customer.AccountSum.ToString("C2", new CultureInfo("sv-SE"))</hp>
-    }
+    <h2 style="text-align: center; margin-top: 72px; font-size: 48px">The top 10 customers in @Model.First().Country</h2>
+    <table class="data-table" style="margin: 72px 0">
+        <tr>
+            <th>Customer Id</th>
+            <th>Account Id</th>
+            <th>Customer Name</th>
+            <th>Account Sum</th>
+        </tr>
+        <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>Customer Id: @customer.CustomerId</td>
+                <td>Account Id: @customer.AccountId</td>
+                <td>Name @customer.Name</td>
+                <td>Account sum: @customer.AccountSum.ToString("C2", new CultureInfo("sv-SE"))</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+    <div class="button-row" style="margin-bottom: 72px">
+        <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return to home</a>
+        <button id="goToTop-button" onclick="goToTop()">
+            <i class="material-symbols-outlined">
+                arrow_upward
+            </i>
+        </button>
+    </div>
 </div>
+
+<script>
+    function goToTop(){
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0;
+    }
+</script>
