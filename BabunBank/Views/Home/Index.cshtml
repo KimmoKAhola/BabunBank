@@ -15,44 +15,36 @@
 </div>
 
 <div id="country-page-bg">
-    <div class="container">
+    <div class="container landing-page">
         <div id="landing-page-body">
             <div id="header">
-                <h2>Providing quality services since 2013</h2>
-                <p>We have...</p>
+                <h2 style="margin-bottom: 36px">Providing quality services since 2013</h2>
+                <p>We are currently serving more than...</p>
             </div>
             <div class="landing-page-info">
                 <div class="landing-page-summary">
+                    <img src="~/images/landing-page-icon-accounts.svg" alt="TODO">
                     <div>
-                        <img class="landing-page-icon" src="~/images/landing-page-icon-accounts.svg" alt="TODO">
                         <h3>
                             @Model.Sum(x => x.NumberOfCustomers) accounts
                         </h3>
                         <p>From the nordic countries</p>
                     </div>
                 </div>
-                
-                <div class="landing-page-summary">
-                    <img class="arrow" src="~/images/landing-page-arrow.svg" alt="TODO">
-                </div>
 
                 <div class="landing-page-summary">
+                    <img src="~/images/landing-page-icon-customer.svg" alt="TODO">
                     <div>
-                        <img class="landing-page-icon" src="~/images/landing-page-icon-customer.svg" alt="TODO">
                         <h3>
                             @Model.Sum(x => x.NumberOfCustomers) customers
                         </h3>
                         <p>Satisfied with our services</p>
                     </div>
                 </div>
-                
-                <div class="landing-page-summary">
-                    <img class="arrow" src="~/images/landing-page-arrow-test.svg" alt="TODO">
-                </div>
 
                 <div class="landing-page-summary">
+                    <img src="~/images/landing-page-icon-dollar.svg" alt="TODO">
                     <div>
-                        <img class="landing-page-icon" src="~/images/landing-page-icon-dollar.svg" alt="TODO">
                         <h3>
                             @Model.Sum(x => x.TotalBalancePerCountry).ToString("C2", new CultureInfo("sv-SE"))
                         </h3>
