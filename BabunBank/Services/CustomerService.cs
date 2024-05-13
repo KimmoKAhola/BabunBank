@@ -95,6 +95,24 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         return await dataCustomerService.CreateAsync(customer);
     }
 
+    public async Task<bool?> AddAccountToCustomerAsync(int id)
+    {
+        var customer = await dataCustomerService.GetAsync(id);
+        if (customer == null)
+            return false;
+        var newAccount = AccountFactory.Create();
+        customer.Dispositions.Add(
+            new Disposition
+            {
+                Account = newAccount,
+                Customer = customer,
+                Type = "OWNER"
+            }
+        );
+
+        return await dataCustomerService.UpdateAsync(customer);
+    }
+
     public async Task<bool?> UpdateCustomerAsync(
         EditCustomerModel customerModel,
         Microsoft.AspNetCore.Mvc.ModelBinding.ModelStateDictionary modelState
