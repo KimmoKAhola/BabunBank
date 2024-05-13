@@ -73,6 +73,10 @@
       "PackagePath": "staticwebassets\\images\\error.webp"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\facebook.svg",
+      "PackagePath": "staticwebassets\\images\\facebook.svg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.png",
       "PackagePath": "staticwebassets\\images\\flag-of-denmark.png"
     },
@@ -127,6 +131,10 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-icon-dollar.svg",
       "PackagePath": "staticwebassets\\images\\landing-page-icon-dollar.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\linkedin.svg",
+      "PackagePath": "staticwebassets\\images\\linkedin.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\lock.svg",
@@ -215,6 +223,10 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\teambuilding-bg.jpg",
       "PackagePath": "staticwebassets\\images\\teambuilding-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\twitter.svg",
+      "PackagePath": "staticwebassets\\images\\twitter.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",
