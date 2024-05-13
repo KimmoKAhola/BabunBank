@@ -26,7 +26,7 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         var result = await dataCustomerService.GetAsync(id);
 
         var editableCustomerModel = mapper.Map<EditCustomerModel>(result);
-        editableCustomerModel.CountryValue = (int)ConvertCountryToEnum(result.Country);
+        editableCustomerModel.CountryValue = (int)ConvertCountryToEnum(result!.Country);
         editableCustomerModel.GenderRole = (int)ConvertGenderToEnum(result.Gender);
 
         return editableCustomerModel;
@@ -145,14 +145,16 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         }
 
         var customer = mapper.Map<Customer>(customerModel);
-        customer.Gender = Enum.GetName(typeof(GenderOptions), customerModel.GenderRole);
-        customer.Country = Enum.GetName(typeof(CountryOptions), customerModel.CountryValue);
+        customer.Gender = Enum.GetName(typeof(GenderOptions), customerModel.GenderRole)!;
+        customer.Country = Enum.GetName(typeof(CountryOptions), customerModel.CountryValue)!;
         return await dataCustomerService.UpdateAsync(customer);
     }
 
     public async Task<bool?> DeleteCustomerAsync(int id)
     {
         var customer = await dataCustomerService.GetAsync(id);
+        if (customer is null)
+            return null;
         return await dataCustomerService.DeleteAsync(customer);
     }
 }
