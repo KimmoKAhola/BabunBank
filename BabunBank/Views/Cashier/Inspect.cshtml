@@ -24,54 +24,44 @@
               asp-route-id="@Model.CustomerId">
             <h2>Inspecting customer @Model.CustomerName</h2>
             <h3>Here are the suspicious transactions for this customer</h3>
-            <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
             <p>Do you wish to change the image settings? Adjust the plots here:</p>
             <p>The slider determines the scaling factor. 10 is the default size (100 %) and each point makes the image 10 % smaller/larger. 30 means that the image will be 3 times larger.</p>
-            <input type="range" min="1" max="30" value="10" name="slider" oninput="rangeValue.innerText = this.value">
-            <p id="rangeValue">10</p>
-            @Html.DropDownList("Color", colors)
-            @Html.DropDownList("BackgroundColor", colors)
-            <button type="submit">Apply filters</button>
+            
+            <div class="create-customer-form-row">
+                <input type="range" min="1" max="30" value="10" name="slider" oninput="rangeValue.innerText = this.value">
+                <p id="rangeValue">10</p>
+            </div>
+            <span style="display: flex; flex: 1">
+                <div class="create-customer-form-row">
+                    <span class="Test">
+                        <label>Marker Color</label>
+                        @Html.DropDownList("Color", colors, new { @class = "dropdown-list" })
+                    </span>
+                    <span class="Test">
+                        <label>Background Color</label>
+                        @Html.DropDownList("BackgroundColor", colors, new { @class = "dropdown-list" })
+                    </span>
+                </div>
+                
+            </span>
+            <div class="button-row">
+                <button type="submit" class="create-customer-form-btn">Apply filters</button>
+                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
+            </div>
         </form>
     </div>
     <div class="container inspect">
-        @* <div> *@
-        @*     <table class="data-table"> *@
-        @*         <thead class="data-table-header"> *@
-        @*         <tr> *@
-        @*             <th>Transaction Id</th> *@
-        @*             <th>Transaction Amount</th> *@
-        @*             <th>Transaction Date</th> *@
-        @*             <th>Type</th> *@
-        @*         </tr> *@
-        @*         </thead> *@
-        @* *@
-        @*         <tbody> *@
-        @*         @foreach (var transaction in @Model.TransactionsOverLimit) *@
-        @*         { *@
-        @* *@
-        @*             <tr> *@
-        @*                 <td>@transaction.TransactionId</td> *@
-        @*                 <td>@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td> *@
-        @*                 <td>@transaction.Date</td> *@
-        @*                 <td>Transaction above @($"{15000:C2}")</td> *@
-        @*             </tr> *@
-        @*         } *@
-        @*         </tbody> *@
-        @*     </table> *@
-        @* </div> *@
-
         <div id="inspect-customer-plot-container">
             <div class="inspect-customer-plot">
                 <img class="carousel-img" src="~/images/moneylaundering/@($"{PlotNames.SuspiciousTransactions}.png")" alt="todo">
                 <img class="carousel-img" src="~/images/moneylaundering/@($"{PlotNames.NormalTransactions}.png")" alt="todo">
-                <img class="carousel-img" src="~/images/moneylaundering/@($"{PlotNames.PieChart}.png")" alt="todo">
+                <img style="border: 1px solid black" class="carousel-img" src="~/images/moneylaundering/@($"{PlotNames.PieChart}.png")" alt="todo">
                 @* <img class="carousel-img" src="~/images/moneylaundering/bigplot.png" alt="todo"> *@
-
             </div>
-            <div class="inspect-customer-plot-buttons">
+            <div class="inspect-customer-plot-buttons" style="margin-bottom: 72px; gap: 72px">
                 <button class="create-customer-form-btn" onclick="prevImage()">❮</button>
                 <button class="create-customer-form-btn" onclick="nextImage()">❯</button>
+                <p id="image-index-display"></p>
             </div>
         </div>
     </div>
@@ -85,10 +75,36 @@
             </span>
         </div>
     }
+<div class="container inpect">
+    <table class="data-table">
+        <thead class="data-table-header">
+        <tr>
+            <th>Transaction Id</th>
+            <th>Transaction Amount</th>
+            <th>Transaction Date</th>
+            <th>Type</th>
+        </tr>
+        </thead>
 
-<script>
+        <tbody>
+        @foreach (var transaction in @Model.TransactionsOverLimit)
+        {
+
+            <tr>
+                <td>@transaction.TransactionId</td>
+                <td>@transaction.Amount.ToString("C2", new CultureInfo("sv-SE"))</td>
+                <td>@transaction.Date</td>
+                <td>Transaction above @($"{15000:C2}")</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+
+    <script>
     let currentImageIndex = 0;
     const images = document.getElementsByClassName("carousel-img");
+    const indexDisplay = document.getElementById("image-index-display");
 
     function showImage(index) {
         if (index < 0) {
@@ -100,6 +116,7 @@
             images[i].style.display = "none";
         }
         images[currentImageIndex].style.display = "block";
+        indexDisplay.innerText = `Picture ${currentImageIndex+1} of ${images.length}`;
     }
 
     function prevImage() {
