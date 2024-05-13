@@ -99,8 +99,9 @@ public class CashierController(
             return RedirectToAction("Index", "Error");
 
         var result = transactions
-            .CustomerAccounts.FirstOrDefault(d => d.Type.ToLower() == "owner")
-            ?.Transactions?.OrderByDescending(t => t.TransactionId)
+            .CustomerAccounts.SelectMany(a => a.Transactions)
+            .OrderByDescending(x => x.Date)
+            .ThenByDescending(x => x.TransactionId)
             .Skip((pageNo - 1) * TransactionLimit)
             .Take(TransactionLimit)
             .ToList(); //TODO put this in a service
