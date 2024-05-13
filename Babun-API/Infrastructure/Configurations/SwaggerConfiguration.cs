@@ -36,7 +36,15 @@ public static class SwaggerConfiguration
     /// The policy name for API version 2.0 authentication.
     /// </summary>
     public const string V2Policy = "V2Policy";
+
+    /// <summary>
+    /// The claim type used for version 1 of the API.
+    /// </summary>
     public const string V1ClaimType = "V1Claim";
+
+    /// <summary>
+    /// Represents the claim type used for version 2 of the application.
+    /// </summary>
     public const string V2ClaimType = "V2Claim";
     private const string Contact = "https://example.com/contact";
     private const string License = "https://example.com/license";
