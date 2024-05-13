@@ -1,109 +1,111 @@
 ﻿@using System.Globalization
-@using BabunBank.Controllers
 @using BabunBank.Infrastructure.Enums
 @using DataAccessLibrary.Data
 @using Microsoft.AspNetCore.Mvc.TagHelpers
-@model BabunBank.Models.FormModels.TransferModels.CreateTransferModel
+@model BabunBank.Models.FormModels.Transactions.CreateTransferModel
 
 
 @{
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
-<div class="container mb-5 mt-5">
-    <h2>Cashier Deposit</h2>
-    <h2>Your current balance is: @Model.BalanceSender.ToString("C2", new CultureInfo("sv-SE"))</h2>
-    
-    <form method="post" asp-controller="Account" asp-action="Filter">
-        <input type="hidden" asp-for="FromAccountId">
-        @* <input type="hidden" asp-for="ToAccountId"> *@
-
-
-        <input type="hidden" asp-for="Date">
-        @* <input type="hidden" asp-for="Type"> *@
-        <input type="hidden" asp-for="OperationSender">
-        <input type="hidden" asp-for="OperationReceiver">
-        <input type="hidden" asp-for="BalanceSender">
-        <input type="hidden" asp-for="Symbol">
-        <input type="hidden" asp-for="Bank">
-        <input type="hidden" asp-for="Account">
-        <span style="display:flex; gap: 24px">
-            <div class="form-group" id="cashier-search-bar">
-                <input name="q" value="@ViewBag.Q" placeholder="Search id or name">
-            </div>
-            <div class="form-group">
-                @Html.DropDownList("pageSize", Enum.GetValues(typeof(CustomerDropdownMenu))
-                    .Cast<CustomerDropdownMenu>()
-                    .Select(x => new SelectListItem
-                    {
-                        Text = $"{((int)x).ToString()} results per page",
-                        Value = ((int)x).ToString(),
-                        Selected = ViewBag.PageSize == (int)x
-                    }), new { @class = "dropdown-list" })
-            </div>
-            <div class="form-group">
-                <input class="create-customer-form-btn" type="submit" value="Apply filters"/>
-            </div>
-            <div class="form-group">
-                <a asp-controller="Account" asp-action="Clear" class="create-customer-form-btn" id="clear-filter-button">Clear filters</a>
-            </div>
-        </span>
-    </form>
-    
-    <form method="post" asp-controller="Account" asp-action="Transfer">
-        <div asp-validation-summary="ModelOnly"></div>
-        
-        
-        <div class="create-customer-form-row" style="display:flex; align-items: center; justify-content: center">
-            <span class="Test">
-                <label asp-for="Amount">Amount to transfer</label>
-                <input asp-for="Amount" type="number">
-                <span asp-validation-for="Amount"></span>
+<div class="container mb-5 mt-5 transfer">
+    <div class="transfer-filter">
+        <form method="post" asp-controller="Account" asp-action="Filter">
+            <input type="hidden" asp-for="FromAccountId">
+            <input type="hidden" asp-for="Date">
+            <input type="hidden" asp-for="OperationSender">
+            <input type="hidden" asp-for="OperationReceiver">
+            <input type="hidden" asp-for="BalanceSender">
+            <input type="hidden" asp-for="Symbol">
+            <input type="hidden" asp-for="Bank">
+            <input type="hidden" asp-for="Account">
+            <span style="display:flex; gap: 24px">
+                <div class="form-group" id="cashier-search-bar">
+                    <input name="q" value="@ViewBag.Q" placeholder="Search id or name">
+                </div>
+                <div class="form-group">
+                    @Html.DropDownList("pageSize", Enum.GetValues(typeof(CustomerDropdownMenu))
+                        .Cast<CustomerDropdownMenu>()
+                        .Select(x => new SelectListItem
+                        {
+                            Text = $"{((int)x).ToString()} results per page",
+                            Value = ((int)x).ToString(),
+                            Selected = ViewBag.PageSize == (int)x
+                        }), new { @class = "dropdown-list" })
+                </div>
+                <div class="form-group">
+                    <input class="create-customer-form-btn" type="submit" value="Apply filters"/>
+                </div>
+                <div class="form-group">
+                    <a asp-controller="Account" asp-action="Clear" class="create-customer-form-btn" id="clear-filter-button">Clear filters</a>
+                </div>
             </span>
-            <button type="submit" class="create-customer-form-btn" asp-route-pageNumber="@ViewBag.CurrentPage" asp-route-pageSize="@ViewBag.PageSize" asp-route-q="@ViewBag.Q">Create Transfer</button>
-            <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.FromAccountId" class="create-customer-form-btn">Return</a>
+        </form>
+    </div>
+    
+    <form class="transfer-form" method="post" asp-controller="Account" asp-action="Transfer">
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="transfer-left">
+            <div class="create-customer-form-row">
+                <h2>Your current balance is: @Model.BalanceSender.ToString("C2", new CultureInfo("sv-SE"))</h2>
+            </div>
+            <div class="create-customer-form-row" >
+                <span class="Test">
+                    <label asp-for="Amount">Amount to transfer</label>
+                    <input asp-for="Amount" type="number">
+                    <span asp-validation-for="Amount"></span>
+                </span>
+                <span class="Test">
+                    <label asp-for="Date">Amount to transfer</label>
+                    <input asp-for="Date" type="date">
+                    <span asp-validation-for="Date"></span>
+                </span>
+            </div>
+            <div class="button-row">
+                <button type="submit" class="create-customer-form-btn" asp-route-pageNumber="@ViewBag.CurrentPage" asp-route-pageSize="@ViewBag.PageSize" asp-route-q="@ViewBag.Q">Create Transfer</button>
+                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.FromAccountId" class="create-customer-form-btn">Return</a>
+            </div>
         </div>
-        
+
         <input type="hidden" asp-for="FromAccountId">
-        @* <input type="hidden" asp-for="ToAccountId"> *@
-        
-        
-        <input type="hidden" asp-for="Date">
-        @* <input type="hidden" asp-for="Type"> *@
         <input type="hidden" asp-for="OperationSender">
         <input type="hidden" asp-for="OperationReceiver">
         <input type="hidden" asp-for="BalanceSender">
         <input type="hidden" asp-for="Symbol">
         <input type="hidden" asp-for="Bank">
         <input type="hidden" asp-for="Account">
-        
-        
-        @if(@ViewBag.ListOfCustomers != null){
-            <table class="data-table">
-                <thead>
-                <tr>
-                    <th>Account Id</th>
-                    <th>Customer Id</th>
-                    <th>Customer Name</th>
-                    <th>Customer Balance</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach (var account in @ViewBag.ListOfCustomers as IEnumerable<Account>)
-                {
+        <div class="transfer-right">
+            @if (@ViewBag.ListOfCustomers != null)
+            {
+                <table id="transfer-data-table" class="data-table">
+                    <thead>
                     <tr>
-                        <td style="display: flex; align-items: center; gap: 12px"><input type="radio" name="ToAccountId" asp-route-test="@account.AccountId" value="@account.AccountId"> @account.AccountId</td>
-                        <td>@account.Dispositions.First().CustomerId</td>
-                        <td>@account.Dispositions.First().Customer.Givenname @account.Dispositions.First().Customer.Surname</td>
-                        <td>@account.Balance.ToString("C2", new CultureInfo("sv-SE"))</td>
+                        <th>Account Id</th>
+                        <th>Customer Id</th>
+                        <th>Customer Name</th>
+                        <th>Customer Balance</th>
                     </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var account in @ViewBag.ListOfCustomers as IEnumerable<Account>)
+                    {
+                        <tr>
+                            <td id="transfer-radio"><input class="transfer-radio-button" type="radio" name="ToAccountId" asp-route-test="@account.AccountId" value="@account.AccountId"> @account.AccountId</td>
+                            <td>@account.Dispositions.First().CustomerId</td>
+                            <td>@account.Dispositions.First().Customer.Givenname @account.Dispositions.First().Customer.Surname</td>
+                            <td>@account.Balance.ToString("C2", new CultureInfo("sv-SE"))</td>
+                        </tr>
 
-                }
-                </tbody>
-            </table>
-
-        }
+                    }
+                    </tbody>
+                </table>
+            }
+        </div>
     </form>
+    </div>
+    
+    
     <div class="blogpost-pagination" style="margin-bottom: 72px">
         <a asp-controller="Account"
            asp-action="Transfer"
@@ -120,16 +122,16 @@
         </a>
         @if (ViewBag.CurrentPage > 1)
         {
-        <a class="pagination-inactive-button"
-           asp-controller="Account"
-           asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-           asp-route-pageSize="@ViewBag.PageSize">
-            @(ViewBag.CurrentPage - 1)
-        </a>
+            <a class="pagination-inactive-button"
+               asp-controller="Account"
+               asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+               asp-route-pageSize="@ViewBag.PageSize">
+                @(ViewBag.CurrentPage - 1)
+            </a>
         }
         else
         {
-        <a></a>
+            <a></a>
         }
         <a class="pagination-active-button"
            asp-controller="Account"
@@ -139,15 +141,15 @@
         </a>
         @if (ViewBag.CurrentPage < ViewBag.TotalPageCount)
         {
-        <a class="pagination-inactive-button" asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
-           asp-controller="Account"
-           asp-route-pageSize="@ViewBag.PageSize">
-            @(ViewBag.CurrentPage + 1)
-        </a>
+            <a class="pagination-inactive-button" asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
+               asp-controller="Account"
+               asp-route-pageSize="@ViewBag.PageSize">
+                @(ViewBag.CurrentPage + 1)
+            </a>
         }
         else
         {
-        <a></a>
+            <a></a>
         }
         <a asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
            asp-route-q="@ViewBag.Q"
@@ -163,5 +165,16 @@
            asp-route-pageSize="@ViewBag.PageSize">
             Last
         </a>
-    </div>
+        <button id="goToTop-button" onclick="goToTop()">
+            <i class="material-symbols-outlined">
+                arrow_upward
+            </i>
+        </button>
 </div>
+
+<script>
+    function goToTop(){
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0;
+    }
+</script>
