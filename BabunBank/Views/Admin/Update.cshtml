@@ -1,4 +1,4 @@
-﻿@model BabunBank.Models.FormModels.IdentityUser.SignUpIdentityUserModel
+﻿@model BabunBank.Models.FormModels.IdentityUser.UpdateIdentityUserModel
 
 @{
     ViewBag.Title = "Update";
@@ -6,60 +6,68 @@
 }
 
 <div class="container create-customer">
-        <form method="post" class="update-user-form">
-            <div asp-validation-summary="ModelOnly"></div>
-
-            <div class="create-customer-form-row">
-                <span class="Test">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" type="text">
-                    <span asp-validation-for="Email" class="text-danger"></span>
-                </span>
-
-                <span class="Test">
-                    <label asp-for="ConfirmEmail">Confirm Email</label>
-                    <input asp-for="ConfirmEmail" type="text">
-                    <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
-                </span>
-            </div>
-
-            <div class="create-customer-form-row">
-                <span class="Test">
-                    <label asp-for="Password"></label>
-                    <input asp-for="Password" type="text">
-                    <span asp-validation-for="Password" class="text-danger"></span>
-                </span>
-
-                <span class="Test">
-                    <label asp-for="ConfirmPassword">Confirm Password</label>
-                    <input asp-for="ConfirmPassword" type="text">
-                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-                </span>
-            </div>
-
-            <div class="create-customer-form-row">
-                <span class="Test">
-                    <label asp-for="UserRole"></label>
-                    <select asp-for="UserRole" name="GenderRole" id="GenderRole" class="enum-dropdown">
-                        @foreach (var gender in @ViewBag.AvailableRoles as List<SelectListItem>)
-                        {
-                            <option value="@gender.Value">@gender.Text</option>
-                        }
-                    </select>
-                    <span asp-validation-for="UserRole" class="text-danger"></span>
-                </span>
-            </div>
+    <form method="post" class="update-user-form">
+        <div asp-validation-summary="ModelOnly"></div>
+        <input type="hidden" asp-for="UserId">
             
-            <div class="create-customer-form-row">
-                <span class="Test">
-                    <button type="submit" class="create-customer-form-btn">
-                        Save changes
-                    </button>
-                </span>
+            
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" type="text">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </span>
 
-                <span class="Test">
-                    <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn">Go back</a>
-                </span>
-            </div>
-        </form>
-    </div>
+            <span class="Test">
+                <label asp-for="ConfirmEmail">Confirm Email</label>
+                <input asp-for="ConfirmEmail" type="text">
+                <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="Password"></label>
+                <input asp-for="Password" type="password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </span>
+
+            <span class="Test">
+                <label asp-for="ConfirmPassword">Confirm Password</label>
+                <input asp-for="ConfirmPassword" type="password">
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+            </span>
+        </div>
+
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <label asp-for="UserRole"></label>
+                <select asp-for="UserRole" name="GenderRole" id="GenderRole" class="enum-dropdown">
+                    @foreach (var userRole in @ViewBag.AvailableRoles as List<SelectListItem>)
+                    {
+                        <option value="@userRole.Value">@userRole.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="UserRole" class="text-danger"></span>
+            </span>
+        </div>
+            
+        <div class="create-customer-form-row">
+            <span class="Test">
+                <button type="submit" class="create-customer-form-btn">
+                    Save changes
+                </button>
+            </span>
+
+            <span class="Test">
+                <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn">Go back</a>
+            </span>
+        </div>
+    </form>
+</div>
+
+@section Scripts
+
+{
+    <partial name="_ValidationScriptsPartial" />
+}
