@@ -10,7 +10,7 @@ public class TransactionRepository(BankAppDataContext dbContext)
     {
         try
         {
-            entity.Balance += entity.Amount; //TODO Should be sum of transactions
+            entity.Balance += entity.Amount;
             dbContext.Set<Transaction>().Add(entity);
             await dbContext.SaveChangesAsync();
             return entity;
@@ -27,10 +27,10 @@ public class TransactionRepository(BankAppDataContext dbContext)
         await using var databaseTransaction = await dbContext.Database.BeginTransactionAsync();
         try
         {
-            deposit.Balance += deposit.Amount; //TODO Should be sum of transactions
+            deposit.Balance += deposit.Amount;
             dbContext.Set<Transaction>().Add(deposit);
 
-            withdrawal.Balance += withdrawal.Amount; //TODO Should be sum of transactions
+            withdrawal.Balance += withdrawal.Amount;
             dbContext.Set<Transaction>().Add(withdrawal);
 
             await dbContext.SaveChangesAsync();
