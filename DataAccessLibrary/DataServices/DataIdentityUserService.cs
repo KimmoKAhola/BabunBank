@@ -78,4 +78,11 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
 
         return false;
     }
+
+    public async Task<bool> UpdateAsync(string id)
+    {
+        var user = await GetAsync(id);
+        var result = await identityUserRepository.UpdateAsync(x => x.Id == user.User.Id, user.User);
+        return result == null;
+    }
 }
