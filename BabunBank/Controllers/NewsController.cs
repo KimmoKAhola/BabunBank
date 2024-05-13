@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using BabunBank.Factories;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
-using BabunBank.Infrastructure.Enums;
 using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.Ad;
 using BabunBank.Services;
@@ -53,9 +52,9 @@ public class NewsController(NewsService newsService, AdValidator adValidator) : 
     public async Task<IActionResult> Update(int id)
     {
         var blogPost = await newsService.Get(id);
-
-        var model = AdModelFactory.Create(blogPost!); //TODO add null check or not?
-
+        if (blogPost is null)
+            return RedirectToAction("Index", "Error");
+        var model = AdModelFactory.Create(blogPost);
         return View(model);
     }
 
