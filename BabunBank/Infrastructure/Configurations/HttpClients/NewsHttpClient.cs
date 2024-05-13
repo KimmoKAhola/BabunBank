@@ -8,23 +8,16 @@ using Microsoft.Extensions.Options;
 
 namespace BabunBank.Infrastructure.Configurations.HttpClients;
 
-//TODO check if this fits better as NewsService instead
-public class NewsHttpClient : INewsHttpClient<BlogPost>
+public class NewsHttpClient(HttpClient httpClient, IOptions<NewsHttpClientEndPoints> httpEndPoints)
+    : INewsHttpClient<BlogPost>
 {
-    private readonly HttpClient _httpClient;
-    private readonly NewsHttpClientEndPoints _httpEndPoints;
+    private readonly NewsHttpClientEndPoints _httpEndPoints = httpEndPoints.Value;
     private readonly JsonSerializerOptions _jsonOptions =
         new() { PropertyNameCaseInsensitive = true };
 
-    public NewsHttpClient(HttpClient httpClient, IOptions<NewsHttpClientEndPoints> httpEndPoints)
-    {
-        _httpClient = httpClient;
-        _httpEndPoints = httpEndPoints.Value;
-    }
-
     public async Task<BlogPost?> Get(int id)
     {
-        var httpResponseMessage = await _httpClient.GetAsync($"{_httpEndPoints.Ad}{id}");
+        var httpResponseMessage = await httpClient.GetAsync($"{_httpEndPoints.Ad}{id}");
         try
         {
             httpResponseMessage.EnsureSuccessStatusCode();
@@ -42,7 +35,7 @@ public class NewsHttpClient : INewsHttpClient<BlogPost>
 
     public async Task<(IEnumerable<BlogPost>?, int?)> Get(int pageNumber, int pageSize)
     {
-        var httpResponseMessage = await _httpClient.GetAsync(_httpEndPoints.Ads);
+        var httpResponseMessage = await httpClient.GetAsync(_httpEndPoints.Ads);
         try
         {
             httpResponseMessage.EnsureSuccessStatusCode();
@@ -73,7 +66,7 @@ public class NewsHttpClient : INewsHttpClient<BlogPost>
             //It is only left here to demonstrate authorization and authentication using JWT.
             var token = await ValidateUser("richard.chalk@systementor.se", "Hejsan123#");
 
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(
                 "Bearer",
                 token
             );
@@ -81,7 +74,7 @@ public class NewsHttpClient : INewsHttpClient<BlogPost>
             var jsonModel = JsonSerializer.Serialize(model);
             var modelContent = new StringContent(jsonModel, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PutAsync($"{_httpEndPoints.Update}{id}", modelContent);
+            var response = await httpClient.PutAsync($"{_httpEndPoints.Update}{id}", modelContent);
 
             response.EnsureSuccessStatusCode();
 
@@ -96,7 +89,7 @@ public class NewsHttpClient : INewsHttpClient<BlogPost>
 
     public async Task<bool> Delete(int id)
     {
-        var response = await _httpClient.DeleteAsync($"{_httpEndPoints.Delete}{id}");
+        var response = await httpClient.DeleteAsync($"{_httpEndPoints.Delete}{id}");
 
         try
         {
@@ -117,7 +110,7 @@ public class NewsHttpClient : INewsHttpClient<BlogPost>
         var requestBodyJson = JsonSerializer.Serialize(requestBody);
         var requestContent = new StringContent(requestBodyJson, Encoding.UTF8, "application/json");
 
-        var tokenResponse = await _httpClient.PostAsync(_httpEndPoints.Login, requestContent);
+        var tokenResponse = await httpClient.PostAsync(_httpEndPoints.Login, requestContent);
 
         return await tokenResponse.Content.ReadAsStringAsync();
     }
