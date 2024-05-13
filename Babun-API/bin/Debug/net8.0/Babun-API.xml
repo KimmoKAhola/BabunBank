@@ -197,6 +197,38 @@
             If the login is successful, a token is returned as a simple string.
             </returns>
         </member>
+        <member name="T:Babun_API.Data.ApiContext">
+            <summary>
+            Represents the context for the API.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Data.ApiContext.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Data.ApiContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Babun_API.Data.ApiContext})">
+            <inheritdoc />
+        </member>
+        <member name="P:Babun_API.Data.ApiContext.Ads">
+            <summary>
+            Represents an advertisement.
+            </summary>
+        </member>
+        <member name="T:Babun_API.Data.DataInitializer">
+            <summary>
+            Initializes and seeds the database with initial data.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Data.DataInitializer.#ctor(Babun_API.Data.ApiContext)">
+            <summary>
+            Initializes and seeds the database with initial data.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Data.DataInitializer.SeedData">
+            <summary>
+            Seeds initial data into the database if it does not already exist.
+            </summary>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
         <member name="T:Babun_API.Infrastructure.Configurations.MappingProfile">
             <summary>
             Represents a mapping profile for AutoMapper.
@@ -246,6 +278,16 @@
         <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V2Policy">
             <summary>
             The policy name for API version 2.0 authentication.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V1ClaimType">
+            <summary>
+            The claim type used for version 1 of the API.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V2ClaimType">
+            <summary>
+            Represents the claim type used for version 2 of the application.
             </summary>
         </member>
         <member name="M:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.AddSwaggerDocumentation(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">

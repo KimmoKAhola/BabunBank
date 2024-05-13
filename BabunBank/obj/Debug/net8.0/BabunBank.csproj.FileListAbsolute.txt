@@ -547,7 +547,6 @@ C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\staticwebassets
 C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.BabunBank.props
 C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
-C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\scopedcss\Views\Shared\_SecondaryLayout.cshtml.rz.scp.css
 C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\scopedcss\bundle\BabunBank.styles.css
 C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\scopedcss\projectbundle\BabunBank.bundle.scp.css
 C:\Users\kahol\source\repos\BabunBank\BabunBank\obj\Debug\net8.0\BabunBank.csproj.Up2Date
