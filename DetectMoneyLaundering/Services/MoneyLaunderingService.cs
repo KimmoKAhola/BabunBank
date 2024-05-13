@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DetectMoneyLaundering.Services;
 
-//TODO Rename me to something better
 public class MoneyLaunderingService(DataAccountService dataAccountService) : IMoneyLaunderingService
 {
     public async Task<Account?> GetAccount(int id)
