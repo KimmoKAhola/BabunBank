@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using BabunBank.Infrastructure.Interfaces;
+﻿using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.FormModels.Transactions;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices;
@@ -20,7 +19,6 @@ public class TransactionService(DataTransactionService dataTransactionService) :
 
     public async Task<bool?> CreateTransferAsync(CreateTransferModel transfer)
     {
-        //TODO implement automapper here
         var deposit = new Transaction
         {
             AccountId = transfer.ToAccountId,
