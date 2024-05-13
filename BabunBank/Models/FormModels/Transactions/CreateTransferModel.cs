@@ -11,6 +11,10 @@ public record CreateTransferModel
 
     [Required]
     [Range(1, int.MaxValue)]
+    public int FromCustomerId { get; init; }
+
+    [Required]
+    [Range(1, int.MaxValue)]
     public int ToAccountId { get; init; }
 
     [Required]

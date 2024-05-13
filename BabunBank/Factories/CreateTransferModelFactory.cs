@@ -10,6 +10,7 @@ public static class CreateTransferModelFactory
         var model = new CreateDepositModel
         {
             AccountId = accountViewModel.AccountId,
+            CustomerId = accountViewModel.CustomerId,
             Balance = accountViewModel.Balance,
             Date = DateOnly.FromDateTime(DateTime.Now),
             Type = "Debit",
@@ -24,6 +25,7 @@ public static class CreateTransferModelFactory
         var model = new CreateWithdrawalModel
         {
             AccountId = accountViewModel.AccountId,
+            CustomerId = accountViewModel.CustomerId,
             Balance = accountViewModel.Balance,
             Date = DateOnly.FromDateTime(DateTime.Now),
             Type = "Debit",
@@ -37,7 +39,8 @@ public static class CreateTransferModelFactory
     {
         var model = new CreateTransferModel
         {
-            FromAccountId = sender.CustomerId,
+            FromAccountId = sender.AccountId,
+            FromCustomerId = sender.CustomerId,
             BalanceSender = sender.Balance,
             Date = DateOnly.FromDateTime(DateTime.Now),
             OperationSender = "Transfer to",

@@ -9,6 +9,9 @@ public record CreateWithdrawalModel
     public int AccountId { get; init; }
 
     [Required]
+    public int CustomerId { get; init; }
+
+    [Required]
     [DateTransactionCheck]
     public DateOnly Date { get; init; }
 
