@@ -7,7 +7,6 @@ public enum UserRole
 {
     Choose,
     Admin,
-    Customer, //TODO remove this later
     Cashier
 }
 
@@ -20,33 +19,17 @@ public class DataInitializer(BankAppDataContext dbContext, UserManager<IdentityU
         SeedUsers();
     }
 
-    // Här finns möjlighet att uppdatera dina användares loginuppgifter
     private void SeedUsers()
     {
-        AddUserIfNotExists(
-            "richard.chalk@systementor.se",
-            "Hejsan123#",
-            new UserRole[] { UserRole.Admin }
-        );
-        AddUserIfNotExists(
-            "richard.chalk@customer.systementor.se",
-            "Hejsan123#",
-            new UserRole[] { UserRole.Customer }
-        ); //TODO this should be removed later
-        AddUserIfNotExists(
-            "richard.erdos.chalk@gmail.se",
-            "Hejsan123#",
-            new UserRole[] { UserRole.Cashier }
-        );
-        AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", new UserRole[] { UserRole.Admin });
+        AddUserIfNotExists("richard.chalk@systementor.se", "Hejsan123#", [UserRole.Admin]);
+        AddUserIfNotExists("richard.erdos.chalk@gmail.se", "Hejsan123#", [UserRole.Cashier]);
+        AddUserIfNotExists("bjorn@mail.se", "Hejsan123#", [UserRole.Admin]);
     }
 
-    // Här finns möjlighet att uppdatera dina användares roller
     private void SeedRoles()
     {
         AddRoleIfNotExisting(UserRole.Admin.ToString());
         AddRoleIfNotExisting(UserRole.Cashier.ToString());
-        AddRoleIfNotExisting(UserRole.Customer.ToString()); // TODO remove this role later
     }
 
     private void AddRoleIfNotExisting(string roleName)
@@ -72,7 +55,7 @@ public class DataInitializer(BankAppDataContext dbContext, UserManager<IdentityU
 
         userManager.CreateAsync(user, password).Wait();
 
-        string[] roleNames = roles.Select(role => role.ToString()).ToArray();
+        var roleNames = roles.Select(role => role.ToString()).ToArray();
 
         userManager.AddToRolesAsync(user, roleNames).Wait();
     }
