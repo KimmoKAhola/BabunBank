@@ -4,10 +4,17 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Babun_API.Data;
 
+/// <summary>
+/// Initializes and seeds the database with initial data.
+/// </summary>
 public class DataInitializer(ApiContext dbContext)
 {
-    private const int SeedingVariable = 200;
+    private const int NumberOfAdsToSeed = 200;
 
+    /// <summary>
+    /// Seeds initial data into the database if it does not already exist.
+    /// </summary>
+    /// <returns>A task representing the asynchronous operation.</returns>
     public async Task SeedData()
     {
         try
@@ -26,9 +33,9 @@ public class DataInitializer(ApiContext dbContext)
     {
         var faker = new Faker();
         var random = new Random();
-        if (await dbContext.Ads.CountAsync() < SeedingVariable)
+        if (await dbContext.Ads.CountAsync() < NumberOfAdsToSeed)
         {
-            for (var i = 0; i < SeedingVariable; i++)
+            for (var i = 0; i < NumberOfAdsToSeed; i++)
             {
                 try
                 {
@@ -51,6 +58,7 @@ public class DataInitializer(ApiContext dbContext)
         }
     }
 
+    //TODO check if this is needed
     private async Task CreateTableIfNotExists()
     {
         throw new NotImplementedException();
