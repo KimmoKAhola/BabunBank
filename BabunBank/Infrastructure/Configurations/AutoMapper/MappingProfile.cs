@@ -6,7 +6,6 @@ using BabunBank.Models.ViewModels.Account;
 using BabunBank.Models.ViewModels.Customer;
 using BabunBank.Models.ViewModels.Transaction;
 using DataAccessLibrary.Data;
-using Microsoft.AspNetCore.Identity;
 using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 
 namespace BabunBank.Infrastructure.Configurations.AutoMapper;
@@ -44,8 +43,6 @@ public class MappingProfile : Profile
         CreateMap<Customer, CustomerViewModel>();
         CreateMap<EditCustomerModel, CustomerViewModel>().ReverseMap();
         CreateMap<EditCustomerModel, Customer>().ReverseMap();
-
-        //TODO practice these
         CreateMap<Customer, CustomerViewModel>()
             .ForMember(
                 x => x.CustomerAccounts,
