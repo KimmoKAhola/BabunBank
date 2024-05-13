@@ -833,7 +833,7 @@ button:hover{
 
 .container.customer{
   align-items: center;
-  width: fit-content;
+  /*width: fit-content;*/
 }
 
 .customer-card-container{
@@ -863,15 +863,41 @@ button:hover{
     img{
       width: 90%;
       height: 90%;
+      max-height: 600px;
+      max-width: 600px;
       margin-bottom: 1rem;
+      margin-top: 32px;
       /*overflow: hidden;*/
     }
   }
 }
 
+.customer-data-table{
+  margin: 32px 0;
+  font-size: 18px;
+  width: 500px;
+  th{
+    padding: 6px;
+  }
+  tr{
+    td{
+      padding: 6px;
+    }
+  }
+}
+
+.customer-data-table tr:nth-child(even) td{
+  background-color: var(--off-white);
+}
+
+.customer-data-table tr:nth-child(oddd) td{
+  background-color: gray;
+}
+
 .customer-card-crud{
   display: flex;
-  gap: 16px;
+  gap: 32px;
+  margin-bottom: 24px;
 }
 
 .customer-card-crud button, .customer-card-crud a{
