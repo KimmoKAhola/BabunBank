@@ -65,7 +65,7 @@
             </div>
             <div class="button-row">
                 <button type="submit" class="create-customer-form-btn" asp-route-pageNumber="@ViewBag.CurrentPage" asp-route-pageSize="@ViewBag.PageSize" asp-route-q="@ViewBag.Q">Create Transfer</button>
-                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.FromAccountId" class="create-customer-form-btn">Return</a>
+                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.FromCustomerId" class="create-customer-form-btn">Return</a>
             </div>
         </div>
 
@@ -83,10 +83,10 @@
                 <table id="transfer-data-table" class="data-table">
                     <thead>
                     <tr>
-                        <th>Account Id</th>
-                        <th>Customer Id</th>
-                        <th>Customer Name</th>
-                        <th>Customer Balance</th>
+                        <th>Receiving Account Id</th>
+                        <th>Receiving Customer Id</th>
+                        <th>Receiving Customer Name</th>
+                        <th>Receiving Customer Balance</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -108,7 +108,9 @@
     </div>
     
     
-    <div class="blogpost-pagination" style="margin-bottom: 72px">
+<div class="blogpost-pagination" style="margin-bottom: 72px">
+    @if (ViewBag.CurrentPage > 1)
+    {
         <a asp-controller="Account"
            asp-action="Transfer"
            asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
@@ -122,56 +124,55 @@
            asp-route-pageSize="@ViewBag.PageSize" class="create-customer-form-btn">
             Prev
         </a>
-        @if (ViewBag.CurrentPage > 1)
-        {
-            <a class="pagination-inactive-button"
-               asp-controller="Account"
-               asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
-               asp-route-pageSize="@ViewBag.PageSize">
-                @(ViewBag.CurrentPage - 1)
-            </a>
-        }
-        else
-        {
-            <a></a>
-        }
-        <a class="pagination-active-button"
+
+        <a class="pagination-inactive-button"
            asp-controller="Account"
-           asp-route-pageNumber="@ViewBag.CurrentPage"
+           asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
            asp-route-pageSize="@ViewBag.PageSize">
-            @ViewBag.CurrentPage
+            @(ViewBag.CurrentPage - 1)
         </a>
-        @if (ViewBag.CurrentPage < ViewBag.TotalPageCount)
-        {
-            <a class="pagination-inactive-button" asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
-               asp-controller="Account"
-               asp-route-pageSize="@ViewBag.PageSize">
-                @(ViewBag.CurrentPage + 1)
-            </a>
-        }
-        else
-        {
-            <a></a>
-        }
-        <a asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
-           asp-route-q="@ViewBag.Q"
-           asp-route-pageSize="@ViewBag.PageSize"
+    }
+    else
+    {
+        <a></a>
+    }
+    <a class="pagination-active-button"
+       asp-controller="Account"
+       asp-route-pageNumber="@ViewBag.CurrentPage"
+       asp-route-pageSize="@ViewBag.PageSize">
+        @ViewBag.CurrentPage
+    </a>
+    @if (ViewBag.CurrentPage < ViewBag.TotalPageCount)
+    {
+        <a class="pagination-inactive-button" asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
            asp-controller="Account"
-           asp-action="Transfer"
-           class="create-customer-form-btn">
-            Next
-        </a>
-        <a asp-controller="Account"
-           asp-action="Transfer"
-           asp-route-pageNumber="@ViewBag.TotalPageCount"
            asp-route-pageSize="@ViewBag.PageSize">
-            Last
+            @(ViewBag.CurrentPage + 1)
         </a>
-        <button id="goToTop-button" onclick="goToTop()">
-            <i class="material-symbols-outlined">
-                arrow_upward
-            </i>
-        </button>
+    }
+    else
+    {
+        <a></a>
+    }
+    <a asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
+       asp-route-q="@ViewBag.Q"
+       asp-route-pageSize="@ViewBag.PageSize"
+       asp-controller="Account"
+       asp-action="Transfer"
+       class="create-customer-form-btn">
+        Next
+    </a>
+    <a asp-controller="Account"
+       asp-action="Transfer"
+       asp-route-pageNumber="@ViewBag.TotalPageCount"
+       asp-route-pageSize="@ViewBag.PageSize">
+        Last
+    </a>
+    <button id="goToTop-button" onclick="goToTop()">
+        <i class="material-symbols-outlined">
+            arrow_upward
+        </i>
+    </button>
 </div>
 
 <script>
