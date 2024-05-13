@@ -8,6 +8,8 @@ namespace BabunBank.Services;
 
 public class AccountService(DataAccountService dataAccountService, IMapper mapper) : IAccountService
 {
+    private const int ItemsPerPage = 50;
+
     public async Task<AccountViewModel?> GetAccountViewModelAsync(int id)
     {
         var result = await dataAccountService.GetAsync(id);
@@ -16,11 +18,11 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
             return null!;
 
         var accountViewModel = mapper.Map<AccountViewModel>(result);
-        accountViewModel.CustomerId = result.Dispositions.First(x => x.Type == "OWNER").CustomerId; //TODO add this to automapper?
+        accountViewModel.CustomerId = result.Dispositions.First(x => x.Type == "OWNER").CustomerId;
 
         accountViewModel.Transactions = accountViewModel
             ?.Transactions?.OrderByDescending(t => t.TransactionId)
-            .Take(50) //TODO 50 is a magic string!!! Fix later
+            .Take(ItemsPerPage)
             .ToList();
         return accountViewModel;
     }
