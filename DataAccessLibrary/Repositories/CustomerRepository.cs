@@ -27,11 +27,6 @@ public class CustomerRepository(BankAppDataContext dbContext) : BaseRepository<C
         return null!;
     }
 
-    /// <summary>
-    /// Soft deletes the chosen customer
-    /// </summary>
-    /// <param name="expression"></param>
-    /// <returns></returns>
     public override async Task<bool?> DeleteAsync(Expression<Func<Customer, bool>> expression)
     {
         try
