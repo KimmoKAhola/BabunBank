@@ -9,8 +9,6 @@ namespace DetectMoneyLaundering.Services;
 
 public class MoneyLaunderingService(DataAccountService dataAccountService) : IMoneyLaunderingService
 {
-    private const string Owner = "owner"; //TODO add to parameters
-
     public async Task<Account?> GetAccount(int id)
     {
         return await dataAccountService.GetAsync(id);
@@ -38,7 +36,6 @@ public class MoneyLaunderingService(DataAccountService dataAccountService) : IMo
 
         foreach (var transaction in account.Transactions)
         {
-            // transaction.Amount = Math.Abs(transaction.Amount);
             if (Math.Abs(transaction.Amount) > Parameters.TransferLimit)
             {
                 result.TransactionsOverLimit.Add(transaction);
@@ -52,9 +49,11 @@ public class MoneyLaunderingService(DataAccountService dataAccountService) : IMo
         result.TotalNumberOfTransactions = account.Transactions.Count;
 
         result.CustomerName = account
-            .Dispositions.First(x => x.Type.ToLower() == Owner)
+            .Dispositions.First(x => x.Type.ToLower() == Parameters.DispositionOwner)
             .Customer.Givenname;
-        result.CustomerId = account.Dispositions.First(x => x.Type.ToLower() == Owner).CustomerId;
+        result.CustomerId = account
+            .Dispositions.First(x => x.Type.ToLower() == Parameters.DispositionOwner)
+            .CustomerId;
         if (result.NormalTransactions.Count <= 0 || result.TransactionsOverLimit.Count <= 0)
             return result;
 
@@ -89,7 +88,6 @@ public class MoneyLaunderingService(DataAccountService dataAccountService) : IMo
             accountsToInspect.Add(temp);
             foreach (var transaction in account.Transactions)
             {
-                // transaction.Amount = Math.Abs(transaction.Amount);
                 if (Math.Abs(transaction.Amount) > Parameters.TransferLimit)
                 {
                     temp.TransactionsOverLimit.Add(transaction);
@@ -103,7 +101,12 @@ public class MoneyLaunderingService(DataAccountService dataAccountService) : IMo
             temp.TotalNumberOfTransactions =
                 temp.NormalTransactions.Count + temp.TransactionsOverLimit.Count;
 
-            var ownerDisposition = account.Dispositions.First(x => x.Type.ToLower() == Owner);
+            var ownerDisposition = account.Dispositions.FirstOrDefault(x =>
+                x.Type.ToLower() == Parameters.DispositionOwner
+            );
+
+            if (ownerDisposition == null)
+                continue;
 
             temp.CustomerName =
                 ownerDisposition.Customer.Givenname + " " + ownerDisposition.Customer.Surname;
