@@ -14,9 +14,9 @@ public class MoneyLaunderingService(DataAccountService dataAccountService) : IMo
         return await dataAccountService.GetAsync(id);
     }
 
-    public async Task<IEnumerable<Account>> GetAllAccounts()
+    public async Task<IEnumerable<Account>> GetAllAccounts(DateOnly dateFilter)
     {
-        return await dataAccountService.GetAllAsync().ToListAsync();
+        return await dataAccountService.GetAllAsync(dateFilter).ToListAsync();
     }
 
     public async Task<InspectAccountModel> InspectAccount(
@@ -77,10 +77,10 @@ public class MoneyLaunderingService(DataAccountService dataAccountService) : IMo
         return result;
     }
 
-    public async Task<List<InspectAccountModel>> InspectAllAccounts()
+    public async Task<List<InspectAccountModel>> InspectAllAccounts(DateOnly dateFilter)
     {
         var accountsToInspect = new List<InspectAccountModel>();
-        var allAccounts = await dataAccountService.GetAllAsync().ToListAsync();
+        var allAccounts = await dataAccountService.GetAllAsync(dateFilter).ToListAsync();
 
         foreach (var account in allAccounts)
         {
