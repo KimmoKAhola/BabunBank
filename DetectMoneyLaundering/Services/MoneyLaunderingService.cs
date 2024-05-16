@@ -9,6 +9,8 @@ namespace DetectMoneyLaundering.Services;
 
 public class MoneyLaunderingService(DataAccountService dataAccountService) : IMoneyLaunderingService
 {
+    private const string Owner = "owner"; //TODO add to parameters
+
     public async Task<Account?> GetAccount(int id)
     {
         return await dataAccountService.GetAsync(id);
@@ -50,9 +52,9 @@ public class MoneyLaunderingService(DataAccountService dataAccountService) : IMo
         result.TotalNumberOfTransactions = account.Transactions.Count;
 
         result.CustomerName = account
-            .Dispositions.First(x => x.Type.ToLower() == "owner")
+            .Dispositions.First(x => x.Type.ToLower() == Owner)
             .Customer.Givenname;
-        result.CustomerId = account.Dispositions.First(x => x.Type.ToLower() == "owner").CustomerId;
+        result.CustomerId = account.Dispositions.First(x => x.Type.ToLower() == Owner).CustomerId;
         if (result.NormalTransactions.Count <= 0 || result.TransactionsOverLimit.Count <= 0)
             return result;
 
@@ -101,7 +103,7 @@ public class MoneyLaunderingService(DataAccountService dataAccountService) : IMo
             temp.TotalNumberOfTransactions =
                 temp.NormalTransactions.Count + temp.TransactionsOverLimit.Count;
 
-            var ownerDisposition = account.Dispositions.First(x => x.Type.ToLower() == "owner");
+            var ownerDisposition = account.Dispositions.First(x => x.Type.ToLower() == Owner);
 
             temp.CustomerName =
                 ownerDisposition.Customer.Givenname + " " + ownerDisposition.Customer.Surname;
