@@ -64,4 +64,16 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
     {
         return await dataIdentityUserService.CheckUserExistsByEmail(email);
     }
+
+    public async Task<IdentityResult> UpdatePasswordAsync(
+        string id,
+        UpdateIdentityUserPasswordModel model
+    )
+    {
+        return await dataIdentityUserService.UpdatePasswordAsync(
+            id,
+            model.OldPassword,
+            model.NewPassword
+        );
+    }
 }
