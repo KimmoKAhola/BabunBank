@@ -1,7 +1,7 @@
 ﻿using BabunBank.Models.FormModels.Ad;
 using BabunBank.Models.ViewModels.ApiBlog;
 
-namespace BabunBank.Factories;
+namespace BabunBank.Factories.Ad;
 
 public static class AdModelFactory
 {
