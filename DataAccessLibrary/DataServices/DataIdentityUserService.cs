@@ -41,7 +41,7 @@ public class DataIdentityUserService(
         return await identityUserRepository.DeleteAsync(x => x.Id == id);
     }
 
-    public async Task<bool> CheckUserExists(string username)
+    private async Task<bool> CheckUserExists(string username)
     {
         try
         {
@@ -52,20 +52,6 @@ public class DataIdentityUserService(
             Console.WriteLine(e);
             throw;
         }
-    }
-
-    public async Task<bool> CheckUserExistsByUserName(string username)
-    {
-        try
-        {
-            return await identityUserRepository.ExistsByUserNameAsync(username);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
-
-        return false;
     }
 
     public async Task<bool> CheckUserExistsByEmail(string email)
