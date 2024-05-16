@@ -24,6 +24,7 @@
                 <td>
                     <span>
                         <a asp-controller="Admin" asp-action="Update" asp-route-id="@systemUser.UserId" class="create-customer-form-btn">Update</a>
+                        <a asp-controller="Admin" asp-action="UpdatePassword" asp-route-id="@systemUser.UserId" asp-route-username="@systemUser.Username" class="create-customer-form-btn">Change Password</a>
                         @if (User?.Identity?.Name != systemUser.Username)
                         {
                             <a asp-controller="Admin" asp-action="Delete" asp-route-id="@systemUser.UserId" class="btn-danger" style="border-radius: 0.25rem">Delete</a>
