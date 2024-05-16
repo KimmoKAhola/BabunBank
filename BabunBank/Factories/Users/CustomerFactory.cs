@@ -3,7 +3,7 @@ using BabunBank.Models.FormModels.Customer;
 using DataAccessLibrary.Data;
 using DataAccessLibrary.DataServices.Enums;
 
-namespace BabunBank.Factories;
+namespace BabunBank.Factories.Users;
 
 public static class CustomerFactory
 {

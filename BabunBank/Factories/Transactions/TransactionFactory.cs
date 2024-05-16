@@ -2,9 +2,8 @@
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.FormModels.Transactions;
 using BabunBank.Models.ViewModels.Account;
-using DataAccessLibrary.Data;
 
-namespace BabunBank.Factories;
+namespace BabunBank.Factories.Transactions;
 
 public class TransactionFactory : ITransactionFactory
 {
@@ -15,11 +14,11 @@ public class TransactionFactory : ITransactionFactory
         _mapper = mapper;
     }
 
-    public Transaction CreateDeposit(CreateDepositModel model)
+    public DataAccessLibrary.Data.Transaction CreateDeposit(CreateDepositModel model)
     {
         try
         {
-            var transaction = new Transaction();
+            var transaction = new DataAccessLibrary.Data.Transaction();
             return _mapper.Map(model, transaction);
         }
         catch (Exception e)
@@ -29,11 +28,11 @@ public class TransactionFactory : ITransactionFactory
         }
     }
 
-    public Transaction CreateWithdrawal(CreateWithdrawalModel model)
+    public DataAccessLibrary.Data.Transaction CreateWithdrawal(CreateWithdrawalModel model)
     {
         try
         {
-            var transaction = new Transaction();
+            var transaction = new DataAccessLibrary.Data.Transaction();
             return _mapper.Map(model, transaction);
         }
         catch (Exception e)

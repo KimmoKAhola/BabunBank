@@ -1,7 +1,7 @@
 ﻿using BabunBank.Models.FormModels.Transactions;
 using BabunBank.Models.ViewModels.Account;
 
-namespace BabunBank.Factories;
+namespace BabunBank.Factories.Transactions;
 
 public static class CreateTransferModelFactory
 {

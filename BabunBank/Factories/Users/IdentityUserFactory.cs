@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 
-namespace BabunBank.Factories;
+namespace BabunBank.Factories.Users;
 
 public static class IdentityUserFactory
 {
