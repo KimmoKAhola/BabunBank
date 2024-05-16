@@ -1,4 +1,5 @@
 ﻿using BabunBank.Factories;
+using BabunBank.Factories.Users;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
@@ -21,30 +22,22 @@ public class AdminController(
 {
     public async Task<IActionResult> Index()
     {
-        var roles = DropDownService.GetRoles();
-
-        ViewBag.AvailableRoles = roles;
-
+        ViewBag.AvailableRoles = DropDownService.GetRoles();
         var users = await identityUserService.GetAllAsync();
         return View(users);
     }
 
     public IActionResult Create()
     {
-        var roles = DropDownService.GetRoles();
-
-        ViewBag.AvailableRoles = roles;
+        ViewBag.AvailableRoles = DropDownService.GetRoles();
         return View();
     }
 
     [HttpPost]
     public async Task<IActionResult> Create(SignUpIdentityUserModel identityUserModel)
     {
-        var roles = DropDownService.GetRoles();
-
-        ViewBag.AvailableRoles = roles;
+        ViewBag.AvailableRoles = DropDownService.GetRoles();
         var validationResult = await userValidator.ValidateAsync(identityUserModel);
-
         if (!validationResult.IsValid)
         {
             foreach (var errorMessage in validationResult.Errors)
@@ -60,14 +53,13 @@ public class AdminController(
 
     public async Task<IActionResult> Update(string id)
     {
-        var roles = DropDownService.GetRoles();
-        ViewBag.AvailableRoles = roles;
+        ViewBag.AvailableRoles = DropDownService.GetRoles();
         var identityUserViewModel = await identityUserService.GetSingleAsync(id);
 
         var updateModel = new UpdateIdentityUserModel
         {
             UserId = identityUserViewModel.UserId,
-            Email = identityUserViewModel.Email,
+            OldEmail = identityUserViewModel.Email,
             UserRole = (UserRole)Enum.Parse(typeof(UserRole), identityUserViewModel.RoleName)
         };
 
@@ -116,7 +108,6 @@ public class AdminController(
         {
             return RedirectToAction("Index", "Error");
         }
-
         return RedirectToAction("Index");
     }
 }
