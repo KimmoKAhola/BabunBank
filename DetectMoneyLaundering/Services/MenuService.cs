@@ -6,9 +6,18 @@ namespace DetectMoneyLaundering.Services;
 public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenuService
 {
     private const int MinimumMenuChoice = 1;
-    private const int MaximumMenuChoice = 4;
+    private const int MaximumMenuChoice = 5;
     private const int HeaderLength = 100;
-    private const string ReportFileName = $"MoneyLaunderingReport";
+    private const decimal MaximumSumOverThreeDayPeriod = 22000m;
+    private const int NumberOfDaysInSlidingWindow = 2; //2 corresponds to 72 hours.
+    private static readonly string Header = new('=', HeaderLength);
+    private const string ReportFileName = "MoneyLaunderingReport";
+    private const string ReportFilePath = $"../../../{ReportFileName}.txt";
+    private const string LastReportDate = "LastReportDate";
+    private const string LastReportDateFilePath = $"../../../{LastReportDate}.txt";
+    private const string ThreeDayAverageReportFileName = "ThreeDayAverage";
+    private const string ThreeDayAverageReportFilePath =
+        $"../../../{ThreeDayAverageReportFileName}.txt";
 
     private static readonly PlotScalingModel StandardPlotScalingModel =
         new()
@@ -22,12 +31,13 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
     {
         while (true)
         {
-            Console.WriteLine("===");
+            Console.WriteLine(Header);
             Console.WriteLine("1. Text based money laundering.");
             Console.WriteLine("2. Plot and text based money laundering (might take a long time).");
             Console.WriteLine("3. Inspect an individual customer.");
-            Console.WriteLine("4. Exit.");
-            Console.WriteLine("===");
+            Console.WriteLine("4. Three day average.");
+            Console.WriteLine("5. Exit.");
+            Console.WriteLine(Header);
             var choice = GetUserInput();
             await PerformUserChoice(choice);
         }
