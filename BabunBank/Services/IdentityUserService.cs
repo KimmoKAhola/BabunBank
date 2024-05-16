@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using BabunBank.Infrastructure.Interfaces;
+﻿using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Models.FormModels.IdentityUser;
 using BabunBank.Models.ViewModels.Admin;
 using DataAccessLibrary.DataServices;
+using Microsoft.AspNetCore.Identity;
 using IdentityUser = Microsoft.AspNetCore.Identity.IdentityUser;
 
 namespace BabunBank.Services;
@@ -46,13 +46,13 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
         return await dataIdentityUserService.CreateAsync(model);
     }
 
-    public async Task<bool> UpdateAsync(UpdateIdentityUserModel model)
+    public async Task<IdentityResult> UpdateAsync(UpdateIdentityUserModel model)
     {
-        if (await dataIdentityUserService.CheckUserExistsByEmail(model.Email))
-        {
-            return false;
-        }
-        return await dataIdentityUserService.UpdateAsync(model.Email);
+        return await dataIdentityUserService.UpdateEmailAsync(
+            model.UserId,
+            model.NewEmail,
+            model.OldEmail
+        );
     }
 
     public async Task<bool> DeleteAsync(string id)
