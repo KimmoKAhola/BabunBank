@@ -3,7 +3,10 @@ using Microsoft.AspNetCore.Identity;
 
 namespace DataAccessLibrary.DataServices;
 
-public class DataIdentityUserService(IdentityUserRepository identityUserRepository)
+public class DataIdentityUserService(
+    IdentityUserRepository identityUserRepository,
+    UserManager<IdentityUser> userManager
+)
 {
     public async Task<(IdentityUser User, IdentityRole Role)> GetAsync(string id)
     {
@@ -79,7 +82,15 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
         return false;
     }
 
-    public async Task<bool> UpdateAsync(string id)
+    // TODO DELETE?
+    // public async Task<bool> UpdateAsync(string id)
+    // {
+    //     var user = await GetAsync(id);
+    //     var result = await identityUserRepository.UpdateAsync(x => x.Id == user.User.Id, user.User);
+    //     return result == null;
+    // }
+
+    public async Task<IdentityResult> UpdateEmailAsync(string id, string newEmail, string oldEmail)
     {
         var user = await GetAsync(id);
         if (user.User.Email != oldEmail)
