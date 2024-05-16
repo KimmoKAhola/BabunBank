@@ -1,4 +1,5 @@
 ﻿using BabunBank.Factories;
+using BabunBank.Factories.Transactions;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.Transactions;
@@ -41,7 +42,6 @@ public class AccountController(
     {
         if (!ModelState.IsValid)
         {
-            TempData["ErrorMessage"] = "Incorrect values provided.";
             return View(depositModel);
         }
 
@@ -50,9 +50,9 @@ public class AccountController(
         if (IsInvalidAccountViewModel(accountViewModel))
             return RedirectToAction("Index", "Error");
 
-        var transaction = transactionFactory.CreateDeposit(depositModel); //Har skapat en transaction
+        var transaction = transactionFactory.CreateDeposit(depositModel);
         if (await transactionService.CreateDepositAsync(transaction) == null)
-            return RedirectToAction("Index", "Error"); //Something went wrong
+            return RedirectToAction("Index", "Error");
 
         TempData["Message"] = "Deposit Successful!";
         return RedirectToAction("Details", "Cashier", new { id = accountViewModel!.CustomerId });
@@ -206,7 +206,7 @@ public class AccountController(
         );
     }
 
-    public IActionResult Clear(CreateTransferModel transferModel)
+    public IActionResult ClearFilters(CreateTransferModel transferModel)
     {
         ViewBag.CurrentPage = 0;
         ViewBag.Q = "";
