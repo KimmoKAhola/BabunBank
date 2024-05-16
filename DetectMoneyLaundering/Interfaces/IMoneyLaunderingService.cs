@@ -6,7 +6,7 @@ namespace DetectMoneyLaundering.Interfaces;
 public interface IMoneyLaunderingService
 {
     Task<Account?> GetAccount(int id);
-    Task<IEnumerable<Account>> GetAllAccounts();
+    Task<IEnumerable<Account>> GetAllAccounts(DateOnly dateFilter);
     Task<InspectAccountModel> InspectAccount(
         int id,
         VisualizationModes mode,
@@ -15,5 +15,5 @@ public interface IMoneyLaunderingService
         string backgroundColor = "",
         int slider = Parameters.ScalingDefault
     );
-    Task<List<InspectAccountModel>> InspectAllAccounts();
+    Task<List<InspectAccountModel>> InspectAllAccounts(DateOnly dateFilter);
 }
