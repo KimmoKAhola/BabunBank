@@ -75,8 +75,37 @@ public class AdminController(
         }
 
         var resultOfUpdate = await identityUserService.UpdateAsync(model);
-        if (resultOfUpdate)
-            return RedirectToAction("Index", "Admin");
+        if (resultOfUpdate.Succeeded)
+        {
+            return RedirectToAction("Index");
+        }
+
+        ViewBag.AvailableRoles = DropDownService.GetRoles();
+        foreach (var error in resultOfUpdate.Errors)
+        {
+            ModelState.AddModelError(error.Code, error.Description);
+        }
+
+        var newModel = new UpdateIdentityUserModel
+        {
+            OldEmail = identityUserService.GetSingleAsync(model.UserId).Result.Email
+        };
+        return View(newModel);
+    }
+
+    public IActionResult UpdatePassword(string id, string username)
+    {
+        var model = new UpdateIdentityUserPasswordModel { UserId = id, Username = username };
+        return View(model);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpdatePassword(UpdateIdentityUserPasswordModel model)
+    {
+        if (!ModelState.IsValid)
+        {
+            return View(model);
+        }
 
         var result = await identityUserService.UpdatePasswordAsync(model.UserId, model);
 
