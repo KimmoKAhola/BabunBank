@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using BabunBank.Factories;
+using BabunBank.Factories.Users;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
@@ -64,7 +65,7 @@ public class CashierController(
         return View(customers);
     }
 
-    public IActionResult Clear()
+    public IActionResult ClearFilters()
     {
         ViewBag.SortColumn = "";
         ViewBag.SortOrder = "";
@@ -135,10 +136,10 @@ public class CashierController(
 
         var customer = CustomerFactory.Create(model, mapper);
 
-        var result = await customerService.CreateCustomerAsync(customer);
-        if (result != null)
+        var resultOfCreatedCustomer = await customerService.CreateCustomerAsync(customer);
+        if (resultOfCreatedCustomer != null)
         {
-            if (!(bool)result)
+            if (!(bool)resultOfCreatedCustomer)
                 ModelState.AddModelError(string.Empty, "Failed to create customer.");
         }
         else
@@ -186,7 +187,7 @@ public class CashierController(
         if (!(bool)await customerService.UpdateCustomerAsync(model, ModelState))
             return View(model);
 
-        return RedirectToAction(nameof(Details), new { id = id });
+        return RedirectToAction(nameof(Details), new { id });
     }
 
     public async Task<IActionResult> Delete(int id)
@@ -198,8 +199,8 @@ public class CashierController(
         }
         var model = new DeleteCustomerModel
         {
-            FirstName = customer.GivenName,
-            Surname = customer.Surname,
+            FirstName = customer.GivenName!,
+            Surname = customer.Surname!,
             Id = customer.CustomerId
         };
 
@@ -245,8 +246,11 @@ public class CashierController(
         {
             TempData["Notification"] = "You can not create more than 5 accounts";
         }
+
         if (createNewAccount is null)
+        {
             return RedirectToAction("Index", "Error");
+        }
         return RedirectToAction("Details", "Cashier", new { id });
     }
 
