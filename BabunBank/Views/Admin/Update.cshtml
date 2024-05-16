@@ -9,32 +9,36 @@
     <form method="post" class="update-user-form">
         <div asp-validation-summary="ModelOnly"></div>
         <input type="hidden" asp-for="UserId">
-            
+        
+        <div class="create-customer-form-row">
+            Update the email, username and user role for the user @Model.OldEmail.
+            Please confirm the old email.
+        </div>
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="Email"></label>
-                <input asp-for="Email" type="text">
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label asp-for="OldEmail">Old Email</label>
+                <input asp-for="OldEmail" type="text">
+                <span asp-validation-for="OldEmail" class="text-danger"></span>
             </span>
 
             <span class="Test">
-                <label asp-for="ConfirmEmail">Confirm Email</label>
-                <input asp-for="ConfirmEmail" type="text">
-                <span asp-validation-for="ConfirmEmail" class="text-danger"></span>
+                <label asp-for="ConfirmOldEmail">Confirm Old Email</label>
+                <input asp-for="ConfirmOldEmail" type="text">
+                <span asp-validation-for="ConfirmOldEmail" class="text-danger"></span>
             </span>
         </div>
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="Password"></label>
-                <input asp-for="Password" type="password">
-                <span asp-validation-for="Password" class="text-danger"></span>
+                <label asp-for="NewEmail"></label>
+                <input asp-for="NewEmail" type="text">
+                <span asp-validation-for="NewEmail" class="text-danger"></span>
             </span>
 
             <span class="Test">
-                <label asp-for="ConfirmPassword">Confirm Password</label>
-                <input asp-for="ConfirmPassword" type="password">
-                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                <label asp-for="ConfirmNewEmail">Confirm New Email</label>
+                <input asp-for="ConfirmNewEmail" type="text">
+                <span asp-validation-for="ConfirmNewEmail" class="text-danger"></span>
             </span>
         </div>
 
