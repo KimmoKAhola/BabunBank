@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
-using BabunBank.Factories;
+using BabunBank.Factories.Account;
 using BabunBank.Infrastructure.Interfaces;
+using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.Customer;
 using BabunBank.Models.ViewModels.Customer;
 using DataAccessLibrary.Data;
@@ -30,16 +31,6 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         editableCustomerModel.GenderRole = (int)ConvertGenderToEnum(result.Gender);
 
         return editableCustomerModel;
-    }
-
-    private static CountryOptions ConvertCountryToEnum(string country)
-    {
-        return Enum.TryParse<CountryOptions>(country, out var value) ? value : 0;
-    }
-
-    private static GenderOptions ConvertGenderToEnum(string gender)
-    {
-        return Enum.TryParse<GenderOptions>(gender, out var value) ? value : 0;
     }
 
     public async Task<(IEnumerable<CustomerViewModel>, int)> GetAllCustomersViewModelAsync(
@@ -89,7 +80,7 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
             {
                 Account = account,
                 Customer = customer,
-                Type = "OWNER"
+                Type = DispositionTypeNames.Owner
             }
         );
         return await dataCustomerService.CreateAsync(customer);
@@ -108,7 +99,7 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
             {
                 Account = newAccount,
                 Customer = customer,
-                Type = "OWNER"
+                Type = DispositionTypeNames.Owner
             }
         );
 
@@ -156,5 +147,15 @@ public class CustomerService(DataCustomerService dataCustomerService, IMapper ma
         if (customer is null)
             return null;
         return await dataCustomerService.DeleteAsync(customer);
+    }
+
+    private static CountryOptions ConvertCountryToEnum(string country)
+    {
+        return Enum.TryParse<CountryOptions>(country, out var value) ? value : 0;
+    }
+
+    private static GenderOptions ConvertGenderToEnum(string gender)
+    {
+        return Enum.TryParse<GenderOptions>(gender, out var value) ? value : 0;
     }
 }
