@@ -1,4 +1,4 @@
-﻿using BabunBank.Factories;
+﻿using BabunBank.Factories.Transactions;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Services;
