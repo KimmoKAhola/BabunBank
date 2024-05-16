@@ -78,6 +78,18 @@ public class AdminController(
         if (resultOfUpdate)
             return RedirectToAction("Index", "Admin");
 
+        var result = await identityUserService.UpdatePasswordAsync(model.UserId, model);
+
+        if (result.Succeeded)
+            return RedirectToAction("Index");
+
+        foreach (var error in result.Errors)
+        {
+            ModelState.AddModelError(
+                error.Code == "PasswordMismatch" ? "OldPassword" : "NewPassword",
+                error.Description
+            );
+        }
         return View(model);
     }
 
