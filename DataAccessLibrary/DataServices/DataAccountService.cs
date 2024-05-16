@@ -31,13 +31,17 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         }
     }
 
-    public IQueryable<Account> GetAllAsync()
+    public IQueryable<Account> GetAllAsync(DateOnly dateFilter)
     {
         try
         {
             var result = accountRepository
                 .GetAllAsync()
-                .Where(a => a.Transactions.Any(t => Math.Abs(t.Amount) > TransferLimit))
+                .Where(a =>
+                    a.Transactions.Any(t =>
+                        Math.Abs(t.Amount) > TransferLimit && t.Date > dateFilter
+                    )
+                )
                 .Include(a => a.Transactions)
                 .Include(a => a.Dispositions)
                 .ThenInclude(d => d.Customer);
