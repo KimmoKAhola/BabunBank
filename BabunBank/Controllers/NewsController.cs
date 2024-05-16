@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using BabunBank.Factories;
+using BabunBank.Factories.Ad;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.Ad;
