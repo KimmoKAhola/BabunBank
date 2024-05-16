@@ -37,18 +37,6 @@
       "PackagePath": "staticwebassets\\images\\Mediamodifier-Design.svg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\babun-large-logo.png",
-      "PackagePath": "staticwebassets\\images\\babun-large-logo.png"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-error-fullscreen.jpg",
-      "PackagePath": "staticwebassets\\images\\bg-error-fullscreen.jpg"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-error-fullscreen.webp",
-      "PackagePath": "staticwebassets\\images\\bg-error-fullscreen.webp"
-    },
-    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-fullscreen.jpg",
       "PackagePath": "staticwebassets\\images\\bg-fullscreen.jpg"
     },
@@ -81,32 +69,16 @@
       "PackagePath": "staticwebassets\\images\\flag-of-denmark.png"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-denmark.svg"
-    },
-    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.png",
       "PackagePath": "staticwebassets\\images\\flag-of-finland.png"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-finland.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-norway.png",
       "PackagePath": "staticwebassets\\images\\flag-of-norway.png"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-norway.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-norway.svg"
-    },
-    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-sweden.png",
       "PackagePath": "staticwebassets\\images\\flag-of-sweden.png"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-sweden.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-sweden.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\instagram.svg",
@@ -149,10 +121,6 @@
       "PackagePath": "staticwebassets\\images\\login-arrow.svg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logo-2.png",
-      "PackagePath": "staticwebassets\\images\\logo-2.png"
-    },
-    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-255.svg",
       "PackagePath": "staticwebassets\\images\\logoipsum-255.svg"
     },
@@ -189,10 +157,6 @@
       "PackagePath": "staticwebassets\\images\\moneylaundering\\SuspiciousTransactions.png"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
-      "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
-    },
-    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-admin-test.jpg",
       "PackagePath": "staticwebassets\\images\\office-admin-test.jpg"
     },
@@ -207,10 +171,6 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-test.webp",
       "PackagePath": "staticwebassets\\images\\office-test.webp"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-3727464.jpeg",
-      "PackagePath": "staticwebassets\\images\\pexels-photo-3727464.jpeg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-right-aligned.jpeg",
