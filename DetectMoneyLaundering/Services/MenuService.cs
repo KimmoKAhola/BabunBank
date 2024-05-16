@@ -1,4 +1,5 @@
-﻿using DetectMoneyLaundering.Interfaces;
+﻿using DataAccessLibrary.Data;
+using DetectMoneyLaundering.Interfaces;
 using DetectMoneyLaundering.Models;
 
 namespace DetectMoneyLaundering.Services;
@@ -57,6 +58,9 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
                 await PlotIndividualCustomer();
                 break;
             case 4:
+                await InspectThreeDaySlidingAverage();
+                break;
+            case 5:
                 Environment.Exit(0);
                 break;
         }
@@ -111,25 +115,35 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
 
     private async Task TextMoneyLaundering()
     {
-        var listOfAccountsToInspect = await moneyLaunderingService.InspectAllAccounts();
-        using (var writer = new StreamWriter($"../../../{ReportFileName}.txt"))
+        var date = CheckLastReportDate();
+        var listOfAccountsToInspect = await moneyLaunderingService.InspectAllAccounts(date);
+        await using (
+            var writer = new StreamWriter(ReportFilePath, append: File.Exists(ReportFilePath))
+        )
         {
-            writer.WriteLine(new string('=', HeaderLength));
-            writer.WriteLine($"Results from: {DateOnly.FromDateTime(DateTime.Now)}");
-            foreach (var account in listOfAccountsToInspect)
+            await writer.WriteLineAsync(Header);
+            await writer.WriteLineAsync($"Results from: {DateOnly.FromDateTime(DateTime.Now)}");
+            if (listOfAccountsToInspect.Count == 0)
             {
-                writer.WriteLine(
-                    $"Customer Id: {account.CustomerId}\t-\tCustomer name: {account.CustomerName}"
-                );
-                foreach (var suspiciousTransaction in account.TransactionsOverLimit)
-                {
-                    writer.WriteLine(
-                        $"Transaction Id: {suspiciousTransaction.TransactionId}\t-\tAmount: {suspiciousTransaction.Amount:C2}\t-\tDate: {suspiciousTransaction.Date}"
-                    );
-                }
-                writer.WriteLine();
+                await writer.WriteLineAsync("No suspicious transactions for this date.");
             }
-            writer.WriteLine(new string('=', HeaderLength));
+            else
+            {
+                foreach (var account in listOfAccountsToInspect)
+                {
+                    await writer.WriteLineAsync(
+                        $"Customer Id: {account.CustomerId}\t-\tCustomer name: {account.CustomerName}"
+                    );
+                    foreach (var suspiciousTransaction in account.TransactionsOverLimit)
+                    {
+                        await writer.WriteLineAsync(
+                            $"Transaction Id: {suspiciousTransaction.TransactionId}\t-\tAmount: {suspiciousTransaction.Amount:C2}\t-\tDate: {suspiciousTransaction.Date}"
+                        );
+                    }
+                    await writer.WriteLineAsync();
+                }
+                await writer.WriteLineAsync(Header);
+            }
         }
         Console.Clear();
         Console.WriteLine($"The report has been saved as {ReportFileName}.txt");
@@ -137,7 +151,9 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
 
     private async Task PlotAllAccounts()
     {
-        var listOfAccountsToInspect = await moneyLaunderingService.InspectAllAccounts();
+        var date = CheckLastReportDate();
+        var listOfAccountsToInspect = await moneyLaunderingService.InspectAllAccounts(date);
+
         DataVisualizationService.CreatePlotForAllTransactions(
             listOfAccountsToInspect,
             VisualizationModes.Console,
@@ -160,5 +176,109 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
             VisualizationModes.Console,
             StandardPlotScalingModel
         );
+    }
+
+    private static DateOnly CheckLastReportDate()
+    {
+        if (File.Exists(LastReportDateFilePath))
+        {
+            var fileContent = File.ReadAllText(LastReportDateFilePath);
+            if (DateOnly.TryParse(fileContent, out var reportDate))
+            {
+                return reportDate;
+            }
+        }
+        File.WriteAllText(LastReportDateFilePath, DateOnly.FromDateTime(DateTime.Today).ToString());
+        return DateOnly.MinValue;
+    }
+
+    private async Task InspectThreeDaySlidingAverage()
+    {
+        var date = CheckLastReportDate();
+        var listOfAccountsToInspect = await moneyLaunderingService.InspectAllAccounts(date);
+
+        foreach (var customer in listOfAccountsToInspect)
+        {
+            var accountsGroupedByDate = customer
+                .NormalTransactions.Concat(customer.TransactionsOverLimit)
+                .GroupBy(t => t.Date)
+                .OrderBy(t => t.Key)
+                .ToList();
+
+            var listOfAccountChunks = new List<IEnumerable<Transaction>>();
+            for (int i = 0; i < accountsGroupedByDate.Count - NumberOfDaysInSlidingWindow; i++)
+            {
+                if (
+                    accountsGroupedByDate[i].Key.DayNumber + NumberOfDaysInSlidingWindow
+                    >= accountsGroupedByDate[i + 1].Key.DayNumber
+                )
+                {
+                    if (
+                        accountsGroupedByDate[i].Key.DayNumber + NumberOfDaysInSlidingWindow
+                        >= accountsGroupedByDate[i + 2].Key.DayNumber
+                    )
+                    {
+                        listOfAccountChunks.Add(
+                            accountsGroupedByDate[i]
+                                .Concat(accountsGroupedByDate[i + 1])
+                                .Concat(accountsGroupedByDate[i + 2])
+                        );
+                    }
+                    else
+                    {
+                        listOfAccountChunks.Add(
+                            accountsGroupedByDate[i].Concat(accountsGroupedByDate[i + 1])
+                        );
+                    }
+                }
+                else
+                {
+                    listOfAccountChunks.Add(accountsGroupedByDate[i]);
+                }
+            }
+
+            List<(
+                decimal sumOfTransactions,
+                int accountId,
+                List<int> listOfTransactionIds,
+                DateOnly startDate,
+                DateOnly endDate
+            )> test = [];
+            foreach (var chunk in listOfAccountChunks)
+            {
+                var chunkSum = chunk.Sum(x => Math.Abs(x.Amount));
+                var accountId = chunk.Select(x => x.AccountId).First();
+                var transactionIds = chunk.Select(x => x.TransactionId).ToList();
+                var startDate = chunk.First().Date;
+                var endDate = chunk.Last().Date;
+                if (chunkSum >= MaximumSumOverThreeDayPeriod)
+                {
+                    test.Add((chunkSum, accountId, transactionIds, startDate, endDate));
+                }
+            }
+
+            await using var writer = new StreamWriter(ThreeDayAverageReportFilePath, append: true);
+            await writer.WriteLineAsync(Header);
+            var counter = 0;
+            foreach (var valueTuple in test.Where(_ => test.Count != 0))
+            {
+                if (counter == 0)
+                {
+                    await writer.WriteLineAsync(
+                        $"Suspicious transactions for the account with id \"{test.First().accountId}\""
+                    );
+                    counter++;
+                }
+                await writer.WriteLineAsync(
+                    $"\nThe transactions occurred between the dates {valueTuple.startDate} - {valueTuple.endDate} and have exceeded the trigger sum of {MaximumSumOverThreeDayPeriod:C2}"
+                        + $"\nTotal sum over this period is: {valueTuple.sumOfTransactions:C2}"
+                );
+                foreach (var transactionId in valueTuple.listOfTransactionIds)
+                {
+                    await writer.WriteLineAsync("Transaction Id: " + transactionId);
+                }
+            }
+            await writer.WriteLineAsync();
+        }
     }
 }
