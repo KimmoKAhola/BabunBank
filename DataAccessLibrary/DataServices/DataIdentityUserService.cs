@@ -82,7 +82,38 @@ public class DataIdentityUserService(IdentityUserRepository identityUserReposito
     public async Task<bool> UpdateAsync(string id)
     {
         var user = await GetAsync(id);
-        var result = await identityUserRepository.UpdateAsync(x => x.Id == user.User.Id, user.User);
-        return result == null;
+        if (user.User.Email != oldEmail)
+        {
+            return IdentityResult.Failed(
+                new IdentityError
+                {
+                    Code = "OldEmail",
+                    Description = $"Wrong email. Please enter {user.User.Email}."
+                }
+            );
+        }
+        if (await CheckUserExistsByEmail(newEmail))
+        {
+            var resultOfEmailChange = await userManager.SetEmailAsync(user.User, newEmail);
+            await userManager.SetUserNameAsync(user.User, newEmail);
+            return resultOfEmailChange;
+        }
+
+        var errors = new List<IdentityError>
+        {
+            new IdentityError { Code = "NewEmail", Description = "Email is already in use." }
+        };
+        return IdentityResult.Failed(errors.ToArray());
+    }
+
+    public async Task<IdentityResult> UpdatePasswordAsync(
+        string id,
+        string oldPassword,
+        string newPassword
+    )
+    {
+        var user = await GetAsync(id);
+        var result = await userManager.ChangePasswordAsync(user.User, oldPassword, newPassword);
+        return result;
     }
 }
