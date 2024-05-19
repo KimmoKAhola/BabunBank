@@ -4,49 +4,51 @@
     ViewBag.Title = "Contact Us";
     Layout = "_Layout";
 }
-<div class="container contact">
-    
-    @* TODO <div class="contact-form-header"> *@
-    @*     <h2>Want to contact us?</h2> *@
-    @*     <h2>Use the form below to send us a message.</h2> *@
-    @* </div> *@
-    <div>
-        <form asp-controller="Home" asp-action="Contact" class="container create-contact-form" method="post">
-            <div asp-validation-summary="ModelOnly"></div>
-            <div class="create-customer-form-row">
-                <div class="Test">
-                    <label asp-for="FirstName">First Name</label>
-                    <input asp-for="FirstName" type="text" placeholder="First name">
-                    <span asp-validation-for="FirstName" class="text-danger"></span>
-                </div>
-                <div class="Test">
-                    <label asp-for="LastName">Last Name</label>
-                    <input asp-for="LastName" type="text" placeholder="Last name">
-                    <span asp-validation-for="LastName" class="text-danger"></span>
-                </div>
-            </div>
+<div id="contact-bg">
+    <div class="container contact">
 
-            <div class="create-customer-form-row">
-                <div class="Test">
-                    <label asp-for="Email"></label>
-                    <input asp-for="Email" type="email" placeholder="Email">
-                    <span asp-validation-for="Email" class="text-danger"></span>
+        @* TODO <div class="contact-form-header"> *@
+        @*     <h2>Want to contact us?</h2> *@
+        @*     <h2>Use the form below to send us a message.</h2> *@
+        @* </div> *@
+        <div>
+            <form asp-controller="Home" asp-action="Contact" class="container create-contact-form" method="post">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="create-customer-form-row">
+                    <div class="Test">
+                        <label asp-for="FirstName">First Name</label>
+                        <input asp-for="FirstName" type="text" placeholder="First name">
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="Test">
+                        <label asp-for="LastName">Last Name</label>
+                        <input asp-for="LastName" type="text" placeholder="Last name">
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="create-customer-form-row">
-                <div class="Test">
-                    <label asp-for="Message"></label>
-                    <textarea id="contact-form-textarea" asp-for="Message" placeholder="Your message here..."></textarea>
-                    <span asp-validation-for="Message" class="text-danger"></span>
+
+                <div class="create-customer-form-row">
+                    <div class="Test">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" type="email" placeholder="Email">
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="button-row">
-                <button class="create-customer-form-btn" type="submit">Submit form</button>
-            </div>
-        </form>
+                <div class="create-customer-form-row">
+                    <div class="Test">
+                        <label asp-for="Message"></label>
+                        <textarea id="contact-form-textarea" asp-for="Message" placeholder="Your message here..."></textarea>
+                        <span asp-validation-for="Message" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="button-row">
+                    <button class="create-customer-form-btn" type="submit">Submit form</button>
+                    <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Cancel</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
-
 @section Scripts
 {
     <partial name="_ValidationScriptsPartial" />
