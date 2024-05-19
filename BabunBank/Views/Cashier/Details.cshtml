@@ -13,15 +13,8 @@
                 <table style="margin-bottom: 72px" class="customer-data-table">
                     <thead>
                     <tr>
-                        <th>
-                            <span style="display: flex; gap: 24px">
-                                Customer Overview
-                                <a asp-action="Update" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="inspect-account-button">
-                                    <i class="material-symbols-outlined">
-                                        edit
-                                    </i>
-                                </a>
-                            </span>
+                        <th style="padding-bottom: 24px; font-weight: bolder; font-size: 1.5rem">
+                            Customer Overview
                         </th>
                     </tr>
                     </thead>
@@ -42,17 +35,14 @@
                         <td>Country: @Model.Country</td>
                     </tr>
                     <tr>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td>List of all customer accounts</td>
+                        <td style="padding: 24px 0; font-weight: bolder; font-size: 1.5rem">List of all customer accounts</td>
                     </tr>
                     <tr>
                     @foreach (var account in Model.CustomerAccounts)
                     {
-                        <td class="customer-data-table-accounts" style="display: flex; justify-content: space-between; align-items: center; gap: 24px">
+                        <td class="customer-data-table-accounts" style="display: flex; justify-content: space-between; align-items: center; gap: 24px; padding-top: 2px">
                             <div>
-                                @account.AccountId (@account.Type) - @account.Transactions.Sum(a => a.Amount).ToString("C2", new CultureInfo("sv-SE"))
+                                Id: @account.AccountId (@account.Type) - @account.Transactions.Sum(a => a.Amount).ToString("C2", new CultureInfo("sv-SE"))
                             </div>
                             <div style="display: flex; gap: 12px">
                                 <a asp-controller="Cashier" asp-action="Inspect" asp-route-id="@account.AccountId" class="inspect-account-button"><i class="material-symbols-outlined">search</i></a>
