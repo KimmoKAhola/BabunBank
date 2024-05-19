@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using BabunBank.Factories;
 using BabunBank.Factories.Users;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Interfaces;
@@ -52,8 +51,8 @@ public class CashierController(
 
         totalPageCount = (int)Math.Ceiling((double)totalPageCount / pageSize);
 
-        if (!customers.Any() && totalPageCount == 0)
-            return RedirectToAction("Index", "Error");
+        // if (!customers.Any() && totalPageCount == 0)
+        //     return RedirectToAction("Index", "Error"); //TODO remove this?
 
         ViewBag.SortColumn = sortColumn;
         ViewBag.SortOrder = sortOrder;
