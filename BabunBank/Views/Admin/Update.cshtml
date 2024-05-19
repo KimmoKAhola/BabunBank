@@ -9,10 +9,10 @@
     <form method="post" class="update-user-form">
         <div asp-validation-summary="ModelOnly"></div>
         <input type="hidden" asp-for="UserId">
-        
+
         <div class="create-customer-form-row">
             Update the email, username and user role for the user @Model.OldEmail.
-            Please confirm the old email.
+            <br>You need to confirm the old email as well as the new email to update the user.
         </div>
         <div class="create-customer-form-row">
             <span class="Test">
@@ -30,7 +30,7 @@
 
         <div class="create-customer-form-row">
             <span class="Test">
-                <label asp-for="NewEmail"></label>
+                <label asp-for="NewEmail">New Email</label>
                 <input asp-for="NewEmail" type="text">
                 <span asp-validation-for="NewEmail" class="text-danger"></span>
             </span>
@@ -54,10 +54,10 @@
                 <span asp-validation-for="UserRole" class="text-danger"></span>
             </span>
         </div>
-            
+
         <div class="button-row">
-                <button type="submit" class="create-customer-form-btn">Save changes</button>
-                <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn">Go back</a>
+            <button type="submit" class="create-customer-form-btn">Save changes</button>
+            <a asp-controller="Admin" asp-action="Index" class="create-customer-form-btn">Cancel</a>
         </div>
     </form>
 </div>
@@ -66,4 +66,5 @@
 
 {
     <partial name="_ValidationScriptsPartial" />
+
 }
