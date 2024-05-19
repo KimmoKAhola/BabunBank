@@ -19,19 +19,18 @@
 @if (Model.NormalTransactions.Count > 0 && Model.TransactionsOverLimit.Count > 0)
 {
     <div class="container">
-        <form asp-controller="Cashier" 
-              asp-action="ScaleGraphs" 
+        <form asp-controller="Cashier"
+              asp-action="ScaleGraphs"
               asp-route-id="@Model.CustomerId">
-            <h2>Inspecting customer @Model.CustomerName</h2>
-            <h3>Here are the suspicious transactions for this customer</h3>
-            <p>Do you wish to change the image settings? Adjust the plots here:</p>
-            <p>The slider determines the scaling factor. 10 is the default size (100 %) and each point makes the image 10 % smaller/larger. 30 means that the image will be 3 times larger.</p>
-            
+            <h1 style="margin-top: 72px; text-align: center; font-size: 2rem; line-height: 2rem">You are currently testing the demo function of inspecting the customer @Model.CustomerName
+            This page is a work in progress and might be subject to change in the future.</h1>
+            <p style="margin-top: 72px">Adjust the image settings here. Use the slider to change image size and use the dropdowns to change colors.</p>
+
             <div class="create-customer-form-row">
                 <input type="range" min="1" max="30" value="10" name="slider" oninput="rangeValue.innerText = this.value">
                 <p id="rangeValue">10</p>
             </div>
-            <span style="display: flex; flex: 1">
+            <span style="display: flex; flex: 1; align-items: center; gap: 24px">
                 <div class="create-customer-form-row">
                     <span class="Test">
                         <label>Marker Color</label>
@@ -42,12 +41,12 @@
                         @Html.DropDownList("BackgroundColor", colors, new { @class = "dropdown-list" })
                     </span>
                 </div>
-                
+
+                <div class="button-row">
+                    <button type="submit" class="create-customer-form-btn">Apply filters</button>
+                    <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
+                </div>
             </span>
-            <div class="button-row">
-                <button type="submit" class="create-customer-form-btn">Apply filters</button>
-                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
-            </div>
         </form>
     </div>
     <div class="container inspect">
@@ -60,7 +59,7 @@
             <div class="inspect-customer-plot-buttons" style="margin-bottom: 72px; gap: 72px">
                 <button class="create-customer-form-btn" onclick="prevImage()">❮</button>
                 <button class="create-customer-form-btn" onclick="nextImage()">❯</button>
-                <p id="image-index-display"></p>
+                <p style="display: grid; place-items: center; margin-top: 12px" id="image-index-display"></p>
             </div>
         </div>
     </div>
@@ -76,7 +75,7 @@
     }
 <div class="container inpect">
     <table class="data-table">
-        <thead class="data-table-header">
+        <thead>
         <tr>
             <th>Transaction Id</th>
             <th>Transaction Amount</th>
