@@ -1,9 +1,5 @@
-﻿@using BabunBank.Infrastructure.Enums
-@using BabunBank.Infrastructure.Parameters
-@using Microsoft.AspNetCore.Identity
+﻿@using BabunBank.Infrastructure.Parameters
 @model BabunBank.Models.ViewModels.ApiBlog.BlogPost
-@inject SignInManager<IdentityUser> SignInManager
-
 
 @{
     ViewBag.Title = "title";
@@ -30,8 +26,7 @@
                 <div class="blogpost-card-line-break"></div>
                 <h2 class="blogpost-card-date">@Model.DateCreated.ToShortDateString() @Model.DateCreated.ToString("HH:mm:ss")</h2>
             </div>
+        <a asp-controller="News" asp-action="Index" class="create-customer-form-btn" id="blogpost-return-button">Return</a>
         </div>
-        
-        <a asp-controller="News" asp-action="Index" class="create-customer-form-btn" id="blogpost-return-button">Return to blog posts...</a>
     </div>
 </div>
