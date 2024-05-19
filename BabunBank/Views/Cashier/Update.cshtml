@@ -7,9 +7,7 @@
 <div id="cashier-create-bg">
     <img src="~/images/office-test.webp" id="TODO" alt="TODO">
     <div class="container create-customer">
-        @* <h2 id="update-customer-header">Edit the customer @Model.GivenName @Model.SurName</h2> *@
         <form method="post" class="create-customer-form">
-            @* id="cashier-update-form" *@
             <div asp-validation-summary="ModelOnly"></div>
 
             <input asp-for="CustomerId" type="hidden">
@@ -58,10 +56,6 @@
                 </span>
 
                 <span class="Test">
-                    @* <label asp-for="Country"></label> *@
-                    @* <input asp-for="Country" type="text"> *@
-                    @* <span asp-validation-for="Country"></span> *@
-
                     <label asp-for="CountryValue">Country</label>
                     <select asp-for="CountryValue" name="CountryValue" class="enum-dropdown">
                         @foreach (var country in @ViewBag.AvailableCountries as List<SelectListItem>)
@@ -111,7 +105,7 @@
 
                 <span class="Test" id="cashier-return">
                     <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn" id="return-cashier-btn">
-                        Return
+                        Cancel
                     </a>
                 </span>
             </div>
