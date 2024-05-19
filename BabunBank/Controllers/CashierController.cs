@@ -241,16 +241,26 @@ public class CashierController(
 
     public async Task<IActionResult> CreateAccount(int id)
     {
+        var customer = await customerService.GetCustomerViewModelAsync(id);
+        return View(customer);
+    }
+
+    public async Task<IActionResult> CreateAccountConfirmation(int id, bool choice)
+    {
+        if (!choice)
+            return RedirectToAction("Details", new { id });
+
         var createNewAccount = await customerService.AddAccountToCustomerAsync(id);
-        if (createNewAccount is false)
+        switch (createNewAccount)
         {
-            TempData["Notification"] = "You can not create more than 5 accounts";
+            case false:
+                TempData["Notification"] = "You can not create more than 5 accounts";
+                break;
+            case null:
+                return RedirectToAction("Index", "Error");
         }
 
-        if (createNewAccount is null)
-        {
-            return RedirectToAction("Index", "Error");
-        }
+        TempData["Message"] = "Account created";
         return RedirectToAction("Details", "Cashier", new { id });
     }
 
