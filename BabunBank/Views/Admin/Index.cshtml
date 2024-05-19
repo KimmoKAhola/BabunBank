@@ -41,8 +41,33 @@
     </table>
     <div class="button-row" style="margin-bottom: 72px">
         <div></div>
-        <a asp-controller="Admin" asp-action="Create" class="create-customer-form-btn">Create a new user</a>
-        <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Go back</a>
         <div></div>
+        <a style="max-width: 250px" asp-controller="Admin" asp-action="Create" class="create-customer-form-btn">Create a new user</a>
+        <a style="max-width: 250px" asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return</a>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+
+        toastr.options = {
+            "positionClass" : "toast-bottom-center",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "hideEasing": "swing",
+            "showEasing": "swing",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut",
+            "toastClass" : "custom-toast-class"
+        };
+
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <text>
+        toastr.success('@ViewBag.Message');
+        </text>
+        }
+    });
+</script>
