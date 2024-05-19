@@ -8,22 +8,23 @@
 <div class="container deposit">
     <form method="post" asp-controller="Account" asp-action="Deposit">
         <div asp-validation-summary="ModelOnly"></div>
-        <create-customer-form-row>
+        <div class="create-customer-form-row">
             <span class="Test">
-                <h2>Your current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE"))</h2>
+                <h2>Your current balance is: @Model.Balance.ToString("C2", new CultureInfo("sv-SE")).
+                Please enter a positive amount to deposit.</h2>
             </span>
-        </create-customer-form-row>
+        </div>
         <div class="create-customer-form-row">
             <span class="Test">
                 <label asp-for="Amount">Deposit amount</label>
                 <input asp-for="Amount" type="number">
-                <span asp-validation-for="Amount"></span>
+                <span asp-validation-for="Amount" class="text-danger"></span>
             </span>
 
             <span class="Test">
                 <label asp-for="Date">Transaction Date</label>
                 <input asp-for="Date" type="date">
-                <span asp-validation-for="Date"></span>
+                <span asp-validation-for="Date" class="text-danger"></span>
             </span>
         </div>
 
@@ -36,9 +37,11 @@
         <input type="hidden" asp-for="Bank">
         <input type="hidden" asp-for="Account">
         
-        <div class="button-row">
-            <button type="submit" class="create-customer-form-btn">Create Deposit</button>
-            <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Return</a>
+        <div class="create-customer-form-row">
+            <div id="transfer-button" class="button-row">
+                <button type="submit" class="create-customer-form-btn">Create Deposit</button>
+                <a asp-controller="Cashier" asp-action="Details" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">Cancel</a>
+            </div>
         </div>
     </form>
 </div>
