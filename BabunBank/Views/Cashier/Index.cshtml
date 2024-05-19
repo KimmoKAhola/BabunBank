@@ -29,17 +29,23 @@
                 <a asp-controller="Cashier" asp-action="ClearFilters" class="create-customer-form-btn" id="clear-filter-button">Clear filters</a>
             </div>
         </form>
+        <div style="display:flex; justify-content: space-between; max-width: 1400px; width: 87.5%; margin-top: 24px">
+            @if (ViewBag.TotalPageCount > 0)
+            {
+            <h2 style="display: flex; justify-content: end; align-items: end" id="filter-page-result">Page: @ViewBag.CurrentPage (of @ViewBag.TotalPageCount)</h2>
+            }
+            else
+            {
+                <h2></h2>
+            }
+            <span id="cashier-buttons">
+                    <a asp-controller="Cashier" asp-action="Create" class="create-customer-form-btn">Create a new customer</a>
+                    <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return</a>
+                </span>
+        </div>
         @if (ViewBag.TotalPageCount > 0)
         {
-            <h2 id="filter-page-result">Page: @ViewBag.CurrentPage (of @ViewBag.TotalPageCount)</h2>
-        }
-        <span id="cashier-buttons">
-            <a asp-controller="Cashier" asp-action="Create" class="create-customer-form-btn">Create a new customer</a>
-            <a asp-controller="Home" asp-action="Index" class="create-customer-form-btn">Return</a>
-        </span>
-        @if (ViewBag.TotalPageCount > 0)
-        {
-            <table style="margin-top:36px" class="data-table" id="data-table">
+            <table class="data-table" id="data-table">
                 <thead class="header">
                 <tr>
                     <th>
@@ -160,7 +166,7 @@
                        asp-route-pageSize="@ViewBag.PageSize" class="create-customer-form-btn">
                         Prev
                     </a>
-                
+
                     <a class="pagination-inactive-button"
                        asp-controller="Cashier"
                        asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
