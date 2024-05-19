@@ -12,12 +12,14 @@
         <input type="hidden" asp-for="FirstName" value="@Model.FirstName">
         <input type="hidden" asp-for="Surname" value="@Model.Surname">
 
-        <span style="text-align: center; margin-bottom: 72px;">
-            <h2>You are about to deactivate the user @Model.FirstName @Model.Surname.</h2>
-            <h2>The customer's account will become unavailable for future use.</h2>
-            <h2>This is a destructive action that can only be reversed by a database administrator.</h2>
-            <h2>Please enter the user's id (@Model.Id) and full name to confirm deletion.</h2>
-        </span>
+        <div class="create-customer-form-row">
+            <span>
+                <h2>You are about to deactivate the user @Model.FirstName @Model.Surname.
+                The customer's account will become unavailable for future use. All assets will be frozen.
+                This is a destructive action that can only be reversed by a database administrator.</h2>
+                <h2 style="padding-top: 24px">Please enter the customer's id (@Model.Id) and full name to confirm deletion.</h2>
+            </span>
+        </div>
         
         <div class="create-customer-form-row">
             <span class="Test">
