@@ -11,7 +11,7 @@
                 @if (!SignInManager.IsSignedIn(User))
                 {
                 <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Contact">Contact Us</a>
-                <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy & API usage</a>
+                @* <a class="navbar-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy & API usage</a> TODO fix for resume *@
                 }
                 @if (User.IsInRole(UserRoleNames.Cashier))
                 {
