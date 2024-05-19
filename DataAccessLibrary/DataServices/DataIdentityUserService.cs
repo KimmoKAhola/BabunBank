@@ -68,15 +68,12 @@ public class DataIdentityUserService(
         return false;
     }
 
-    // TODO DELETE?
-    // public async Task<bool> UpdateAsync(string id)
-    // {
-    //     var user = await GetAsync(id);
-    //     var result = await identityUserRepository.UpdateAsync(x => x.Id == user.User.Id, user.User);
-    //     return result == null;
-    // }
-
-    public async Task<IdentityResult> UpdateEmailAsync(string id, string newEmail, string oldEmail)
+    public async Task<IdentityResult> UpdateEmailAsync(
+        string id,
+        string newEmail,
+        string oldEmail,
+        string newRole
+    )
     {
         var user = await GetAsync(id);
         if (user.User.Email != oldEmail)
@@ -92,6 +89,9 @@ public class DataIdentityUserService(
         if (await CheckUserExistsByEmail(newEmail))
         {
             var resultOfEmailChange = await userManager.SetEmailAsync(user.User, newEmail);
+            var currentRole = await userManager.GetRolesAsync(user.User);
+            await userManager.RemoveFromRolesAsync(user.User, currentRole);
+            await userManager.AddToRoleAsync(user.User, newRole);
             await userManager.SetUserNameAsync(user.User, newEmail);
             return resultOfEmailChange;
         }
