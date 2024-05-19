@@ -9,6 +9,7 @@ namespace BabunBank.Services;
 public class AccountService(DataAccountService dataAccountService, IMapper mapper) : IAccountService
 {
     private const int ItemsPerPage = 50;
+    private const int ItemsPerTransferPage = 10;
 
     public async Task<AccountViewModel?> GetAccountViewModelAsync(int id)
     {
@@ -18,11 +19,32 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
             return null!;
 
         var accountViewModel = mapper.Map<AccountViewModel>(result);
-        accountViewModel.CustomerId = result.Dispositions.First(x => x.Type == "OWNER").CustomerId;
+        accountViewModel.CustomerId = result
+            .Dispositions.First(x => x.Type.ToUpper() == "OWNER")
+            .CustomerId;
 
         accountViewModel.Transactions = accountViewModel
             ?.Transactions?.OrderByDescending(t => t.TransactionId)
             .Take(ItemsPerPage)
+            .ToList();
+        return accountViewModel;
+    }
+
+    public async Task<AccountViewModel?> GetTransferAccountViewModelAsync(int id)
+    {
+        var result = await dataAccountService.GetAsync(id);
+
+        if (result == null)
+            return null!;
+
+        var accountViewModel = mapper.Map<AccountViewModel>(result);
+        accountViewModel.CustomerId = result
+            .Dispositions.First(x => x.Type.ToUpper() == "OWNER")
+            .CustomerId;
+
+        accountViewModel.Transactions = accountViewModel
+            ?.Transactions?.OrderByDescending(t => t.TransactionId)
+            .Take(ItemsPerTransferPage)
             .ToList();
         return accountViewModel;
     }

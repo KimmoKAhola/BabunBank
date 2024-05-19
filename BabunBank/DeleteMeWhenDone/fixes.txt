@@ -1,0 +1,5 @@
+cashier index - crud högst upp
+page number till vänster om search bar (kanske)
+gör ett kort till transactions
+transfer clear funkar inte
+transfer pagination funkar inte

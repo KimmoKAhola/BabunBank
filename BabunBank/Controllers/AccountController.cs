@@ -1,5 +1,4 @@
-﻿using BabunBank.Factories;
-using BabunBank.Factories.Transactions;
+﻿using BabunBank.Factories.Transactions;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.Transactions;
@@ -17,7 +16,7 @@ public class AccountController(
 ) : Controller
 {
     private const int StartingPage = 1;
-    private const int DefaultPageSize = 50;
+    private const int DefaultPageSize = 20;
 
     public async Task<IActionResult> Deposit(int id)
     {
@@ -108,7 +107,7 @@ public class AccountController(
         ViewBag.PageSize = pageSize;
         ViewBag.TotalPageCount = 0;
 
-        var senderAccountViewModel = await accountService.GetAccountViewModelAsync(id);
+        var senderAccountViewModel = await accountService.GetTransferAccountViewModelAsync(id);
 
         if (senderAccountViewModel == null)
             return RedirectToAction("Index", "Error");
@@ -136,9 +135,20 @@ public class AccountController(
         ViewBag.PageSize = pageSize;
 
         if (!ModelState.IsValid)
+        {
+            if (ModelState["ToAccountId"].Errors.Count > 0 && ModelState.ErrorCount == 1)
+            {
+                TempData["ErrorMessage"] = "You must select a customer.";
+                var notification = TempData["ErrorMessage"] as string;
+                if (!string.IsNullOrEmpty(notification))
+                {
+                    ViewBag.Notification = notification;
+                }
+            }
             return View(transferModel);
+        }
 
-        var receivingAccountViewModel = await accountService.GetAccountViewModelAsync(
+        var receivingAccountViewModel = await accountService.GetTransferAccountViewModelAsync(
             transferModel.ToAccountId
         );
 
@@ -166,12 +176,13 @@ public class AccountController(
         int pageSize
     )
     {
-        ViewBag.ListOfCustomers = await accountService.RenameMe(
+        var result = await accountService.RenameMe(
             transferModel.FromAccountId,
             pageNumber,
             pageSize,
             q
         );
+        ViewBag.ListOfCustomers = result.Item1;
     }
 
     public async Task<IActionResult> Filter(
@@ -181,13 +192,6 @@ public class AccountController(
         int pageSize = 50
     )
     {
-        // ViewBag.ListOfCustomers = await accountService.RenameMe(
-        //     model.FromAccountId,
-        //     pageNumber,
-        //     pageSize,
-        //     q
-        // );
-
         await GetListOfCustomers(transferModel, q, pageNumber, pageSize);
 
         ViewBag.CurrentPage = pageNumber;
@@ -206,9 +210,10 @@ public class AccountController(
         );
     }
 
+    [HttpPost]
     public IActionResult ClearFilters(CreateTransferModel transferModel)
     {
-        ViewBag.CurrentPage = 0;
+        ViewBag.CurrentPage = StartingPage;
         ViewBag.Q = "";
         ViewBag.PageSize = 50;
 

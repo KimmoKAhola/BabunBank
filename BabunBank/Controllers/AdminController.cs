@@ -1,5 +1,4 @@
-﻿using BabunBank.Factories;
-using BabunBank.Factories.Users;
+﻿using BabunBank.Factories.Users;
 using BabunBank.Infrastructure.Configurations.CustomValidators;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
@@ -22,6 +21,11 @@ public class AdminController(
 {
     public async Task<IActionResult> Index()
     {
+        var message = TempData["Message"] as string;
+        if (!string.IsNullOrEmpty(message))
+        {
+            ViewBag.Message = message;
+        }
         ViewBag.AvailableRoles = DropDownService.GetRoles();
         var users = await identityUserService.GetAllAsync();
         return View(users);
@@ -69,6 +73,7 @@ public class AdminController(
     [HttpPost]
     public async Task<IActionResult> Update(UpdateIdentityUserModel model)
     {
+        ViewBag.AvailableRoles = DropDownService.GetRoles();
         if (!ModelState.IsValid)
         {
             return View(model);
@@ -77,10 +82,10 @@ public class AdminController(
         var resultOfUpdate = await identityUserService.UpdateAsync(model);
         if (resultOfUpdate.Succeeded)
         {
+            TempData["Message"] = "Update successful";
             return RedirectToAction("Index");
         }
 
-        ViewBag.AvailableRoles = DropDownService.GetRoles();
         foreach (var error in resultOfUpdate.Errors)
         {
             ModelState.AddModelError(error.Code, error.Description);
@@ -110,7 +115,10 @@ public class AdminController(
         var result = await identityUserService.UpdatePasswordAsync(model.UserId, model);
 
         if (result.Succeeded)
+        {
+            TempData["Message"] = "Update successful";
             return RedirectToAction("Index");
+        }
 
         foreach (var error in result.Errors)
         {
