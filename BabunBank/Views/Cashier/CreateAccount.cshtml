@@ -1,0 +1,19 @@
+﻿@model BabunBank.Models.ViewModels.Customer.CustomerViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<div class="container confirm-account">
+    <span style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 72px">
+        <span>
+            <h2 style="text-align: center">Do you wish to create a new account for the customer @Model.GivenName @Model.Surname?</h2>
+            <h2 style="text-align: center">Please note that a customer can at most have 5 accounts and that accounts can not be deleted.</h2>
+        </span>
+        <div class="button-row">
+            <a style="width: 250px" asp-controller="Cashier" asp-action="CreateAccountConfirmation" asp-route-id="@Model.CustomerId" asp-route-choice="true" class="create-customer-form-btn">Create account</a>
+            <a style="width: 250px" asp-controller="Cashier" asp-action="CreateAccountConfirmation" asp-route-id="@Model.CustomerId" asp-route-choice="false" class="create-customer-form-btn">Cancel</a>
+        </div>
+    </span>
+</div>
