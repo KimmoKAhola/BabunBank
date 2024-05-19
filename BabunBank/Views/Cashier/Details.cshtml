@@ -45,8 +45,6 @@
                                 Id: @account.AccountId (@account.Type) - @account.Transactions.Sum(a => a.Amount).ToString("C2", new CultureInfo("sv-SE"))
                             </div>
                             <div style="display: flex; gap: 12px">
-                                <a asp-controller="Cashier" asp-action="Inspect" asp-route-id="@account.AccountId" class="inspect-account-button"><i class="material-symbols-outlined">search</i></a>
-
                                 <a asp-controller="Account" asp-action="Deposit" asp-route-id="@account.AccountId" class="inspect-account-button">
                                     <i class="material-symbols-outlined">
                                         add_circle
@@ -62,6 +60,7 @@
                                         input
                                     </i>
                                 </a>
+                                <a asp-controller="Cashier" asp-action="Inspect" asp-route-id="@account.AccountId" class="inspect-account-button"><i class="material-symbols-outlined">search</i></a>
                             </div>
                         </td>
                     }
@@ -71,7 +70,16 @@
                     </tbody>
                 </table>
                 <div class="customer-card-crud">
-                    <button class="create-customer-form-btn" id="toggleTransactionsButton" onclick="toggleTransactions()">
+                    <a asp-action="CreateAccount" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">
+                        Create a new account
+                    </a>
+                    <a asp-action="Update" asp-controller="Cashier" asp-route-id="@Model.CustomerId" class="create-customer-form-btn">
+                        Edit Customer
+                    </a>
+                    <a asp-action="Index" asp-controller="Cashier" asp-route-sortColumn="@ViewBag.SortColumn" asp-route-sortOrder="@ViewBag.SortOrder" class="create-customer-form-btn">
+                        Return
+                    </a>
+                    <button style="width: 50px" class="create-customer-form-btn" id="toggleTransactionsButton" onclick="toggleTransactions()">
                         <i class="material-symbols-outlined" id="doNotShow">
                             visibility
                         </i>
