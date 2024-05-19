@@ -51,7 +51,8 @@ public class IdentityUserService(DataIdentityUserService dataIdentityUserService
         return await dataIdentityUserService.UpdateEmailAsync(
             model.UserId,
             model.NewEmail,
-            model.OldEmail
+            model.OldEmail,
+            model.UserRole.ToString()
         );
     }
 
