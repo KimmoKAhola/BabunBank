@@ -4,46 +4,47 @@
     ViewBag.Title = "title";
     Layout = "_Layout";
 }
+<div id="update-blogpost-bg">
+    <div class="container update-blogpost">
+        <form asp-controller="News" asp-action="Update" method="post">
+            <input type="hidden" asp-for="IsDeleted">
 
-<div class="container update-blogpost">
-    <form asp-controller="News" asp-action="Update" method="post">
-        <input type="hidden" asp-for="IsDeleted">
-
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <label asp-for="Title">Title</label>
-                <input asp-for="Title" type="text">
-                <span asp-validation-for="Title"></span>
-            </span>
-
-            <span class="Test">
-                <label asp-for="Author">Author</label>
-                <input asp-for="Author" type="text">
-                <span asp-validation-for="Author"></span>
-            </span>
-        </div>
-
-        <div class="create-customer-form-row">
-            <span class="Test">
-                <label asp-for="Description">Description</label>
-                <input class="blogpost-edit-description" asp-for="Description" type="text">
-                <span asp-validation-for="Description"></span>
-            </span>
-        </div>
-        
-        <div class="create-customer-form-row">
-            <div class="Test">
+            <div class="create-customer-form-row">
                 <span class="Test">
-                <label asp-for="Content">Content</label>
-                <textarea class="blogpost-edit-textarea" asp-for="Content" type="text"></textarea>
-                <span asp-validation-for="Content"></span>
-            </span>
-            </div>
-        </div>
+                    <label asp-for="Title">Title</label>
+                    <input asp-for="Title" type="text">
+                    <span asp-validation-for="Title"></span>
+                </span>
 
-        <div class="create-customer-form-row" id="update-blogpost-button">
-            <a asp-controller="News" asp-action="Index" class="create-customer-form-btn">Discard changes</a>
-            <button type="submit" class="create-customer-form-btn">Save changes</button>
-        </div>
-    </form>
+                <span class="Test">
+                    <label asp-for="Author">Author</label>
+                    <input asp-for="Author" type="text">
+                    <span asp-validation-for="Author"></span>
+                </span>
+            </div>
+
+            <div class="create-customer-form-row">
+                <span class="Test">
+                    <label asp-for="Description">Description</label>
+                    <input class="blogpost-edit-description" asp-for="Description" type="text">
+                    <span asp-validation-for="Description"></span>
+                </span>
+            </div>
+
+            <div class="create-customer-form-row">
+                <div class="Test">
+                    <span class="Test">
+                        <label asp-for="Content">Content</label>
+                        <textarea style="margin-bottom: 24px" class="blogpost-edit-textarea" asp-for="Content" type="text"></textarea>
+                        <span asp-validation-for="Content"></span>
+                    </span>
+                </div>
+            </div>
+
+            <div class="button-row" id="update-blogpost-button">
+                <button type="submit" class="create-customer-form-btn">Save changes</button>
+                <a asp-controller="News" asp-action="Index" class="create-customer-form-btn">Cancel</a>
+            </div>
+        </form>
+    </div>
 </div>
