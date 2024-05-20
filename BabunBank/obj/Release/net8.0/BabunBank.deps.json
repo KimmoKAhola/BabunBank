@@ -22,8 +22,9 @@
           "Microsoft.IdentityModel.JsonWebTokens": "7.5.1",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.2",
           "MySql.EntityFrameworkCore": "8.0.0",
-          "ScottPlot": "5.0.25",
-          "System.IdentityModel.Tokens.Jwt": "7.5.1"
+          "ScottPlot": "4.1.74",
+          "System.IdentityModel.Tokens.Jwt": "7.5.1",
+          "toastr": "2.1.1"
         },
         "runtime": {
           "BabunBank.dll": {}
@@ -638,6 +639,7 @@
           }
         }
       },
+      "jQuery/1.6.3": {},
       "K4os.Compression.LZ4/1.3.5": {
         "runtime": {
           "lib/net6.0/K4os.Compression.LZ4.dll": {
@@ -1911,82 +1913,15 @@
           }
         }
       },
-      "ScottPlot/5.0.25": {
+      "ScottPlot/4.1.74": {
         "dependencies": {
-          "SkiaSharp": "2.88.7",
-          "SkiaSharp.NativeAssets.Linux.NoDependencies": "2.88.7"
+          "System.Drawing.Common": "7.0.0",
+          "System.Numerics.Vectors": "4.5.0"
         },
         "runtime": {
           "lib/net8.0/ScottPlot.dll": {
-            "assemblyVersion": "5.0.25.0",
-            "fileVersion": "5.0.25.0"
-          }
-        }
-      },
-      "SkiaSharp/2.88.7": {
-        "dependencies": {
-          "SkiaSharp.NativeAssets.Win32": "2.88.7",
-          "SkiaSharp.NativeAssets.macOS": "2.88.7"
-        },
-        "runtime": {
-          "lib/net6.0/SkiaSharp.dll": {
-            "assemblyVersion": "2.88.0.0",
-            "fileVersion": "2.88.7.0"
-          }
-        }
-      },
-      "SkiaSharp.NativeAssets.Linux.NoDependencies/2.88.7": {
-        "dependencies": {
-          "SkiaSharp": "2.88.7"
-        },
-        "runtimeTargets": {
-          "runtimes/linux-arm/native/libSkiaSharp.so": {
-            "rid": "linux-arm",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/linux-arm64/native/libSkiaSharp.so": {
-            "rid": "linux-arm64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/linux-musl-x64/native/libSkiaSharp.so": {
-            "rid": "linux-musl-x64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/linux-x64/native/libSkiaSharp.so": {
-            "rid": "linux-x64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "SkiaSharp.NativeAssets.macOS/2.88.7": {
-        "runtimeTargets": {
-          "runtimes/osx/native/libSkiaSharp.dylib": {
-            "rid": "osx",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          }
-        }
-      },
-      "SkiaSharp.NativeAssets.Win32/2.88.7": {
-        "runtimeTargets": {
-          "runtimes/win-arm64/native/libSkiaSharp.dll": {
-            "rid": "win-arm64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/win-x64/native/libSkiaSharp.dll": {
-            "rid": "win-x64",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
-          },
-          "runtimes/win-x86/native/libSkiaSharp.dll": {
-            "rid": "win-x86",
-            "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "assemblyVersion": "4.1.74.0",
+            "fileVersion": "4.1.74.0"
           }
         }
       },
@@ -2295,6 +2230,11 @@
           }
         }
       },
+      "toastr/2.1.1": {
+        "dependencies": {
+          "jQuery": "1.6.3"
+        }
+      },
       "ZstdSharp.Port/0.7.1": {
         "runtime": {
           "lib/net7.0/ZstdSharp.dll": {
@@ -2318,7 +2258,7 @@
       "DetectMoneyLaundering/1.0.0": {
         "dependencies": {
           "DataAccessLibrary": "1.0.0",
-          "ScottPlot": "5.0.25"
+          "ScottPlot": "4.1.74"
         },
         "runtime": {
           "DetectMoneyLaundering.dll": {}
@@ -2723,6 +2663,13 @@
       "sha512": "sha512-VIXB7HCUC34OoaGnO3HJVtSv2/wljPhjV7eKH4+TFPgQdJj2lvHNKY41Dtg0Bphu7X5UaXFR4zrYYyo+GNOjbA==",
       "path": "humanizer.core.zh-hant/2.14.1",
       "hashPath": "humanizer.core.zh-hant.2.14.1.nupkg.sha512"
+    },
+    "jQuery/1.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vb0p7+eRmc2evBCT9W7PCUupqWiDMi9/ofBHN99LraRzLY5jPKMeFzFYBoMgwA8TiwRoFDke5hiDDLsvae7qMg==",
+      "path": "jquery/1.6.3",
+      "hashPath": "jquery.1.6.3.nupkg.sha512"
     },
     "K4os.Compression.LZ4/1.3.5": {
       "type": "package",
@@ -3354,40 +3301,12 @@
       "path": "nuget.versioning/6.9.1",
       "hashPath": "nuget.versioning.6.9.1.nupkg.sha512"
     },
-    "ScottPlot/5.0.25": {
+    "ScottPlot/4.1.74": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-2Y4SJXsbg7BbT5Xd30BieF0skdT3KkYAVNOQHS55lHlh8AHdLOB8TsxRuiLRQbF+6lKoq/9TYwSxeg25I5DuOA==",
-      "path": "scottplot/5.0.25",
-      "hashPath": "scottplot.5.0.25.nupkg.sha512"
-    },
-    "SkiaSharp/2.88.7": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-LJHAMrbWO00J7jXWLWehyjqFo29T4VzABimfJb4nICqpEe3c/KvQGWL4ItON8ymzhxYOeFgyxeRzuNzO4GHSug==",
-      "path": "skiasharp/2.88.7",
-      "hashPath": "skiasharp.2.88.7.nupkg.sha512"
-    },
-    "SkiaSharp.NativeAssets.Linux.NoDependencies/2.88.7": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-KkMftfAz1lGPnuhyecuLJzeyvMjXtHp9cYVQc/oeLhF8KYrxtUxRy5LOX5oROhyLHy/CyqEl9MoAhqmSH7cV7g==",
-      "path": "skiasharp.nativeassets.linux.nodependencies/2.88.7",
-      "hashPath": "skiasharp.nativeassets.linux.nodependencies.2.88.7.nupkg.sha512"
-    },
-    "SkiaSharp.NativeAssets.macOS/2.88.7": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-3jNzco4VjcYPFNxR9aNWcgweFXbTSdM1VpNRzCS4X0i1A1OuNqcaulrAvmntNpujeWxHo9e6WGh6FN8Jf5+XhA==",
-      "path": "skiasharp.nativeassets.macos/2.88.7",
-      "hashPath": "skiasharp.nativeassets.macos.2.88.7.nupkg.sha512"
-    },
-    "SkiaSharp.NativeAssets.Win32/2.88.7": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-BCXmWdQ0oVck9vRwC8U3ocSaTHEx28VB+6qw9OxGIMQ86iO5bp4Flqk3IXH0l9Pbr7vWAUOpI212iaL9mTaUZQ==",
-      "path": "skiasharp.nativeassets.win32/2.88.7",
-      "hashPath": "skiasharp.nativeassets.win32.2.88.7.nupkg.sha512"
+      "sha512": "sha512-1S84ODZxASurBMhBDCHlZAogpg5sJ3X5KuHiAFmUfGBuvLdiv8mc3BYiyFQzBE2tzWWtlOqMw5M3wtjqiA73YQ==",
+      "path": "scottplot/4.1.74",
+      "hashPath": "scottplot.4.1.74.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",
@@ -3703,6 +3622,13 @@
       "sha512": "sha512-bR4qdCmssMMbo9Fatci49An5B1UaVJZHKNq70PRgzoLYIlitb8Tj7ns/Xt5Pz1CkERiTjcVBDU2y1AVrPBYkaw==",
       "path": "system.windows.extensions/7.0.0",
       "hashPath": "system.windows.extensions.7.0.0.nupkg.sha512"
+    },
+    "toastr/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-h/688XvzYk1xVYn213ryU+HCElE4n/drYzAHJkAi9LsSUPS3EbI6wGlvCglBUt7i4h5iESgAVarYaigjQmVpqg==",
+      "path": "toastr/2.1.1",
+      "hashPath": "toastr.2.1.1.nupkg.sha512"
     },
     "ZstdSharp.Port/0.7.1": {
       "type": "package",

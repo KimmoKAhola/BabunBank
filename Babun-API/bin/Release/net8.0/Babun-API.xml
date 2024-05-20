@@ -9,17 +9,27 @@
             AccountController class handles API endpoints related to account operations.
             </summary>
         </member>
-        <member name="M:Babun_API.Controllers.AccountController.#ctor(DataAccessLibrary.DataServices.DataAccountService)">
+        <member name="M:Babun_API.Controllers.AccountController.#ctor(DataAccessLibrary.DataServices.DataAccountService,AutoMapper.IMapper)">
             <summary>
             AccountController class handles API endpoints related to account operations.
             </summary>
         </member>
-        <member name="M:Babun_API.Controllers.AccountController.Get(System.Int32)">
+        <member name="M:Babun_API.Controllers.AccountController.Me(System.Int32)">
             <summary>
             Retrieves an account by its ID.
             </summary>
             <param name="id">The ID of the account to retrieve.</param>
             <returns>The account with the specified ID.</returns>
+        </member>
+        <member name="M:Babun_API.Controllers.AccountController.Account(System.Int32,System.Int32,System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            Retrieves account transactions by account ID, limit, offset, and sort order.
+            </summary>
+            <param name="id">The ID of the account to retrieve transactions for.</param>
+            <param name="limit">The maximum number of transactions to retrieve.</param>
+            <param name="offset">The offset used for pagination.</param>
+            <param name="desc">The sorting order. Default value of true.</param>
+            <returns>A list of transactions for the specified account ID, limit, and offset.</returns>
         </member>
         <member name="T:Babun_API.Controllers.AdController">
             <summary>
@@ -60,7 +70,7 @@
              <returns>Ok(object), return BadRequest if limit is reached, returns status code 500 if the save to database fails.</returns>
             
         </member>
-        <member name="M:Babun_API.Controllers.AdController.Update(System.Int32,BabunBank.Models.FormModels.AdModels.EditAdModel)">
+        <member name="M:Babun_API.Controllers.AdController.Update(System.Int32,BabunBank.Models.FormModels.Ad.EditAdModel)">
             <summary>
             Update a database object to something else.
             Authorization required with a JWT token.
@@ -70,7 +80,7 @@
             <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
             NotFound if the item does not exist. Status code 500 if the database fails.</returns>
         </member>
-        <member name="M:Babun_API.Controllers.AdController.Patch(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.AdModels.EditAdModel})">
+        <member name="M:Babun_API.Controllers.AdController.Patch(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.Ad.EditAdModel})">
             <summary>
             Updates a singular ad specified by its ID with the provided patch document.
             </summary>
@@ -128,7 +138,7 @@
              <returns>Ok(object), return BadRequest if limit is reached, returns status code 500 if the save to database fails.</returns>
             
         </member>
-        <member name="M:Babun_API.Controllers.AdsController.Update(System.Int32,BabunBank.Models.FormModels.AdModels.EditAdModel)">
+        <member name="M:Babun_API.Controllers.AdsController.Update(System.Int32,BabunBank.Models.FormModels.Ad.EditAdModel)">
             <summary>
             Update a database object to something else.
             Authorization required with a JWT token.
@@ -138,7 +148,7 @@
             <returns>BadRequest if id is incorrect. Invalid BadRequest if model state is incorrect.
             NotFound if the item does not exist. Status code 500 if the database fails.</returns>
         </member>
-        <member name="M:Babun_API.Controllers.AdsController.UpdateAdPartial(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.AdModels.EditAdModel})">
+        <member name="M:Babun_API.Controllers.AdsController.UpdateAdPartial(System.Int32,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{BabunBank.Models.FormModels.Ad.EditAdModel})">
             <summary>
             Updates a partial ad by its ID with the specified patch document.
             </summary>
@@ -187,12 +197,44 @@
             If the login is successful, a token is returned as a simple string.
             </returns>
         </member>
-        <member name="T:Babun_API.MappingProfile">
+        <member name="T:Babun_API.Data.ApiContext">
+            <summary>
+            Represents the context for the API.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Data.ApiContext.#ctor">
+            <inheritdoc />
+        </member>
+        <member name="M:Babun_API.Data.ApiContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{Babun_API.Data.ApiContext})">
+            <inheritdoc />
+        </member>
+        <member name="P:Babun_API.Data.ApiContext.Ads">
+            <summary>
+            Represents an advertisement.
+            </summary>
+        </member>
+        <member name="T:Babun_API.Data.DataInitializer">
+            <summary>
+            Initializes and seeds the database with initial data.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Data.DataInitializer.#ctor(Babun_API.Data.ApiContext)">
+            <summary>
+            Initializes and seeds the database with initial data.
+            </summary>
+        </member>
+        <member name="M:Babun_API.Data.DataInitializer.SeedData">
+            <summary>
+            Seeds initial data into the database if it does not already exist.
+            </summary>
+            <returns>A task representing the asynchronous operation.</returns>
+        </member>
+        <member name="T:Babun_API.Infrastructure.Configurations.MappingProfile">
             <summary>
             Represents a mapping profile for AutoMapper.
             </summary>
         </member>
-        <member name="M:Babun_API.MappingProfile.#ctor">
+        <member name="M:Babun_API.Infrastructure.Configurations.MappingProfile.#ctor">
             <summary>
             Represents a mapping profile for AutoMapper.
             </summary>
@@ -236,6 +278,16 @@
         <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V2Policy">
             <summary>
             The policy name for API version 2.0 authentication.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V1ClaimType">
+            <summary>
+            The claim type used for version 1 of the API.
+            </summary>
+        </member>
+        <member name="F:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.V2ClaimType">
+            <summary>
+            Represents the claim type used for version 2 of the application.
             </summary>
         </member>
         <member name="M:Babun_API.Infrastructure.Configurations.SwaggerConfiguration.AddSwaggerDocumentation(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">

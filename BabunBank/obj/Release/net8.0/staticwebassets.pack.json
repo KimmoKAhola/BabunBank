@@ -5,12 +5,32 @@
       "PackagePath": "staticwebassets\\BabunBank.bundle.scp.css"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\about.txt",
+      "PackagePath": "staticwebassets\\about.txt"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\android-chrome-192x192.png",
+      "PackagePath": "staticwebassets\\android-chrome-192x192.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\android-chrome-512x512.png",
+      "PackagePath": "staticwebassets\\android-chrome-512x512.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\apple-touch-icon.png",
+      "PackagePath": "staticwebassets\\apple-touch-icon.png"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\favicon-16x16.png",
       "PackagePath": "staticwebassets\\favicon-16x16.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\favicon-32x32.png",
+      "PackagePath": "staticwebassets\\favicon-32x32.png"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\favicon.ico",
@@ -37,18 +57,6 @@
       "PackagePath": "staticwebassets\\images\\Mediamodifier-Design.svg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\babun-large-logo.png",
-      "PackagePath": "staticwebassets\\images\\babun-large-logo.png"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-error-fullscreen.jpg",
-      "PackagePath": "staticwebassets\\images\\bg-error-fullscreen.jpg"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-error-fullscreen.webp",
-      "PackagePath": "staticwebassets\\images\\bg-error-fullscreen.webp"
-    },
-    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\bg-fullscreen.jpg",
       "PackagePath": "staticwebassets\\images\\bg-fullscreen.jpg"
     },
@@ -65,32 +73,60 @@
       "PackagePath": "staticwebassets\\images\\chalk-profile.jpg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-denmark.svg"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\error.jpg",
+      "PackagePath": "staticwebassets\\images\\error.jpg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-finland.svg"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\error.webp",
+      "PackagePath": "staticwebassets\\images\\error.webp"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-norway.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-norway.svg"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\facebook.svg",
+      "PackagePath": "staticwebassets\\images\\facebook.svg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-sweden.svg",
-      "PackagePath": "staticwebassets\\images\\flag-of-sweden.svg"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-denmark.png",
+      "PackagePath": "staticwebassets\\images\\flag-of-denmark.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-finland.png",
+      "PackagePath": "staticwebassets\\images\\flag-of-finland.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-norway.png",
+      "PackagePath": "staticwebassets\\images\\flag-of-norway.png"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\flag-of-sweden.png",
+      "PackagePath": "staticwebassets\\images\\flag-of-sweden.png"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\instagram.svg",
       "PackagePath": "staticwebassets\\images\\instagram.svg"
     },
     {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-arrow-test.svg",
+      "PackagePath": "staticwebassets\\images\\landing-page-arrow-test.svg"
+    },
+    {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-arrow.svg",
       "PackagePath": "staticwebassets\\images\\landing-page-arrow.svg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-icon.svg",
-      "PackagePath": "staticwebassets\\images\\landing-page-icon.svg"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-icon-accounts.svg",
+      "PackagePath": "staticwebassets\\images\\landing-page-icon-accounts.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-icon-customer.svg",
+      "PackagePath": "staticwebassets\\images\\landing-page-icon-customer.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\landing-page-icon-dollar.svg",
+      "PackagePath": "staticwebassets\\images\\landing-page-icon-dollar.svg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\linkedin.svg",
+      "PackagePath": "staticwebassets\\images\\linkedin.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\lock.svg",
@@ -103,10 +139,6 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\login-arrow.svg",
       "PackagePath": "staticwebassets\\images\\login-arrow.svg"
-    },
-    {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logo-2.png",
-      "PackagePath": "staticwebassets\\images\\logo-2.png"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\logoipsum-255.svg",
@@ -145,12 +177,20 @@
       "PackagePath": "staticwebassets\\images\\moneylaundering\\SuspiciousTransactions.png"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\nordic-countries.jpg",
-      "PackagePath": "staticwebassets\\images\\nordic-countries.jpg"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-admin-test.jpg",
+      "PackagePath": "staticwebassets\\images\\office-admin-test.jpg"
     },
     {
-      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-3727464.jpeg",
-      "PackagePath": "staticwebassets\\images\\pexels-photo-3727464.jpeg"
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-admin-test.webp",
+      "PackagePath": "staticwebassets\\images\\office-admin-test.webp"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-test.jpg",
+      "PackagePath": "staticwebassets\\images\\office-test.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\office-test.webp",
+      "PackagePath": "staticwebassets\\images\\office-test.webp"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\pexels-photo-right-aligned.jpeg",
@@ -163,6 +203,10 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\teambuilding-bg.jpg",
       "PackagePath": "staticwebassets\\images\\teambuilding-bg.jpg"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\images\\twitter.svg",
+      "PackagePath": "staticwebassets\\images\\twitter.svg"
     },
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\js\\site.js",
@@ -395,6 +439,10 @@
     {
       "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\wwwroot\\site.webmanifest",
+      "PackagePath": "staticwebassets\\site.webmanifest"
     },
     {
       "Id": "obj\\Release\\net8.0\\staticwebassets\\msbuild.BabunBank.Microsoft.AspNetCore.StaticWebAssets.props",
