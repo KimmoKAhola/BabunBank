@@ -13,12 +13,14 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
     private const int NumberOfDaysInSlidingWindow = 2; //2 corresponds to 72 hours.
     private static readonly string Header = new('=', HeaderLength);
     private const string ReportFileName = "MoneyLaunderingReport";
-    private const string ReportFilePath = $"../../../{ReportFileName}.txt";
+    private const string ReportFilePath = $"{ReportsFolderPath}{ReportFileName}.txt";
     private const string LastReportDate = "LastReportDate";
-    private const string LastReportDateFilePath = $"../../../{LastReportDate}.txt";
+    private const string LastReportDateFilePath = $"{ReportsFolderPath}{LastReportDate}.txt";
     private const string ThreeDayAverageReportFileName = "ThreeDayAverage";
     private const string ThreeDayAverageReportFilePath =
-        $"../../../{ThreeDayAverageReportFileName}.txt";
+        $"{ReportsFolderPath}{ThreeDayAverageReportFileName}.txt";
+
+    private const string ReportsFolderPath = "$\"../../../../../Reports/";
 
     private static readonly PlotScalingModel StandardPlotScalingModel =
         new()
@@ -30,6 +32,10 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
 
     public async Task Display()
     {
+        if (!Directory.Exists(ReportsFolderPath))
+        {
+            Directory.CreateDirectory(ReportsFolderPath);
+        }
         while (true)
         {
             Console.WriteLine(Header);
@@ -116,6 +122,10 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
     private async Task TextMoneyLaundering()
     {
         var date = CheckLastReportDate();
+        if (!File.Exists(LastReportDateFilePath))
+        {
+            date = DateOnly.MinValue;
+        }
         var listOfAccountsToInspect = await moneyLaunderingService.InspectAllAccounts(date);
         await using (
             var writer = new StreamWriter(ReportFilePath, append: File.Exists(ReportFilePath))
@@ -146,12 +156,14 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
             }
         }
         Console.Clear();
-        Console.WriteLine($"The report has been saved as {ReportFileName}.txt");
+        Console.WriteLine(
+            $"The report has been saved as {ReportFileName}.txt in the reports folder."
+        );
     }
 
     private async Task PlotAllAccounts()
     {
-        var date = CheckLastReportDate();
+        var date = DateOnly.MinValue;
         var listOfAccountsToInspect = await moneyLaunderingService.InspectAllAccounts(date);
 
         DataVisualizationService.CreatePlotForAllTransactions(
@@ -163,6 +175,8 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
             listOfAccountsToInspect,
             VisualizationModes.Console
         );
+        Console.Clear();
+        Console.WriteLine("The plots have been saved in the plots folder.");
     }
 
     private async Task PlotIndividualCustomer(int id)
@@ -176,6 +190,8 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
             VisualizationModes.Console,
             StandardPlotScalingModel
         );
+        Console.Clear();
+        Console.WriteLine("The plots have been saved in the plots folder.");
     }
 
     private static DateOnly CheckLastReportDate()
@@ -195,6 +211,10 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
     private async Task InspectThreeDaySlidingAverage()
     {
         var date = CheckLastReportDate();
+        if (!File.Exists(ThreeDayAverageReportFileName))
+        {
+            date = DateOnly.MinValue;
+        }
         var listOfAccountsToInspect = await moneyLaunderingService.InspectAllAccounts(date);
 
         foreach (var customer in listOfAccountsToInspect)
@@ -280,5 +300,9 @@ public class MenuService(IMoneyLaunderingService moneyLaunderingService) : IMenu
             }
             await writer.WriteLineAsync();
         }
+        Console.Clear();
+        Console.WriteLine(
+            $"The report has been saved as {ThreeDayAverageReportFileName}.txt in the reports folder."
+        );
     }
 }

@@ -225,7 +225,7 @@ public static class DataVisualizationService
     )
     {
         var maxValue = accountsToInspect.Max(x => x.TransactionsOverLimit.Count);
-        var numberOfBins = (int)(10 * scalingModel.HeightScaleFactor);
+        var numberOfBins = 80;
 
         var barPlotValues = new double[numberOfBins][];
         var increment = maxValue / (double)numberOfBins;
@@ -282,8 +282,12 @@ public static class DataVisualizationService
     )
     {
         var plt = new Plot();
-        var min = accountsToInspect.Min(x => x.NormalTransactions.Min(t => t.Amount));
-        var max = accountsToInspect.Max(x => x.TransactionsOverLimit.Max(t => t.Amount));
+        var min = accountsToInspect
+            .Where(a => a.NormalTransactions.Any())
+            .Min(x => x.NormalTransactions.Min(t => t.Amount));
+        var max = accountsToInspect
+            .Where(a => a.TransactionsOverLimit.Any())
+            .Max(x => x.TransactionsOverLimit.Max(t => t.Amount));
         var binCount = accountsToInspect.Count;
 
         List<double> allTransactions = [];
