@@ -49,7 +49,7 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
         return accountViewModel;
     }
 
-    public async Task<(IEnumerable<Account>, int NumberOfAccounts)> RenameMe(
+    public async Task<(IEnumerable<Account> listOfAccounts, int NumberOfAccounts)> RenameMe(
         int id,
         int pageNumber,
         int pageSize,
@@ -63,6 +63,6 @@ public class AccountService(DataAccountService dataAccountService, IMapper mappe
             q
         );
 
-        return (result, 2);
+        return (result.listOfAccounts, result.numberOfAccounts);
     }
 }
