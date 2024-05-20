@@ -68,7 +68,29 @@
                             </a>
                         </span>
                     </th>
-                    @foreach (var column in new[] { "GivenName", "Surname", "Country", "City", "Gender", "Birth Date" })
+
+                    <th>
+                        <span class="customer-table">
+                            Given Name
+                            <a asp-action="Index" asp-controller="Cashier"
+                               asp-route-sortColumn="GivenName"
+                               asp-route-sortOrder="asc"
+                               asp-route-q="@ViewBag.Q"
+                               style="text-decoration:none">
+                                <i class="material-symbols-outlined">expand_more</i>
+                            </a>
+
+                            <a asp-action="Index" asp-controller="Cashier"
+                               asp-route-sortColumn="GivenName"
+                               asp-route-sortOrder="desc"
+                               asp-route-q="@ViewBag.Q"
+                               style="text-decoration:none">
+                                <i class="material-symbols-outlined">expand_less</i>
+                            </a>
+                        </span>
+                    </th>
+                    
+                    @foreach (var column in new[] { "Surname", "Country", "City", "Gender", "Birth Date" })
                     {
                         <th>
                             <span class="customer-table">
@@ -126,10 +148,10 @@
                 {
                     <tr>
                         <td>@customer.CustomerId</td>
-                        <td>@customer.Gender</td>
                         <td>@customer.GivenName</td>
                         <td>@customer.Surname</td>
                         <td>@customer.Country</td>
+                        <td>@customer.City</td>
                         <td>@customer.Gender</td>
                         <td>@customer.BirthDay</td>
                         <td>@(customer.NationalId ?? "N/A")</td>
