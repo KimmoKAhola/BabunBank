@@ -26,14 +26,7 @@
             <input name="q" value="@ViewBag.Q" placeholder="Search id or name">
         </div>
         <div class="form-group">
-            @Html.DropDownList("pageSize", Enum.GetValues(typeof(CustomerDropdownMenu))
-                .Cast<CustomerDropdownMenu>()
-                .Select(x => new SelectListItem
-                {
-                    Text = $"{((int)x).ToString()} results per page",
-                    Value = ((int)x).ToString(),
-                    Selected = ViewBag.PageSize == (int)x
-                }), new { @class = "dropdown-list" })
+            @Html.DropDownList("pageSize", (IEnumerable<SelectListItem>)ViewBag.PageSizeValues, new { @class = "dropdown-list" })
         </div>
         <div class="form-group">
             <input class="create-customer-form-btn" type="submit" value="Apply filters"/>
@@ -124,6 +117,7 @@
         <a asp-controller="Account"
            asp-action="Transfer"
            asp-route-pageNumber="@(ViewBag.CurrentPage - 1)"
+           asp-route-q="@ViewBag.Q"
            asp-route-pageSize="@ViewBag.PageSize" class="create-customer-form-btn">
             Prev
         </a>
@@ -152,25 +146,25 @@
            asp-route-pageSize="@ViewBag.PageSize">
             @(ViewBag.CurrentPage + 1)
         </a>
+        <a asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
+           asp-route-q="@ViewBag.Q"
+           asp-route-pageSize="@ViewBag.PageSize"
+           asp-controller="Account"
+           asp-action="Transfer"
+           class="create-customer-form-btn">
+            Next
+        </a>
+        <a asp-controller="Account"
+           asp-action="Transfer"
+           asp-route-pageNumber="@ViewBag.TotalPageCount"
+           asp-route-pageSize="@ViewBag.PageSize">
+            Last
+        </a>
     }
     else
     {
         <a></a>
     }
-    <a asp-route-pageNumber="@(ViewBag.CurrentPage + 1)"
-       asp-route-q="@ViewBag.Q"
-       asp-route-pageSize="@ViewBag.PageSize"
-       asp-controller="Account"
-       asp-action="Transfer"
-       class="create-customer-form-btn">
-        Next
-    </a>
-    <a asp-controller="Account"
-       asp-action="Transfer"
-       asp-route-pageNumber="@ViewBag.TotalPageCount"
-       asp-route-pageSize="@ViewBag.PageSize">
-        Last
-    </a>
     <button id="goToTop-button" onclick="goToTop()">
         <i class="material-symbols-outlined">
             arrow_upward
