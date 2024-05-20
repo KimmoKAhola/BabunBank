@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Babun-API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+750d8d59b9da8ff97396f628905e5c0b19ab34b2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+861546a055c87f47cbc99bd771077d1736ac1e52")]
 [assembly: System.Reflection.AssemblyProductAttribute("Babun-API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Babun-API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

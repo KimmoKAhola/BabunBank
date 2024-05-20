@@ -1,3 +1,0 @@
-﻿Ska man ändra tabellerna för att införa soft delete?
-Soft delete på Identity-tabeller?
-Kan jag ändra på tabellen så att Transactions innehåller DateTime istället?
