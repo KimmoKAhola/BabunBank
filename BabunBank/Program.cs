@@ -30,20 +30,21 @@ namespace BabunBank
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BankAppDataContext>();
 
-            builder.Services.AddResponseCaching(); //fel här?
-            builder.Services.AddControllers(options =>
-            {
-                options.CacheProfiles.Add(
-                    "Default30",
-                    new CacheProfile
-                    {
-                        Duration = 30,
-                        VaryByQueryKeys = ["country"],
-                        Location = ResponseCacheLocation.Any,
-                        NoStore = false
-                    }
-                );
-            });
+            //This crashes in visual studio for some reason. Can not get it working.
+            // builder.Services.AddResponseCaching(); //fel här?
+            // builder.Services.AddControllers(options =>
+            // {
+            //     options.CacheProfiles.Add(
+            //         "Default30",
+            //         new CacheProfile
+            //         {
+            //             Duration = 30,
+            //             VaryByQueryKeys = ["country"],
+            //             Location = ResponseCacheLocation.Any,
+            //             NoStore = false
+            //         }
+            //     );
+            // });
 
             builder.Services.AddControllersWithViews();
 

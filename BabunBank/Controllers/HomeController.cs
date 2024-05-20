@@ -48,7 +48,7 @@ public class HomeController(
         return View(model);
     }
 
-    [ResponseCache(CacheProfileName = "Default30")]
+    // [ResponseCache(CacheProfileName = "Default30")] Does not work for some reason even though it follows Microsoft's documentation
     public async Task<IActionResult> Details(string country)
     {
         var result = await landingPageService.GetDetailedLandingPageInfo(country);
