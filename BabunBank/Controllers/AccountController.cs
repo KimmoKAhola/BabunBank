@@ -1,10 +1,12 @@
 ﻿using BabunBank.Factories.Transactions;
+using BabunBank.Infrastructure.Enums;
 using BabunBank.Infrastructure.Interfaces;
 using BabunBank.Infrastructure.Parameters;
 using BabunBank.Models.FormModels.Transactions;
 using BabunBank.Models.ViewModels.Account;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BabunBank.Controllers;
 
@@ -100,8 +102,6 @@ public class AccountController(
         string q = ""
     )
     {
-        // totalPageCount = (int)Math.Ceiling((double)totalPageCount / pageSize);
-
         ViewBag.CurrentPage = pageNumber;
         ViewBag.Q = q;
         ViewBag.PageSize = pageSize;
@@ -182,7 +182,17 @@ public class AccountController(
             pageSize,
             q
         );
-        ViewBag.ListOfCustomers = result.Item1;
+        var pageSizeValues = Enum.GetValues(typeof(CustomerDropdownMenu))
+            .Cast<CustomerDropdownMenu>()
+            .Select(x => new SelectListItem
+            {
+                Text = $"{((int)x).ToString()} results per page",
+                Value = ((int)x).ToString()
+            });
+
+        ViewBag.ListOfCustomers = result.listOfAccounts;
+        ViewBag.TotalPageCount = (int)Math.Ceiling((double)result.NumberOfAccounts / pageSize);
+        ViewBag.PageSizeValues = pageSizeValues;
     }
 
     public async Task<IActionResult> Filter(
