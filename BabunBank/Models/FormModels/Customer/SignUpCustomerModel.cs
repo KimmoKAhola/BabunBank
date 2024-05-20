@@ -9,7 +9,7 @@ namespace BabunBank.Models.FormModels.Customer;
 public class SignUpCustomerModel
 {
     [Required]
-    [Range(1, 3)]
+    [Range(1, 3, ErrorMessage = "Please choose a valid option.")]
     [DisplayName("Gender")]
     public int GenderRole { get; init; }
 
@@ -39,7 +39,7 @@ public class SignUpCustomerModel
     public string Zipcode { get; init; } = null!;
 
     [Required]
-    [Range(1, 5)]
+    [Range(1, 5, ErrorMessage = "Please choose a valid option.")]
     [DisplayName("Country")]
     public int Country { get; init; }
 
