@@ -51,9 +51,6 @@ public class CashierController(
 
         totalPageCount = (int)Math.Ceiling((double)totalPageCount / pageSize);
 
-        // if (!customers.Any() && totalPageCount == 0)
-        //     return RedirectToAction("Index", "Error"); //TODO remove this?
-
         ViewBag.SortColumn = sortColumn;
         ViewBag.SortOrder = sortOrder;
         ViewBag.CurrentPage = pageNumber;

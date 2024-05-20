@@ -55,40 +55,50 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
         }
     }
 
-    public async Task<IEnumerable<Account>> GetAllAccountsAndCustomersAsync(
-        int id,
-        int pageNumber,
-        int pageSize,
-        string q
-    )
+    public async Task<(
+        IEnumerable<Account> listOfAccounts,
+        int numberOfAccounts
+    )> GetAllAccountsAndCustomersAsync(int id, int pageNumber, int pageSize, string q)
     {
+        var numberOfAccounts = accountRepository.GetAllAsync().Count();
+
         try
         {
             if (int.TryParse(q, out var val))
             {
-                return await accountRepository
-                    .GetAllAsync()
-                    .Where(a => a.AccountId == val)
-                    .Include(a => a.Dispositions)
-                    .ThenInclude(d => d.Customer)
-                    .ToListAsync();
+                return (
+                    await accountRepository
+                        .GetAllAsync()
+                        .Where(a => a.AccountId == val)
+                        .Include(a => a.Dispositions)
+                        .ThenInclude(d => d.Customer)
+                        .ToListAsync(),
+                    numberOfAccounts
+                );
             }
 
             if (!q.IsNullOrEmpty())
             {
-                return await accountRepository
-                    .GetAllAsync()
-                    .Where(a => a.AccountId != id)
-                    .Where(a =>
-                        a.Dispositions.First().Customer.Givenname.ToLower().Contains(q.ToLower())
-                        || a.Dispositions.First().Customer.Surname.ToLower().Contains(q.ToLower())
-                    )
-                    .Include(a => a.Dispositions)
-                    .ThenInclude(d => d.Customer)
-                    .OrderBy(a => a.AccountId)
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .ToListAsync();
+                return (
+                    await accountRepository
+                        .GetAllAsync()
+                        .Where(a => a.AccountId != id)
+                        .Where(a =>
+                            a.Dispositions.First()
+                                .Customer.Givenname.ToLower()
+                                .Contains(q.ToLower())
+                            || a.Dispositions.First()
+                                .Customer.Surname.ToLower()
+                                .Contains(q.ToLower())
+                        )
+                        .Include(a => a.Dispositions)
+                        .ThenInclude(d => d.Customer)
+                        .OrderBy(a => a.AccountId)
+                        .Skip((pageNumber - 1) * pageSize)
+                        .Take(pageSize)
+                        .ToListAsync(),
+                    numberOfAccounts
+                );
             }
 
             var result = await accountRepository
@@ -101,7 +111,7 @@ public class DataAccountService(AccountRepository accountRepository) : IDataServ
                 .Take(pageSize)
                 .ToListAsync();
 
-            return result;
+            return (result, numberOfAccounts);
         }
         catch (Exception e)
         {

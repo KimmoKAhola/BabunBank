@@ -13,6 +13,7 @@
         <div class="create-customer-form-row">
             Update the email, username and user role for the user @Model.OldEmail.
             <br>You need to confirm the old email as well as the new email to update the user.
+            <br>To keep your previous email, please enter it in the new email field.
         </div>
         <div class="create-customer-form-row">
             <span class="Test">
@@ -31,13 +32,13 @@
         <div class="create-customer-form-row">
             <span class="Test">
                 <label asp-for="NewEmail">New Email</label>
-                <input asp-for="NewEmail" type="text">
+                <input asp-for="NewEmail" type="text" placeholder="Enter your old email in this field to keep it">
                 <span asp-validation-for="NewEmail" class="text-danger"></span>
             </span>
 
             <span class="Test">
                 <label asp-for="ConfirmNewEmail">Confirm New Email</label>
-                <input asp-for="ConfirmNewEmail" type="text">
+                <input asp-for="ConfirmNewEmail" type="text" placeholder="Enter your old email in this field to keep it">
                 <span asp-validation-for="ConfirmNewEmail" class="text-danger"></span>
             </span>
         </div>

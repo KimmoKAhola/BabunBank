@@ -30,7 +30,9 @@ public class DataCustomerService(CustomerRepository customerRepository) : IDataS
                 { "Gender", c => c.Gender },
                 { "GivenName", c => c.Givenname },
                 { "Surname", c => c.Surname },
-                { "Country", c => c.Country }
+                { "Country", c => c.Country },
+                { "City", c => c.City },
+                { "Birth Date", c => c.Birthday }
             };
             var queryResult = customerRepository.GetAllAsync();
 

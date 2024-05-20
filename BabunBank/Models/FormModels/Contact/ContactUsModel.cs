@@ -6,12 +6,12 @@ namespace BabunBank.Models.FormModels.Contact;
 public record ContactUsModel
 {
     [Required(ErrorMessage = "First name is required.")]
-    [StringLength(100, MinimumLength = 2, ErrorMessage = "Bajs")]
+    [StringLength(100, MinimumLength = 2, ErrorMessage = "A minimum of 2 characters are required.")]
     [DisplayName("First Name")]
     public string FirstName { get; init; } = null!;
 
     [Required(ErrorMessage = "Last name is required.")]
-    [StringLength(100, MinimumLength = 7, ErrorMessage = "A minimum of 7 characters please.")]
+    [StringLength(100, MinimumLength = 2, ErrorMessage = "A minimum of 2 characters are required.")]
     [DisplayName("Last Name")]
     public string LastName { get; init; } = null!;
 

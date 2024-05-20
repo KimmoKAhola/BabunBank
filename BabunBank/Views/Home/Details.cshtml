@@ -18,10 +18,10 @@
         @foreach (var customer in Model)
         {
             <tr>
-                <td>Customer Id: @customer.CustomerId</td>
-                <td>Account Id: @customer.AccountId</td>
-                <td>Name @customer.Name</td>
-                <td>Account sum: @customer.AccountSum.ToString("C2", new CultureInfo("sv-SE"))</td>
+                <td>@customer.CustomerId</td>
+                <td>@customer.AccountId</td>
+                <td>@customer.Name</td>
+                <td>@customer.AccountSum.ToString("C2", new CultureInfo("sv-SE"))</td>
             </tr>
         }
         </tbody>

@@ -1,5 +1,4 @@
-cashier index - crud högst upp
-page number till vänster om search bar (kanske)
-gör ett kort till transactions
-transfer clear funkar inte
-transfer pagination funkar inte
+top customers backghround color change
+A minimum of 7 characters please. remove from contact form model surname
+account created appears when it should not
+fixa mappar på money laundering

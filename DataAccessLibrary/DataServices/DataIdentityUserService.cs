@@ -86,7 +86,7 @@ public class DataIdentityUserService(
                 }
             );
         }
-        if (await CheckUserExistsByEmail(newEmail))
+        if (await CheckUserExistsByEmail(newEmail) || newEmail == user.User.Email)
         {
             var resultOfEmailChange = await userManager.SetEmailAsync(user.User, newEmail);
             var currentRole = await userManager.GetRolesAsync(user.User);
