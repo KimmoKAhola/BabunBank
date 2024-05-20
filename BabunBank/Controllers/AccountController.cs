@@ -176,7 +176,7 @@ public class AccountController(
         int pageSize
     )
     {
-        var result = await accountService.RenameMe(
+        var result = await accountService.GetAccountsAndNumberOfAccounts(
             transferModel.FromAccountId,
             pageNumber,
             pageSize,
