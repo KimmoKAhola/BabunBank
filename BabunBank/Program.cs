@@ -30,7 +30,7 @@ namespace BabunBank
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<BankAppDataContext>();
 
-            builder.Services.AddResponseCaching();
+            builder.Services.AddResponseCaching(); //fel här?
             builder.Services.AddControllers(options =>
             {
                 options.CacheProfiles.Add(
@@ -88,7 +88,15 @@ namespace BabunBank
             app.MapRazorPages();
 
             using var scope = app.Services.CreateScope();
-            scope.ServiceProvider.GetService<DataInitializer>()!.SeedData();
+            try
+            {
+                scope.ServiceProvider.GetService<DataInitializer>()!.SeedData();
+            }
+            catch
+            {
+                // ignored
+            }
+
             app.Run();
         }
     }
