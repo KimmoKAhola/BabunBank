@@ -9,14 +9,14 @@ public record UpdateIdentityUserModel
     [Required]
     public string UserId { get; init; } = null!;
 
-    [Required]
+    [Required(ErrorMessage = "This field is required.")]
     public string OldEmail { get; init; } = null!;
 
     [EmailAddress]
+    [Required(ErrorMessage = "This field is required.")]
     [Compare("OldEmail", ErrorMessage = "Email addresses has to match")]
     public string ConfirmOldEmail { get; init; } = null!;
 
-    [Required]
     public string NewEmail { get; init; } = null!;
 
     [EmailAddress]
