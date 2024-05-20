@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\kahol\\source\\repos\\BabunBank\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|c:\\users\\kahol\\source\\repos\\babunbank\\babunbank\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{CADADCBA-5E0D-434C-A47D-A5D01DF68CDB}|BabunBank\\BabunBank.csproj|solutionrelative:babunbank\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FB0C6870-904F-4BC9-BC39-4AEE9D62E81C}|Babun-API\\Babun-API.csproj|c:\\users\\kahol\\source\\repos\\babunbank\\babun-api\\infrastructure\\configurations\\serviceconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{FB0C6870-904F-4BC9-BC39-4AEE9D62E81C}|Babun-API\\Babun-API.csproj|solutionrelative:babun-api\\infrastructure\\configurations\\serviceconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -39,19 +43,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\appsettings.json",
+              "RelativeDocumentMoniker": "BabunBank\\appsettings.json",
+              "ToolTip": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\appsettings.json",
+              "RelativeToolTip": "BabunBank\\appsettings.json",
+              "ViewState": "AQIAACAAAAAAAAAAAAAAAAoAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-05-20T17:28:07.493Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "ServiceConfigurations.cs",
               "DocumentMoniker": "C:\\Users\\kahol\\source\\repos\\BabunBank\\Babun-API\\Infrastructure\\Configurations\\ServiceConfigurations.cs",
               "RelativeDocumentMoniker": "Babun-API\\Infrastructure\\Configurations\\ServiceConfigurations.cs",
               "ToolTip": "C:\\Users\\kahol\\source\\repos\\BabunBank\\Babun-API\\Infrastructure\\Configurations\\ServiceConfigurations.cs",
               "RelativeToolTip": "Babun-API\\Infrastructure\\Configurations\\ServiceConfigurations.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAACEAAAA4AAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAqwCEAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-29T10:23:27.908Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\kahol\\source\\repos\\BabunBank\\BabunBank\\Program.cs",
               "RelativeDocumentMoniker": "BabunBank\\Program.cs",
