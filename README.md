@@ -2,6 +2,9 @@
 
 This project has been created using MVC in C#. The result can be viewed here https://babunbank.azurewebsites.net/ and here https://babun-api.azurewebsites.net/swagger/index.html
 
+View of the landing page
+<img src="https://kimmostorage.blob.core.windows.net/test/babun-landing-page.png"/> 
+
 ## Babun-API
 An RESTful API service designed to handle various operations related to accounts and transactions. Utilizes automapper for object mapping, OpenAPI for versioning and documentation as well ass JWT for tokenization.
 The result of the api can be viewed in the news section on the bank app.
