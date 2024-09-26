@@ -5,6 +5,12 @@ This project has been created using MVC in C#. The result can be viewed here htt
 View of the landing page
 <img src="https://kimmostorage.blob.core.windows.net/test/babun-landing-page.png"/> 
 
+View of the news page
+<img src="https://kimmostorage.blob.core.windows.net/test/babun-blog-page.png" />
+
+View of the accounts page
+<img src="https://kimmostorage.blob.core.windows.net/test/babun-accounts-page.png" />
+
 ## Babun-API
 An RESTful API service designed to handle various operations related to accounts and transactions. Utilizes automapper for object mapping, OpenAPI for versioning and documentation as well ass JWT for tokenization.
 The result of the api can be viewed in the news section on the bank app.
