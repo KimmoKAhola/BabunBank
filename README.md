@@ -1,6 +1,16 @@
 # Babun Bank MVC Project
 
-This project has been created using MVC in C#. The result can be viewed here https://babunbank.azurewebsites.net/ and here https://babun-api.azurewebsites.net/swagger/index.html
+### To log in as an admin: 
+- username: richard.chalk@systementor.se
+- password: Hejsan123#
+### To log in as a cashier: 
+- username: richard.erdos.chalk@gmail.se
+- password: Hejsan123#
+
+This project has been created using MVC in C#. 
+The main page can be viewed [here](https://babunbank.azurewebsites.net/)
+
+and the API can be viewed [here](https://babun-api.azurewebsites.net/swagger/index.html)
 
 View of the landing page
 <img src="https://kimmostorage.blob.core.windows.net/test/babun-landing-page.png"/> 
